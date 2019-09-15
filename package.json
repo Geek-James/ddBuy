@@ -11,6 +11,7 @@
     "core-js": "^2.6.5",
     "fastclick": "^1.0.6",
     "less-loader": "^5.0.0",
+    "reset-css": "^4.0.1",
     "vant": "^2.2.0",
     "vue": "^2.6.10",
     "vue-awesome-swiper": "^3.1.3",

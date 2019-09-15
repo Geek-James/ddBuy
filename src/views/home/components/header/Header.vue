@@ -31,9 +31,14 @@
     </div>
   </div>
 </template>
-
 <script type="text/javascript">
 export default {
+  created: {
+
+  },
+  methods: {
+
+  }
 
 }
 </script>
@@ -83,7 +88,6 @@ export default {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  //   width: 70%;
   max-width: 70%;
   min-width: 20%;
   vertical-align: middle;

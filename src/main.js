@@ -13,7 +13,13 @@ if ('addEventListener' in document) {
 Vue.config.productionTip = false
 
 // 全局引入UI库 vant
-import '../src/plugins/vant'
+import '@/plugins/vant'
+// 全局引入rem
+import '@/config/rem'
+// 全局引入 Reset-css
+import 'reset-css'
+//  全局引入 过滤器
+import '@/config/filter'
 
 new Vue({
     router,

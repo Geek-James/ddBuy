@@ -3,7 +3,7 @@
           :options="swiperOption"
           ref="mySwiper">
     <!-- slides -->
-    <swiper-slide v-for="(sowing, index) in sowing_list"
+    <swiper-slide v-for="(sowing,index) in sowing_list"
                   :key="sowing.public_id">
       <img :src="sowing.icon_url"
            :alt="sowing.public_name">
@@ -16,8 +16,9 @@
 </template>
 
 <script type="text/javascript">
-// require styles
+// 引入 swiper.css
 import 'swiper/dist/css/swiper.css'
+
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 
 export default {
@@ -74,18 +75,19 @@ export default {
 <style scoped>
 #swiper {
   width: 100%;
-  height: 14rem;
+  height: 12rem;
 }
 #swiper img {
   width: 100%;
   height: 100%;
 }
 /*
-      穿透修改样式
-   */
+穿透修改样式
+*/
 #swiper >>> .swiper-pagination-bullet-active {
   background-color: #75a342;
 }
+
 #swiper >>> .swiper-pagination-bullet {
   width: 0.3rem;
   height: 0.3rem;
