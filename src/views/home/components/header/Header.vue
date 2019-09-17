@@ -1,6 +1,7 @@
 <template>
   <div class="wrapper">
-    <div class="locationWrapper">
+    <div class="locationWrapper"
+         ref="location">
       <svg viewBox="0 0 30 30"
            class="icon iconLocation">
         <path fill="#FFFFFF"
@@ -16,7 +17,8 @@
       </svg>
 
     </div>
-    <div class="searchWrapper">
+    <div class="searchWrapper"
+         ref="search">
       <div class="searchContent">
         <div class="iconSearchWrapper">
           <svg viewBox="0 0 32 32"
@@ -32,13 +34,8 @@
   </div>
 </template>
 <script type="text/javascript">
+
 export default {
-  created: {
-
-  },
-  methods: {
-
-  }
 
 }
 </script>
@@ -65,6 +62,10 @@ export default {
   width: 1.875rem;
   height: 1rem;
   vertical-align: middle;
+}
+
+.hidden {
+  display: none;
 }
 
 // 地址框

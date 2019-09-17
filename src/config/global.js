@@ -4,27 +4,27 @@ export const showBackIcon = (callback) => {
     let oldScrolloTop, requestFrame;
 
     // 监听滚动
-    document.addEventListener('scroll', () => {
+    window.addEventListener('scroll', () => {
         showBackFunc();
     }, false);
 
     // 监听触摸开始
     // passive 监听器能保证的只有一点，那就是调用 preventDefault() 无效
-    document.addEventListener('touchstart', () => {
+    window.addEventListener('touchstart', () => {
         showBackFunc();
     }, {
         passive: true
     });
 
     // 监听触摸 移动
-    document.addEventListener('touchmove', () => {
+    window.addEventListener('touchmove', () => {
         showBackFunc();
     }, {
         passive: true
     });
 
     // 监听触摸 结束
-    document.addEventListener('touchend', () => {
+    window.addEventListener('touchend', () => {
 
     }, {
         passive: true

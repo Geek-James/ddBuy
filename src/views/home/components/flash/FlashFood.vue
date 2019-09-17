@@ -7,8 +7,8 @@
         <img :src="product.small_image">
         <span class="title">{{product.name}}</span>
         <div class="price">
-          <p class="nowPrice">{{product.price | moneyFormart}}</p>
-          <p class="originPrice">{{product.origin_price | moneyFormart}}</p>
+          <p class="nowPrice">{{product.price | moneyFormat}}</p>
+          <p class="originPrice">{{product.origin_price | moneyFormat}}</p>
           <div class="buyCar">
             <svg viewBox="0 0 52 52"
                  class="icon icon-60">
@@ -72,7 +72,6 @@ export default {
 </script>
 <style lang="less" scoped>
 #flashFood {
-  position: absolute;
   top: 3rem;
   width: 100%;
   white-space: normal;

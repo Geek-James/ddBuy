@@ -1,6 +1,6 @@
 import Vue from 'vue'
 
 // 金钱过滤 ¥xx.xx
-Vue.filter('moneyFormart', (value) => {
+Vue.filter('moneyFormat', (value) => {
     return '¥' + Number(value).toFixed(2);
 })

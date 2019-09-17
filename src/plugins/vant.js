@@ -24,3 +24,17 @@ import {
     CountDown
 } from 'vant';
 Vue.use(CountDown);
+
+// 5.图片懒加载
+import {
+    Lazyload
+} from 'vant';
+// options 为可选参数，无则不传
+Vue.use(Lazyload);
+
+// 6.Tabbar 标签栏
+import {
+    Tab,
+    Tabs
+} from 'vant';
+Vue.use(Tab).use(Tabs);
