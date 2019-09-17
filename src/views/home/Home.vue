@@ -14,7 +14,8 @@
       <!-- 特色专区 -->
       <SpecialZone></SpecialZone>
       <!-- TabbarItem 商品 -->
-      <TabbarGoodsItem :tabbar_all_product_list="tabbar_all_product_list"></TabbarGoodsItem>
+      <TabbarGoodsItem :tabbar_all_product_list="tabbar_all_product_list"
+                       :flash_sale_product_list="flash_sale_product_list"></TabbarGoodsItem>
     </div>
     <van-loading v-else
                  size="24px "
