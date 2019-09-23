@@ -27,7 +27,11 @@ export default new Router({
         }, {
             path: 'home',
             name: 'home',
-            component: Home
+            component: Home,
+            // 是否数据缓存
+            meta: {
+                keepAlive: true
+            }
         }, {
             path: 'category',
             name: 'category',

@@ -18,7 +18,6 @@ window.onload = function () {
 }
 
 </script>
->
 <style lang="less">
 #app {
   width: 100%;

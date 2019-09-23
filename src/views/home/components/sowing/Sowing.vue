@@ -6,8 +6,7 @@
     <swiper-slide v-for="(sowing,index) in sowing_list"
                   :key="sowing.public_id">
       <img :src="sowing.icon_url"
-           :alt="sowing.public_name"
-           v-lazy="sowing.icon_url">
+           :alt="sowing.public_name">
     </swiper-slide>
 
     <!-- Optional controls -->

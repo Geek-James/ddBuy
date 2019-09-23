@@ -38,3 +38,9 @@ import {
     Tabs
 } from 'vant';
 Vue.use(Tab).use(Tabs);
+
+// 分割线
+import {
+    Divider
+} from 'vant';
+Vue.use(Divider);
