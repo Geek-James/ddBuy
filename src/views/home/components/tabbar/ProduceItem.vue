@@ -81,7 +81,6 @@ export default {
   height: auto;
   padding-left: 2%;
   padding-top: 0.5rem;
-  padding-bottom: 5rem;
 }
 .item {
   position: relative;

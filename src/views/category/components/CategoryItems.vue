@@ -1,4 +1,5 @@
 <template>
+  <!-- 左边滑块 -->
   <div class="listWrapper">
     <div class="leftWrapper">
       <ul class="wrapper">

@@ -1,22 +1,30 @@
 <template>
+
   <div class="wrapper emptyWrapper">
+    <!-- 可滑动的标题 -->
+    <ScrollTitle :categoriesDetailData="categoriesDetailData"></ScrollTitle>
     <div v-for="(categoriesDetail, index) in categoriesDetailData"
          :key="categoriesDetail.id">
       <div class="categoryTitle">{{categoriesDetail.name}}</div>
       <ProductItem :products="categoriesDetail.products" />
+      <p class="bottomTip">到底啦,看看别的分类吧</p>
     </div>
+
   </div>
 </template>
 
 <script>
 import ProductItem from './ProductItem'
+import ScrollTitle from './ScrollTitle'
+
 export default {
   name: "ContentView",
   props: {
     categoriesDetailData: Array
   },
   components: {
-    ProductItem
+    ProductItem,
+    ScrollTitle
   }
 }
 </script>
@@ -26,6 +34,7 @@ export default {
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   overflow-scrolling: touch;
+  padding-bottom: 2rem;
 }
 
 .wrapper {
@@ -47,5 +56,13 @@ export default {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+
+.bottomTip {
+  height: 1rem;
+  line-height: 1rem;
+  font-size: 0.75rem;
+  color: gray;
+  text-align: center;
 }
 </style>

@@ -1,5 +1,6 @@
 <template>
-  <div class="productWrapper">
+  <div class="productWrapper"
+       ref="productWrapper">
     <div v-for="(product, index) in products"
          class="infoWrapper"
          :key="product.id">
@@ -76,7 +77,10 @@ export default {
   props: {
     products: Array
   },
+  mounted () {
+  },
   computed: {
+
   },
   methods: {
 
@@ -151,6 +155,7 @@ export default {
 }
 
 .nameWrapper {
+  padding-top: 0.5rem;
   min-height: 2.1875rem;
 }
 
@@ -172,13 +177,17 @@ export default {
 }
 
 .spec {
-  min-height: 1.25rem;
-  line-height: 1.25rem;
+  padding-top: 0.2rem;
+  height: 2.15rem;
+  line-height: 1.2rem;
   font-size: 0.75rem;
   color: #999999;
+  /* white-space: nowrap; */
+  display: -webkit-box;
   overflow: hidden;
-  white-space: nowrap;
   text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .tagsWrapper {

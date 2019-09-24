@@ -145,7 +145,7 @@ export default {
 
 .categoryItem {
   padding: 0.75rem 0;
-  border-bottom: solid 1px #e8e9e8;
+  border-bottom: solid 0.01rem #e8e9e8;
   position: relative;
 }
 
@@ -170,7 +170,7 @@ export default {
 
 @media (min-width: 960px) {
   .wrapper {
-    border-right: 1px solid #e8e9e8;
+    border-right: 0.01rem solid #e8e9e8;
   }
 
   .wrapper .categoryItem {

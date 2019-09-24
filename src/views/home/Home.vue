@@ -16,6 +16,8 @@
       <!-- TabbarItem 商品 -->
       <TabbarGoodsItem :tabbar_all_product_list="tabbar_all_product_list"
                        :flash_sale_product_list="flash_sale_product_list"></TabbarGoodsItem>
+      <!-- <div>我是有底线的</div>-->
+      <van-divider>我是有底线的</van-divider>
     </div>
     <van-loading v-else
                  size="24px "
@@ -23,6 +25,7 @@
     <!-- 回到顶部按钮 -->
     <BackTop v-show="showBackToTop"
              v-on:scrollToTop="scrollToTop"></BackTop>
+
   </div>
 </template>
 
@@ -98,7 +101,7 @@ export default {
 #home {
   background-color: "#f5f5f5";
   width: 100%;
-  height: 300rem;
+  padding-bottom: 3rem;
 }
 .loading {
   position: absolute;
