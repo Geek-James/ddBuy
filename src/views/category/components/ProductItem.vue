@@ -1,19 +1,34 @@
 <template>
-  <div id="ProductItem">
-    <li class="detailContent">
-      <div class="detailImg">
-        <!-- <img src="../../../images/special/peanut.jpeg"
-               alt=""
-               class="detailImg"> -->
+  <div class="productWrapper">
+    <div v-for="(product, index) in products"
+         class="infoWrapper"
+         :key="product.id">
+      <div class="imageWrapper">
+        <div class="LazyLoad is-visible">
+          <img class="image"
+               :src="product.small_image"
+               alt=""></div>
       </div>
-      <div class="detailMessage">
-        <p class="detailTitle">进口香蕉</p>
-        <p class="detailSubTitle">香甜软速 老少皆宜香甜软速 老少皆宜香甜软速 老少皆宜香甜软速 老少皆宜香甜软速 老少皆宜</p>
-        <span class="nowPrice">17</span>
-        <span class="originPrice">29</span>
-        <div class="buyCar">
+      <div class="nameWrapper">
+        <div class="name">
+          <span class="nameTag nameText">{{product.product_name}}</span>
+        </div>
+        <div class="spec">
+          {{product.spec}}
+        </div>
+        <div class="tagsWrapper">
+          <div class="H1B9Rvu"></div>
+        </div>
+      </div>
+      <div class="priceWrapper">
+        <div class="price">
+          {{product.price | moneyFormat}}
+        </div>
+        <div class="originPrice"> {{product.origin_price | moneyFormat}}</div>
+        <div class="iconCartWrapper"
+             @click="addToCart(product)">
           <svg viewBox="0 0 52 52"
-               class="icon icon-60">
+               class="icon iconCart">
             <defs>
               <radialGradient cx="27.0288363%"
                               cy="10.3693483%"
@@ -51,78 +66,175 @@
           </svg>
         </div>
       </div>
-    </li>
+    </div>
   </div>
 </template>
 
-<script type="text/javascript">
+<script>
 export default {
-  data () {
-    return {
-
-    }
+  name: "ProductItem",
+  props: {
+    products: Array
   },
-  components: {
+  computed: {
+  },
+  methods: {
 
   }
 }
 </script>
-<style lang="less" scoped>
-.detailContent {
-  display: inline-block;
-  padding-bottom: 1rem;
-  border-bottom: solid 1px #e8e9e8;
-  .detailImg {
-    float: left;
-    width: 30%;
-    height: 5rem;
-    background-color: aquamarine;
-  }
-}
-.detailMessage {
+
+<style scoped>
+.productWrapper {
   position: relative;
-  float: left;
-  width: 70%;
-  height: auto;
-  .buyCar {
-    position: absolute;
-    height: 1.5rem;
-    width: 1.5rem;
-    right: 1rem;
-    bottom: 0rem;
-  }
-  .detailTitle {
-    padding: 0 0.2rem;
-    font-size: 0.828rem;
-    color: black;
-  }
-  .detailSubTitle {
-    padding-left: 0.2rem;
-    padding-right: 1rem;
-    display: -webkit-box;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    height: 2.5rem;
-    line-height: 1.25rem;
-    font-size: 0.8125rem;
-    word-break: break-all;
-    font-size: 0.628rem;
-    color: grey;
-  }
-  .nowPrice {
-    padding-left: 0.2rem;
-    height: 1rem;
-    line-height: 1rem;
-    font-size: 0.6875rem;
-    color: #fe6263;
-  }
-  .originPrice {
-    padding-left: 0.5rem;
-    font-size: 0.6875rem;
-    color: #999999;
-    text-decoration: line-through;
-  }
+  padding: 0.8125rem 0;
+  background: #fff;
+}
+
+.productWrapper + .productWrapper {
+  border-top: solid 1px #eeeeee;
+}
+
+.imageWrapper {
+  position: absolute;
+  left: 0;
+  top: 0.2375rem;
+  width: 4.0625rem;
+  height: 4.0625rem;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.noticeGreen,
+.noticeGray {
+  position: absolute;
+  height: 100%;
+  text-align: center;
+}
+
+.noticeGreen {
+  background: #76da96;
+  color: #fff;
+}
+
+.noticeGray {
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.noticeGray span {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  display: inline-block;
+  width: 80%;
+  text-align: center;
+  color: #fff;
+  font-size: 0.75rem;
+  height: 1.25rem;
+  line-height: 1.25rem;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 1.25rem;
+}
+
+.infoWrapper {
+  position: relative;
+  padding: 0 0.625rem 0.4rem 4.6625rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.nameWrapper {
+  min-height: 2.1875rem;
+}
+
+.name {
+  line-height: 1.25rem;
+  word-break: break-all;
+  font-size: 0.9375rem;
+  color: #333333;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.name .nameTag {
+  margin-right: 0.125rem;
+  vertical-align: middle;
+}
+.name .nameText {
+  vertical-align: middle;
+}
+
+.spec {
+  min-height: 1.25rem;
+  line-height: 1.25rem;
+  font-size: 0.75rem;
+  color: #999999;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.tagsWrapper {
+  margin-top: 0.1875rem;
+  max-height: 1.0625rem;
+  line-height: 0.8125rem;
+  overflow: hidden;
+}
+
+.H1B9Rvu {
+  height: 1rem;
+}
+
+.tag + .tag {
+  margin-left: 0.3125rem;
+}
+
+.priceWrapper {
+  position: relative;
+}
+
+.price {
+  display: inline-block;
+  height: 1.875rem;
+  line-height: 1.875rem;
+  font-weight: bold;
+  font-size: 0.75rem;
+  color: #fe6263;
+}
+
+.originPrice {
+  display: inline-block;
+  margin-left: 0.3125rem;
+  height: 1.875rem;
+  line-height: 1.875rem;
+  text-decoration: line-through;
+  font-size: 0.6875rem;
+  color: #b2b2b2;
+}
+
+.iconCartWrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1.875rem;
+}
+
+.icon {
+  fill: #999;
+  width: 1rem;
+  height: 1rem;
+}
+
+.iconCart {
+  display: block;
+  width: 1.875rem;
+  height: 1.875rem;
 }
 </style>
