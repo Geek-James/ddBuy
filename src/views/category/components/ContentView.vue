@@ -1,15 +1,14 @@
 <template>
-
   <div class="wrapper emptyWrapper">
     <!-- 可滑动的标题 -->
     <ScrollTitle :categoriesDetailData="categoriesDetailData"></ScrollTitle>
+    <!-- 商品列表 -->
     <div v-for="(categoriesDetail, index) in categoriesDetailData"
          :key="categoriesDetail.id">
       <div class="categoryTitle">{{categoriesDetail.name}}</div>
       <ProductItem :products="categoriesDetail.products" />
       <p class="bottomTip">到底啦,看看别的分类吧</p>
     </div>
-
   </div>
 </template>
 

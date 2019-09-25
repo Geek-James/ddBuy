@@ -9,5 +9,6 @@ export const getHomeData = () => ajax(BASE_URL + 'homeApi');
 
 // Category 列表页面数据
 export const getCategoryData = () => ajax(BASE_URL + 'homeApi/categories');
-// Category 右边内容页面数据
+
+// Category 右边内容页面数据 需要根据左边点击传值
 export const getCategoryDetailData = (params) => ajax(BASE_URL + 'homeApi/categoriesdetail' + params);

@@ -25,7 +25,7 @@
                  type="spinner"
                  color="#75a342"
                  style="position: absolute;left:50%;top: 40%;transform: translate(-50%)">
-      拼命加载中…
+      数据拼命加载中…
     </van-loading>
   </div>
 </template>
@@ -66,34 +66,34 @@ export default {
   methods: {
     // 1. 初始化操作(数据和界面)
     async initData () {
-      // 1. 获取左边的数据
+      // 1.1 获取左边的数据
       let leftRes = await getCategoryData();
       if (leftRes.success) {
         this.categoriesData = leftRes.data.cate;
       }
 
-      // 2. 获取右边的数据
+      // 1.2 获取右边的数据
       let rightRes = await getCategoryDetailData('/lk001');
       if (rightRes.success) {
         this.categoriesDetailData = rightRes.data.cate;
 
       }
-      console.log(this.categoriesDetailData);
-
-      // console.log(this.categoriesData, this.categoriesDetailData);
-
-      // 3. 隐藏loading框
+      // 1.3. 隐藏loading框
       this.showLoading = false;
 
-      // 4. 初始化滚动框架
+      // 1.4.初始化滚动视图
       this.$nextTick(() => {
-        this.leftScroll = new BScroll('.leftWrapper', {
-          probeType: 3,
-          click: true,
-          scrollY: true,
-          tap: true,
-          mouseWheel: true
-        })
+        if (!this.leftScroll) {
+          this.leftScroll = new BScroll('.leftWrapper', {
+            probeType: 3,
+            click: true,
+            scrollY: true,
+            tap: true,
+            mouseWheel: true
+          });
+        } else {
+          this.leftScroll.refresh();
+        }
       });
     },
 

@@ -48,7 +48,7 @@ export default {
       for (let i = 0; i < el.length; i++) {
         contentWrapperWidth += el[i].clientWidth;
       }
-      // 给ul设置值
+      // 给ul设置宽度
       this.$refs.ulContent.style.width = contentWrapperWidth + 'px';
       if (!this.scroll) {
         this.scroll = new BScroll('.subTitleWrapper', {
