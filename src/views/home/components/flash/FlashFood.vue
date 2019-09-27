@@ -13,7 +13,8 @@
           <div class="price">
             <p class="nowPrice">{{product.price | moneyFormat}}</p>
             <p class="originPrice">{{product.origin_price | moneyFormat}}</p>
-            <div class="buyCar">
+            <div class="buyCar"
+                 @click="addToCart(product)">
               <svg viewBox="0 0 52 52"
                    class="icon icon-60">
                 <defs>
@@ -60,7 +61,10 @@
 </template>
 
 <script type="text/javascript">
+
+// 引入第三方组件
 import BScroll from 'better-scroll'
+import { Toast } from 'vant'
 
 export default {
   props: {
@@ -100,6 +104,14 @@ export default {
   },
   components: {
 
+  },
+  methods: {
+    addToCart (product) {
+      Toast({
+        message: '添加购物车',
+        duration: 800
+      })
+    }
   }
 }
 </script>
@@ -123,7 +135,7 @@ export default {
         padding: 0.2rem;
         display: inline-block;
         font-size: 0.6258rem;
-        height: 2rem;
+        height: 1.8rem;
         line-height: 1rem;
         font-size: 0.625rem;
         word-break: break-all;

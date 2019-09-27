@@ -1,7 +1,7 @@
 <template>
   <div id="category">
     <!--头部-->
-    <Header />
+    <Header></Header>
     <!--内容-->
     <div class="listWrapper"
          v-if="!showLoading">
@@ -19,7 +19,7 @@
         </ul>
       </div>
       <!--右边-->
-      <ContentView :categoriesDetailData="categoriesDetailData" />
+      <ContentView :categoriesDetailData="categoriesDetailData"></ContentView>
     </div>
     <van-loading v-else
                  type="spinner"

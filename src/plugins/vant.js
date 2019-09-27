@@ -39,8 +39,14 @@ import {
 } from 'vant';
 Vue.use(Tab).use(Tabs);
 
-// 分割线
+// 7.分割线
 import {
     Divider
 } from 'vant';
 Vue.use(Divider);
+
+// 8.轻弹窗
+import {
+    Toast
+} from 'vant';
+Vue.use(Toast);

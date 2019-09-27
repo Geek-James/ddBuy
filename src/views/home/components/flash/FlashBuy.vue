@@ -12,7 +12,8 @@
         </template>
       </van-count-down>
       <!-- 更多按钮 -->
-      <div class="more">更多</div>
+      <div class="more"
+           @click="moreClick">更多</div>
     </div>
     <!-- 限时抢购商品 遍历父组件传来的数据并传递给子组件-->
     <FlashFood :flash_sale_product_list="flash_sale_product_list"></FlashFood>
@@ -22,6 +23,7 @@
 <script type="text/javascript">
 
 import FlashFood from './FlashFood'
+import { Toast } from 'vant'
 
 export default {
   props: {
@@ -34,6 +36,15 @@ export default {
   },
   components: {
     FlashFood
+  },
+  methods: {
+    moreClick () {
+      Toast({
+        message: '更多',
+        duration: 800
+      });
+    },
+
   }
 }
 </script>
