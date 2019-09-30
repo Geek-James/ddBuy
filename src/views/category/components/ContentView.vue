@@ -2,8 +2,7 @@
   <div class="wrapper emptyWrapper">
     <!-- 可滑动的标题 -->
     <div class="subTitleWrapper">
-      <ul class="subTitleContent"
-          ref="ulContent">
+      <ul ref="ulContent">
         <li class="title"
             :class="{selected:currentSubTitle === index}"
             v-for="(detailItem,index) in categoriesDetailData"
@@ -14,14 +13,52 @@
         </li>
       </ul>
     </div>
+    <!-- 下拉菜单 -->
+    <div class="showMenu"
+         @click="menuClick">
+      <span class="downMenu"
+            v-if="menuDown">
+        <svg t="1569722977319"
+             class="icon"
+             viewBox="0 0 1024 1024"
+             version="1.1"
+             xmlns="http://www.w3.org/2000/svg"
+             p-id="759"
+             width="32"
+             height="32">
+          <path d="M511.31 989.39999995a61.19 61.19 0 0 1-43.25-17.79l-237.12-237.2a35 35 0 0 1 49.55-49.55l230.89 230.9 230.9-230.89a35 35 0 1 1 49.55 49.55L554.7 971.53999995a61.41 61.41 0 0 1-43.39 17.86z"
+                fill="#8a8a8a"
+                p-id="760"></path>
+        </svg>
+      </span>
+      <span class="upMenu"
+            v-else>
+        <svg t="1569723063527"
+             class="icon"
+             viewBox="0 0 1024 1024"
+             version="1.1"
+             xmlns="http://www.w3.org/2000/svg"
+             p-id="759"
+             width="32"
+             height="32">
+          <path d="M512.69 653.26666662a61.19 61.19 0 0 1 43.25 17.79l237.12 237.2a35 35 0 0 1-49.55 49.55l-230.89-230.9-230.9 230.89a35 35 0 1 1-49.55-49.55000001L469.3 671.12666662a61.41 61.41 0 0 1 43.39-17.86z"
+                fill="#8a8a8a"
+                p-id="760"></path>
+        </svg>
+      </span>
+    </div>
+    <!-- 下拉菜单内容 -->
+    <DropMenu :menuDown="!menuDown"></DropMenu>
+
     <!-- 商品内容列表 -->
+
     <section class="r_list"
              ref="r_list">
       <div>
         <div v-for="(it,index) in categoriesDetailData"
              :key="index"
              ref="good">
-          <p class="title">
+          <p class="productCategoryTitle">
             {{it.name}}
           </p>
           <ul>
@@ -90,6 +127,7 @@
 
 import BScroll from 'better-scroll'
 import { Toast } from 'vant'
+import DropMenu from './DropMenu'
 
 export default {
   name: "ContentView",
@@ -99,12 +137,15 @@ export default {
       currentSubTitle: 0,
       arrli: 0,
       flag: true,
+      value: 0,
+      menuDown: true
     }
   },
   props: {
     categoriesDetailData: Array
   },
   components: {
+    DropMenu
   },
   mounted () {
     // 初始化更新滑动组件
@@ -120,18 +161,19 @@ export default {
       this.$nextTick(() => {
         this._initTitleScroll();
         this._initProductScroll();
+        this.menuDown = true;
       });
     }
   },
   methods: {
     // 1.titleScroll 滚动初始化
     _initTitleScroll () {
-      let contentWrapperWidth = 80;
+      let contentWrapperWidth = 0;
       let el = this.$refs.subTitle;
       for (let i = 0; i < el.length; i++) {
         contentWrapperWidth += el[i].clientWidth;
       }
-      // 1.1给ul设置宽度
+      // 1.1给ul设置宽度,保证可以横向滚动
       this.$refs.ulContent.style.width = contentWrapperWidth + 'px';
       if (!this.titleScroll) {
         this.titleScroll = new BScroll('.subTitleWrapper', {
@@ -178,6 +220,10 @@ export default {
         message: '加入购物车',
         duration: 800
       });
+    },
+    // 5.点击下拉菜单
+    menuClick () {
+      this.menuDown = !this.menuDown;
     }
   }
 }
@@ -185,25 +231,39 @@ export default {
 
 <style <style lang="less" scoped>
 /**scrollTitle  CSS***/
-.subTitleWrapper {
+.wrapper {
   width: 100%;
-  height: 2.8rem;
-  display: inline-block;
-  white-space: nowrap;
-  border-bottom: solid 0.01rem #e8e9e8;
-  overflow: hidden;
-  position: fixed;
-  z-index: 999;
-  top: 2.8rem;
-  background-color: white;
-}
-.title {
-  display: inline-block;
-  font-size: 0.73rem;
-  padding: 1rem;
-}
-.selected {
-  color: #3cb963;
+  .subTitleWrapper {
+    width: 65%;
+    height: 2.8rem;
+    display: inline-block;
+    white-space: nowrap;
+    border-bottom: solid 0.01rem #e8e9e8;
+    overflow: hidden;
+    position: fixed;
+    z-index: 999;
+    top: 2.8rem;
+    background-color: white;
+    .title {
+      display: inline-block;
+      font-size: 0.73rem;
+      padding: 1rem;
+    }
+    .selected {
+      color: #3cb963;
+    }
+  }
+  .showMenu {
+    width: 10%;
+    height: 2.8rem;
+    line-height: 2.8rem;
+    float: right;
+    .menuIcon {
+      width: 100%;
+      height: 2.8re;
+      background-color: red;
+    }
+  }
 }
 
 .r_list {
@@ -216,7 +276,10 @@ export default {
   // 防止抖动
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
-  .title {
+  .productCategoryTitle {
+    display: inline-block;
+    font-size: 0.73rem;
+    padding: 1rem;
     border-left: 3px solid #d9dde1;
     height: 0.32rem;
     width: 100%;
