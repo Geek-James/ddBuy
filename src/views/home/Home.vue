@@ -100,7 +100,6 @@ export default {
 <style scoped>
 #home {
   background-color: "#f5f5f5";
-  width: 100%;
   padding-bottom: 3rem;
 }
 .loading {

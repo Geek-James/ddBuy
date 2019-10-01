@@ -1,7 +1,8 @@
 <template>
-  <div class="wrapper emptyWrapper">
+  <div class="wrapper">
     <!-- 可滑动的标题 -->
-    <div class="subTitleWrapper">
+    <div class="subTitleWrapper"
+         ref="subTitleWrapper">
       <ul ref="ulContent">
         <li class="title"
             :class="{selected:currentSubTitle === index}"
@@ -15,7 +16,8 @@
     </div>
     <!-- 下拉菜单 -->
     <div class="showMenu"
-         @click="menuClick">
+         @click="menuClick"
+         v-show="isShowDropMenu">
       <span class="downMenu"
             v-if="menuDown">
         <svg t="1569722977319"
@@ -48,10 +50,13 @@
       </span>
     </div>
     <!-- 下拉菜单内容 -->
-    <DropMenu :menuDown="!menuDown"></DropMenu>
+    <DropMenu :menuDown="!menuDown"
+              :categoriesDetailData="categoriesDetailData"
+              :currentSubTitle="currentSubTitle"
+              @itemClick="itemClick"
+              @touchClick="menuClick"></DropMenu>
 
     <!-- 商品内容列表 -->
-
     <section class="r_list"
              ref="r_list">
       <div>
@@ -128,6 +133,7 @@
 import BScroll from 'better-scroll'
 import { Toast } from 'vant'
 import DropMenu from './DropMenu'
+import { truncate } from 'fs';
 
 export default {
   name: "ContentView",
@@ -138,7 +144,8 @@ export default {
       arrli: 0,
       flag: true,
       value: 0,
-      menuDown: true
+      menuDown: true,
+      isShowDropMenu: false
     }
   },
   props: {
@@ -152,23 +159,26 @@ export default {
     this.$nextTick(() => {
       this._initTitleScroll();
       this._initProductScroll();
+      this._isShowDropMenu();
     });
   },
   watch: {
     categoriesDetailData () {
       this.currentSubTitle = 0;
+      this.menuDown = true;
       // 初始化更新滑动组件
       this.$nextTick(() => {
         this._initTitleScroll();
         this._initProductScroll();
-        this.menuDown = true;
+        // 是否显示下拉菜单按钮
+        this._isShowDropMenu();
       });
     }
   },
   methods: {
     // 1.titleScroll 滚动初始化
     _initTitleScroll () {
-      let contentWrapperWidth = 0;
+      let contentWrapperWidth = 120;
       let el = this.$refs.subTitle;
       for (let i = 0; i < el.length; i++) {
         contentWrapperWidth += el[i].clientWidth;
@@ -202,11 +212,12 @@ export default {
     // 3.处理点击subTitle的事件
     subTitleClick (index) {
       this.flag = true;
+      // 3.0 判断如果蒙版存在 那么让它消失
+      this.menuDown = true;
       // 3.1 让横向滑动到合适位置
       this.currentSubTitle = index;
       let el = this.$refs.subTitle[index];
       this.titleScroll.scrollToElement(el, 500);
-
       // 3.2 让产品列表根据点击的index值滚动
       this.arrli = index;
       this.productScroll.scrollToElement(this.$refs.good[index], 100, 0, 0);
@@ -224,6 +235,20 @@ export default {
     // 5.点击下拉菜单
     menuClick () {
       this.menuDown = !this.menuDown;
+    },
+    // 6.处理点击蒙版里面的标题
+    itemClick (index) {
+      this.currentSubTitle = index;
+      this.subTitleClick(index);
+      // 让蒙版消失
+      this.menuDown = false;
+    },
+    // 7.是否显示标题下拉按钮
+    _isShowDropMenu () {
+      // 如果标题超出则显示下拉框按钮
+      let subTitleWrapperWidth = this.$refs.subTitleWrapper.clientWidth;
+      let ulContentWidth = this.$refs.ulContent.clientWidth;
+      this.isShowDropMenu = ulContentWidth > subTitleWrapperWidth ? true : false;
     }
   }
 }
@@ -234,7 +259,7 @@ export default {
 .wrapper {
   width: 100%;
   .subTitleWrapper {
-    width: 65%;
+    width: 100%;
     height: 2.8rem;
     display: inline-block;
     white-space: nowrap;
@@ -254,10 +279,14 @@ export default {
     }
   }
   .showMenu {
+    position: fixed;
     width: 10%;
-    height: 2.8rem;
-    line-height: 2.8rem;
-    float: right;
+    height: 2.5rem;
+    line-height: 2.5rem;
+    right: -0.2rem;
+    z-index: 1999;
+    margin-top: 0.1rem;
+    background-color: white;
     .menuIcon {
       width: 100%;
       height: 2.8re;
