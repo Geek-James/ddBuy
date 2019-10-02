@@ -4,7 +4,7 @@
     <Header></Header>
     <!--内容-->
     <div class="listWrapper"
-         v-if="!showLoading">
+         v-if="!isShowLoading">
       <!--左边-->
       <div class="leftWrapper">
         <ul class="wrapper">
@@ -21,12 +21,8 @@
       <!--右边-->
       <ContentView :categoriesDetailData="categoriesDetailData"></ContentView>
     </div>
-    <van-loading v-else
-                 type="spinner"
-                 color="#75a342"
-                 style="position: absolute;left:50%;top: 40%;transform: translate(-50%)">
-      数据拼命加载中…
-    </van-loading>
+    <!-- 加载动画 -->
+    <Loading v-else></Loading>
   </div>
 </template>
 
@@ -38,13 +34,15 @@ import ContentView from './components/ContentView'
 import BScroll from 'better-scroll'
 // 3. 引入接口
 import { getCategoryData, getCategoryDetailData } from './../../serve/api/index.js'
+// 4.引入加载动画
+import Loading from '../../components/loading/Loading'
 
 export default {
   name: "Category",
   data () {
     return {
       // 是否显示加载图标
-      showLoading: true,
+      isShowLoading: true,
       // 左边列表数据
       categoriesData: [],
       // 右边列表数据
@@ -61,7 +59,8 @@ export default {
   },
   components: {
     Header,
-    ContentView
+    ContentView,
+    Loading
   },
   methods: {
     // 1. 初始化操作(数据和界面)
@@ -76,10 +75,9 @@ export default {
       let rightRes = await getCategoryDetailData('/lk001');
       if (rightRes.success) {
         this.categoriesDetailData = rightRes.data.cate;
-
       }
       // 1.3. 隐藏loading框
-      this.showLoading = false;
+      this.isShowLoading = false;
 
       // 1.4.初始化滚动视图
       this.$nextTick(() => {

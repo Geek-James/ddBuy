@@ -16,16 +16,14 @@
       <!-- TabbarItem 商品 -->
       <TabbarGoodsItem :tabbar_all_product_list="tabbar_all_product_list"
                        :flash_sale_product_list="flash_sale_product_list"></TabbarGoodsItem>
-      <!-- <div>我是有底线的</div>-->
+      <!-- 最底部 -->
       <van-divider>我是有底线的</van-divider>
     </div>
-    <van-loading v-else
-                 size="24px "
-                 class="loading">数据拼命加载中...</van-loading>
+    <!-- 数据加载提示gif -->
+    <Loading v-else></Loading>
     <!-- 回到顶部按钮 -->
     <BackTop v-show="showBackToTop"
              v-on:scrollToTop="scrollToTop"></BackTop>
-
   </div>
 </template>
 
@@ -42,6 +40,7 @@ import FlashBuy from './components/flash/FlashBuy'
 import SpecialZone from './components/special/SpecialZone'
 import TabbarGoodsItem from './components/tabbar/TabbarGoodsItem'
 import BackTop from '../../components/backToTop/BackTop'
+import Loading from '../../components/loading/Loading'
 
 export default {
   name: 'Home',
@@ -53,8 +52,7 @@ export default {
         this.nav_list = response.data.list[2].icon_list;
         this.flash_sale_product_list = response.data.list[3].product_list;
         this.tabbar_all_product_list = response.data.list[12].product_list;
-        // 数据加载完成后不显示加载中..
-        this.isShowLoading = false;
+        this.isShowLoading = false
 
         // 是否显示回到顶部图标
         showBackIcon((status) => {
@@ -85,7 +83,8 @@ export default {
     FlashBuy,
     BackTop,
     SpecialZone,
-    TabbarGoodsItem
+    TabbarGoodsItem,
+    Loading
   },
   methods: {
     scrollToTop () {
@@ -101,11 +100,5 @@ export default {
 #home {
   background-color: "#f5f5f5";
   padding-bottom: 3rem;
-}
-.loading {
-  position: absolute;
-  left: 50%;
-  top: 40%;
-  transform: translate(-50%);
 }
 </style>

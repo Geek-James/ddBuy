@@ -89,8 +89,8 @@ export default {
 
 <style lang="less" scoped>
 #dashboard {
-  width: 100%;
-  height: 100%;
-  background-color: #f5f5f5;
+  //   width: 100%;
+  //   height: 100%;
+  //   background-color: #f5f5f5;
 }
 </style>
