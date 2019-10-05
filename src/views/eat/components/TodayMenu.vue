@@ -1,9 +1,19 @@
 <template>
-  <div id="todayMenu">
+  <div id="todayMenu"
+       v-if="!isShowLoading">
     <div class="todayMenuWrapper">
-      <span class="menuTitle">今日菜单</span>
+      <div class="menuList">
+        <ul ref="menuUlContent">
+          <li class="menuItem"
+              v-for="(item,index) in todayMenuCategoryLists"
+              :key="item.id"
+              ref="menuTitle"
+              :class="{selected:currentSubTitle === index}"
+              @click="menuItemClick(index)">{{item.name}}</li>
+        </ul>
+      </div>
       <div class="menuAll"
-           @click="clickAll">全部
+           @click="clickAll">{{msg}}
         <span class="downMenu"
               v-if="menuDown">
           <svg t="1569722977319"
@@ -36,132 +46,91 @@
         </span>
       </div>
     </div>
-    <div class="menuLists"
-         v-if="isShowMenuList"
-         ref="menuLists">
-      <div class="menuWrapper">
-        <span class="menuCategoryTitle">最近找过</span>
-        <ul class="contentTip">
-          <li class="item">请客吃饭</li>
-          <li class="item">一人</li>
-          <li class="item">夏季</li>
-          <li class="item">面食</li>
-          <li class="item">下饭菜</li>
-          <li class="item">减肥</li>
-          <li class="item">宝宝餐</li>
-          <li class="item">请客吃饭</li>
-        </ul>
-        <span class="menuCategoryTitle">菜单分类</span>
-        <ul class="contentTip">
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-          <li class="item">请客吃饭</li>
-        </ul>
-      </div>
-    </div>
+    <MenuCategoryLists :todayMenuCategoryLists="todayMenuCategoryLists"
+                       :isShowMenuList="isShowMenuList"></MenuCategoryLists>
+
   </div>
+  <Loading v-else></Loading>
 </template>
 
 <script type="text/javascript">
 import BScroll from 'better-scroll'
+import MenuCategoryLists from './MenuCategoryLists'
+// 4.引入加载动画
+import Loading from '../../../components/loading/Loading'
+
+import { getTodayMenuCategoryList } from './../../../serve/api/index.js'
 export default {
   data () {
     return {
       menuDown: true,
-      isShowMenuList: false
+      isShowMenuList: false,
+      todayMenuCategoryLists: [],
+      msg: '全部',
+      currentSubTitle: 0,
+      isShowLoading: true
     }
   },
   mounted () {
-    this.$nextTick(() => {
-      this._initMenuListScroll();
-    });
+    this._initData();
+
   },
   components: {
-
+    MenuCategoryLists,
+    Loading
+  },
+  watch: {
+    menuDown () {
+      this.msg = this.menuDown == true ? '全部' : '收起';
+    }
   },
   methods: {
-    // 1.0 初始化滑动视图
-    _initMenuListScroll () {
-      if (!this.menuListScroll) {
-        console.log("来了");
-        this.menuListScroll = new BScroll(this.$refs.menuLists, {
-          probeType: 3,
-          click: true,
-          scrollY: true,
-          tap: true,
+    // 1.获取网络数据
+    async _initData () {
+      let todayMenuCategory = await getTodayMenuCategoryList();
+      if (todayMenuCategory.success) {
+        this.todayMenuCategoryLists = todayMenuCategory.data.list;
+        this.$nextTick(() => {
+          this._initMenuTitleScroll();
         });
-      } else {
-        console.log("asf");
-        this.menuListScroll.refresh();
       }
-      console.log(this.menuListScroll);
-
+      // 1.3. 隐藏loading框
+      this.isShowLoading = false;
     },
-
+    // 2.处理点击全部按钮切换菜单栏
     clickAll () {
+      // 2.1上下菜单图标切换
       this.menuDown = !this.menuDown;
+
+      // 2.2是否显示商品分类列表切换
       this.isShowMenuList = !this.isShowMenuList;
+    },
+    // 3.点击滑动菜单栏
+    menuItemClick (index) {
+      alert(index);
+    },
+    // 4.初始化菜单栏滑动
+    _initMenuTitleScroll () {
+      // 让ul完全渲染完成后
+      this.$nextTick(() => {
+        if (!this.menuTitleScroll) {
+          let contentWrapperWidth = 100;
+          let el = this.$refs.menuTitle;
+          for (let i = 0; i < el.length; i++) {
+            contentWrapperWidth += (el[i].clientWidth * 1.18);
+          }
+          // 4.1给ul设置宽度,保证可以横向滚动
+          this.$refs.menuUlContent.style.width = contentWrapperWidth + 'px';
+          this.menuTitleScroll = new BScroll('.menuList', {
+            probeType: 3,
+            startX: 0,
+            click: true,
+            scrollX: true,
+          });
+        } else {
+          this.menuTitleScroll.refresh();
+        }
+      });
     }
   }
 }
@@ -170,56 +139,47 @@ export default {
 #todayMenu {
   width: 97%;
   padding-left: 0.3rem;
-  position: fixed;
-  z-index: 999;
-  top: 3rem;
-  bottom: 3rem;
+  margin-top: 8rem;
   overflow: hidden;
+  margin-bottom: 3rem;
   .todayMenuWrapper {
-    padding-left: 0.3rem;
-    height: 1.5rem;
-    line-height: 1.5rem;
-    border-left: 0.25rem solid #75a342;
-    font-size: 0.6728;
-    font-weight: 2000;
-  }
-  .menuAll {
-    padding-right: 1rem;
-    float: right;
-    font-size: 0.6rem;
-    color: gray;
-
-    .downMenu {
-      width: 1rem;
-      height: 1rem;
-    }
-  }
-  .menuLists {
-    padding: 0.5rem;
     width: 100%;
+    height: 2rem;
+    display: inline-block;
+    white-space: nowrap;
+    border-bottom: solid 0.01rem #e8e9e8;
+    overflow: hidden;
+    position: fixed;
+    z-index: 999;
+    top: 5.1rem;
     background-color: white;
-    .menuCategoryTitle {
-      font-size: 0.6rem;
-      color: grey;
+    .menuList {
+      width: 80%;
+      overflow: hidden;
+      .menuItem {
+        margin-right: 0.5rem;
+        display: inline-block;
+        font-size: 0.73rem;
+        padding: 0.4rem;
+        border: 1px solid #dedede;
+        border-radius: 0.6rem;
+        padding: 0.3rem;
+      }
+      .selected {
+        color: #3cb963;
+        border: 1px solid #3cb963;
+      }
     }
-    .menuWrapper {
-      .contentTip {
-        padding: 0.5rem;
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: center;
-        .item {
-          text-align: center;
-          margin-right: 1.45rem;
-          margin-top: 0.4rem;
-          width: 3rem;
-          line-height: 1.4rem;
-          height: 1.4rem;
-          font-size: 0.65rem;
-          border-radius: 1rem;
-          color: rgba(0, 0, 0, 0.7);
-          border: 1px solid grey;
-        }
+    .menuAll {
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin-right: 0.9rem;
+      font-size: 0.6rem;
+      color: gray;
+      .downMenu {
+        width: 1rem;
+        height: 1rem;
       }
     }
   }

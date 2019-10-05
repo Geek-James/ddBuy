@@ -36,6 +36,7 @@ import BScroll from 'better-scroll'
 import { getCategoryData, getCategoryDetailData } from './../../serve/api/index.js'
 // 4.引入加载动画
 import Loading from '../../components/loading/Loading'
+import { log } from 'util';
 
 export default {
   name: "Category",
@@ -52,7 +53,7 @@ export default {
     }
   },
   created () {
-    this.initData();
+    this._initData();
   },
   mounted () {
 
@@ -64,7 +65,7 @@ export default {
   },
   methods: {
     // 1. 初始化操作(数据和界面)
-    async initData () {
+    async _initData () {
       // 1.1 获取左边的数据
       let leftRes = await getCategoryData();
       if (leftRes.success) {
@@ -109,7 +110,13 @@ export default {
       this.leftScroll.scrollToElement(el, 300);
 
       // 2.4 获取右边的数据
-      let rightRes = await getCategoryDetailData(`/lk00${index + 1}`);
+      let param;
+      if (index >= 9) {
+        param = `/lk0${index + 1}`;
+      } else {
+        param = `/lk00${index + 1}`;
+      }
+      let rightRes = await getCategoryDetailData(param);
       if (rightRes.success) {
         this.categoriesDetailData = rightRes.data.cate;
       }

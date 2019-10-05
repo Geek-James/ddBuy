@@ -133,7 +133,6 @@
 import BScroll from 'better-scroll'
 import { Toast } from 'vant'
 import DropMenu from './DropMenu'
-import { truncate } from 'fs';
 
 export default {
   name: "ContentView",

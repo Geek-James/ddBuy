@@ -29,6 +29,7 @@
         </svg>
       </div>
     </div>
+    <div class="todayMenu">今日菜单</div>
   </div>
 </template>
 
@@ -97,6 +98,15 @@ export default {
     right: -1.1rem;
     width: 2.5rem;
     height: 2rem;
+  }
+  .todayMenu {
+    margin-top: 0.9rem;
+    padding-left: 0.4rem;
+    height: 1.5rem;
+    line-height: 1.5rem;
+    border-left: 0.25rem solid #75a342;
+    font-size: 0.6728;
+    font-weight: 2000;
   }
 }
 </style>
