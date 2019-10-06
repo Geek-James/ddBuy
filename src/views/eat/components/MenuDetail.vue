@@ -1,9 +1,6 @@
 <template>
-
   <div id="menuDetail"
        ref="aarootMenu">
-    <p class="drop-down"
-       v-if="dropDown">松手刷新数据...</p>
     <ul class="root">
       <li class="item"
           v-for="(item,index) in menulistDetail"
@@ -21,28 +18,32 @@
       </li>
     </ul>
   </div>
-  <!-- </div> -->
 </template>
 
 <script type="text/javascript">
 import { getTodayMenuDetail } from './../../../serve/api/index.js'
+
 import BScroll from 'better-scroll'
 
 export default {
   data () {
     return {
       menulistDetail: [],
-      dropDown: false
+      dropDown: false,
+      pullUpIndex: 1,
+      end: false
     }
   },
   components: {
 
   },
-  mounted () {
+  created () {
     this._initData();
-    this.$nextTick(() => {
+  },
+  mounted () {
+    setTimeout(() => {
       this._initMenuScroll();
-    })
+    }, 700);
   },
   methods: {
     // 1.数据请求
@@ -55,48 +56,66 @@ export default {
     // 2.上下滚动菜单初始化
     _initMenuScroll () {
       if (!this.rootMenuScroll) {
+        var that = this;
         this.rootMenuScroll = new BScroll(this.$refs.aarootMenu, {
           probeType: 3,
           click: true,
           scrollY: true,
           mouseWheel: true,
-          ullUpLoad: {
-            threshold: 10    // 当上拉距离超过盒子高度的10px的时候,就派发一个上拉加载的事件
+          pullUpLoad: {
+            // 2.1 当上拉距离超过盒子高度的10px的时候,就派发一个上拉加载的事件
+            threshold: 10
           },
           pullDownRefresh: {
-            threshold: -10,    //当下拉长度距离盒子顶部的高度超过10px的时候,就派发一个下拉刷新的事件
-            stop: 10            // 回弹停留在距离顶部20px的位置
+            // 2.2 当下拉长度距离盒子顶部的高度超过10px的时候,就派发一个下拉刷新的事件
+            threshold: -10,
+            // 2.3 回弹停留在距离顶部10px的位置
+            stop: 10
           },
           useTransition: false  // 防止iphone微信滑动卡顿
         });
-        // 上拉加载事件
+        // 2.4 上拉加载事件
         this.rootMenuScroll.on('pullingUp', function () {
-          console.log('加载ajax数据');
-          //   this.rootMenuScroll.finishPullUp();//可以多次执行上拉加载，没有这段代码上拉只会加载一次
-        });
-        //下拉刷新事件
-        this.rootMenuScroll.on('pullingDown', function () {
-          console.log('处理下拉刷新操作')
-          setTimeout(() => {
-            console.log('asfsaf')
-            // 事情做完，需要调用此方法告诉 better-scroll 数据已加载，否则下拉事件只会执行一次
+          console.log('上拉加载数据');
 
-          }, 2000)
+          let index = that.pullUpIndex++;
+          console.log(index++);
+          let param;
+          if (index > 31) {
+            this.end = true;
+            return;
+          } else {
+            param = index >= 10 ? `/lk${index}` : `/lk0${index}`;
+          }
+          getTodayMenuDetail(param).then(response => {
+            if (response.success) {
+              let newArray = response.data.big_recommend.list;
+              for (let index = 0; index < newArray.length; index++) {
+                const element = newArray[index];
+                that.menulistDetail.push(element);
+              }
+            }
+          });
+          that.$nextTick(() => {
+            that.rootMenuScroll.refresh();
+          });
+          that.rootMenuScroll.finishPullUp();
         });
-        this.rootMenuScroll.refresh();//初始化demo  当异步加载数据的时候，重新渲染页面，这段代码非常重要
+        // 2.5 下拉刷新事件
+        // this.rootMenuScroll.on('pullingDown', function () {
+        //   console.log('处理下拉刷新操作')
+        //   that._initData();
+        //   that.$nextTick(() => {
+        //     that.rootMenuScroll.refresh();
+        //   });
+        // });
+        // 2.7 当异步加载数据的时候，重新渲染页面，这段代码非常重要
+        this.rootMenuScroll.refresh();
       } else {
         this.rootMenuScroll.refresh();
       }
-      this.rootMenuScroll.on('scroll', (pos) => {
-        //如果下拉超过50px 就显示下拉刷新的文字
-        if (pos.y > 50) {
-          this.dropDown = true;
-        } else {
-          this.dropDown = false
-        }
-      });
+    },
 
-    }
   }
 }
 </script>
@@ -129,6 +148,7 @@ export default {
         width: 100%;
         vertical-align: middle;
         border-radius: 0.5rem;
+        min-height: 2rem;
       }
       .desc {
         padding: 0.5rem;

@@ -20,7 +20,7 @@
       <van-divider>我是有底线的</van-divider>
     </div>
     <!-- 数据加载提示gif -->
-    <Loading v-else></Loading>
+    <Loading :show="isShowLoading"></Loading>
     <!-- 回到顶部按钮 -->
     <BackTop v-show="showBackToTop"
              v-on:scrollToTop="scrollToTop"></BackTop>
@@ -40,7 +40,7 @@ import FlashBuy from './components/flash/FlashBuy'
 import SpecialZone from './components/special/SpecialZone'
 import TabbarGoodsItem from './components/tabbar/TabbarGoodsItem'
 import BackTop from '../../components/backToTop/BackTop'
-import Loading from '../../components/loading/Loading'
+import Loading from '../../components/loading/LoadingGif'
 
 export default {
   name: 'Home',
@@ -72,7 +72,7 @@ export default {
       nav_list: [],
       flash_sale_product_list: [],
       showBackToTop: false,
-      tabbar_all_product_list: []
+      tabbar_all_product_list: [],
     }
   },
   components: {

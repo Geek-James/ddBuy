@@ -1,63 +1,65 @@
 <template>
-  <div id="todayMenu"
-       v-if="!isShowLoading">
-    <div class="todayMenuWrapper">
-      <div class="menuList">
-        <ul ref="menuUlContent">
-          <li class="menuItem"
-              v-for="(item,index) in todayMenuCategoryLists"
-              :key="item.id"
-              ref="menuTitle"
-              :class="{selected:currentSubTitle === index}"
-              @click="menuItemClick(index)">{{item.name}}</li>
-        </ul>
+  <div>
+    <div id="todayMenu"
+         v-if="!isShowLoading">
+      <div class="todayMenuWrapper">
+        <div class="menuList">
+          <ul ref="menuUlContent">
+            <li class="menuItem"
+                v-for="(item,index) in todayMenuCategoryLists"
+                :key="item.id"
+                ref="menuTitle"
+                :class="{selected:currentSubTitle === index}"
+                @click="menuItemClick(index)">{{item.name}}</li>
+          </ul>
+        </div>
+        <div class="menuAll"
+             @click="clickAll">{{msg}}
+          <span class="downMenu"
+                v-if="menuDown">
+            <svg t="1569722977319"
+                 class="icon"
+                 viewBox="0 0 1024 1024"
+                 version="1.1"
+                 xmlns="http://www.w3.org/2000/svg"
+                 p-id="759"
+                 width="16"
+                 height="16">
+              <path d="M511.31 989.39999995a61.19 61.19 0 0 1-43.25-17.79l-237.12-237.2a35 35 0 0 1 49.55-49.55l230.89 230.9 230.9-230.89a35 35 0 1 1 49.55 49.55L554.7 971.53999995a61.41 61.41 0 0 1-43.39 17.86z"
+                    fill="#8a8a8a"
+                    p-id="760"></path>
+            </svg>
+          </span>
+          <span class="upMenu"
+                v-else>
+            <svg t="1569723063527"
+                 class="icon"
+                 viewBox="0 0 1024 1024"
+                 version="1.1"
+                 xmlns="http://www.w3.org/2000/svg"
+                 p-id="759"
+                 width="16"
+                 height="16">
+              <path d="M512.69 653.26666662a61.19 61.19 0 0 1 43.25 17.79l237.12 237.2a35 35 0 0 1-49.55 49.55l-230.89-230.9-230.9 230.89a35 35 0 1 1-49.55-49.55000001L469.3 671.12666662a61.41 61.41 0 0 1 43.39-17.86z"
+                    fill="#8a8a8a"
+                    p-id="760"></path>
+            </svg>
+          </span>
+        </div>
       </div>
-      <div class="menuAll"
-           @click="clickAll">{{msg}}
-        <span class="downMenu"
-              v-if="menuDown">
-          <svg t="1569722977319"
-               class="icon"
-               viewBox="0 0 1024 1024"
-               version="1.1"
-               xmlns="http://www.w3.org/2000/svg"
-               p-id="759"
-               width="16"
-               height="16">
-            <path d="M511.31 989.39999995a61.19 61.19 0 0 1-43.25-17.79l-237.12-237.2a35 35 0 0 1 49.55-49.55l230.89 230.9 230.9-230.89a35 35 0 1 1 49.55 49.55L554.7 971.53999995a61.41 61.41 0 0 1-43.39 17.86z"
-                  fill="#8a8a8a"
-                  p-id="760"></path>
-          </svg>
-        </span>
-        <span class="upMenu"
-              v-else>
-          <svg t="1569723063527"
-               class="icon"
-               viewBox="0 0 1024 1024"
-               version="1.1"
-               xmlns="http://www.w3.org/2000/svg"
-               p-id="759"
-               width="16"
-               height="16">
-            <path d="M512.69 653.26666662a61.19 61.19 0 0 1 43.25 17.79l237.12 237.2a35 35 0 0 1-49.55 49.55l-230.89-230.9-230.9 230.89a35 35 0 1 1-49.55-49.55000001L469.3 671.12666662a61.41 61.41 0 0 1 43.39-17.86z"
-                  fill="#8a8a8a"
-                  p-id="760"></path>
-          </svg>
-        </span>
-      </div>
-    </div>
-    <MenuCategoryLists :todayMenuCategoryLists="todayMenuCategoryLists"
-                       :isShowMenuList="isShowMenuList"></MenuCategoryLists>
+      <MenuCategoryLists :todayMenuCategoryLists="todayMenuCategoryLists"
+                         :isShowMenuList="isShowMenuList"></MenuCategoryLists>
 
+    </div>
+    <Loading :show="isShowLoading"></Loading>
   </div>
-  <Loading v-else></Loading>
 </template>
 
 <script type="text/javascript">
 import BScroll from 'better-scroll'
 import MenuCategoryLists from './MenuCategoryLists'
 // 4.引入加载动画
-import Loading from '../../../components/loading/Loading'
+import Loading from '../../../components/loading/LoadingGif'
 
 import { getTodayMenuCategoryList } from './../../../serve/api/index.js'
 export default {
@@ -73,7 +75,6 @@ export default {
   },
   mounted () {
     this._initData();
-
   },
   components: {
     MenuCategoryLists,
@@ -101,7 +102,6 @@ export default {
     clickAll () {
       // 2.1上下菜单图标切换
       this.menuDown = !this.menuDown;
-
       // 2.2是否显示商品分类列表切换
       this.isShowMenuList = !this.isShowMenuList;
     },

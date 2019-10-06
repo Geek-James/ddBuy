@@ -22,7 +22,7 @@
       <ContentView :categoriesDetailData="categoriesDetailData"></ContentView>
     </div>
     <!-- 加载动画 -->
-    <Loading v-else></Loading>
+    <Loading :show="isShowLoading"></Loading>
   </div>
 </template>
 
@@ -35,7 +35,7 @@ import BScroll from 'better-scroll'
 // 3. 引入接口
 import { getCategoryData, getCategoryDetailData } from './../../serve/api/index.js'
 // 4.引入加载动画
-import Loading from '../../components/loading/Loading'
+import Loading from '../../components/loading/LoadingGif'
 import { log } from 'util';
 
 export default {
