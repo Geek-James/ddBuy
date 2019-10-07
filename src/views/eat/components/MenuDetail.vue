@@ -1,6 +1,6 @@
 <template>
   <div id="menuDetail"
-       ref="aarootMenu">
+       ref="rootMenu">
     <ul class="root">
       <li class="item"
           v-for="(item,index) in menulistDetail"
@@ -17,12 +17,13 @@
         </div>
       </li>
     </ul>
+    <loading :show="loading" />
   </div>
 </template>
 
 <script type="text/javascript">
 import { getTodayMenuDetail } from './../../../serve/api/index.js'
-
+import Loading from '../../../../src/components/loading/LoadingGif'
 import BScroll from 'better-scroll'
 
 export default {
@@ -31,11 +32,12 @@ export default {
       menulistDetail: [],
       dropDown: false,
       pullUpIndex: 1,
-      end: false
+      end: false,
+      loading: false
     }
   },
   components: {
-
+    Loading
   },
   created () {
     this._initData();
@@ -57,7 +59,7 @@ export default {
     _initMenuScroll () {
       if (!this.rootMenuScroll) {
         var that = this;
-        this.rootMenuScroll = new BScroll(this.$refs.aarootMenu, {
+        this.rootMenuScroll = new BScroll(this.$refs.rootMenu, {
           probeType: 3,
           click: true,
           scrollY: true,
@@ -77,7 +79,7 @@ export default {
         // 2.4 上拉加载事件
         this.rootMenuScroll.on('pullingUp', function () {
           console.log('上拉加载数据');
-
+          this.loading = true
           let index = that.pullUpIndex++;
           console.log(index++);
           let param;
@@ -96,10 +98,15 @@ export default {
               }
             }
           });
-          that.$nextTick(() => {
-            that.rootMenuScroll.refresh();
-          });
           that.rootMenuScroll.finishPullUp();
+          setTimeout(() => {
+            this.loading = false
+            that.rootMenuScroll.refresh();
+          }, 1000);
+          //   that.$nextTick(() => {
+          //     that.rootMenuScroll.refresh();
+          //   });
+
         });
         // 2.5 下拉刷新事件
         // this.rootMenuScroll.on('pullingDown', function () {
@@ -146,9 +153,9 @@ export default {
       border-radius: 0.7rem;
       .itemImg {
         width: 100%;
-        vertical-align: middle;
         border-radius: 0.5rem;
-        min-height: 2rem;
+        height: auto;
+        display: block;
       }
       .desc {
         padding: 0.5rem;
