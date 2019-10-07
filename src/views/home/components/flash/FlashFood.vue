@@ -7,7 +7,7 @@
             v-for="(product,index) in flash_sale_product_list"
             :key="product.id"
             ref="productItem">
-          <img :src="product.small_image"
+          <img v-lazy="product.small_image"
                class="itemImage">
           <span class="title">{{product.name}}</span>
           <div class="price">

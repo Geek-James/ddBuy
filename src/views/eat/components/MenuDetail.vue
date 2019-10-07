@@ -6,7 +6,7 @@
           v-for="(item,index) in menulistDetail"
           :key="item.id">
         <img class="itemImg"
-             :src="item.image"
+             v-lazy="item.image"
              alt="" />
         <div class="desc">{{item.name}}</div>
         <div class="userInfo">

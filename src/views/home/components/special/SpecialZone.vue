@@ -13,10 +13,10 @@
            itemTitle">{{newItem.title}}</span>
         <p class="itemSubTitle">{{newItem.subtitle}}</p>
         <img class="itemImg"
-             :src="newItem.imageOne"
+             v-lazy="newItem.imageOne"
              alt="">
         <img class="itemImg"
-             :src="newItem.imageTwo"
+             v-lazy="newItem.imageTwo"
              alt="">
       </div>
 
@@ -27,10 +27,10 @@
         <span class="itemTitle hotItemTitle">{{hotItem.title}}</span>
         <p class="itemSubTitle">{{hotItem.subtitle}}</p>
         <img class="itemImg"
-             :src="hotItem.imageOne"
+             v-lazy="hotItem.imageOne"
              alt="">
         <img class="itemImg"
-             :src="hotItem.imageTwo"
+             v-lazy="hotItem.imageTwo"
              alt="">
       </div>
 
@@ -41,10 +41,10 @@
         <span class="itemTitle vipItemTitle">{{vipItem.title}}</span>
         <p class="itemSubTitle">{{vipItem.subtitle}}</p>
         <img class="itemImg"
-             :src="vipItem.imageOne"
+             v-lazy="vipItem.imageOne"
              alt="">
         <img class="itemImg"
-             :src="vipItem.imageTwo"
+             v-lazy="vipItem.imageTwo"
              alt="">
       </div>
 

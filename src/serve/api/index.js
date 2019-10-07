@@ -2,7 +2,7 @@ import ajax from './ajax'
 
 // 1. 定义基础路径
 // const BASE_URL = 'http://demo.itlike.com/web/xlmc/api/';
-const BASE_URL = ' https://mock.cangdu.org/mock/5d940466d360e8289c6a8eb7/api/'
+const BASE_URL = 'https://mock.cangdu.org/mock/5d940466d360e8289c6a8eb7/api/'
 
 // const BASE_URL = 'https://easy-mock.com/mock/5d8886c4e956572d197a9105/api/'
 
