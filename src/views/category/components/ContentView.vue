@@ -79,7 +79,7 @@
                   <p class="price">{{item.price | moneyFormat}}</p>
                   <p class="originPrice">{{item.origin_price | moneyFormat}}</p>
                   <div class="iconCartWrapper"
-                       @click="addToCart(product)">
+                       @click="addToCart">
                     <svg viewBox="0 0 52 52"
                          class="icon iconCart">
                       <defs>
@@ -225,7 +225,7 @@ export default {
       }, 100);
     },
     // 4.添加购物车
-    addToCart (product) {
+    addToCart () {
       Toast({
         message: '加入购物车',
         duration: 800

@@ -1,6 +1,7 @@
 <template>
   <div id="search">
-    <div class="searchBox">
+    <div class="searchBox"
+         @click="clickSearch">
       <div class="iconSearchWrapper">
         <svg viewBox="0 0 32 32"
              class="icon iconSearch">
@@ -45,7 +46,10 @@ export default {
   },
   methods: {
     clickCollerction () {
-      alert('搜索页面');
+      alert('跳转到收藏页面');
+    },
+    clickSearch () {
+      alert('跳转到搜索界面');
     }
   }
 }
