@@ -78,7 +78,6 @@ export default {
         });
         // 2.4 上拉加载事件
         this.rootMenuScroll.on('pullingUp', function () {
-          console.log('上拉加载数据');
           this.loading = true
           let index = that.pullUpIndex++;
           console.log(index++);
@@ -103,26 +102,13 @@ export default {
             this.loading = false
             that.rootMenuScroll.refresh();
           }, 1000);
-          //   that.$nextTick(() => {
-          //     that.rootMenuScroll.refresh();
-          //   });
-
         });
-        // 2.5 下拉刷新事件
-        // this.rootMenuScroll.on('pullingDown', function () {
-        //   console.log('处理下拉刷新操作')
-        //   that._initData();
-        //   that.$nextTick(() => {
-        //     that.rootMenuScroll.refresh();
-        //   });
-        // });
         // 2.7 当异步加载数据的时候，重新渲染页面，这段代码非常重要
         this.rootMenuScroll.refresh();
       } else {
         this.rootMenuScroll.refresh();
       }
     },
-
   }
 }
 </script>

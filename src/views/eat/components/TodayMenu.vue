@@ -48,17 +48,24 @@
         </div>
       </div>
       <MenuCategoryLists :todayMenuCategoryLists="todayMenuCategoryLists"
-                         :isShowMenuList="isShowMenuList"></MenuCategoryLists>
-
+                         :isShowMenuList="isShowMenuList"
+                         v-on:hiddenMenu="clickAll"></MenuCategoryLists>
     </div>
-    <Loading :show="isShowLoading"></Loading>
+    <Loading :show="isShowLoading">
+    </Loading>
   </div>
 </template>
 
 <script type="text/javascript">
+
 import BScroll from 'better-scroll'
 import MenuCategoryLists from './MenuCategoryLists'
-// 4.引入加载动画
+
+// 引入通知
+import Pubsub from 'pubsub-js'
+import { EAT_MENUTITLE_CLICK } from '../../../config/pubsub_type.js'
+
+// 引入加载动画
 import Loading from '../../../components/loading/LoadingGif'
 
 import { getTodayMenuCategoryList } from './../../../serve/api/index.js'
@@ -74,7 +81,13 @@ export default {
     }
   },
   mounted () {
+    let that = this;
     this._initData();
+    // 订阅通知 
+    PubSub.subscribe(EAT_MENUTITLE_CLICK, function (msg, index) {
+      // 点击顶部滑动菜单
+      that.menuItemClick(index);
+    });
   },
   components: {
     MenuCategoryLists,
@@ -107,7 +120,10 @@ export default {
     },
     // 3.点击滑动菜单栏
     menuItemClick (index) {
-      alert(index);
+      // 3.1 让横向滑动到合适位置
+      this.currentSubTitle = index;
+      let el = this.$refs.menuTitle[index];
+      this.menuTitleScroll.scrollToElement(el, 500);
     },
     // 4.初始化菜单栏滑动
     _initMenuTitleScroll () {
