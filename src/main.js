@@ -20,9 +20,6 @@ import '@/config/rem'
 import 'reset-css'
 //  全局引入 过滤器
 import '@/config/filter'
-// 全局引入 瀑布流
-import waterfall from 'vue-waterfall2'
-Vue.use(waterfall)
 
 new Vue({
     router,

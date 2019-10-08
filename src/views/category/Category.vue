@@ -23,6 +23,8 @@
     </div>
     <!-- 加载动画 -->
     <Loading :show="isShowLoading"></Loading>
+    <!-- 点击左边按钮加载数据时候显示动画 -->
+    <LoadingGif v-show="isShowLoadingGif"></LoadingGif>
   </div>
 </template>
 
@@ -36,6 +38,10 @@ import BScroll from 'better-scroll'
 import { getCategoryData, getCategoryDetailData } from './../../serve/api/index.js'
 // 4.引入加载动画
 import Loading from '../../components/loading/LoadingGif'
+// 5.引入加载动画
+import LoadingGif from '../../components/loading/Loading'
+
+
 import { log } from 'util';
 
 export default {
@@ -49,7 +55,8 @@ export default {
       // 右边列表数据
       categoriesDetailData: [],
       // 左边item选中与否
-      currentIndex: 0
+      currentIndex: 0,
+      isShowLoadingGif: false
     }
   },
   created () {
@@ -61,7 +68,8 @@ export default {
   components: {
     Header,
     ContentView,
-    Loading
+    Loading,
+    LoadingGif
   },
   methods: {
     // 1. 初始化操作(数据和界面)
@@ -98,6 +106,7 @@ export default {
 
     // 2. 处理左边的点击
     async clickLeftLi (index) {
+      this.isShowLoadingGif = true;
       // 2.1 改变索引
       this.currentIndex = index;
 
@@ -118,7 +127,9 @@ export default {
       }
       let rightRes = await getCategoryDetailData(param);
       if (rightRes.success) {
+
         this.categoriesDetailData = rightRes.data.cate;
+        this.isShowLoadingGif = false;
       }
     }
   },
