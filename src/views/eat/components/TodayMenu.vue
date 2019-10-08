@@ -124,6 +124,11 @@ export default {
       this.currentSubTitle = index;
       let el = this.$refs.menuTitle[index];
       this.menuTitleScroll.scrollToElement(el, 500);
+      // 3.2 点击顶部菜单栏,如果下拉菜单存在,那么就隐藏
+      if (!this.menuDown) {
+        // 直接调点击下拉菜单按钮
+        this.clickAll();
+      }
     },
     // 4.初始化菜单栏滑动
     _initMenuTitleScroll () {

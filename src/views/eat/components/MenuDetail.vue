@@ -142,6 +142,7 @@ export default {
         border-radius: 0.5rem;
         height: auto;
         display: block;
+        background-image: url("../../../images/placeholderImg/product-img-load.png");
       }
       .desc {
         padding: 0.5rem;

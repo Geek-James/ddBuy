@@ -30,6 +30,9 @@ import MenuDetail from './MenuDetail'
 import Pubsub from 'pubsub-js'
 import { EAT_MENUTITLE_CLICK } from '../../../config/pubsub_type.js'
 
+// 导入本地存储
+import { setLocalStore, getLocalStore } from './../../../config/global.js'
+
 export default {
   props: {
     // 父组件传下来的数据
