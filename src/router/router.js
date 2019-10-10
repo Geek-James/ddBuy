@@ -35,11 +35,19 @@ export default new Router({
         }, {
             path: 'category',
             name: 'category',
-            component: Category
+            component: Category,
+            // 是否数据缓存
+            meta: {
+                keepAlive: true
+            }
         }, {
             path: 'eat',
             name: 'eat',
-            component: Eat
+            component: Eat,
+            // 是否数据缓存
+            meta: {
+                keepAlive: true
+            }
         }, {
             path: 'cart',
             name: 'cart',

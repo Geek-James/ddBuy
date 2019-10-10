@@ -1,19 +1,11 @@
 <template>
   <div id="dashboard">
-    <!-- 是否缓存界面选择加载 -->
-    <keep-alive>
-      <router-view v-if="$route.meta.keepAlive"></router-view>
-    </keep-alive>
-    <router-view v-if="!$route.meta.keepAlive"></router-view>
-
     <van-tabbar v-model="active"
                 class="active_tab"
-                active-color="#75a342"
-                route>
+                active-color="#75a342">
       <van-tabbar-item v-for="(item,index) in tabbars"
                        :key="index"
                        @click="tab(index,item.name)"
-                       :to='item.name'
                        replace>
         <span :class="currIndex == index ? active:''">{{item.title}}</span>
         <template slot="icon"
@@ -22,7 +14,11 @@
         </template>
       </van-tabbar-item>
     </van-tabbar>
-
+    <!-- 是否缓存界面选择加载 -->
+    <keep-alive>
+      <router-view v-if="$route.meta.keepAlive"></router-view>
+    </keep-alive>
+    <router-view v-if="!$route.meta.keepAlive"></router-view>
   </div>
 </template>
 
@@ -35,7 +31,7 @@ export default {
   data () {
     return {
       currIndex: 0,
-      active: 0,
+      active: Number(sessionStorage.getItem('tabbarActive')) || 0,
       tabbars: [
         {
           name: "Home",
@@ -72,22 +68,17 @@ export default {
   },
   components: {
   },
-  methods: {
-    tab (index, val) {
-      //   console.log('index:' + index);
-      this.currIndex = index;
-      console.log(this.currIndex);
-      console.log(index);
-      //   this.$router.push(val);
-      //   console.log('val:' + val);
-
-      //   console.log('active:' + this.active);
+  watch: {
+    active (val) {
+      sessionStorage.setItem('tabbarActive', val);
     }
   },
-  mounted () {
-    // console.log(this.$router.path);
-    console.log(this.currIndex);
-
+  methods: {
+    tab (index, val) {
+      this.currIndex = index;
+      this.$router.push(val);
+      sessionStorage.setItem('tabbarActive', index);
+    }
   }
 }
 </script>

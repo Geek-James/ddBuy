@@ -7,7 +7,6 @@
       <div class="clearCart"
            @click="clearCart">删除</div>
     </header>
-
     <!-- 购物车没有商品 -->
     <div class="cartWrapper"
          v-if="!isShowLoading">
@@ -21,8 +20,35 @@
                      class="goHome">去逛逛</router-link>
       </div>
       <!-- 购物车有数据 -->
-      <div class="cartList"
+      <div class="contentWrapper"
            v-else>
+        <div class="contentWrapperList">
+          <section>
+            <div class="shopCartListCon">
+              <div class="left">
+                <a href="javaScript:;"
+                   class="cartCheckBox"></a>
+              </div>
+              <div class="center">
+                <img src="../../../src/images/placeholderImg/product-img-load.png">
+              </div>
+              <div class="right">
+                <a>啤酒饮料花生米</a>
+                <div class="bottomContent">
+                  <p class="shopPrice"> 12.90</p>
+                  <div class="shopDeal">
+                    <span>-</span>
+                    <input type="number"
+                           disabled
+                           v-model="num">
+                    <span>+</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+
         <!-- 提交订单 -->
         <van-submit-bar :price="3050"
                         button-text="提交订单">
@@ -41,7 +67,6 @@
 </template>
 
 <script type="text/javascript">
-
 import ProduceItem from './../home/components/tabbar/ProduceItem'
 import { getGuessYouLike } from './../../serve/api/index.js'
 import Loading from '../../components/loading/LoadingGif'
@@ -50,9 +75,10 @@ export default {
   data () {
     return {
       youLike_product_lists: [],
-      isShowLoading: true,
+      isShowLoading: false,
       checkedAll: false,
-      isEmptyCart: true
+      isEmptyCart: false,
+      num: 10
     }
   },
   components: {
@@ -63,9 +89,11 @@ export default {
     this._initData();
   },
   methods: {
+    // 1.右上角删除
     clearCart () {
       alert('删除所有');
     },
+    // 2.数据加载
     async _initData () {
       let ref = await getGuessYouLike();
       if (ref.success) {
@@ -134,6 +162,90 @@ export default {
         height: 1rem;
         line-height: 1rem;
         border-radius: 1rem;
+      }
+    }
+    .contentWrapper {
+      padding-top: 0.5rem;
+      section {
+        background-color: #ffffff;
+        .shopCartListCon {
+          display: flex;
+          height: 6rem;
+          border-bottom: 0.01rem solid #e0e0e0;
+          margin-bottom: 0.7rem;
+          padding: 0.5rem 0;
+          justify-content: center;
+          align-items: center;
+          .left {
+            flex: 1;
+            display: flex;
+            a {
+              display: inline-block;
+              margin-top: 0.8rem;
+              margin-left: 0.5rem;
+            }
+            .cartCheckBox {
+              background: url("./../../images/cart/shop-icon.png") no-repeat;
+              background-size: 2.5rem 5rem;
+              width: 1rem;
+              height: 1rem;
+            }
+            .cartCheckBox[checked] {
+              background-position: -1.2rem 0;
+            }
+          }
+          .center {
+            flex: 3;
+            img {
+              width: 100%;
+              height: 100%;
+            }
+          }
+          .right {
+            flex: 6;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            margin-left: 0.5rem;
+            margin-right: 0.5rem;
+            position: relative;
+            a {
+              height: 2.2rem;
+              line-height: 1.2rem;
+              overflow: hidden;
+              margin-bottom: 0.3rem;
+              font-size: 0.8rem;
+              color: #000;
+            }
+          }
+        }
+        .bottomContent {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+          .shopPrice {
+            font-size: 0.8rem;
+          }
+          .shopDeal span {
+            display: inline-block;
+            width: 1rem;
+            height: 1.2rem;
+            line-height: 1.2rem;
+            text-align: center;
+            float: left;
+          }
+          .shopDeal input {
+            float: left;
+            width: 2rem;
+            height: 1.2rem;
+            text-align: center;
+            margin: 0 0.2rem;
+            font-size: 0.8rem;
+            background-color: #f5f5f5;
+            border: 0;
+          }
+        }
       }
     }
   }
