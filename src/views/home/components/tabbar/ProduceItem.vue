@@ -3,7 +3,7 @@
     <div class="item"
          v-for="(product,index) in product_lists"
          :key="product.id">
-      <img :src="product.small_image"
+      <img v-lazy="product.small_image"
            alt="">
       <p class="itemTitle">{{product.name}}</p>
       <p class="itemSubTitle">{{product.spec}}</p>
@@ -96,6 +96,7 @@ export default {
 .item img {
   width: 100%;
   height: 100%;
+  background-image: url("../../../../images/placeholderImg/product-img-load.png");
 }
 .item .itemTitle {
   padding-left: 0.5rem;

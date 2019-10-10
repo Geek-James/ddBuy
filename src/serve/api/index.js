@@ -20,3 +20,6 @@ export const getTodayMenuCategoryList = () => ajax(BASE_URL + 'recipe/allScene')
 
 // Eat 页面 菜单菜品
 export const getTodayMenuDetail = (params) => ajax(BASE_URL + 'recipe/menulist' + params);
+
+// Cart 页面 猜你喜欢
+export const getGuessYouLike = () => ajax(BASE_URL + 'cart/youlike');

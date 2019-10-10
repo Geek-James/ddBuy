@@ -50,3 +50,23 @@ import {
     Toast
 } from 'vant';
 Vue.use(Toast);
+
+// 9.导航栏
+import {
+    NavBar
+} from 'vant';
+Vue.use(NavBar);
+
+// 10.提交订单
+import {
+    SubmitBar
+} from 'vant';
+Vue.use(SubmitBar);
+
+// 11.复选框
+import {
+    Checkbox,
+    CheckboxGroup
+} from 'vant';
+
+Vue.use(Checkbox).use(CheckboxGroup);

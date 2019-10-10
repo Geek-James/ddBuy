@@ -65,7 +65,6 @@ export default {
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  /* background-color: #1abc9c; */
   background-color: #45c763;
   opacity: 0.6;
   position: absolute;

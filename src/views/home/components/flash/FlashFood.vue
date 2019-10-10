@@ -82,7 +82,6 @@ export default {
       for (let i = 0; i < el.length; i++) {
         contentWrapperWidth += el[i].clientWidth;
       }
-      console.log(contentWrapperWidth);
       // 给ul设置值
       this.$refs.ulWrapper.style.width = contentWrapperWidth + 'px';
       if (!this.scroll) {
@@ -98,8 +97,6 @@ export default {
       } else {
         this.scroll.refresh();
       }
-      console.log(this.scroll);
-
     });
   },
   components: {
@@ -130,6 +127,7 @@ export default {
       align-items: center;
       .itemImage {
         width: 100%;
+        background-color: #f5f5f5;
       }
       .title {
         padding: 0.2rem;
