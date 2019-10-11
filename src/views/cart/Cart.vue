@@ -5,13 +5,14 @@
     <header class="titleWrapper">
       <h4><strong>购物车</strong></h4>
       <div class="clearCart"
+           :style="selectedGoodsCount==0?'color:grey':'color:#45c763'"
            @click="clearCart">删除</div>
     </header>
     <!-- 购物车没有商品 -->
     <div class="cartWrapper">
       <!-- 购物车为空 -->
       <div class="emptyCart"
-           v-if="isEmptyCart">
+           v-show="totalCount<1">
         <img src="./../../images/cart/empty.png"
              alt="">
         <div class="title">购物车空空滴~</div>
@@ -20,7 +21,7 @@
       </div>
       <!-- 购物车有数据 -->
       <div class="contentWrapper"
-           v-else>
+           v-show="totalCount>0">
         <div class="contentWrapperList"
              v-for="(goods,index) in shopCart"
              :key="goods.id">
@@ -29,7 +30,8 @@
               <div class="left">
                 <a href="javaScript:;"
                    class="cartCheckBox"
-                   :checked="goods.checked"></a>
+                   :checked="goods.checked"
+                   @click.stop="single(goods.id)"></a>
               </div>
               <div class="center">
                 <img :src="goods.smallImage">
@@ -52,9 +54,12 @@
           </section>
         </div>
         <!-- 提交订单 -->
-        <van-submit-bar :price="3050"
-                        button-text="提交订单">
-          <van-checkbox v-model="checkedAll">全选</van-checkbox>
+        <van-submit-bar :price="totalPrice"
+                        button-text="去结算"
+                        v-show="totalCount>0">
+          <van-checkbox v-model="isCheckedAll"
+                        checked-color='#45c763'
+                        @click="selectAll(isCheckedAll)">全选</van-checkbox>
         </van-submit-bar>
       </div>
       <!-- 猜你喜欢 -->
@@ -77,13 +82,13 @@ import { mapMutations, mapState } from 'vuex'
 import { getLocalStore } from '../../config/global';
 // 引入提示框
 import { Dialog } from 'vant';
+
 export default {
   data () {
     return {
       youLike_product_lists: [],
       isShowLoading: false,
-      checkedAll: false,
-      isEmptyCart: false,
+      isEmptyCart: false
     }
   },
   components: {
@@ -91,17 +96,74 @@ export default {
     Loading
   },
   computed: {
+    // 1.延展出store里的shopCart数据
     ...mapState(['shopCart']),
+    // 2.计算shopCart的数量
+    totalCount () {
+      return Object.keys(this.shopCart).length;
+    },
+    // 3.计算shopCart中选中商品的数量
+    selectedGoodsCount () {
+      let selectedGoodsCount = 0;
+
+      Object.values(this.shopCart).forEach((goods, index) => {
+        if (goods.checked) {
+          selectedGoodsCount++;
+        }
+      });
+      return selectedGoodsCount;
+    },
+    // 4.是否全部选中
+    isCheckedAll: {
+      get () {
+        let tag = this.totalCount > 0;
+        let shopCart = this.shopCart;
+        Object.values(shopCart).forEach(goods => {
+          if (!goods.checked) {
+            tag = false;
+          }
+        });
+        return tag;
+      },
+      set (value) {
+        // 解决 assigned to but it has no setter.
+        //  https://stackoverflow.com/questions/55097118/computed-property-was-assigned-to-but-it-has-no-setter-a-toggle-component
+        this.value = value;
+      }
+    },
+    // 5.计算选中的总价格
+    totalPrice () {
+      let totalPrice = 0;
+      // 5.1 取到shopCart里面的数据遍历找到选中的goods计算总价
+      Object.values(this.shopCart).forEach((goods, index) => {
+        if (goods.checked) {
+          // 4.2 计算总价,由于Vant的SubmitBar组件接受的价格格式是保留两位小数且中间不需要.所以需要转换下
+          totalPrice += Number((goods.price * goods.num).toFixed(2).toString().replace('.', ''));
+        }
+      });
+      return totalPrice;
+    }
   },
   mounted () {
+    // 初始化数据
     this._initData();
   },
   methods: {
     // 0.延展mutations中的方法
-    ...mapMutations(['ADD_GOODS', 'REDUCE_GOODS']),
+    ...mapMutations(['ADD_GOODS', 'REDUCE_GOODS', 'SINGLE_SELECT_GOODS', 'ALL_SELECT_GOODS', 'DELETE_SELECT_GOODS']),
     // 1.右上角删除
     clearCart () {
-      alert('删除所有');
+      if (this.selectedGoodsCount > 0) {
+        Dialog.confirm({
+          title: '温馨提示',
+          message: '确定删除选中商品吗?'
+        }).then(() => {
+          // on confirm 确认删除
+          this.DELETE_SELECT_GOODS();
+        }).catch(() => {
+          // on cancel
+        });
+      }
     },
     // 2.数据加载
     async _initData () {
@@ -130,7 +192,7 @@ export default {
         });
       }
     },
-    // 4.增加商品数量 保证传递数据和mutations一致
+    // 4.增加商品数量 保证传递数据和 mutations 一致
     addGoods (goodsID, goodsName, goodsSmallImage, goodsPrice) {
       this.ADD_GOODS({
         goodsID,
@@ -138,11 +200,18 @@ export default {
         goodsSmallImage,
         goodsPrice
       });
+    },
+    // 5.单个商品的选中和非选中
+    single (goodsID) {
+      this.SINGLE_SELECT_GOODS({ goodsID });
+    },
+    // 6.全选
+    selectAll (checkAll) {
+      this.ALL_SELECT_GOODS({ checkAll });
     }
   }
 }
 </script>
-
 <style lang="less" scoped>
 .cart {
   width: 100%;
@@ -165,8 +234,11 @@ export default {
   .titleWrapper .clearCart {
     position: absolute;
     right: 0.3rem;
-    color: #45c763;
+    // color: #45c763;
     font-size: 0.8rem;
+  }
+  .disableClearCart {
+    color: grey;
   }
   .cartWrapper {
     width: 100%;

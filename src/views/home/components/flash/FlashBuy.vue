@@ -70,7 +70,6 @@ export default {
   font-size: 1.1875rem;
   float: left;
 }
-
 .item {
   display: inline-block;
   width: 22px;
@@ -80,7 +79,6 @@ export default {
   text-align: center;
   background-color: black;
 }
-
 .countStyle {
   float: left;
   margin-left: 0.7rem;
