@@ -83,7 +83,7 @@ export default {
       // 发送通知
       PubSub.publish(ADD_TO_CART, goods)
       Toast({
-        message: '添加购物车',
+        message: '已加入购物车',
         duration: 800
       });
     }

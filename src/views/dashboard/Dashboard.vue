@@ -6,7 +6,7 @@
       <van-tabbar-item v-for="(item,index) in tabbars"
                        :key="index"
                        @click="tab(index,item.name)"
-                       replace>
+                       :info="item.name=='Cart'?goodsNum:''">
         <span :class="currIndex == index ? active:''">{{item.title}}</span>
         <template slot="icon"
                   slot-scope="props">
@@ -25,13 +25,16 @@
 <script type="text/javascript">
 
 import { setStore } from '../../config/global.js'
+import { setLocalStore, getLocalStore } from '../../config/global.js'
+
+import { mapState } from 'vuex'
 
 export default {
   name: "DashBoard",
   data () {
     return {
       currIndex: 0,
-      active: Number(sessionStorage.getItem('tabbarActive')) || 0,
+      active: Number(getLocalStore('tatbarActive')) || 0,
       tabbars: [
         {
           name: "Home",
@@ -49,13 +52,14 @@ export default {
           name: "Eat",
           title: "吃什么",
           normal: require("@/images/tabbar/eat_default.png"),
-          active: require("@/images/tabbar/eat_selected.png")
+          active: require("@/images/tabbar/eat_selected.png"),
         },
         {
           name: "Cart",
           title: "购物车",
           normal: require("@/images/tabbar/shoppingcart_default.png"),
-          active: require("@/images/tabbar/shoppingcart_selected.png")
+          active: require("@/images/tabbar/shoppingcart_selected.png"),
+          num: 5
         },
         {
           name: "Mine",
@@ -73,11 +77,24 @@ export default {
       sessionStorage.setItem('tabbarActive', val);
     }
   },
+  computed: {
+    ...mapState(['shopCart']),
+    goodsNum () {
+      let num = 0;
+      Object.values(this.shopCart).forEach((goods, index) => {
+        num += goods.num;
+      });
+      if (num > 0) {
+        return num;
+      }
+    }
+  },
   methods: {
     tab (index, val) {
       this.currIndex = index;
       this.$router.push(val);
-      sessionStorage.setItem('tabbarActive', index);
+      // 将索引保存到本地
+      setLocalStore('tatbarActive', index);
     }
   }
 }

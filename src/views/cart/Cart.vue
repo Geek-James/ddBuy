@@ -8,8 +8,7 @@
            @click="clearCart">删除</div>
     </header>
     <!-- 购物车没有商品 -->
-    <div class="cartWrapper"
-         v-if="!isShowLoading">
+    <div class="cartWrapper">
       <!-- 购物车为空 -->
       <div class="emptyCart"
            v-if="isEmptyCart">
@@ -22,25 +21,28 @@
       <!-- 购物车有数据 -->
       <div class="contentWrapper"
            v-else>
-        <div class="contentWrapperList">
+        <div class="contentWrapperList"
+             v-for="(goods,index) in shopCart"
+             :key="goods.id">
           <section>
             <div class="shopCartListCon">
               <div class="left">
                 <a href="javaScript:;"
-                   class="cartCheckBox"></a>
+                   class="cartCheckBox"
+                   :checked="goods.checked"></a>
               </div>
               <div class="center">
-                <img src="../../../src/images/placeholderImg/product-img-load.png">
+                <img :src="goods.smallImage">
               </div>
               <div class="right">
-                <a>啤酒饮料花生米</a>
+                <a>{{goods.name}}</a>
                 <div class="bottomContent">
-                  <p class="shopPrice"> 12.90</p>
+                  <p class="shopPrice"> {{goods.price | moneyFormat}}</p>
                   <div class="shopDeal">
                     <span>-</span>
                     <input type="number"
                            disabled
-                           v-model="num">
+                           v-model="goods.num">
                     <span>+</span>
                   </div>
                 </div>
@@ -48,14 +50,12 @@
             </div>
           </section>
         </div>
-
         <!-- 提交订单 -->
         <van-submit-bar :price="3050"
                         button-text="提交订单">
           <van-checkbox v-model="checkedAll">全选</van-checkbox>
         </van-submit-bar>
       </div>
-
       <!-- 猜你喜欢 -->
       <van-divider :style="{ color: 'black', borderColor: 'grey', padding: '0 16px' }">
         猜你喜欢
@@ -67,10 +67,13 @@
 </template>
 
 <script type="text/javascript">
+// 引入组件
 import ProduceItem from './../home/components/tabbar/ProduceItem'
 import { getGuessYouLike } from './../../serve/api/index.js'
 import Loading from '../../components/loading/LoadingGif'
-
+// 引入Vuex
+import { mapMutations, mapState } from 'vuex'
+import { getLocalStore } from '../../config/global';
 export default {
   data () {
     return {
@@ -78,12 +81,17 @@ export default {
       isShowLoading: false,
       checkedAll: false,
       isEmptyCart: false,
-      num: 10
     }
   },
   components: {
     ProduceItem,
     Loading
+  },
+  computed: {
+    ...mapState(['shopCart']),
+    // shopCart () {
+    //   return JSON.parse(getLocalStore('shopCart'));
+    // }
   },
   mounted () {
     this._initData();
@@ -135,7 +143,7 @@ export default {
     height: 100rem;
     margin-top: 2.6rem;
     .van-submit-bar {
-      bottom: 2.6rem;
+      bottom: 2.8rem;
     }
     .emptyCart {
       display: flex;
