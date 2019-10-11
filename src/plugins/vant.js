@@ -68,5 +68,10 @@ import {
     Checkbox,
     CheckboxGroup
 } from 'vant';
-
 Vue.use(Checkbox).use(CheckboxGroup);
+
+// 12.提示框
+import {
+    Dialog
+} from 'vant';
+Vue.use(Dialog)

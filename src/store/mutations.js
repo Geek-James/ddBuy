@@ -1,7 +1,8 @@
 // 引入mutation-type
 import {
     ADD_GOODS,
-    INIT_SHOP_CART
+    INIT_SHOP_CART,
+    REDUCE_GOODS
 } from './mutation-type'
 
 // 引入本地存储
@@ -52,7 +53,32 @@ export default {
         if (initShopCart) {
             // 2.1 如何购物车有数据那么就把它通过对象的方式赋值给store
             state.shopCart = JSON.parse(initShopCart);
-
+        }
+    },
+    // 3.减少商品
+    [REDUCE_GOODS](state, {
+        goodsID
+    }) {
+        // 3.1 先取出商品
+        let shopCart = state.shopCart;
+        // 3.2 通过商品ID来找到这个商品
+        let goods = shopCart[goodsID];
+        if (goods) {
+            // 3.3 找到该商品做处理
+            if (goods['num'] > 0) {
+                // 3.4 减少商品数量
+                goods['num']--;
+            }
+            // 3.4 如果num的数量为0,那么就移除
+            if (goods['num'] === 0) {
+                delete shopCart[goodsID];
+            }
+            // 3.5 同步state中的数据
+            state.shopCart = {
+                ...shopCart
+            };
+            // 3.6 同步本地数据
+            setLocalStore('shopCart', state.shopCart);
         }
     }
 }

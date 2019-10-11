@@ -39,11 +39,12 @@
                 <div class="bottomContent">
                   <p class="shopPrice"> {{goods.price | moneyFormat}}</p>
                   <div class="shopDeal">
-                    <span>-</span>
+                    <span @click="reduceGoods(goods.id,goods.num)">-</span>
                     <input type="number"
                            disabled
                            v-model="goods.num">
-                    <span>+</span>
+                    <span @click="addGoods(goods.id,goods.name,
+        goods.smallImage,goods.price)">+</span>
                   </div>
                 </div>
               </div>
@@ -74,6 +75,8 @@ import Loading from '../../components/loading/LoadingGif'
 // 引入Vuex
 import { mapMutations, mapState } from 'vuex'
 import { getLocalStore } from '../../config/global';
+// 引入提示框
+import { Dialog } from 'vant';
 export default {
   data () {
     return {
@@ -89,14 +92,13 @@ export default {
   },
   computed: {
     ...mapState(['shopCart']),
-    // shopCart () {
-    //   return JSON.parse(getLocalStore('shopCart'));
-    // }
   },
   mounted () {
     this._initData();
   },
   methods: {
+    // 0.延展mutations中的方法
+    ...mapMutations(['ADD_GOODS', 'REDUCE_GOODS']),
     // 1.右上角删除
     clearCart () {
       alert('删除所有');
@@ -108,6 +110,34 @@ export default {
         this.youLike_product_lists = ref.data.product_list;
         this.isShowLoading = false;
       }
+    },
+    // 3.减少商品数量
+    reduceGoods (goodsID, goodsNum) {
+      if (goodsNum > 1) {
+        // 3.1 通过goodsID减少商品
+        this.REDUCE_GOODS({
+          goodsID
+        });
+      } else if (goodsNum === 1) {
+        Dialog.confirm({
+          title: '温馨提示',
+          message: '确定删除该商品吗?'
+        }).then(() => {
+          // on confirm 确认删除
+          this.REDUCE_GOODS({ goodsID });
+        }).catch(() => {
+          // on cancel
+        });
+      }
+    },
+    // 4.增加商品数量 保证传递数据和mutations一致
+    addGoods (goodsID, goodsName, goodsSmallImage, goodsPrice) {
+      this.ADD_GOODS({
+        goodsID,
+        goodsName,
+        goodsSmallImage,
+        goodsPrice
+      });
     }
   }
 }

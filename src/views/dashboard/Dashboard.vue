@@ -27,7 +27,7 @@
 import { setStore } from '../../config/global.js'
 import { setLocalStore, getLocalStore } from '../../config/global.js'
 
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 
 export default {
   name: "DashBoard",
@@ -72,6 +72,9 @@ export default {
   },
   components: {
   },
+  mounted () {
+    this._initData();
+  },
   watch: {
     active (val) {
       sessionStorage.setItem('tabbarActive', val);
@@ -90,11 +93,18 @@ export default {
     }
   },
   methods: {
+    // 0. 延展mutations方法
+    ...mapMutations(['INIT_SHOP_CART']),
+    // 1.点击tabbar触发的方法
     tab (index, val) {
       this.currIndex = index;
       this.$router.push(val);
       // 将索引保存到本地
       setLocalStore('tatbarActive', index);
+    },
+    // 2.初始化购物车数据
+    _initData () {
+      this.INIT_SHOP_CART();
     }
   }
 }
