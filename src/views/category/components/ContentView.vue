@@ -79,7 +79,7 @@
                   <p class="price">{{item.price | moneyFormat}}</p>
                   <p class="originPrice">{{item.origin_price | moneyFormat}}</p>
                   <div class="iconCartWrapper"
-                       @click="addToCart">
+                       @click="addToCart(item)">
                     <svg viewBox="0 0 52 52"
                          class="icon iconCart">
                       <defs>
@@ -133,6 +133,7 @@
 import BScroll from 'better-scroll'
 import { Toast } from 'vant'
 import DropMenu from './DropMenu'
+import { mapMutations } from 'vuex'
 
 export default {
   name: "ContentView",
@@ -175,6 +176,8 @@ export default {
     }
   },
   methods: {
+    // 0.延展Vuex的方法
+    ...mapMutations(['ADD_GOODS']),
     // 1.titleScroll 滚动初始化
     _initTitleScroll () {
       let contentWrapperWidth = 120;
@@ -225,9 +228,16 @@ export default {
       }, 100);
     },
     // 4.添加购物车
-    addToCart () {
+    addToCart (goods) {
+      // 将数据保存到vuex的shopCart中
+      this.ADD_GOODS({
+        goodsID: goods.id,
+        goodsName: goods.name,
+        smallImage: goods.small_image,
+        goodsPrice: goods.price
+      });
       Toast({
-        message: '加入购物车',
+        message: '已加入购物车',
         duration: 800
       });
     },

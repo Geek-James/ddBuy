@@ -65,6 +65,10 @@
 // 引入第三方组件
 import BScroll from 'better-scroll'
 import { Toast } from 'vant'
+// 引入消息发布订阅
+import PubSub from 'pubsub-js'
+import { ADD_TO_CART } from './../../../../config/pubsub_type.js'
+
 
 export default {
   props: {
@@ -72,7 +76,6 @@ export default {
   },
   data () {
     return {
-
     }
   },
   mounted () {
@@ -103,7 +106,9 @@ export default {
 
   },
   methods: {
-    addToCart (product) {
+    addToCart (goods) {
+      // 发送通知
+      PubSub.publish(ADD_TO_CART, goods)
       Toast({
         message: '添加购物车',
         duration: 800

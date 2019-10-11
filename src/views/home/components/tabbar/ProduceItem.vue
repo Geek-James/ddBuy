@@ -13,7 +13,8 @@
         {{product.price | moneyFormat}}
       </span>
       <span class="originPrice">{{product.origin_price | moneyFormat}}</span>
-      <div class="buyCar">
+      <div class="buyCar"
+           @click="addCart(product)">
         <svg viewBox="0 0 52 52"
              class="icon icon-60">
           <defs>
@@ -57,6 +58,11 @@
 </template>
 
 <script type="text/javascript">
+import { Toast } from 'vant'
+// 引入消息发布订阅
+import PubSub from 'pubsub-js'
+import { ADD_TO_CART } from './../../../../config/pubsub_type.js'
+
 export default {
   props: {
     product_lists: Array
@@ -71,6 +77,16 @@ export default {
   },
   computed: {
 
+  },
+  methods: {
+    addCart (goods) {
+      // 发送通知
+      PubSub.publish(ADD_TO_CART, goods)
+      Toast({
+        message: '添加购物车',
+        duration: 800
+      });
+    }
   }
 }
 </script>

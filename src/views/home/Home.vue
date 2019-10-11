@@ -32,6 +32,13 @@
 import { getHomeData } from './../../serve/api/index.js'
 import { showBackIcon, animate } from './../../config/global.js'
 
+// 引入Vuex
+import { mapMutations } from 'vuex'
+// 引入消息发布订阅
+import PubSub from 'pubsub-js'
+import { ADD_TO_CART } from './../../config/pubsub_type.js'
+
+// 引入页面组件
 import Header from './components/header/Header'
 import Sowing from './components/sowing/Sowing'
 import Tip from './components/tip/Tip'
@@ -43,26 +50,25 @@ import BackTop from '../../components/backToTop/BackTop'
 import Loading from '../../components/loading/LoadingGif'
 
 export default {
+
   name: 'Home',
   created () {
-    getHomeData().then(response => {
-      if (response.success) {
-        // 给轮播组件 sowing_list赋值 
-        this.sowing_list = response.data.list[0].icon_list;
-        this.nav_list = response.data.list[2].icon_list;
-        this.flash_sale_product_list = response.data.list[3].product_list;
-        this.tabbar_all_product_list = response.data.list[12].product_list;
-        this.isShowLoading = false
-
-        // 是否显示回到顶部图标
-        showBackIcon((status) => {
-          this.showBackToTop = status;
-        })
+    this._initData();
+  },
+  mounted () {
+    //  接受订阅
+    PubSub.subscribe(ADD_TO_CART, (msg, goods) => {
+      if (msg == ADD_TO_CART) {
+        // 添加数据
+        this.ADD_GOODS({
+          goodsID: goods.id,
+          goodsName: goods.name,
+          smallImage: goods.small_image,
+          goodsPrice: goods.price
+        });
       }
-    }).catch(error => {
-      console.log(error);
-
     });
+
   },
   data () {
     return {
@@ -87,10 +93,32 @@ export default {
     Loading
   },
   methods: {
+    // Vuex中的方法ADD_GOODS
+    ...mapMutations(['ADD_GOODS']),
     scrollToTop () {
       let documentBody = document.documentElement || document.body;
       // 做缓动动画
       animate(documentBody, { scrollTop: '0' }, 400, 'ease-out');
+    },
+    _initData () {
+      getHomeData().then(response => {
+        if (response.success) {
+          // 给轮播组件 sowing_list赋值 
+          this.sowing_list = response.data.list[0].icon_list;
+          this.nav_list = response.data.list[2].icon_list;
+          this.flash_sale_product_list = response.data.list[3].product_list;
+          this.tabbar_all_product_list = response.data.list[12].product_list;
+          this.isShowLoading = false
+
+          // 是否显示回到顶部图标
+          showBackIcon((status) => {
+            this.showBackToTop = status;
+          })
+        }
+      }).catch(error => {
+        console.log(error);
+
+      });
     }
   }
 }

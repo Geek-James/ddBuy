@@ -41,9 +41,6 @@ import Loading from '../../components/loading/LoadingGif'
 // 5.引入加载动画
 import LoadingGif from '../../components/loading/Loading'
 
-
-import { log } from 'util';
-
 export default {
   name: "Category",
   data () {
@@ -79,7 +76,6 @@ export default {
       if (leftRes.success) {
         this.categoriesData = leftRes.data.cate;
       }
-
       // 1.2 获取右边的数据
       let rightRes = await getCategoryDetailData('/lk001');
       if (rightRes.success) {
@@ -103,21 +99,16 @@ export default {
         }
       });
     },
-
     // 2. 处理左边的点击
     async clickLeftLi (index) {
       this.isShowLoadingGif = true;
       // 2.1 改变索引
       this.currentIndex = index;
-
       // 2.2 滚动到对应的位置
       let menuLists = this.$refs.menuList;
       let el = menuLists[index];
-      // console.log(el);
-
       // 2.3 滚动到对应元素上
       this.leftScroll.scrollToElement(el, 300);
-
       // 2.4 获取右边的数据
       let param;
       if (index >= 9) {
@@ -133,6 +124,7 @@ export default {
       }
     }
   },
+
 }
 </script>
 
