@@ -142,6 +142,8 @@ export default {
         border-radius: 0.5rem;
         height: auto;
         display: block;
+        // 等比缩小图片来适应元素的尺寸
+        background-size: contain;
         background-image: url("../../../images/placeholderImg/product-img-load.png");
       }
       .desc {

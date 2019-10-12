@@ -2,17 +2,19 @@
   <div class="cart">
     <!-- 购物车头部 -->
     <!--头部区域-->
-    <header class="titleWrapper">
+    <header class="
+       titleWrapper">
       <h4><strong>购物车</strong></h4>
       <div class="clearCart"
            :style="selectedGoodsCount==0?'color:grey':'color:#45c763'"
-           @click="clearCart">删除</div>
+           @click="clearCart"
+           v-show="isShowEmptyCart">删除</div>
     </header>
     <!-- 购物车没有商品 -->
     <div class="cartWrapper">
       <!-- 购物车为空 -->
       <div class="emptyCart"
-           v-show="totalCount<1">
+           v-show="!isShowEmptyCart">
         <img src="./../../images/cart/empty.png"
              alt="">
         <div class="title">购物车空空滴~</div>
@@ -21,7 +23,7 @@
       </div>
       <!-- 购物车有数据 -->
       <div class="contentWrapper"
-           v-show="totalCount>0">
+           v-show="isShowEmptyCart">
         <div class="contentWrapperList"
              v-for="(goods,index) in shopCart"
              :key="goods.id">
@@ -56,7 +58,7 @@
         <!-- 提交订单 -->
         <van-submit-bar :price="totalPrice"
                         button-text="去结算"
-                        v-show="totalCount>0">
+                        v-show="isShowEmptyCart">
           <van-checkbox v-model="isCheckedAll"
                         checked-color='#45c763'
                         @click="selectAll(isCheckedAll)">全选</van-checkbox>
@@ -66,7 +68,9 @@
       <van-divider :style="{ color: 'black', borderColor: 'grey', padding: '0 16px' }">
         猜你喜欢
       </van-divider>
-      <produceItem :product_lists="youLike_product_lists"></produceItem>
+      <!-- 商品详情组件 需要注意下底部是否被遮盖 动态设置padding-bottom -->
+      <produceItem :product_lists="youLike_product_lists"
+                   :style="isShowEmptyCart?'padding-bottom:5.5rem':'padding-bottom:3rem'"></produceItem>
     </div>
     <Loading :show="isShowLoading"></Loading>
   </div>
@@ -88,7 +92,7 @@ export default {
     return {
       youLike_product_lists: [],
       isShowLoading: false,
-      isEmptyCart: false
+      isEmptyCart: false,
     }
   },
   components: {
@@ -96,6 +100,14 @@ export default {
     Loading
   },
   computed: {
+    // 0.是否显示空购物车样式
+    isShowEmptyCart () {
+      let isshow = false;
+      if (this.totalCount > 0) {
+        isshow = true;
+      }
+      return isshow;
+    },
     // 1.延展出store里的shopCart数据
     ...mapState(['shopCart']),
     // 2.计算shopCart的数量
@@ -147,6 +159,8 @@ export default {
   mounted () {
     // 初始化数据
     this._initData();
+    console.log(this.isShowEmptyCart);
+
   },
   methods: {
     // 0.延展mutations中的方法
@@ -234,7 +248,6 @@ export default {
   .titleWrapper .clearCart {
     position: absolute;
     right: 0.3rem;
-    // color: #45c763;
     font-size: 0.8rem;
   }
   .disableClearCart {

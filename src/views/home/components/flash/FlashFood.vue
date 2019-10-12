@@ -130,9 +130,12 @@ export default {
       // 设置子li的宽度
       flex: 0 0 6rem;
       align-items: center;
+      padding-right: 0.5rem;
       .itemImage {
         width: 100%;
-        background-color: #f5f5f5;
+        // 等比缩小图片来适应元素的尺寸
+        background-size: contain;
+        background-image: url("../../../../images/placeholderImg/product-img-load.png");
       }
       .title {
         padding: 0.2rem;
