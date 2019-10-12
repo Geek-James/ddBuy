@@ -159,8 +159,6 @@ export default {
   mounted () {
     // 初始化数据
     this._initData();
-    console.log(this.isShowEmptyCart);
-
   },
   methods: {
     // 0.延展mutations中的方法

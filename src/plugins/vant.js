@@ -75,3 +75,16 @@ import {
     Dialog
 } from 'vant';
 Vue.use(Dialog)
+
+// 13.单元格
+import {
+    Cell,
+    CellGroup
+} from 'vant';
+Vue.use(Cell).use(CellGroup);
+
+// 14.tag标记
+import {
+    Tag
+} from 'vant';
+Vue.use(Tag);
