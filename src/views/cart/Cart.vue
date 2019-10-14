@@ -58,6 +58,7 @@
         <!-- 提交订单 -->
         <van-submit-bar :price="totalPrice"
                         button-text="去结算"
+                        @submit="onSubmit"
                         v-show="isShowEmptyCart">
           <van-checkbox v-model="isCheckedAll"
                         checked-color='#45c763'
@@ -82,10 +83,10 @@ import ProduceItem from './../home/components/tabbar/ProduceItem'
 import { getGuessYouLike } from './../../serve/api/index.js'
 import Loading from '../../components/loading/LoadingGif'
 // 引入Vuex
-import { mapMutations, mapState } from 'vuex'
+import { mapMutations, mapState, mapGetters } from 'vuex'
 import { getLocalStore } from '../../config/global';
 // 引入提示框
-import { Dialog } from 'vant';
+import { Dialog, Toast } from 'vant';
 
 export default {
   data () {
@@ -108,8 +109,9 @@ export default {
       }
       return isshow;
     },
-    // 1.延展出store里的shopCart数据
+    // 1.延展出store里的shopCart的数据
     ...mapState(['shopCart']),
+    ...mapGetters(['SELECTED_GOODS_COUNT']),
     // 2.计算shopCart的数量
     totalCount () {
       return Object.keys(this.shopCart).length;
@@ -117,7 +119,6 @@ export default {
     // 3.计算shopCart中选中商品的数量
     selectedGoodsCount () {
       let selectedGoodsCount = 0;
-
       Object.values(this.shopCart).forEach((goods, index) => {
         if (goods.checked) {
           selectedGoodsCount++;
@@ -220,6 +221,19 @@ export default {
     // 6.全选
     selectAll (checkAll) {
       this.ALL_SELECT_GOODS({ checkAll });
+    },
+    // 7.去结算
+    onSubmit () {
+      // 7.1 当选中商品数量大于0跳转
+      if (this.SELECTED_GOODS_COUNT > 0) {
+        // 跳转到订单界面
+        this.$router.push('/order');
+      } else {
+        Toast({
+          message: '请选择需要结算的商品',
+          duration: 1000
+        });
+      }
     }
   }
 }
@@ -255,9 +269,22 @@ export default {
     width: 100%;
     height: 100rem;
     margin-top: 2.6rem;
-    .van-submit-bar {
-      bottom: 2.8rem;
+    @media screen and (max-width: 375px) {
+      .van-submit-bar {
+        bottom: 2.6rem;
+      }
     }
+    @media screen and (max-width: 320px) {
+      .van-submit-bar {
+        bottom: 3.2rem;
+      }
+    }
+    @media screen and (max-width: 414px) {
+      .van-submit-bar {
+        bottom: 2.6rem;
+      }
+    }
+
     .emptyCart {
       display: flex;
       flex-direction: column;

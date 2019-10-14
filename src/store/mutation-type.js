@@ -10,3 +10,7 @@ export const SINGLE_SELECT_GOODS = 'SINGLE_SELECT_GOODS';
 export const ALL_SELECT_GOODS = 'ALL_SELECT_GOODS';
 // 6.删除选中的商品
 export const DELETE_SELECT_GOODS = 'DELETE_SELECT_GOODS';
+// 7.选中商品的数量
+export const SELECTED_GOODS_COUNT = 'SELECTED_GOODS_COUNT';
+// 8.选中的商品
+export const SELECTED_GOODS = 'SELECTED_GOODS';

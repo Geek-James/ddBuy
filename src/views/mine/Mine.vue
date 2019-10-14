@@ -22,7 +22,7 @@
         </template>
       </van-cell>
     </van-cell-group>
-    <!-- 订单祥光-->
+    <!-- 订单相关-->
     <van-cell-group>
       <van-cell title="我的订单"
                 icon="label"

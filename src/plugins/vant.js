@@ -88,3 +88,31 @@ import {
     Tag
 } from 'vant';
 Vue.use(Tag);
+
+// 15.填写订单
+import {
+    ContactCard,
+    ContactList,
+    ContactEdit
+} from 'vant';
+Vue.use(ContactCard).use(ContactList).use(ContactEdit);
+
+// 16.icon图标
+import {
+    Icon
+} from 'vant';
+Vue.use(Icon);
+
+// 17.单选框及单选框组
+import {
+    RadioGroup,
+    Radio
+} from 'vant';
+Vue.use(RadioGroup);
+Vue.use(Radio);
+
+// 18.switch 开关
+import {
+    Switch
+} from 'vant';
+Vue.use(Switch);
