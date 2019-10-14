@@ -116,3 +116,9 @@ import {
     Switch
 } from 'vant';
 Vue.use(Switch);
+
+// 19.field输入框
+import {
+    Field
+} from 'vant';
+Vue.use(Field);

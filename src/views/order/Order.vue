@@ -105,12 +105,12 @@
     </van-cell-group>
     <!-- 备注 -->
     <van-cell-group style="margin-top: 0.6rem">
-      <van-cell title="备注"
-                is-link>
-        <input type="text"
-               placeholder="选填:可以告诉我们特殊的需求"
-               slot="default">
-      </van-cell>
+      <van-field label="备注"
+                 type="textarea"
+                 placeholder="选填,可以告诉我们您的特殊需求"
+                 rows="1"
+                 autosize
+                 is-link />
     </van-cell-group>
     <!-- 商品金额 -->
     <van-cell-group style="margin-top: 0.6rem">
