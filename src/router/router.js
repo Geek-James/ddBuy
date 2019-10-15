@@ -13,6 +13,7 @@ const Mine = () => import('../views/mine/Mine.vue');
 
 // 加载订单相关的组件
 const Order = () => import('../views/order/Order.vue');
+const MyAddress = () => import('../views/order/children/MyAddress.vue');
 
 Vue.use(Router)
 
@@ -64,7 +65,12 @@ export default new Router({
         {
             path: '/order',
             name: 'order',
-            component: Order
+            component: Order,
+            children: [{
+                path: 'myAddress',
+                name: 'myAddress',
+                component: MyAddress
+            }]
         }
     ]
 })

@@ -8,6 +8,7 @@
     <van-contact-card :type="address_type"
                       add-text="选择收货地址"
                       :name="address_name"
+                      @click="chooseAddress"
                       style="margin-top:3rem" />
 
     <van-cell-group>
@@ -19,6 +20,7 @@
           <van-icon name="question-o" />
         </template>
       </van-cell>
+
       <!-- 商品缩略图 -->
       <div class="wrapper">
         <div class="productImageWrapper"
@@ -96,13 +98,15 @@
                 is-link
                 value="0张可用">
       </van-cell>
-      <van-cell title="使用200积分抵扣¥2">
+      <van-cell>
+        <span slot="title">使用{{integral}}积分兑换<b>{{integralToprice | moneyFormat}}</b></span>
         <van-switch v-model="checked"
                     slot="right-icon"
                     @input="onInput"
                     active-color="#07c160" />
       </van-cell>
     </van-cell-group>
+
     <!-- 备注 -->
     <van-cell-group style="margin-top: 0.6rem">
       <van-field label="备注"
@@ -112,25 +116,27 @@
                  autosize
                  is-link />
     </van-cell-group>
+
     <!-- 商品金额 -->
     <van-cell-group style="margin-top: 0.6rem">
       <van-cell title="商品金额">
-        <div class="money">19.00</div>
+        <div class="money">{{(selectedTotalPrice/100) |moneyFormat }}</div>
       </van-cell>
       <van-cell title="配送费">
         <div class="money">0.00</div>
       </van-cell>
       <van-cell title="积分"
                 v-show="isShowPreferential">
-        <div class="money">0.00</div>
+        <div class="money">{{integralToprice | moneyFormat}}</div>
       </van-cell>
 
     </van-cell-group>
 
     <!-- 提交订单 -->
-    <van-submit-bar :price="3050"
+    <van-submit-bar :price="actualPrice"
                     label="实付"
-                    button-text="提交订单"
+                    button-text="
+                    提交订单"
                     @submit="onSubmit" />
   </div>
 </template>
@@ -138,6 +144,7 @@
 <script type="text/javascript">
 import BScroll from 'better-scroll'
 import { mapState, mapGetters } from 'vuex'
+import { Toast, Dialog } from 'vant';
 
 export default {
   data () {
@@ -146,7 +153,8 @@ export default {
       address_name: null,
       radio: '1',
       checked: false,
-      isShowPreferential: false
+      isShowPreferential: false,
+      integral: 800
     };
   },
   computed: {
@@ -154,8 +162,26 @@ export default {
     // 数量
     ...mapGetters({
       selectedCount: 'SELECTED_GOODS_COUNT',
-      goods: 'SELECTED_GOODS'
-    })
+      goods: 'SELECTED_GOODS',
+      selectedTotalPrice: 'SELECTED_GOODS_PRICE'
+    }),
+    actualPrice () {
+      // 如果用户使用积分兑换
+      if (this.checked) {
+        let discountsPrice = this.integralToprice.toFixed(2).toString().replace('.', '');
+        let finalPrice = this.selectedTotalPrice - discountsPrice;
+        return (finalPrice < 0 ? this.selectedTotalPrice : finalPrice);
+      } else {
+        // 不使用积分兑换
+        return this.selectedTotalPrice;
+      }
+    },
+    // 计算积分兑换人民币
+    integralToprice () {
+      if (this.integral > 0) {
+        return (this.integral / 100);
+      }
+    }
   },
   mounted () {
     this.$nextTick(() => {
@@ -185,16 +211,25 @@ export default {
     },
     // 3.提交订单
     onSubmit () {
-
     },
     // 4.switch开关
     onInput (checked) {
-      // 4.1 使用积分
-      if (checked) {
-        this.isShowPreferential = true;
+      let discountsPrice = this.integralToprice * 100;
+      // 4.1 判断积分使用条件是否满足
+      if (discountsPrice > this.selectedTotalPrice) {
+        // 4.2不能使用积分
+        Dialog.alert({
+          message: '您的实际价格小于积分兑换价格,建议您在多买几件'
+        }).then(() => {
+          this.checked = false;
+        });
       } else {
-        this.isShowPreferential = false;
+        this.isShowPreferential = !this.isShowPreferential;
       }
+    },
+    // 5.选择地址
+    chooseAddress () {
+      this.$router.push('/order/myAddress');
     }
   }
 }

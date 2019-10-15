@@ -111,7 +111,10 @@ export default {
     },
     // 1.延展出store里的shopCart的数据
     ...mapState(['shopCart']),
-    ...mapGetters(['SELECTED_GOODS_COUNT']),
+    ...mapGetters({
+      selectedGoodNum: 'SELECTED_GOODS_COUNT',
+      totalPrice: 'SELECTED_GOODS_PRICE'
+    }),
     // 2.计算shopCart的数量
     totalCount () {
       return Object.keys(this.shopCart).length;
@@ -143,18 +146,6 @@ export default {
         //  https://stackoverflow.com/questions/55097118/computed-property-was-assigned-to-but-it-has-no-setter-a-toggle-component
         this.value = value;
       }
-    },
-    // 5.计算选中的总价格
-    totalPrice () {
-      let totalPrice = 0;
-      // 5.1 取到shopCart里面的数据遍历找到选中的goods计算总价
-      Object.values(this.shopCart).forEach((goods, index) => {
-        if (goods.checked) {
-          // 4.2 计算总价,由于Vant的SubmitBar组件接受的价格格式是保留两位小数且中间不需要.所以需要转换下
-          totalPrice += Number((goods.price * goods.num).toFixed(2).toString().replace('.', ''));
-        }
-      });
-      return totalPrice;
     }
   },
   mounted () {
@@ -225,7 +216,7 @@ export default {
     // 7.去结算
     onSubmit () {
       // 7.1 当选中商品数量大于0跳转
-      if (this.SELECTED_GOODS_COUNT > 0) {
+      if (this.selectedGoodNum > 0) {
         // 跳转到订单界面
         this.$router.push('/order');
       } else {
