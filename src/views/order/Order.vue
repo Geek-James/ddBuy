@@ -29,7 +29,7 @@
               ref="imageWrapper">
             <li ref="subWrapper"
                 style="display:inline"
-                v-for="(item,index) in shopCart"
+                v-for="(item,index) in goods"
                 :key="index">
               <img :src="item.smallImage"
                    alt="">
@@ -106,7 +106,6 @@
                     active-color="#07c160" />
       </van-cell>
     </van-cell-group>
-
     <!-- 备注 -->
     <van-cell-group style="margin-top: 0.6rem">
       <van-field label="备注"
@@ -129,7 +128,6 @@
                 v-show="isShowPreferential">
         <div class="money">{{integralToprice | moneyFormat}}</div>
       </van-cell>
-
     </van-cell-group>
 
     <!-- 提交订单 -->
@@ -150,6 +148,7 @@
 import BScroll from 'better-scroll'
 import { mapState, mapGetters } from 'vuex'
 import { Toast, Dialog } from 'vant';
+import { getLocalStore } from './../../config/global.js'
 
 export default {
   data () {
@@ -159,7 +158,7 @@ export default {
       radio: '1',
       checked: false,
       isShowPreferential: false,
-      integral: 800
+      integral: 800 // 积分
     };
   },
   computed: {

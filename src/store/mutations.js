@@ -14,9 +14,6 @@ import {
     getLocalStore,
     setLocalStore
 } from '../config/global'
-import {
-    log
-} from 'util';
 
 export default {
     // 1.添加商品
