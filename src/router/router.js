@@ -14,6 +14,8 @@ const Mine = () => import('../views/mine/Mine.vue');
 // 加载订单相关的组件
 const Order = () => import('../views/order/Order.vue');
 const MyAddress = () => import('../views/order/children/MyAddress.vue');
+const AddAddress = () => import('../views/order/children/children/AddAddress.vue');
+const EditAddress = () => import('../views/order/children/children/EditAddress.vue');
 
 Vue.use(Router)
 
@@ -63,13 +65,23 @@ export default new Router({
             }]
         },
         {
+            // 订单相关的路由 注意:二级路由不需要加/
             path: '/order',
             name: 'order',
             component: Order,
             children: [{
                 path: 'myAddress',
                 name: 'myAddress',
-                component: MyAddress
+                component: MyAddress,
+                children: [{
+                    path: 'addAddress',
+                    name: 'addAddress',
+                    component: AddAddress,
+                }, {
+                    path: 'editAddress',
+                    name: 'editAddress',
+                    component: EditAddress
+                }]
             }]
         }
     ]

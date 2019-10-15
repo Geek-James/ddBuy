@@ -122,3 +122,39 @@ import {
     Field
 } from 'vant';
 Vue.use(Field);
+
+// 20.联系地址
+import {
+    AddressList
+} from 'vant';
+Vue.use(AddressList);
+
+// 21.地址编辑
+import {
+    AddressEdit
+} from 'vant';
+Vue.use(AddressEdit);
+
+// 22.省市区选择器
+import {
+    Area
+} from 'vant';
+Vue.use(Area);
+
+// 23.弹出层
+import {
+    Popup
+} from 'vant';
+Vue.use(Popup);
+
+// 24.滑动单元格
+import {
+    SwipeCell
+} from 'vant';
+Vue.use(SwipeCell);
+
+// 25.van Button
+import {
+    Button
+} from 'vant';
+Vue.use(Button);

@@ -138,6 +138,11 @@
                     button-text="
                     提交订单"
                     @submit="onSubmit" />
+    <!-- 路由出口 -->
+    <transition name="router-slider"
+                mode="out-in">
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 
@@ -268,6 +273,17 @@ export default {
       position: absolute;
       color: grey;
     }
+  }
+
+  /*转场动画*/
+  .router-slider-enter-active,
+  .router-slider-leave-active {
+    transition: all 0.3s;
+  }
+  .router-slider-enter,
+  .router-slider-leave-active {
+    transform: translate3d(2rem, 0, 0);
+    opacity: 0;
   }
 }
 </style>
