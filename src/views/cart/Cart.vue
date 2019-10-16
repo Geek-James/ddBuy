@@ -57,8 +57,9 @@
         </div>
         <!-- 提交订单 -->
         <van-submit-bar :price="totalPrice"
-                        button-text="去结算"
+                        :button-text="submitBarText"
                         @submit="onSubmit"
+                        :disabled="!(selectedGoodNum>0)"
                         v-show="isShowEmptyCart">
           <van-checkbox v-model="isCheckedAll"
                         checked-color='#45c763'
@@ -101,7 +102,12 @@ export default {
     Loading
   },
   computed: {
-    // 0.是否显示空购物车样式
+    // 0.结算数量
+    submitBarText () {
+      const count = this.selectedGoodNum;
+      return '结算' + (count ? `(${count})` : '');
+    },
+    // 1.是否显示空购物车样式
     isShowEmptyCart () {
       let isshow = false;
       if (this.totalCount > 0) {
@@ -109,17 +115,17 @@ export default {
       }
       return isshow;
     },
-    // 1.延展出store里的shopCart的数据
+    // 2.延展出store里的shopCart的数据
     ...mapState(['shopCart']),
     ...mapGetters({
       selectedGoodNum: 'SELECTED_GOODS_COUNT',
       totalPrice: 'SELECTED_GOODS_PRICE'
     }),
-    // 2.计算shopCart的数量
+    // 3.计算shopCart的数量
     totalCount () {
       return Object.keys(this.shopCart).length;
     },
-    // 3.计算shopCart中选中商品的数量
+    // 4.计算shopCart中选中商品的数量
     selectedGoodsCount () {
       let selectedGoodsCount = 0;
       Object.values(this.shopCart).forEach((goods, index) => {
@@ -129,7 +135,7 @@ export default {
       });
       return selectedGoodsCount;
     },
-    // 4.是否全部选中
+    // 5.是否全部选中
     isCheckedAll: {
       get () {
         let tag = this.totalCount > 0;
