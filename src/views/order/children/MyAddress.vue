@@ -11,7 +11,8 @@
                       :list="list"
                       @add="onAdd"
                       @edit="onEdit"
-                      style="margin-top: 3rem">
+                      style="margin-top: 3rem"
+                      add-button-text="+ 增加新地址">
 
     </van-address-list>
     <van-cell :border=false
@@ -83,6 +84,16 @@ export default {
   .router-slider-leave-active {
     transform: translate3d(2rem, 0, 0);
     opacity: 0;
+  }
+  .van-address-list__add {
+    bottom: 1rem;
+  }
+  .van-button--large {
+    left: 15%;
+    width: 70%;
+    border-radius: 2rem;
+    background-color: #45c763;
+    border: none;
   }
 }
 </style>

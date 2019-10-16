@@ -7,12 +7,13 @@
                  @click-left="onClickLeft"></van-nav-bar>
     <van-address-edit :area-list="areaList"
                       show-postal
-                      show-delete
                       show-set-default
                       show-search-result
                       :search-result="searchResult"
+                      save-button-text="保存并使用"
                       @save="onSave"
-                      @change-detail="onChangeDetail" />
+                      @change-detail="onChangeDetail"
+                      style="margin-top:3rem" />
   </div>
 </template>
 
@@ -62,5 +63,10 @@ export default {
   bottom: 0;
   background-color: #f5f5f5;
   z-index: 99999;
+  .van-address-edit {
+    .van-button {
+      background-color: #45c763;
+    }
+  }
 }
 </style>

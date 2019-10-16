@@ -12,7 +12,8 @@
                       show-search-result
                       :search-result="searchResult"
                       @save="onSave"
-                      @change-detail="onChangeDetail" />
+                      @change-detail="onChangeDetail"
+                      style="margin-top:3rem" />
   </div>
 </template>
 
