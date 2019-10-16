@@ -151,7 +151,6 @@ export default {
         // 解决 assigned to but it has no setter.
         // https://vuex.vuejs.org/zh/guide/forms.html
         //  https://stackoverflow.com/questions/55097118/computed-property-was-assigned-to-but-it-has-no-setter-a-toggle-component
-        this.value = value;
         let isCheckedAll = !value;
         this.ALL_SELECT_GOODS({ isCheckedAll });
       }
@@ -392,6 +391,9 @@ export default {
         }
       }
     }
+  }
+  .van-checkbox {
+    margin-left: 0.5rem;
   }
 }
 </style>
