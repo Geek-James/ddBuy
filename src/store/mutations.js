@@ -16,6 +16,7 @@ import {
 } from '../config/global'
 
 export default {
+    // 注意:外界传值的参数一定要和定义的参数一致  goodsID  isCheckedAll
     // 1.添加商品
     [ADD_GOODS](state, {
         goodsID,
@@ -110,15 +111,15 @@ export default {
     },
     // 5.全选商品 外界出过来一个isSelected
     [ALL_SELECT_GOODS](state, {
-        isSelected
+        isCheckedAll
     }) {
         // 5.1 取出state中的商品数据
         let shopCart = state.shopCart;
         Object.values(shopCart).forEach((goods, index) => {
             if (goods.checked) { // 存在该属性
-                goods.checked = isSelected;
+                goods.checked = !isCheckedAll;
             } else {
-                Vue.set(goods, 'checked', !isSelected);
+                Vue.set(goods, 'checked', !isCheckedAll);
             }
         });
         // 5.2 同步state数据

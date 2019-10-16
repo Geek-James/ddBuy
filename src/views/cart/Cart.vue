@@ -62,8 +62,7 @@
                         :disabled="!(selectedGoodNum>0)"
                         v-show="isShowEmptyCart">
           <van-checkbox v-model="isCheckedAll"
-                        checked-color='#45c763'
-                        @click="selectAll(isCheckedAll)">全选</van-checkbox>
+                        checked-color='#45c763'>全选</van-checkbox>
         </van-submit-bar>
       </div>
       <!-- 猜你喜欢 -->
@@ -148,9 +147,13 @@ export default {
         return tag;
       },
       set (value) {
+        // 改变store中的值
         // 解决 assigned to but it has no setter.
+        // https://vuex.vuejs.org/zh/guide/forms.html
         //  https://stackoverflow.com/questions/55097118/computed-property-was-assigned-to-but-it-has-no-setter-a-toggle-component
         this.value = value;
+        let isCheckedAll = !value;
+        this.ALL_SELECT_GOODS({ isCheckedAll });
       }
     }
   },
@@ -215,13 +218,9 @@ export default {
     single (goodsID) {
       this.SINGLE_SELECT_GOODS({ goodsID });
     },
-    // 6.全选
-    selectAll (checkAll) {
-      this.ALL_SELECT_GOODS({ checkAll });
-    },
-    // 7.去结算
+    // 6.去结算
     onSubmit () {
-      // 7.1 当选中商品数量大于0跳转
+      // 6.1 当选中商品数量大于0跳转
       if (this.selectedGoodNum > 0) {
         // 跳转到订单界面
         this.$router.push('/order');
