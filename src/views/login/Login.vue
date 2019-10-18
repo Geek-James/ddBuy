@@ -4,15 +4,8 @@
          @click="changeImage(3)">
       <div class="auth-form">
         <div class="panfish">
-          <img src="./../../images/login/normal.png"
-               alt=""
-               v-show="isShowNormal">
-          <img src="./../../images/login/greeting.png"
-               alt=""
-               v-show="isShowGreeting">
-          <img src="./../../images/login/blindfold.png"
-               alt=""
-               v-show="isShowBlindfold">
+          <img :src="imageURL"
+               alt="">
         </div>
         <van-tabs v-model="active"
                   animated>
@@ -188,17 +181,15 @@ export default {
       sms_login: null,
       captcha: null,
       isShowSMSLogin: false,
-      isShowNormal: true,
-      isShowGreeting: false,
-      isShowBlindfold: false,
       switchLoginMsg: '短信验证码登录',
+      imageURL: require('./../../images/login/normal.png')
     };
   },
   components: {
 
   },
   methods: {
-    //   1.切换登录
+    // 切换登录
     switchLogin () {
       this.isShowSMSLogin = !this.isShowSMSLogin;
       if (this.isShowSMSLogin) {
@@ -209,11 +200,11 @@ export default {
     },
     // 切换验证码
     getCaptcha () {
-      // 1.获取验证码的标签
+      // 获取验证码的标签
       let captchaEle = this.$refs.captcha;
       this.$set(captchaEle, 'src', 'http://demo.itlike.com/web/xlmc/api/captcha?time=' + new Date());
     },
-    // 2.登录
+    // 登录
     Login () {
       Toast({
         message: '登录',
@@ -252,20 +243,13 @@ export default {
     },
     changeImage (index) {
       if (index == 0) {
-        this.isShowNormal = false;
-        this.isShowGreeting = true;
-        this.isShowBlindfold = false;
+        this.imageURL = require('./../../images/login/greeting.png')
       } else if (index == 1) {
-        this.isShowNormal = false;
-        this.isShowGreeting = false;
-        this.isShowBlindfold = true;
+        this.imageURL = require('./../../images/login/blindfold.png')
       } else {
-        this.isShowNormal = true;
-        this.isShowGreeting = false;
-        this.isShowBlindfold = false;
+        this.imageURL = require('./../../images/login/normal.png')
       }
     },
-
   }
 }
 </script>
@@ -291,7 +275,6 @@ export default {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.3);
     z-index: 500;
     .auth-form {
       position: relative;
