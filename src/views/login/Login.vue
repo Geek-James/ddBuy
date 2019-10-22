@@ -15,7 +15,8 @@
                          required
                          clearable
                          label="用户名"
-                         @click.stop="changeImage(0)"
+                         @click.stop="
+                         changeImage(0)"
                          placeholder="请输入手机号或用户名" />
               <van-field v-model="password_login"
                          type="password"
@@ -52,7 +53,14 @@
                          placeholder="验证码">
                 <van-button slot="button"
                             size="small"
-                            type="primary">发送验证码</van-button>
+                            type="primary"
+                            v-if="!countDown"
+                            @click="sendVerifyCode">发送验证码</van-button>
+                <van-button slot="button"
+                            size="small"
+                            type="primary"
+                            disabled=""
+                            v-else>已发送{{countDown}}s</van-button>
               </van-field>
             </van-cell-group>
             <van-button type="info"
@@ -168,10 +176,12 @@
 <script type="text/javascript">
 import { Toast } from 'vant'
 import { fail } from 'assert';
+import { setInterval, clearInterval } from 'timers';
 
 export default {
   data () {
     return {
+      countDown: 0, // 倒计时
       active: 0,
       username_login: null,
       password_login: null,
@@ -184,6 +194,13 @@ export default {
       switchLoginMsg: '短信验证码登录',
       imageURL: require('./../../images/login/normal.png')
     };
+  },
+  computed: {
+    // 手机号码正确验证
+    phoneNumVerify () {
+      return /[1][3,4,5,6,7,8][0-9]{9}$/.test(this.tel_registered);
+    }
+
   },
   components: {
 
@@ -241,6 +258,7 @@ export default {
         })
       }
     },
+    // 改变萌猫
     changeImage (index) {
       if (index == 0) {
         this.imageURL = require('./../../images/login/greeting.png')
@@ -250,6 +268,23 @@ export default {
         this.imageURL = require('./../../images/login/normal.png')
       }
     },
+    // 发送手机验证码
+    sendVerifyCode () {
+      Toast({
+        message: '发送验证码',
+        duration: 800
+
+      });
+      this.countDown = 60;
+      this.timeIntervalID = setInterval(() => {
+        this.countDown--;
+        // 如果减到0 则清除定时器
+        if (this.countDown == 0) {
+          clearInterval(this.timeIntervalID);
+        }
+      }, 1000)
+
+    }
   }
 }
 </script>
