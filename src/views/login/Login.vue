@@ -66,7 +66,7 @@
             <van-button type="info"
                         size="large"
                         style="margin-top:1rem"
-                        @click='Login'>登录</van-button>
+                        @click='Login(0)'>登录</van-button>
             <div class="switchLogin"
                  @click="switchLogin">{{switchLoginMsg}}</div>
           </van-tab>
@@ -93,7 +93,7 @@
             <van-button type="info"
                         size="large"
                         style="margin-top:1rem"
-                        @click='Login'>注册</van-button>
+                        @click='Login(1)'>注册</van-button>
           </van-tab>
         </van-tabs>
 
@@ -199,7 +199,6 @@ export default {
     phoneNumVerify () {
       return /[1][3,4,5,6,7,8][0-9]{9}$/.test(this.tel_registered);
     }
-
   },
   components: {
 
@@ -221,11 +220,18 @@ export default {
       this.$set(captchaEle, 'src', 'http://demo.itlike.com/web/xlmc/api/captcha?time=' + new Date());
     },
     // 登录
-    Login () {
-      Toast({
-        message: '登录',
-        duration: 800
-      });
+    Login (index) {
+      if (index == 0) {
+        Toast({
+          message: '登录',
+          duration: 800
+        });
+      } else {
+        Toast({
+          message: '注册',
+          duration: 800
+        });
+      }
     },
     // 第三方登录
     thirdLogin (value) {
@@ -242,7 +248,6 @@ export default {
         });
       }
     },
-
     // 3.用户协议
     agreement (index) {
       if (index == 0) {
@@ -274,6 +279,7 @@ export default {
         duration: 800
 
       });
+
       this.countDown = 60;
       this.timeIntervalID = setInterval(() => {
         this.countDown--;
@@ -289,7 +295,7 @@ export default {
 
 <style lang="less" scoped>
 #login {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
