@@ -62,6 +62,7 @@ import { Toast } from 'vant'
 // 引入消息发布订阅
 import PubSub from 'pubsub-js'
 import { ADD_TO_CART } from './../../../../config/pubsub_type.js'
+import { debuglog } from 'util';
 
 export default {
   props: {
@@ -87,6 +88,10 @@ export default {
         duration: 800
       });
     }
+  },
+  // 销毁通知
+  beforeDestroy () {
+    PubSub.unsubscribe(ADD_TO_CART);
   }
 }
 </script>

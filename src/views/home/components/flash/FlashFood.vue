@@ -114,6 +114,10 @@ export default {
         duration: 800
       })
     }
+  },
+  // 销毁通知
+  beforeDestroy () {
+    PubSub.unsubscribe(ADD_TO_CART);
   }
 }
 </script>

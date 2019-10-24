@@ -31,6 +31,7 @@ export default {
   },
   data () {
     return {
+      // 倒计时时间设置
       time: 30 * 60 * 1000 * 100
     }
   },

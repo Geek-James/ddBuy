@@ -95,6 +95,7 @@
                         style="margin-top:1rem"
                         @click='Login(1)'>注册</van-button>
           </van-tab>
+
         </van-tabs>
 
         <!-- 第三方登录 -->
