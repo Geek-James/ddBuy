@@ -175,7 +175,6 @@
 
 <script type="text/javascript">
 import { Toast } from 'vant'
-import { fail } from 'assert';
 import { setInterval, clearInterval } from 'timers';
 
 export default {
@@ -283,7 +282,6 @@ export default {
           clearInterval(this.timeIntervalID);
         }
       }, 1000)
-
     }
   }
 }
