@@ -7,24 +7,29 @@
           <img :src="imageURL"
                alt="">
         </div>
+        <!-- 关闭按钮 -->
+        <van-icon name="close"
+                  class="closeButton"
+                  @click="close" />
         <van-tabs v-model="active"
                   animated>
           <van-tab title="登录">
+            <!-- 账号密码登录 -->
             <van-cell-group v-show="!isShowSMSLogin">
-              <van-field v-model="username_login"
+              <van-field v-model="login_userName"
                          required
                          clearable
                          label="用户名"
                          @click.stop="
                          changeImage(0)"
                          placeholder="请输入手机号或用户名" />
-              <van-field v-model="password_login"
+              <van-field v-model="login_password"
                          type="password"
                          label="密码"
                          placeholder="请输入密码"
                          required
                          @click.stop="changeImage(1)" />
-              <van-field v-model="captcha"
+              <van-field v-model="imgCaptcha"
                          center
                          clearable
                          maxlength="4"
@@ -33,69 +38,64 @@
                      src="http://demo.itlike.com/web/xlmc/api/captcha"
                      alt="captcha"
                      @click.prevent="getCaptcha"
-                     ref="captcha"
+                     ref="imgCaptcha"
                      slot="button">
               </van-field>
-
+              <!-- 手机号快捷登录 -->
             </van-cell-group>
             <van-cell-group v-show="isShowSMSLogin">
-              <van-field v-model="username_login"
+              <van-field v-model="login_phone"
                          required
                          clearable
+                         maxlength="11"
                          label="手机号码"
-                         placeholder="请输入手机号" />
-              <van-field v-model="sms_login"
-                         center
+                         placeholder="请输入手机号"
+                         :error-message="phoneNumberRight?'':'手机号格式不正确'" />
+              <van-field center
                          clearable
                          required
                          label="短信验证码"
-                         maxlength="4"
+                         maxlength="6"
+                         v-model="smsCaptcha"
                          placeholder="验证码">
                 <van-button slot="button"
                             size="small"
                             type="primary"
                             v-if="!countDown"
+                            :disabled="captchaDisable"
                             @click="sendVerifyCode">发送验证码</van-button>
                 <van-button slot="button"
                             size="small"
                             type="primary"
                             disabled=""
+                            v-model="smsCaptcha"
                             v-else>已发送{{countDown}}s</van-button>
               </van-field>
             </van-cell-group>
             <van-button type="info"
                         size="large"
                         style="margin-top:1rem"
-                        @click='Login(0)'>登录</van-button>
+                        @click='login'>登录</van-button>
             <div class="switchLogin"
-                 @click="switchLogin">{{switchLoginMsg}}</div>
+                 @click="switchLogin">{{this.isShowSMSLogin?"账号密码登录":"短信验证码登录"}}</div>
           </van-tab>
           <!-- 注册 -->
           <van-tab title="注册">
             <van-cell-group>
-              <van-field v-model="username_registered"
+              <van-field v-model="register_userName"
                          clearable
-                         placeholder="请输入用户名"
+                         placeholder="请输入用户名或手机号"
                          required />
-              <van-field v-model="tel_registered"
-                         clearable
-                         placeholder="请输入手机号"
-                         required />
-              <van-field v-model="password_registered"
+              <van-field v-model="register_pwd"
                          type="password"
                          placeholder="请输入密码(不少于6位)"
-                         required />
-              <van-field v-model="password_registered"
-                         type="password"
-                         placeholder="再次输入密码(不少于6位)"
                          required />
             </van-cell-group>
             <van-button type="info"
                         size="large"
                         style="margin-top:1rem"
-                        @click='Login(1)'>注册</van-button>
+                        @click='register'>注册</van-button>
           </van-tab>
-
         </van-tabs>
 
         <!-- 第三方登录 -->
@@ -177,62 +177,163 @@
 <script type="text/javascript">
 import { Toast } from 'vant'
 import { setInterval, clearInterval } from 'timers';
+import { getPhoneCaptcha, phoneCaptchaLogin, pwdLogin } from '../../serve/api/index.js'
 
 export default {
   data () {
     return {
-      countDown: 0, // 倒计时
+      countDown: 0,                 // 倒计时
       active: 0,
-      username_login: null,
-      password_login: null,
-      username_registered: null,
-      password_registered: null,
-      tel_registered: null,
-      sms_login: null,
-      captcha: null,
-      isShowSMSLogin: false,
-      switchLoginMsg: '短信验证码登录',
-      imageURL: require('./../../images/login/normal.png')
+      login_userName: '',            // 用户名
+      login_password: '',           // 用户密码
+      login_phone: '',              // 手机号码
+
+      register_userName: '',        // 注册用户名
+      register_pwd: '',             // 注册密码
+
+      imgCaptcha: '',               // 图片验证码
+      smsCaptcha: '',               // 短信验证码
+      isShowSMSLogin: true,         // 是否短信登录
+      switchLoginMsg: '账号密码登录',
+      imageURL: require('./../../images/login/normal.png'),
     };
   },
   computed: {
-    // 手机号码正确验证
-    phoneNumVerify () {
-      return /[1][3,4,5,6,7,8][0-9]{9}$/.test(this.tel_registered);
+    // 1.手机号码验证
+    phoneNumberRight () {
+      // 2.当输入的手机号大于10位进行验证
+      if (this.login_phone.length > 10) {
+        return /[1][3,4,5,6,7,8][0-9]{9}$/.test(this.login_phone);
+      } else {
+        return true;
+      }
+    },
+    // 3.发送验证码按钮显示
+    captchaDisable () {
+      if (this.login_phone.length > 10 && this.phoneNumberRight) {
+        return false;
+      } else {
+        return true;
+      }
     }
   },
-  components: {
-
-  },
   methods: {
-    // 切换登录
+    // 1.账号密码登录及短信验证码切换
     switchLogin () {
       this.isShowSMSLogin = !this.isShowSMSLogin;
-      if (this.isShowSMSLogin) {
-        this.switchLoginMsg = '账号密码登录';
+    },
+    // 2.切换萌猫图片
+    changeImage (index) {
+      if (index == 0) {
+        this.imageURL = require('./../../images/login/greeting.png')
+      } else if (index == 1) {
+        this.imageURL = require('./../../images/login/blindfold.png')
       } else {
-        this.switchLoginMsg = '短信验证码登录';
+        this.imageURL = require('./../../images/login/normal.png')
       }
     },
-    // 切换验证码
+    // 3.账号密码登录切换图片验证码
     getCaptcha () {
       // 获取验证码的标签
-      let captchaEle = this.$refs.captcha;
+      let captchaEle = this.$refs.imgCaptcha;
       this.$set(captchaEle, 'src', 'http://demo.itlike.com/web/xlmc/api/captcha?time=' + new Date());
     },
-    // 登录
-    Login (index) {
+    // 4.获取手机验证码
+    async sendVerifyCode () {
+      this.countDown = 60;
+      this.timeIntervalID = setInterval(() => {
+        this.countDown--;
+        // 如果减到0 则清除定时器
+        if (this.countDown == 0) {
+          clearInterval(this.timeIntervalID);
+        }
+      }, 1000)
+      // 获取短信验证码
+      let result = await getPhoneCaptcha(this.login_phone);
+      if (result.success_code == 200) {
+        Toast({
+          message: '验证码获取成功:' + result.code,
+          duration: 800
+        });
+        console.log(result);
+        this.smsCaptcha = result.code;
+      }
+    },
+    // 3.登录
+    async login () {
+      if (this.isShowSMSLogin) {
+        // 3.1手机验证码登录
+        // 3.1.1 验证手机号
+        if (!this.phoneNumberRight || this.login_phone.length < 10) {
+          Toast({
+            message: '请输入正确的手机号',
+            duration: 800
+          });
+          return;
+        } else if (this.smsCaptcha < 7) {
+          // 3.1.2 验证验证码
+          Toast({
+            message: '请输入正确的验证码',
+            duration: 800
+          });
+          return;
+        }
+        // 3.1.3 请求后台登录接口
+        console.log(this.login_phone);
+        console.log(this.smsCaptcha);
+        let ref = await phoneCaptchaLogin(this.login_phone, this.smsCaptcha);
+      } else {
+        // 3.2 账号密码登录
+        // 3.2.1 验证输入框
+        if (this.login_userName.length < 1) {
+          Toast({
+            message: '请输入用户名',
+            duration: 800
+          });
+          return;
+        } else if (this.login_password.length < 1) {
+          Toast({
+            message: '密码不能为空',
+            duration: 800
+          });
+          return;
+        } else if (this.imgCaptcha.length < 1) {
+          Toast({
+            message: '请输入验证码',
+            duration: 800
+          });
+          return;
+        }
+        // 3.2.2 请求后台
+        let ref = await pwdLogin(this.login_userName, this.login_password, this.imgCaptcha);
+        console.log(ref);
+
+      }
+    },
+    // 注册
+    register () {
+      alert('注册');
+    },
+    // 3.用户协议
+    agreement (index) {
       if (index == 0) {
         Toast({
-          message: '登录',
+          message: '用户协议',
           duration: 800
-        });
+        })
       } else {
         Toast({
-          message: '注册',
+          message: '隐私策略',
           duration: 800
-        });
+        })
       }
+    },
+    // 关闭
+    close () {
+      Toast({
+        message: '关闭',
+        duration: 800
+      });
     },
     // 第三方登录
     thirdLogin (value) {
@@ -249,51 +350,9 @@ export default {
         });
       }
     },
-    // 3.用户协议
-    agreement (index) {
-      if (index == 0) {
-        Toast({
-          message: '用户协议',
-          duration: 800
-        })
-      } else {
-        Toast({
-          message: '隐私策略',
-          duration: 800
-        })
-      }
-    },
-    // 改变萌猫
-    changeImage (index) {
-      if (index == 0) {
-        this.imageURL = require('./../../images/login/greeting.png')
-      } else if (index == 1) {
-        this.imageURL = require('./../../images/login/blindfold.png')
-      } else {
-        this.imageURL = require('./../../images/login/normal.png')
-      }
-    },
-    // 发送手机验证码
-    sendVerifyCode () {
-      Toast({
-        message: '发送验证码',
-        duration: 800
-
-      });
-
-      this.countDown = 60;
-      this.timeIntervalID = setInterval(() => {
-        this.countDown--;
-        // 如果减到0 则清除定时器
-        if (this.countDown == 0) {
-          clearInterval(this.timeIntervalID);
-        }
-      }, 1000)
-    }
   }
 }
 </script>
-
 <style lang="less" scoped>
 #login {
   position: fixed;
@@ -339,12 +398,17 @@ export default {
         width: 5rem;
       }
     }
+    .closeButton {
+      position: absolute;
+      right: 1rem;
+      top: 0.4rem;
+    }
     .verificationImage {
       position: absolute;
       right: 0;
-      width: 4rem;
+      width: 8rem;
       height: 3rem;
-      margin-left: 2rem;
+      margin-left: 3rem;
     }
     .switchLogin {
       margin-top: 1rem;
