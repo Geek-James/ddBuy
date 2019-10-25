@@ -5,7 +5,9 @@ import {
     REDUCE_GOODS,
     SINGLE_SELECT_GOODS,
     ALL_SELECT_GOODS,
-    DELETE_SELECT_GOODS
+    DELETE_SELECT_GOODS,
+    USER_INFO,
+    INIT_USER_INFO
 } from './mutation-type'
 import Vue from 'vue'
 
@@ -145,5 +147,25 @@ export default {
         }
         // 6.4 更新本地数据
         setLocalStore('shopCart', state.shopCart);
+    },
+
+    // 7.保存用户信息到本地
+    [USER_INFO](state, {
+        userInfo
+    }) {
+        // 7.1 把外界传来的userInfo保存到state中的userInfo
+        state.userInfo = userInfo;
+        // 7.2 保存到本地缓存中
+        setLocalStore('userInfo', state.userInfo);
+    },
+
+    // 8.获取用户信息
+    [INIT_USER_INFO](state) {
+        // 8.1 从本地获取用户信息
+        let userInfo = getLocalStore('userInfo')
+        // 8.2 如果存在则把用户信息保存到state中
+        if (userInfo) {
+            state.userInfo = JSON.parse(userInfo);
+        }
     }
 }

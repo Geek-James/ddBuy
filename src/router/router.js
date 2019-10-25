@@ -87,7 +87,7 @@ export default new Router({
                 }]
             }]
         },
-        // 登录注册
+        // 登录注册模块 
         {
             path: '/Login',
             name: 'login',

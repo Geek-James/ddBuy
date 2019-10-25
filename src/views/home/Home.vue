@@ -25,6 +25,7 @@
     <BackTop v-show="showBackToTop"
              v-on:scrollToTop="scrollToTop"></BackTop>
   </div>
+
 </template>
 
 <script type="text/javascript">
@@ -33,7 +34,7 @@ import { getHomeData } from './../../serve/api/index.js'
 import { showBackIcon, animate } from './../../config/global.js'
 
 // 引入Vuex
-import { mapMutations } from 'vuex'
+import { mapMutations, mapState } from 'vuex'
 // 引入消息发布订阅
 import PubSub from 'pubsub-js'
 import { ADD_TO_CART } from './../../config/pubsub_type.js'
@@ -55,17 +56,30 @@ export default {
   created () {
     this._initData();
   },
+  computed: {
+    ...mapState(['userInfo']),
+  },
   mounted () {
     //  接受订阅
     PubSub.subscribe(ADD_TO_CART, (msg, goods) => {
       if (msg == ADD_TO_CART) {
-        // 添加数据
-        this.ADD_GOODS({
-          goodsID: goods.id,
-          goodsName: goods.name,
-          smallImage: goods.small_image,
-          goodsPrice: goods.price
-        });
+        // 判断是否有用户登录
+        if (this.userInfo) {
+          Toast({
+            message: '已加入购物车',
+            duration: 800
+          });
+          // 添加数据
+          this.ADD_GOODS({
+            goodsID: goods.id,
+            goodsName: goods.name,
+            smallImage: goods.small_image,
+            goodsPrice: goods.price
+          });
+        } else {
+          // 跳转到登录界面
+          this.$router.push('/login');
+        }
       }
     });
 

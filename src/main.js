@@ -10,6 +10,7 @@ if ('addEventListener' in document) {
         FastClick.attach(document.body);
     }, false);
 }
+
 Vue.config.productionTip = false
 
 // 全局引入UI库 vant

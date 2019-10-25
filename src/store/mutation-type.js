@@ -16,3 +16,7 @@ export const SELECTED_GOODS_COUNT = 'SELECTED_GOODS_COUNT';
 export const SELECTED_GOODS = 'SELECTED_GOODS';
 // 9.选中商品的价格
 export const SELECTED_GOODS_PRICE = 'SELECTED_GOODS_PRICE';
+// 10.用户信息
+export const USER_INFO = 'USER_INFO';
+// 11.初始化用户信息
+export const INIT_USER_INFO = 'INIT_USER_INFO';

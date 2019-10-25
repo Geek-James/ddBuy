@@ -83,10 +83,6 @@ export default {
     addCart (goods) {
       // 发送通知
       PubSub.publish(ADD_TO_CART, goods)
-      Toast({
-        message: '已加入购物车',
-        duration: 800
-      });
     }
   },
   // 销毁通知
