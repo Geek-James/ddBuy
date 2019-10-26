@@ -11,6 +11,10 @@ if ('addEventListener' in document) {
     }, false);
 }
 
+// 瀑布流
+import waterfall from 'vue-waterfall2'
+Vue.use(waterfall)
+
 Vue.config.productionTip = false
 
 // 全局引入UI库 vant

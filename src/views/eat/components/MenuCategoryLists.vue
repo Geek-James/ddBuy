@@ -20,12 +20,17 @@
         </ul>
       </div>
     </div>
-    <MenuDetail v-show="!isShowMenuList"></MenuDetail>
+    <!-- 使用vue-waterfall2 组件 完成的瀑布流 效果良好-->
+    <MenuWaterFall v-show="!isShowMenuList"></MenuWaterFall>
+    <!-- 使用better Scroll 组件 完成的瀑布流 效果不佳-->
+    <!-- <MenuDetail v-show="!isShowMenuList"></MenuDetail> -->
   </div>
 </template>
 
 <script type="text/javascript">
 import MenuDetail from './MenuDetail'
+import MenuWaterFall from './MenuWaterFall'
+
 // 引入通知
 import Pubsub from 'pubsub-js'
 import { EAT_MENUTITLE_CLICK } from '../../../config/pubsub_type.js'
@@ -45,7 +50,8 @@ export default {
     }
   },
   components: {
-    MenuDetail
+    MenuDetail,
+    MenuWaterFall
   },
   methods: {
     menuTitleClick (index) {

@@ -283,9 +283,8 @@ export default {
         console.log(this.smsCaptcha);
         let ref = await phoneCaptchaLogin(this.login_phone, this.smsCaptcha);
         // 设置userInfor
-
-
-        this.$router.back();
+        console.log(ref);
+        // this.$router.back();
       } else {
         // 3.2 账号密码登录
         // 3.2.1 验证输入框
@@ -311,7 +310,7 @@ export default {
         // 3.2.2 请求后台
         let ref = await pwdLogin(this.login_userName, this.login_password, this.imgCaptcha);
         console.log(ref);
-        this.$router.back();
+        // this.$router.back();
       }
     },
     // 注册

@@ -37,19 +37,29 @@ export default {
     }
   },
   components: {
-    Loading
+    Loading,
   },
   created () {
+    // 初始化数据
     this._initData();
   },
   mounted () {
-    setTimeout(() => {
-      this._initMenuScroll();
-    }, 700);
+    // 初始化滑动
+    // setTimeout(() => {
+    //   this._initMenuScroll();
+    // }, 700);
+  },
+  watch: {
+    menulistDetail () {
+      this.$nextTick(() => {
+        this._initMenuScroll();
+      });
+    }
   },
   methods: {
     // 1.数据请求
     async _initData () {
+      // 第一条数据
       let ref = await getTodayMenuDetail('/lk01');
       if (ref.success) {
         this.menulistDetail = ref.data.big_recommend.list;
@@ -66,7 +76,7 @@ export default {
           mouseWheel: true,
           pullUpLoad: {
             // 2.1 当上拉距离超过盒子高度的10px的时候,就派发一个上拉加载的事件
-            threshold: 10
+            threshold: 20
           },
           pullDownRefresh: {
             // 2.2 当下拉长度距离盒子顶部的高度超过10px的时候,就派发一个下拉刷新的事件
@@ -103,12 +113,18 @@ export default {
             that.rootMenuScroll.refresh();
           }, 1000);
         });
+        // 2.8 上拉结束
+        this.rootMenuScroll.on('scrollEnd', () => {
+          this.rootMenuScroll.refresh();
+
+        });
         // 2.7 当异步加载数据的时候，重新渲染页面，这段代码非常重要
-        this.rootMenuScroll.refresh();
+        // this.rootMenuScroll.refresh();
       } else {
         this.rootMenuScroll.refresh();
       }
     },
+
   }
 }
 </script>
@@ -140,8 +156,8 @@ export default {
       .itemImg {
         width: 100%;
         border-radius: 0.5rem;
-        height: auto;
         display: block;
+        position: relative;
         // 等比缩小图片来适应元素的尺寸
         background-size: contain;
         background-image: url("../../../images/placeholderImg/product-img-load.png");
