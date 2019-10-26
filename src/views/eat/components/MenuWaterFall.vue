@@ -85,9 +85,9 @@ export default {
   }
   h4 {
     padding-top: 56px;
-    padding-bottom: 28px;
+    padding-bottom: 1rem;
     font-family: PingFangSC-Medium;
-    font-size: 36px;
+    font-size: 2rem;
     color: #000000;
     letter-spacing: 1px;
     text-align: justify;
@@ -97,10 +97,10 @@ export default {
     background: #ffffff;
     overflow: hidden;
     box-sizing: border-box;
-    margin-bottom: 0.1rem;
+    margin-bottom: 1px;
     padding: 0.3rem;
     img {
-      border-radius: 12px 12px 0 0;
+      border-radius: 12px;
       width: 100%;
       display: block;
       // 等比缩小图片来适应元素的尺寸
@@ -128,7 +128,7 @@ export default {
         .name {
           max-width: 150px;
           margin-left: 10px;
-          font-size: 0.6rem;
+          font-size: 0.75rem;
           color: #999999;
         }
       }
