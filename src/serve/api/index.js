@@ -27,14 +27,18 @@ export const getGuessYouLike = () => ajax(BASE_URL + 'cart/youlike');
 
 /*****登录界面接口*********/
 // 1.获取手机验证码(GET)
-export const getPhoneCaptcha = (phoneNumber) => ajax(LOCAL_URL + 'send_code', {
+// Easy Mock 模拟发送验证码 
+export const getPhoneCaptcha = (phoneNumber) => ajax(BASE_URL + 'send_code', {
     phoneNumber
 });
+
 // 2.手机验证码登录(POST)
-export const phoneCaptchaLogin = (phone, captcha) => ajax(LOCAL_URL + 'login_code', {
+// Easy Mock 模拟用户登录
+export const phoneCaptchaLogin = (phone, captcha) => ajax(BASE_URL + 'login_code', {
     phone,
     captcha
 }, 'POST');
+
 // 3.账号密码登录(POST)
 export const pwdLogin = (userName, pwd, captcha) => ajax(LOCAL_URL + 'login_pwd', {
     userName,

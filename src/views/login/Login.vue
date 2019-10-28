@@ -175,9 +175,12 @@
 </template>
 
 <script type="text/javascript">
-import { Toast } from 'vant'
-import { setInterval, clearInterval } from 'timers';
+// 引入Vant的组件
+import { Toast, Dialog } from 'vant'
+// 引入API调用接口
 import { getPhoneCaptcha, phoneCaptchaLogin, pwdLogin } from '../../serve/api/index.js'
+// 引入vuex
+import { mapState, mapActions } from 'vuex'
 
 export default {
   data () {
@@ -196,19 +199,20 @@ export default {
       isShowSMSLogin: true,         // 是否短信登录
       switchLoginMsg: '账号密码登录',
       imageURL: require('./../../images/login/normal.png'),
+      smsCaptchaResult: null
     };
   },
   computed: {
     // 1.手机号码验证
     phoneNumberRight () {
-      // 2.当输入的手机号大于10位进行验证
+      // 1.1 当输入的手机号大于10位进行验证
       if (this.login_phone.length > 10) {
         return /[1][3,4,5,6,7,8][0-9]{9}$/.test(this.login_phone);
       } else {
         return true;
       }
     },
-    // 3.发送验证码按钮显示
+    // 2.发送验证码按钮显示
     captchaDisable () {
       if (this.login_phone.length > 10 && this.phoneNumberRight) {
         return false;
@@ -218,6 +222,8 @@ export default {
     }
   },
   methods: {
+    // 0.mapActions 同步用户信息
+    ...mapActions(['syncUserInfo']),
     // 1.账号密码登录及短信验证码切换
     switchLogin () {
       this.isShowSMSLogin = !this.isShowSMSLogin;
@@ -243,51 +249,51 @@ export default {
       this.countDown = 60;
       this.timeIntervalID = setInterval(() => {
         this.countDown--;
-        // 如果减到0 则清除定时器
+        // 4.1 如果减到0 则清除定时器
         if (this.countDown == 0) {
           clearInterval(this.timeIntervalID);
         }
       }, 1000)
-      // 获取短信验证码
+
+      // 4.2 获取短信验证码
       let result = await getPhoneCaptcha(this.login_phone);
       if (result.success_code == 200) {
-        Toast({
-          message: '验证码获取成功:' + result.code,
-          duration: 800
+        this.smsCaptchaResult = result.data.code;
+        // 4.3  获取验证码成功
+        Dialog.alert({
+          title: '温馨提示',
+          message: '验证码获取成功,请在输入框输入:' + result.data.code
+        }).then(() => {
         });
-        console.log(result);
-        this.smsCaptcha = result.code;
       }
     },
-    // 3.登录
+    // 5.登录
     async login () {
       if (this.isShowSMSLogin) {
-        // 3.1手机验证码登录
-        // 3.1.1 验证手机号
+        // 5.1手机验证码登录
+        // 5.1.1 验证手机号
         if (!this.phoneNumberRight || this.login_phone.length < 10) {
           Toast({
             message: '请输入正确的手机号',
             duration: 800
           });
           return;
-        } else if (this.smsCaptcha < 7) {
-          // 3.1.2 验证验证码
+        } else if (this.smsCaptcha < 7 || this.smsCaptcha != Number(this.smsCaptchaResult)) {
+          // 5.1.2 验证验证码
           Toast({
             message: '请输入正确的验证码',
             duration: 800
           });
           return;
         }
-        // 3.1.3 请求后台登录接口
-        console.log(this.login_phone);
-        console.log(this.smsCaptcha);
+        // 5.1.3 请求后台登录接口
         let ref = await phoneCaptchaLogin(this.login_phone, this.smsCaptcha);
-        // 设置userInfor
-        console.log(ref);
-        // this.$router.back();
+        // 设置userInfor 保存到vuex和本地
+        this.syncUserInfo(ref.data);
+        this.$router.back();
       } else {
-        // 3.2 账号密码登录
-        // 3.2.1 验证输入框
+        // 5.2 账号密码登录
+        // 5.2.1 验证输入框
         if (this.login_userName.length < 1) {
           Toast({
             message: '请输入用户名',
@@ -307,17 +313,17 @@ export default {
           });
           return;
         }
-        // 3.2.2 请求后台
+        // 5.2.2 请求后台
         let ref = await pwdLogin(this.login_userName, this.login_password, this.imgCaptcha);
         console.log(ref);
         // this.$router.back();
       }
     },
-    // 注册
+    // 6.注册
     register () {
       alert('注册');
     },
-    // 3.用户协议
+    // 7.用户协议
     agreement (index) {
       if (index == 0) {
         Toast({
@@ -331,13 +337,13 @@ export default {
         })
       }
     },
-    // 关闭
+    // 8.关闭
     close () {
       this.$router.back();
     },
-    // 第三方登录
+    // 9.第三方登录
     thirdLogin (value) {
-      console.log(value);
+
       if (value == 0) {
         Toast({
           message: '微信登录',

@@ -3,7 +3,6 @@ import axios from 'axios'
 export default function ajax(url = '', params = {}, type = 'GET') {
     // 1. 变量
     let promise;
-
     // 2. 返回一个promise对象
     return new Promise((resolve, reject) => {
         // 2.1 判断请求的类型
@@ -22,13 +21,13 @@ export default function ajax(url = '', params = {}, type = 'GET') {
                 paramsStr = paramsStr.substr(0, paramsStr.lastIndexOf('&'));
                 // 2.5 拼接完整路径
                 if (url.indexOf('47.98.157.152') === -1) {
-                    url += '?' + paramsStr + '&itlike=' + randomCode(20);
+                    url += '?' + paramsStr + '&geek166=' + randomCode(20);
                 } else {
                     url += '?' + paramsStr;
                 }
             } else {
                 if (url.indexOf('47.98.157.152') === -1) {
-                    url += '?itlike=' + randomCode(20)
+                    url += '?geek166=' + randomCode(20)
                 }
             }
             // 2.6 发起get请求
