@@ -133,7 +133,7 @@
 import BScroll from 'better-scroll'
 import { Toast } from 'vant'
 import DropMenu from './DropMenu'
-import { mapMutations } from 'vuex'
+import { mapMutations, mapState } from 'vuex'
 
 export default {
   name: "ContentView",
@@ -161,6 +161,9 @@ export default {
       this._initProductScroll();
       this._isShowDropMenu();
     });
+  },
+  computed: {
+    ...mapState(['userInfo'])
   },
   watch: {
     categoriesDetailData () {
@@ -229,17 +232,23 @@ export default {
     },
     // 4.添加购物车
     addToCart (goods) {
-      // 将数据保存到vuex的shopCart中
-      this.ADD_GOODS({
-        goodsID: goods.id,
-        goodsName: goods.name,
-        smallImage: goods.small_image,
-        goodsPrice: goods.price
-      });
-      Toast({
-        message: '已加入购物车',
-        duration: 800
-      });
+      // 4.1 判断是否登录
+      if (this.userInfo.token) {
+        // 4.2 将数据保存到vuex的shopCart中
+        this.ADD_GOODS({
+          goodsID: goods.id,
+          goodsName: goods.name,
+          smallImage: goods.small_image,
+          goodsPrice: goods.price
+        });
+        Toast({
+          message: '已加入购物车',
+          duration: 800
+        });
+      } else {
+        // 4.3 跳转到登录界面
+        this.$router.push('/login');
+      }
     },
     // 5.点击下拉菜单
     menuClick () {
