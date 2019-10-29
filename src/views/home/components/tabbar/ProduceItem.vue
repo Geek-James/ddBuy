@@ -84,10 +84,6 @@ export default {
       // 发送通知
       PubSub.publish(ADD_TO_CART, goods)
     }
-  },
-  // 销毁通知
-  beforeDestroy () {
-    PubSub.unsubscribe(ADD_TO_CART);
   }
 }
 </script>

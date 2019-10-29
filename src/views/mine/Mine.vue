@@ -10,15 +10,31 @@
                 is-link
                 center>
         <template slot="title">
-          <div class="personMsg">
+          <!-- 已登录状态 -->
+          <div class="personMsg"
+               v-if="userInfo.token"
+               @click="goToUserCenter">
             <img class="iconImage"
-                 src="./../../images/mine/defaultImg.jpeg"
+                 :src="user_image.login_icon"
                  alt="">
-            <div class="personInfo">
-              <span>极客James</span>
-              <span>手机号：12345679876</span>
+            <div class="personInfo"
+                 v-if="userInfo.token">
+              <span>{{userInfo.user_name}}</span>
+              <span>手机号：{{phoneNumber}}</span>
             </div>
           </div>
+          <!-- 未登录状态 -->
+          <div class="personMsg"
+               v-if="!userInfo.token">
+            <img class="iconImage"
+                 :src="user_image.noLogin_icon"
+                 alt="">
+            <div class="personInfo"
+                 v-if="!userInfo.token">
+              <div @click="login">立即登录</div>
+            </div>
+          </div>
+
         </template>
       </van-cell>
     </van-cell-group>
@@ -73,13 +89,26 @@
                 value="下载APP体验更佳"
                 is-link></van-cell>
     </van-cell-group>
+    <!--路由的出口-->
+    <transition name="router-slider"
+                mode="out-in">
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 
 <script type="text/javascript">
+// 引入vuex
+import { mapState } from 'vuex'
+
 export default {
   data () {
     return {
+      // 头像
+      user_image: {
+        login_icon: require('./../../images/mine/defaultImg.jpeg'),
+        noLogin_icon: require('./../../images/login/grey.jpg')
+      },
       orderData: [
         { icon: 'cart-circle-o', title: '待支付' },
         { icon: 'gift-o', title: '待收货' },
@@ -88,8 +117,27 @@ export default {
       ]
     }
   },
+  computed: {
+    ...mapState(['userInfo']),
+    phoneNumber () {
+      // 设置隐藏手机号中间四位
+      var mobile = String(this.userInfo.phone)
+      var reg = /^(\d{3})\d{4}(\d{4})$/
+      return mobile.replace(reg, '$1****$2')
+    }
+  },
   components: {
 
+  },
+  methods: {
+    // 1.跳转到登录界面
+    login () {
+      this.$router.push('/login');
+    },
+    // 2.跳转到用户中心
+    goToUserCenter () {
+      this.$router.push('/dashboard/Mine/userCenter');
+    }
   }
 }
 </script>
@@ -123,6 +171,17 @@ export default {
   .van-cell__left-icon {
     color: #45c763;
     font-size: 1.2rem;
+  }
+  /*转场动画*/
+  .router-slider-enter-active,
+  .router-slider-leave-active {
+    transition: all 0.3s;
+  }
+
+  .router-slider-enter,
+  .router-slider-leave-active {
+    transform: translate3d(2rem, 0, 0);
+    opacity: 0;
   }
 }
 </style>

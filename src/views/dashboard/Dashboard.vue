@@ -27,7 +27,7 @@
 import { setStore } from '../../config/global.js'
 import { setLocalStore, getLocalStore } from '../../config/global.js'
 
-import { mapState, mapMutations } from 'vuex'
+import { mapState, mapMutations, mapActions } from 'vuex'
 
 export default {
   name: "DashBoard",
@@ -81,7 +81,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['shopCart']),
+    ...mapState(['shopCart'], ['userInfo']),
     goodsNum () {
       let num = 0;
       Object.values(this.shopCart).forEach((goods, index) => {
@@ -94,7 +94,8 @@ export default {
   },
   methods: {
     // 0. 延展mutations方法
-    ...mapMutations(['INIT_SHOP_CART']),
+    ...mapMutations(['INIT_SHOP_CART', 'INIT_USER_INFO']),
+    // ...mapActions(['autoLogin']),
     // 1.点击tabbar触发的方法
     tab (index, val) {
       this.currIndex = index;
@@ -105,6 +106,7 @@ export default {
     // 2.初始化购物车数据
     _initData () {
       this.INIT_SHOP_CART();
+      this.INIT_USER_INFO();
     }
   }
 }

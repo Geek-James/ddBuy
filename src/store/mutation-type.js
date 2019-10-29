@@ -16,7 +16,15 @@ export const SELECTED_GOODS_COUNT = 'SELECTED_GOODS_COUNT';
 export const SELECTED_GOODS = 'SELECTED_GOODS';
 // 9.选中商品的价格
 export const SELECTED_GOODS_PRICE = 'SELECTED_GOODS_PRICE';
-// 10.用户信息
+// 10.删除所有商品
+export const DELETE_ALL_GOODS = 'DELETE_ALL_GOODS';
+// 11.用户信息
 export const USER_INFO = 'USER_INFO';
-// 11.初始化用户信息
+// 12.初始化用户信息
 export const INIT_USER_INFO = 'INIT_USER_INFO';
+// 13.修改用户昵称
+export const CHANGE_USER_NICK_NAME = 'CHANGE_USER_NICK_NAME';
+// 14.用户生日
+export const USER_INFO_BRITHDAY = 'USER_INFO_BRITHDAY';
+// 15.退出登录
+export const LOGIN_OUT = 'LOGIN_OUT';

@@ -180,7 +180,7 @@ import { Toast, Dialog } from 'vant'
 // 引入API调用接口
 import { getPhoneCaptcha, phoneCaptchaLogin, pwdLogin } from '../../serve/api/index.js'
 // 引入vuex
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions, mapMutations } from 'vuex'
 
 export default {
   data () {
@@ -199,7 +199,8 @@ export default {
       isShowSMSLogin: true,         // 是否短信登录
       switchLoginMsg: '账号密码登录',
       imageURL: require('./../../images/login/normal.png'),
-      smsCaptchaResult: null
+      smsCaptchaResult: null,
+      userInfo: null
     };
   },
   computed: {
@@ -223,7 +224,7 @@ export default {
   },
   methods: {
     // 0.mapActions 同步用户信息
-    ...mapActions(['syncUserInfo']),
+    ...mapActions(['syncuserInfo']),
     // 1.账号密码登录及短信验证码切换
     switchLogin () {
       this.isShowSMSLogin = !this.isShowSMSLogin;
@@ -288,8 +289,8 @@ export default {
         }
         // 5.1.3 请求后台登录接口
         let ref = await phoneCaptchaLogin(this.login_phone, this.smsCaptcha);
-        // 设置userInfor 保存到vuex和本地
-        this.syncUserInfo(ref.data);
+        // 设置userInfo 保存到vuex和本地
+        this.syncuserInfo(ref.data);
         this.$router.back();
       } else {
         // 5.2 账号密码登录

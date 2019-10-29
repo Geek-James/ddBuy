@@ -10,6 +10,10 @@ const Category = () => import('../views/category/Category.vue');
 const Eat = () => import('../views/eat/Eat.vue');
 const Cart = () => import('../views/cart/Cart.vue');
 const Mine = () => import('../views/mine/Mine.vue');
+// Mine的子组件 用户中心
+const UserCenter = () => import('../views/mine/Children/UserCenter.vue');
+// 修改用户昵称
+const ChangeNickName = () => import('../views/mine/Children/ChangeNickName.vue');
 
 // 加载订单相关的组件
 const Order = () => import('../views/order/Order.vue');
@@ -19,6 +23,7 @@ const EditAddress = () => import('../views/order/children/children/EditAddress.v
 
 // 注册登录
 const Login = () => import('../views/login/Login.vue');
+
 
 Vue.use(Router)
 
@@ -64,7 +69,17 @@ export default new Router({
             }, {
                 path: 'mine',
                 name: 'mine',
-                component: Mine
+                component: Mine,
+                children: [{
+                    path: 'userCenter',
+                    name: 'userCenter',
+                    component: UserCenter,
+                    children: [{
+                        path: 'changeNickName',
+                        name: 'ChangeNickName',
+                        component: ChangeNickName
+                    }]
+                }]
             }]
         },
         {

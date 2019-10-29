@@ -35,6 +35,8 @@ import { showBackIcon, animate } from './../../config/global.js'
 
 // 引入Vuex
 import { mapMutations, mapState } from 'vuex'
+// 引入vant组件
+import { Toast } from 'vant'
 // 引入消息发布订阅
 import PubSub from 'pubsub-js'
 import { ADD_TO_CART } from './../../config/pubsub_type.js'
@@ -60,16 +62,17 @@ export default {
     ...mapState(['userInfo']),
   },
   mounted () {
-    //  接受订阅
+    //  1.接受订阅
     PubSub.subscribe(ADD_TO_CART, (msg, goods) => {
+      // 1.1 判断发布是否是'ADD_TO_CART'
       if (msg == ADD_TO_CART) {
-        // 判断是否有用户登录
-        if (this.userInfo) {
+        // 1.2 判断是否有用户登录
+        if (this.userInfo.token) {
           Toast({
             message: '已加入购物车',
             duration: 800
           });
-          // 添加数据
+          // 1.3 添加数据
           this.ADD_GOODS({
             goodsID: goods.id,
             goodsName: goods.name,
@@ -77,12 +80,11 @@ export default {
             goodsPrice: goods.price
           });
         } else {
-          // 跳转到登录界面
+          // 1.4 如何没有登录跳转到登录界面
           this.$router.push('/login');
         }
       }
     });
-
   },
   data () {
     return {
@@ -131,10 +133,13 @@ export default {
         }
       }).catch(error => {
         console.log(error);
-
       });
     }
-  }
+  },
+  beforeDestroy () {
+    // 清除发布订阅,记得清除哦,不然会阻塞线程~
+    PubSub.unsubscribe(ADD_TO_CART);
+  },
 }
 </script>
 

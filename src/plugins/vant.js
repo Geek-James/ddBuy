@@ -158,3 +158,9 @@ import {
     Button
 } from 'vant';
 Vue.use(Button);
+
+// 26.时间选择
+import {
+    DatetimePicker
+} from 'vant';
+Vue.use(DatetimePicker);

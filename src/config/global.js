@@ -218,7 +218,7 @@ export const getLocalStore = (name) => {
 }
 
 // 本地化删除
-export const removeLocalStare = (name) => {
+export const removeLocalStore = (name) => {
     if (!name) return;
     return window.localStorage.removeItem(name);
 }

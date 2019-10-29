@@ -68,8 +68,6 @@ import { Toast } from 'vant'
 // 引入消息发布订阅
 import PubSub from 'pubsub-js'
 import { ADD_TO_CART } from './../../../../config/pubsub_type.js'
-
-
 export default {
   props: {
     flash_sale_product_list: Array
@@ -110,10 +108,6 @@ export default {
       // 发送通知
       PubSub.publish(ADD_TO_CART, goods);
     }
-  },
-  // 销毁通知
-  beforeDestroy () {
-    PubSub.unsubscribe(ADD_TO_CART);
   }
 }
 </script>

@@ -12,6 +12,7 @@
         "core-js": "^2.6.5",
         "fastclick": "^1.0.6",
         "less-loader": "^5.0.0",
+        "moment": "^2.24.0",
         "pubsub-js": "^1.7.0",
         "reset-css": "^4.0.1",
         "vant": "^2.2.0",
