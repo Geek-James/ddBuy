@@ -1,8 +1,8 @@
 /**
  * @Author: 极客James  
  * @Date: 2019-10-1 11:44:08 
- * @Last Modified by: 极客James 
- * @Last Modified time: 2019-10-30 11:53:10
+ * @Last Modified by: james
+ * @Last Modified time: 2019-10-30 14:16:47
  * @GitHub https://github.com/Geek-James
  * @掘金 https://juejin.im/user/5c4ebc72e51d4511dc7306ce
  * @描述 吃什么->下拉菜单
@@ -31,13 +31,11 @@
     </div>
     <!-- 使用vue-waterfall2 组件 完成的瀑布流 效果良好-->
     <MenuWaterFall v-show="!isShowMenuList"></MenuWaterFall>
-    <!-- 使用better Scroll 组件 完成的瀑布流 效果不佳-->
-    <!-- <MenuDetail v-show="!isShowMenuList"></MenuDetail> -->
+
   </div>
 </template>
 
 <script type="text/javascript">
-import MenuDetail from './MenuDetail'
 import MenuWaterFall from './MenuWaterFall'
 
 // 引入通知
@@ -59,7 +57,6 @@ export default {
     }
   },
   components: {
-    MenuDetail,
     MenuWaterFall
   },
   methods: {

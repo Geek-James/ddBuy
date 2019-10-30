@@ -1,8 +1,8 @@
 /**
  * @Author: 极客James  
  * @Date: 2019-10-1 11:44:08 
- * @Last Modified by: 极客James
- * @Last Modified time: 2019-10-30 11:53:10
+ * @Last Modified by: james
+ * @Last Modified time: 2019-10-30 17:41:01
  * @GitHub https://github.com/Geek-James
  * @掘金 https://juejin.im/user/5c4ebc72e51d4511dc7306ce
  * @描述 Home 首页模块
@@ -21,8 +21,8 @@
       <!-- 限时抢购 -->
       <FlashBuy :flash_sale_product_list="flash_sale_product_list"></FlashBuy>
       <!-- 特色专区 -->
-      <SpecialZone></SpecialZone>
-      <!-- TabbarItem 商品 -->
+      <SpecialZone :specialZone="specialZone"></SpecialZone>
+      <!--TabbarItem 商品 -->
       <TabbarGoodsItem :tabbar_all_product_list="tabbar_all_product_list"
                        :flash_sale_product_list="flash_sale_product_list"></TabbarGoodsItem>
       <!-- 最底部 -->
@@ -97,13 +97,14 @@ export default {
   },
   data () {
     return {
-      // 首页轮播图数据
-      sowing_list: [],
+      sowing_list: [], // 首页轮播图数据
       isShowLoading: true,
       nav_list: [],
-      flash_sale_product_list: [],
+      flash_sale_product_list: [], // 限时抢购  
       showBackToTop: false,
       tabbar_all_product_list: [],
+      // 特色专区数据
+      specialZone: {}
     }
   },
   components: {
@@ -134,6 +135,9 @@ export default {
           this.flash_sale_product_list = response.data.list[3].product_list;
           this.tabbar_all_product_list = response.data.list[12].product_list;
           this.isShowLoading = false
+          //   给特色专区赋值
+          this.specialZone = response.data.special_zone;
+          console.log(response.data.special_zone);
 
           // 是否显示回到顶部图标
           showBackIcon((status) => {

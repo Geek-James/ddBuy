@@ -1,8 +1,8 @@
 /**
  * @Author: 极客James  
  * @Date: 2019-10-1 11:44:08 
- * @Last Modified by: 极客James
- * @Last Modified time: 2019-10-30 11:53:10
+ * @Last Modified by: james
+ * @Last Modified time: 2019-10-30 17:43:56
  * @GitHub https://github.com/Geek-James
  * @掘金 https://juejin.im/user/5c4ebc72e51d4511dc7306ce
  * @描述 首页->特色专区
@@ -15,7 +15,7 @@
     <!-- 新品尝鲜 -->
     <div class="wrapperItem">
       <div class="newItem"
-           v-for="newItem in newItemList"
+           v-for="newItem in specialZone.newItemList"
            :key="newItem.id">
         <span class="
            itemTitle">{{newItem.title}}</span>
@@ -30,7 +30,7 @@
 
       <!-- 九月热卖 -->
       <div class="hotItem"
-           v-for="hotItem in hotItemList"
+           v-for="hotItem in specialZone.hotItemList"
            :key="hotItem.id">
         <span class="itemTitle hotItemTitle">{{hotItem.title}}</span>
         <p class="itemSubTitle">{{hotItem.subtitle}}</p>
@@ -44,7 +44,7 @@
 
       <!-- VIP专享 -->
       <div class="vipItem"
-           v-for="vipItem in vipItemList"
+           v-for="vipItem in specialZone.vipItemList"
            :key="vipItem.id">
         <span class="itemTitle vipItemTitle">{{vipItem.title}}</span>
         <p class="itemSubTitle">{{vipItem.subtitle}}</p>
@@ -58,7 +58,7 @@
 
       <!-- 其他列表 -->
       <div class="otherItem"
-           v-for="otherItem in otherItemList"
+           v-for="otherItem in specialZone.otherItemList"
            :key="otherItem.id">
         <p class="otherTitle">{{otherItem.title}}</p>
         <p class="otherSubTitle">{{otherItem.subtitle}}</p>
@@ -69,7 +69,7 @@
 
       <!-- 平价菜场 -->
       <div class="lowPrice"
-           v-for="lowPriceItem in lowPriceItemList"
+           v-for="lowPriceItem in specialZone.lowPriceItemList"
            :key="lowPriceItem.id">
         <p class="otherTitle">{{lowPriceItem.title}}</p>
         <p class="otherSubTitle">{{lowPriceItem.subtitle}}</p>
@@ -82,41 +82,11 @@
 </template>
 <script type="text/javascript">
 export default {
+  props: {
+    specialZone: Object
+  },
   data () {
     return {
-      newItemList: [{
-        id: 0,
-        title: '新品尝鲜',
-        subtitle: '不时不食, 又闻棱角香~',
-        imageOne: 'http://img.ddimg.mobi/product/1ff533e6f0fe91548468615264.jpg?imageView2/3/w/750/format/q/90',
-        imageTwo: 'http://ddimg.ddxq.mobi/d3421059fd5ef1541779787379.jpg?imageView2/3/w/305/format/q/90'      }
-      ],
-      hotItemList: [{
-        id: 1,
-        title: '九月爆款',
-        subtitle: '世界之大不过一盘番茄炒蛋',
-        imageOne: 'https://ddimg.ddxq.mobi/be51d2b7e7cfb1541779541044.jpg?imageMogr2/thumbnail/200x200',
-        imageTwo: 'https://ddimg.ddxq.mobi/d9570a42c1a2f1541779412213.jpg?imageMogr2/thumbnail/200x200'      }
-      ],
-      vipItemList: [{
-        id: 2,
-        title: 'VIP 专享',
-        subtitle: '阳光玫瑰 VIP只要12.9',
-        imageOne: 'http://img.ddimg.mobi/product/98a74efe088f81565858857802.jpg?imageView2/3/w/305/format/q/90',
-        imageTwo: 'http://img.ddimg.mobi/product/6a422523dbab1564042389882.jpg?imageView2/3/w/305/format/q/90'      }
-      ],
-      otherItemList: [{
-        id: 3,
-        title: '吃什么',
-        subtitle: '童年落花生',
-      }
-      ],
-      lowPriceItemList: [{
-        id: 4,
-        title: '平价菜场',
-        subtitle: '豆芽0.99',
-        image: 'http://ddimg.ddxq.mobi/1fac18844ddea1539673001469.jpg?imageView2/3/w/750/format/q/90',      }
-      ],
     }
   }
 }

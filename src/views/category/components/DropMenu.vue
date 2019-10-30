@@ -1,8 +1,8 @@
 /**
  * @Author: 极客James  
  * @Date: 2019-10-1 11:44:08 
- * @Last Modified by: 极客James 
- * @Last Modified time: 2019-10-30 11:53:10
+ * @Last Modified by: james
+ * @Last Modified time: 2019-10-30 14:45:46
  * @GitHub https://github.com/Geek-James
  * @掘金 https://juejin.im/user/5c4ebc72e51d4511dc7306ce
  * @描述 分类模块->可滑动标题详情组件
@@ -30,11 +30,9 @@ export default {
     menuDown: Boolean,
     categoriesDetailData: Array,
     currentSubTitle: Number
-
   },
   data () {
     return {
-
     }
   },
   components: {

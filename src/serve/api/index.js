@@ -5,6 +5,8 @@ const BASE_URL = 'https://mock.cangdu.org/mock/5d940466d360e8289c6a8eb7/api/'
 
 /*****Home 模块*******/
 export const getHomeData = () => ajax(BASE_URL + 'homeApi');
+// 特色专区
+export const getHomeSpecialZone = () => ajax(BASE_URL + 'homeApi/specialZone');
 
 /***** 分类(Category) 模块 *******/
 // Category 列表页面数据

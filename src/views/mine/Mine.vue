@@ -1,8 +1,8 @@
 /**
  * @Author: 极客James  
  * @Date: 2019-10-1 11:44:08 
- * @Last Modified by: 极客James
- * @Last Modified time: 2019-10-30 11:53:10
+ * @Last Modified by: james
+ * @Last Modified time: 2019-10-30 17:06:41
  * @GitHub https://github.com/Geek-James
  * @掘金 https://juejin.im/user/5c4ebc72e51d4511dc7306ce
  * @描述 我的 模块
@@ -173,10 +173,10 @@ export default {
 <style lang="less" scoped>
 #mine {
   width: 100%;
-  //   height: 100%;
   background-color: #f5f5f5;
+  padding-bottom: 3rem;
   .van-nav-bar {
-    background-color: #45c763;
+    background-color: #3bba63;
     font-size: 0.6rem;
   }
   .van-nav-bar__title {

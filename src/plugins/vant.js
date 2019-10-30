@@ -171,3 +171,9 @@ import {
     CouponList
 } from 'vant';
 Vue.use(CouponCell).use(CouponList);
+
+// 28.粘性布局
+import {
+    Sticky
+} from 'vant';
+Vue.use(Sticky);

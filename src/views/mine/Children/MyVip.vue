@@ -1,8 +1,8 @@
 /**
  * @Author: 极客James  
  * @Date: 2019-10-1 11:44:08 
- * @Last Modified by: 极客James
- * @Last Modified time: 2019-10-30 11:53:10
+ * @Last Modified by: james
+ * @Last Modified time: 2019-10-30 17:33:28
  * @GitHub https://github.com/Geek-James
  * @掘金 https://juejin.im/user/5c4ebc72e51d4511dc7306ce
  * @描述 我的->我的绿卡模块
@@ -11,8 +11,8 @@
   <div id="myVip">
     <div v-if="!isShowLoading">
       <van-nav-bar title="绿卡"
-                   :fixed=true
                    :border=false
+                   :fixed="true"
                    @click-left="onClickLeft"
                    left-arrow
                    style="height:2.5rem" />
@@ -88,7 +88,9 @@
       </div>
       <!-- 第3部分 -->
       <div class="coupons">
-        <span class="number">2</span><span class="desc">绿卡专享券 天天领取优惠</span>
+        <span class="number">3</span><span class="desc">绿卡专享特价</span>
+        <!-- 可横向滑动的菜单 -->
+        <HorizontalScroll :menuTitlesArray="cate"></HorizontalScroll>
       </div>
     </div>
     <!-- 数据加载提示gif -->
@@ -97,8 +99,10 @@
 </template>
 
 <script type="text/javascript">
+
 import { Dialog } from 'vant'
 import { getVipContent } from './../../../serve/api/index.js'
+import HorizontalScroll from '../../../components/horizontalScroll/HorizontalScroll'
 import Loading from '../../../components/loading/LoadingGif'
 
 export default {
@@ -107,19 +111,22 @@ export default {
       today_ticket: [],//今日更新
       week_ticket: [],// 本周更新
       cate: [],      // 分类标题
-      isShowLoading: true
+      isShowLoading: true,
+      currentSubTitle: 0,
+      menuDown: true,
+      isShowDropMenu: false
     }
   },
   created () {
+
+  },
+  mounted () {
     // 初始化数据
     this._initData();
   },
-  mounted () {
-
-  },
-
   components: {
     Loading,
+    HorizontalScroll
   },
   methods: {
     // 返回
@@ -130,6 +137,7 @@ export default {
     async  _initData () {
       let ref = await getVipContent();
       if (ref.success) {
+        // 设置数据
         this.today_ticket = ref.data.today_ticket.tickets;
         this.week_ticket = ref.data.week_ticket.tickets;
         this.cate = ref.data.cate;
@@ -148,7 +156,9 @@ export default {
       }).catch(() => {
         // on cancel
       });
-    }
+    },
+    // 初始化垂直滚动
+
   }
 }
 </script>
@@ -160,10 +170,9 @@ export default {
   top: 0;
   bottom: 0;
   background-color: #f5f5f5;
-  z-index: 999;
+  z-index: 100;
+  overflow-y: auto;
   overflow-x: hidden;
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
   .van-nav-bar {
     background-color: #303747;
     font-size: 0.6rem;
@@ -175,7 +184,6 @@ export default {
     color: #ffffff;
   }
   .vipHeader {
-    margin-top: 2.5rem;
     width: 100%;
     height: 10rem;
     img {
@@ -369,6 +377,23 @@ export default {
       font-size: 0.9rem;
       margin-top: 0.5rem;
       font-weight: bold;
+    }
+    .vipSubTitleWrapper {
+      width: 100%;
+      height: 2.8rem;
+      display: inline-block;
+      white-space: nowrap;
+      border-bottom: solid 0.01rem #e8e9e8;
+      overflow: hidden;
+      background-color: white;
+      .vipTitle {
+        display: inline-block;
+        font-size: 0.73rem;
+        padding: 1rem;
+      }
+      .selected {
+        color: #3cb963;
+      }
     }
   }
 }

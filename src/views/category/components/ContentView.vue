@@ -1,8 +1,8 @@
 /**
  * @Author: 极客James  
  * @Date: 2019-10-1 11:44:08 
- * @Last Modified by: 极客James 
- * @Last Modified time: 2019-10-30 11:53:10
+ * @Last Modified by: james
+ * @Last Modified time: 2019-10-30 15:17:39
  * @GitHub https://github.com/Geek-James
  * @掘金 https://juejin.im/user/5c4ebc72e51d4511dc7306ce
  * @描述 分类模块->可滑动标题
@@ -145,7 +145,7 @@ import DropMenu from './DropMenu'
 import { mapMutations, mapState } from 'vuex'
 
 export default {
-  name: "ContentView",
+
   data () {
     return {
       scrollY: 0,
@@ -317,7 +317,6 @@ export default {
     .menuIcon {
       width: 100%;
       height: 2.8re;
-      background-color: red;
     }
   }
 }
