@@ -10,10 +10,15 @@ const Category = () => import('../views/category/Category.vue');
 const Eat = () => import('../views/eat/Eat.vue');
 const Cart = () => import('../views/cart/Cart.vue');
 const Mine = () => import('../views/mine/Mine.vue');
+
 // Mine的子组件 用户中心
 const UserCenter = () => import('../views/mine/Children/UserCenter.vue');
 // 修改用户昵称
 const ChangeNickName = () => import('../views/mine/Children/ChangeNickName.vue');
+// 优惠券
+const CouponList = () => import('../views/mine/Children/CouponList.vue')
+// 绿卡会员
+const MyVip = () => import('../views/mine/Children/MyVip.vue')
 
 // 加载订单相关的组件
 const Order = () => import('../views/order/Order.vue');
@@ -23,15 +28,15 @@ const EditAddress = () => import('../views/order/children/children/EditAddress.v
 
 // 注册登录
 const Login = () => import('../views/login/Login.vue');
-
-
 Vue.use(Router)
 
 export default new Router({
+    // !!注意: 二级路由不需要加 '/'
     routes: [{
             path: '/',
             redirect: '/dashboard'
         }, {
+            // 根页面 
             path: '/dashboard',
             name: 'dashboard',
             component: Dashboard,
@@ -39,6 +44,7 @@ export default new Router({
                 path: '/dashboard',
                 redirect: '/dashboard/home'
             }, {
+                // 主页
                 path: 'home',
                 name: 'home',
                 component: Home,
@@ -47,6 +53,7 @@ export default new Router({
                     keepAlive: true
                 }
             }, {
+                // 分类
                 path: 'category',
                 name: 'category',
                 component: Category,
@@ -55,6 +62,7 @@ export default new Router({
                     keepAlive: true
                 }
             }, {
+                // 吃什么
                 path: 'eat',
                 name: 'eat',
                 component: Eat,
@@ -63,47 +71,64 @@ export default new Router({
                     keepAlive: true
                 }
             }, {
+                // 购物车
                 path: 'cart',
                 name: 'cart',
                 component: Cart
             }, {
+                // 我的
                 path: 'mine',
                 name: 'mine',
                 component: Mine,
                 children: [{
+                    // 用户中心
                     path: 'userCenter',
                     name: 'userCenter',
                     component: UserCenter,
                     children: [{
+                        // 修改昵称
                         path: 'changeNickName',
                         name: 'ChangeNickName',
                         component: ChangeNickName
                     }]
+                }, {
+                    // 优惠券
+                    path: 'couponList',
+                    name: 'couponList',
+                    component: CouponList
+                }, {
+                    // 绿卡会员
+                    path: 'myVip',
+                    name: 'myVip',
+                    component: MyVip
                 }]
             }]
         },
         {
-            // 订单相关的路由 注意:二级路由不需要加/
+            // 订单
             path: '/order',
             name: 'order',
             component: Order,
             children: [{
+                // 我的地址
                 path: 'myAddress',
                 name: 'myAddress',
                 component: MyAddress,
                 children: [{
+                    // 添加地址
                     path: 'addAddress',
                     name: 'addAddress',
                     component: AddAddress,
                 }, {
+                    // 编辑地址
                     path: 'editAddress',
                     name: 'editAddress',
                     component: EditAddress
                 }]
             }]
         },
-        // 登录注册模块 
         {
+            // 登录
             path: '/Login',
             name: 'login',
             component: Login

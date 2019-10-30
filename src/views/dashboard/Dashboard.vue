@@ -18,6 +18,11 @@
     <keep-alive>
       <router-view v-if="$route.meta.keepAlive"></router-view>
     </keep-alive>
+    <transition name="router-slider"
+                mode="out-in">
+      <router-view v-if="$route.name === 'login'">
+      </router-view>
+    </transition>
     <router-view v-if="!$route.meta.keepAlive"></router-view>
   </div>
 </template>
@@ -113,4 +118,14 @@ export default {
 </script>
 
 <style lang="less" scoped>
+/*转场动画*/
+.router-slider-enter-active,
+.router-slider-leave-active {
+  transition: all 0.3s;
+}
+.router-slider-enter,
+.router-slider-leave-active {
+  transform: translate3d(2rem, 0, 0);
+  opacity: 0;
+}
 </style>

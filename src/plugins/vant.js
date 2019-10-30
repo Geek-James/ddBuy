@@ -164,3 +164,10 @@ import {
     DatetimePicker
 } from 'vant';
 Vue.use(DatetimePicker);
+
+// 27.优惠券
+import {
+    CouponCell,
+    CouponList
+} from 'vant';
+Vue.use(CouponCell).use(CouponList);

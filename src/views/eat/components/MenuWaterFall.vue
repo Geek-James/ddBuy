@@ -46,7 +46,6 @@ export default {
       let ref = await getTodayMenuDetail('/lk01');
       if (ref.success) {
         this.menulistDetail = ref.data.big_recommend.list;
-        console.log(this.menulistDetail);
         this.data = ref.data.big_recommend.list;
       }
     },

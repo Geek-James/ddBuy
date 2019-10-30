@@ -52,20 +52,22 @@
                        :text="order.title" />
       </van-grid>
     </van-cell-group>
-
     <van-cell-group style="margin-top:0.4rem">
       <van-cell title="我的优惠券"
                 icon="gold-coin"
-                value="1张"
-                is-link></van-cell>
+                :value="userInfo.token?'1张':''"
+                @click="goToMyCouponList"
+                is-link />
       <van-cell title="我的收货地址"
                 icon="todo-list"
-                is-link></van-cell>
+                is-link
+                @click="goToMyAddredd" />
     </van-cell-group>
 
     <van-cell-group style="margin-top:0.4rem">
       <van-cell is-link
-                icon="vip-card">
+                icon="vip-card"
+                @click="goToMyVip">
         <template slot="title">
           <span class="custom-title">我的绿卡</span>
           <van-tag type="danger"
@@ -137,6 +139,23 @@ export default {
     // 2.跳转到用户中心
     goToUserCenter () {
       this.$router.push('/dashboard/Mine/userCenter');
+    },
+    // 3.跳转到我的优惠券
+    goToMyCouponList () {
+      // 判断是否登录
+      if (this.userInfo.token) {
+        this.$router.push('/dashboard/Mine/couponList');
+      } else {
+        this.$router.push('/login');
+      }
+    },
+    // 4.跳转到我的收货地址
+    goToMyAddredd () {
+
+    },
+    // 5.跳转到绿卡会员
+    goToMyVip () {
+      this.$router.push('/dashboard/Mine/myVip');
     }
   }
 }
