@@ -2,7 +2,7 @@
  * @Author: 极客James  
  * @Date: 2019-10-1 11:44:08 
  * @Last Modified by: james
- * @Last Modified time: 2019-10-30 22:27:24
+ * @Last Modified time: 2019-10-31 00:03:25
  * @GitHub https://github.com/Geek-James
  * @掘金 https://juejin.im/user/5c4ebc72e51d4511dc7306ce
  * @描述 我的->我的绿卡模块
@@ -32,7 +32,8 @@
           <van-grid-item icon="more-o"
                          text="更多特权" />
         </van-grid>
-        <div class="becomVipBtn">5折开通绿卡</div>
+        <div class="becomVipBtn"
+             @click="goToPayPage">5折开通绿卡</div>
       </div>
       <!-- 第1部分 -->
       <div class="coupons">
@@ -84,7 +85,8 @@
                  alt="">
           </div>
         </div>
-        <div class="integralToFast">立即开启积分加速</div>
+        <div class="integralToFast"
+             @click="goToPayPage">立即开启积分加速</div>
       </div>
       <!-- 第3部分 -->
       <div class="coupons">
@@ -93,6 +95,17 @@
         <HorizontalScroll :menuTitlesArray="cate"></HorizontalScroll>
         <!-- Vip商品列表 -->
         <VipGoodsItems :vipCateDetail="cateDetail"></VipGoodsItems>
+      </div>
+    </div>
+    <!-- 底部按钮 -->
+    <div class="bottomJoinVip"
+         v-show="isShowBottomBtn">
+      <div class="bottomDesc">
+        <span class="yearCart">年卡</span><i>88元</i><span class="originPrice">180元</span>
+      </div>
+      <div class="joinVip"
+           @click="goToPayPage">
+        开通绿卡
       </div>
     </div>
     <!-- 数据加载提示gif -->
@@ -121,8 +134,7 @@ export default {
       cateDetail: [],
       isShowLoading: true,
       currentSubTitle: 0,
-      menuDown: true,
-      isShowDropMenu: false
+      isShowBottomBtn: true
     }
   },
   created () {
@@ -131,6 +143,7 @@ export default {
   mounted () {
     // 初始化数据
     this._initData();
+
   },
   components: {
     Loading,
@@ -171,6 +184,22 @@ export default {
         // on cancel
       });
     },
+    // 开通绿卡支付
+    goToPayPage () {
+    },
+    handleScroll () {
+      let that = this;
+      //垂直滚动的值兼容问题
+      let scrollTopE = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+      console.log(scrollTopE);
+
+      if (scrollTopE > 100) {
+        // 添加搜索栏颜色
+        this.isShowBottomBtn = true;
+      } else {
+        this.isShowBottomBtn = false;
+      }
+    }
   }
 }
 </script>
@@ -408,6 +437,48 @@ export default {
       .selected {
         color: #3cb963;
       }
+    }
+  }
+  .bottomJoinVip {
+    position: fixed;
+    display: flex;
+    bottom: 0.6rem;
+    height: 2.5rem;
+    width: 90%;
+    left: 5%;
+    right: 5%;
+    background-color: red;
+    z-index: 999;
+    border-radius: 1.5rem;
+    .bottomDesc {
+      background-color: #303747;
+      width: 70%;
+      border-radius: 1.5rem 0 0 1.5rem;
+      height: 2.5rem;
+      line-height: 2.5rem;
+      justify-content: flex-start;
+      padding-left: 1rem;
+      color: white;
+      font-size: 0.8rem;
+      i {
+        padding-left: 0.2rem;
+        padding-right: 0.2rem;
+        color: #f2525a;
+      }
+      .originPrice {
+        font-size: 0.6rem;
+        text-decoration: line-through;
+      }
+    }
+    .joinVip {
+      text-align: center;
+      width: 30%;
+      height: 2.5rem;
+      line-height: 2.5rem;
+      background-color: #3cb963;
+      border-radius: 0 1.5rem 1.5rem 0;
+      color: white;
+      font-size: 0.8rem;
     }
   }
 }
