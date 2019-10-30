@@ -1,3 +1,12 @@
+/**
+ * @Author: 极客James  
+ * @Date: 2019-10-1 11:44:08 
+ * @Last Modified by: 极客James
+ * @Last Modified time: 2019-10-30 11:53:10
+ * @GitHub https://github.com/Geek-James
+ * @掘金 https://juejin.im/user/5c4ebc72e51d4511dc7306ce
+ * @描述 产品列表
+ */
 <template>
   <div id="produceItem">
     <div class="item"
