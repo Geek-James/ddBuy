@@ -2,7 +2,7 @@
  * @Author: 极客James  
  * @Date: 2019-10-1 11:44:08 
  * @Last Modified by: james
- * @Last Modified time: 2019-10-30 17:33:28
+ * @Last Modified time: 2019-10-30 22:27:24
  * @GitHub https://github.com/Geek-James
  * @掘金 https://juejin.im/user/5c4ebc72e51d4511dc7306ce
  * @描述 我的->我的绿卡模块
@@ -41,7 +41,7 @@
         <p class="todayCouns">今日专享券<i>每天0点更新</i></p>
         <div class="quanBox">
           <div class="quan"
-               v-for="(item,index) in today_ticket"
+               v-for="(item,index) in todayTicket"
                :key="item.id"
                @click="getCoupons">
             <div class="money"><i>¥</i>{{item.money}}</div>
@@ -56,7 +56,7 @@
         <p class="todayCouns">本周专享券</p>
         <div class="quanBox">
           <div class="quan"
-               v-for="(item,index) in week_ticket"
+               v-for="(item,index) in weekTicket"
                :key="item.id"
                @click="getCoupons">
             <div class="money"><i>¥</i>{{item.money}}</div>
@@ -91,6 +91,8 @@
         <span class="number">3</span><span class="desc">绿卡专享特价</span>
         <!-- 可横向滑动的菜单 -->
         <HorizontalScroll :menuTitlesArray="cate"></HorizontalScroll>
+        <!-- Vip商品列表 -->
+        <VipGoodsItems :vipCateDetail="cateDetail"></VipGoodsItems>
       </div>
     </div>
     <!-- 数据加载提示gif -->
@@ -102,15 +104,21 @@
 
 import { Dialog } from 'vant'
 import { getVipContent } from './../../../serve/api/index.js'
+
+// 水平滑动组件
 import HorizontalScroll from '../../../components/horizontalScroll/HorizontalScroll'
+// 商品列表组件
+import VipGoodsItems from './VipGoodsItems'
+
 import Loading from '../../../components/loading/LoadingGif'
 
 export default {
   data () {
     return {
-      today_ticket: [],//今日更新
-      week_ticket: [],// 本周更新
+      todayTicket: [],//今日更新
+      weekTicket: [],// 本周更新
       cate: [],      // 分类标题
+      cateDetail: [],
       isShowLoading: true,
       currentSubTitle: 0,
       menuDown: true,
@@ -126,7 +134,8 @@ export default {
   },
   components: {
     Loading,
-    HorizontalScroll
+    HorizontalScroll,
+    VipGoodsItems
   },
   methods: {
     // 返回
@@ -136,11 +145,16 @@ export default {
     // 数据请求
     async  _initData () {
       let ref = await getVipContent();
+      console.log(ref);
+
       if (ref.success) {
         // 设置数据
-        this.today_ticket = ref.data.today_ticket.tickets;
-        this.week_ticket = ref.data.week_ticket.tickets;
+        this.todayTicket = ref.data.today_ticket.tickets;
+        this.weekTicket = ref.data.week_ticket.tickets;
         this.cate = ref.data.cate;
+        this.cateDetail = ref.data.cate_detail
+        console.log(this.cateDetail);
+
         // 隐藏动画
         this.isShowLoading = false;
       }
@@ -157,8 +171,6 @@ export default {
         // on cancel
       });
     },
-    // 初始化垂直滚动
-
   }
 }
 </script>
@@ -171,6 +183,7 @@ export default {
   bottom: 0;
   background-color: #f5f5f5;
   z-index: 100;
+  overflow: hidden;
   overflow-y: auto;
   overflow-x: hidden;
   .van-nav-bar {
@@ -186,6 +199,7 @@ export default {
   .vipHeader {
     width: 100%;
     height: 10rem;
+    margin-top: 2.5rem;
     img {
       width: 100%;
       height: 100%;

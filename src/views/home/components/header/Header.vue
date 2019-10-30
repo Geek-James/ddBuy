@@ -1,14 +1,15 @@
 /**
  * @Author: 极客James  
  * @Date: 2019-10-1 11:44:08 
- * @Last Modified by: 极客James
- * @Last Modified time: 2019-10-30 11:53:10
+ * @Last Modified by: james
+ * @Last Modified time: 2019-10-30 23:20:24
  * @GitHub https://github.com/Geek-James
  * @掘金 https://juejin.im/user/5c4ebc72e51d4511dc7306ce
  * @描述 首页->顶部搜索栏
  */
 <template>
-  <div class="wrapper">
+  <div class="wrapper"
+       :style="showBgColor?'background-color: white;':''">
     <div class="locationWrapper"
          ref="location">
       <svg viewBox="0 0 30 30"
@@ -45,6 +46,32 @@
 <script type="text/javascript">
 
 export default {
+  data () {
+    return {
+      showBgColor: false
+    }
+  },
+  mounted () {
+    let that = this;
+    that.$nextTick(() => {
+      //监听滚动事件
+      window.addEventListener('scroll', that.handleScroll)
+    });
+  },
+  methods: {
+    handleScroll () {
+      let that = this;
+      //垂直滚动的值兼容问题
+      let scrollTopE = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+      let screenHeight = window.screen.availHeight
+      if (scrollTopE > 168) {
+        // 添加搜索栏颜色
+        this.showBgColor = true;
+      } else {
+        this.showBgColor = false;
+      }
+    }
+  }
 
 }
 </script>
@@ -63,7 +90,6 @@ export default {
   color: white;
   display: flex;
 }
-
 .iconLocation {
   position: absolute;
   left: 0.3rem;

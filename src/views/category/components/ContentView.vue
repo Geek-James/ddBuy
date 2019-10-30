@@ -2,7 +2,7 @@
  * @Author: 极客James  
  * @Date: 2019-10-1 11:44:08 
  * @Last Modified by: james
- * @Last Modified time: 2019-10-30 15:17:39
+ * @Last Modified time: 2019-10-30 23:04:19
  * @GitHub https://github.com/Geek-James
  * @掘金 https://juejin.im/user/5c4ebc72e51d4511dc7306ce
  * @描述 分类模块->可滑动标题
@@ -80,7 +80,7 @@
                 :key="index"
                 class="list ">
               <div class="list_item flex">
-                <p @click="getDetails(item)"><img :src="item.small_image"
+                <p @click="getDetails(item)"><img v-lazy="item.small_image"
                        alt=""></p>
                 <div>
                   <p class="name">{{item.product_name}}</p>
