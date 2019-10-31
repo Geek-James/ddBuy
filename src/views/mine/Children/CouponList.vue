@@ -73,5 +73,8 @@ export default {
   .van-nav-bar__title {
     color: black;
   }
+  .van-icon {
+    color: #dedede;
+  }
 }
 </style>

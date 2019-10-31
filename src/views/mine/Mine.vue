@@ -52,13 +52,15 @@
       <van-cell title="我的订单"
                 icon="label"
                 value="查看全部订单"
-                is-link>
+                is-link
+                @click="goTomyOrder(-1)">
       </van-cell>
       <van-grid :border=false>
         <van-grid-item v-for="(order,index) in orderData"
                        :key="index"
                        :icon="order.icon"
-                       :text="order.title" />
+                       :text="order.title"
+                       @click="goTomyOrder(index)" />
       </van-grid>
     </van-cell-group>
     <van-cell-group style="margin-top:0.4rem">
@@ -141,30 +143,46 @@ export default {
 
   },
   methods: {
-    // 1.跳转到登录界面
+    // 跳转到登录界面
     login () {
       this.$router.push('/login');
     },
-    // 2.跳转到用户中心
+    // 跳转到用户中心
     goToUserCenter () {
-      this.$router.push('/dashboard/Mine/userCenter');
+      this.$router.push({ name: "userCenter" });
     },
-    // 3.跳转到我的优惠券
+    // 跳转到我的订单
+    goTomyOrder (index) {
+      if (this.userInfo.token) {
+        if (index == 3) {
+          // 跳转到售后退款界面
+        } else {
+          this.$router.push({ name: "myOrder", params: { active: index + 1 } });
+        }
+      } else {
+        this.login();
+      }
+    },
+    // 跳转到我的优惠券
     goToMyCouponList () {
       // 判断是否登录
       if (this.userInfo.token) {
-        this.$router.push('/dashboard/Mine/couponList');
+        this.$router.push({ name: "couponList" });
       } else {
-        this.$router.push('/login');
+        this.login();
       }
     },
-    // 4.跳转到我的收货地址
+    // 跳转到我的收货地址
     goToMyAddredd () {
 
     },
-    // 5.跳转到绿卡会员
+    // 跳转到绿卡会员
     goToMyVip () {
-      this.$router.push('/dashboard/Mine/myVip');
+      if (this.userInfo.token) {
+        this.$router.push('/dashboard/Mine/myVip');
+      } else {
+        this.login();
+      }
     }
   }
 }

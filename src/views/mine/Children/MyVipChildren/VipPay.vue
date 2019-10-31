@@ -42,6 +42,7 @@
     <!-- 会员类型 -->
     <div class="vipType">
       <div class="chooseType"
+           :class="{selected:checked,normal:!checked}"
            @click="chooseClick(1)">
         <i>5折</i>
         <span class="title">年卡·365天</span>
@@ -53,12 +54,13 @@
         <span class="originPrice">¥188</span>
       </div>
       <div class="chooseType"
+           :class="{selected:secondChecked,normal:!secondChecked}"
            @click="chooseClick(2)">
         <i>7折</i>
         <span class="title">季卡·90天</span>
         <a href="javaScript:;"
            class="cartCheckBox"
-           :checked="!checked"></a>
+           :checked="secondChecked"></a>
         <p>相当于约0.33元/天</p>
         <div class="price">¥30</div>
         <span class="originPrice">¥45</span>
@@ -83,13 +85,15 @@
         </van-cell>
       </van-cell-group>
     </van-radio-group>
-    <div class="payButton">立即支付</div>
+    <div class="payButton"
+         @click="clickPay">立即支付</div>
   </div>
 </template>
 
 <script type="text/javascript">
 
 import { mapState } from 'vuex'
+import { Toast } from 'vant'
 
 export default {
   data () {
@@ -100,6 +104,7 @@ export default {
       },
       vipTipMsg: '绿卡未开通',
       checked: true,
+      secondChecked: false,
       radio: '1',
     }
   },
@@ -116,8 +121,28 @@ export default {
     },
     // 切换类型
     chooseClick (index) {
-
-      this.checked = !this.checked;
+      if (index == 1) {
+        if (!this.checked) {
+          this.checked = true;
+          this.secondChecked = false;
+        } else {
+          return;
+        }
+      } else {
+        if (!this.secondChecked) {
+          this.checked = false;
+          this.secondChecked = true;
+        } else {
+          return;
+        }
+      }
+    },
+    // 点击了支付
+    clickPay () {
+      Toast({
+        message: '只能到这步啦!后面的臣妾做不到啊~~',
+        duration: 900
+      })
     }
   }
 }
@@ -130,7 +155,6 @@ export default {
   right: 0;
   top: 0;
   bottom: 0;
-  //   background-color: #f5f5f5;
   background-color: #ffffff;
   z-index: 100;
   .van-nav-bar {
@@ -141,7 +165,7 @@ export default {
     }
   }
   .van-nav-bar__title {
-    color: #ffffff;
+    color: #f5f5f5;
   }
   .userInfoBox {
     padding-left: 1rem;
@@ -183,8 +207,13 @@ export default {
     display: flex;
     width: 100%;
     height: 8rem;
-    background-color: #ffffff;
     padding-top: 1rem;
+    .selected {
+      background-color: #ecfef0;
+    }
+    .normal {
+      background-color: #f5f5f5;
+    }
     .chooseType {
       width: 35%;
       height: 80%;
@@ -200,7 +229,7 @@ export default {
         text-align: right;
         padding-right: 0.2rem;
         color: white;
-        font-size: 0.3rem;
+        font-size: 0.8rem;
         border-radius: 0.5rem 0.2rem 0.2rem 0;
       }
       .title {

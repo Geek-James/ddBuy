@@ -21,6 +21,8 @@ const CouponList = () => import('../views/mine/Children/CouponList.vue')
 const MyVip = () => import('../views/mine/Children/MyVip.vue')
 // 会员支付
 const VipPay = () => import('../views/mine/Children/MyVipChildren/VipPay.vue')
+// 我的订单
+const MyOrder = () => import('../views/mine/Children/MyOrder');
 
 // 加载订单相关的组件
 const Order = () => import('../views/order/Order.vue');
@@ -98,6 +100,11 @@ export default new Router({
                     path: 'couponList',
                     name: 'couponList',
                     component: CouponList
+                }, {
+                    // 我的订单
+                    path: 'myOrder',
+                    name: 'myOrder',
+                    component: MyOrder
                 }, {
                     // 绿卡会员
                     path: 'myVip',
