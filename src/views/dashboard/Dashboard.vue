@@ -51,32 +51,32 @@ export default {
       active: Number(getLocalStore('tatbarActive')) || 0,
       tabbars: [
         {
-          name: "home",
+          name: "Home",
           title: "首页",
           normal: require("@/images/tabbar/home_default.png"),
           active: require("@/images/tabbar/home_selected.png")
         },
         {
-          name: "category",
+          name: "Category",
           title: "分类",
           normal: require("@/images/tabbar/category_default.png"),
           active: require("@/images/tabbar/category_selected.png")
         },
         {
-          name: "eat",
+          name: "Eat",
           title: "吃什么",
           normal: require("@/images/tabbar/eat_default.png"),
           active: require("@/images/tabbar/eat_selected.png"),
         },
         {
-          name: "cart",
+          name: "Cart",
           title: "购物车",
           normal: require("@/images/tabbar/shoppingcart_default.png"),
           active: require("@/images/tabbar/shoppingcart_selected.png"),
           num: 5
         },
         {
-          name: "mine",
+          name: "Mine",
           title: "我的",
           normal: require("@/images/tabbar/mine_default.png"),
           active: require("@/images/tabbar/mine_selected.png")
