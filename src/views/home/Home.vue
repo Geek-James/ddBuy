@@ -137,7 +137,6 @@ export default {
           this.isShowLoading = false
           //   给特色专区赋值
           this.specialZone = response.data.special_zone;
-          console.log(response.data.special_zone);
 
           // 是否显示回到顶部图标
           showBackIcon((status) => {
@@ -150,7 +149,7 @@ export default {
     }
   },
   beforeDestroy () {
-    // 清除发布订阅,记得清除哦,不然会阻塞线程~
+    // 发布订阅后,记得记得销毁哦,不然会阻塞线程~
     PubSub.unsubscribe(ADD_TO_CART);
   },
 }

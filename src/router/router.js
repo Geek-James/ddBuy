@@ -19,6 +19,8 @@ const ChangeNickName = () => import('../views/mine/Children/ChangeNickName.vue')
 const CouponList = () => import('../views/mine/Children/CouponList.vue')
 // 绿卡会员
 const MyVip = () => import('../views/mine/Children/MyVip.vue')
+// 会员支付
+const VipPay = () => import('../views/mine/Children/MyVipChildren/VipPay.vue')
 
 // 加载订单相关的组件
 const Order = () => import('../views/order/Order.vue');
@@ -100,7 +102,15 @@ export default new Router({
                     // 绿卡会员
                     path: 'myVip',
                     name: 'myVip',
-                    component: MyVip
+                    component: MyVip,
+                    // 是否数据缓存
+                    meta: {
+                        keepAlive: true
+                    }
+                }, {
+                    path: '/vipPay',
+                    name: 'vipPay',
+                    component: VipPay
                 }]
             }]
         },

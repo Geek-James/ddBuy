@@ -19,7 +19,6 @@
 
 <script type="text/javascript">
 import BScroll from 'better-scroll'
-
 export default {
   props: {
     // 接受父组件传递的数据
@@ -33,12 +32,10 @@ export default {
   data () {
     return {
       currentSubTitle: 0,
-      isShowDropMenu: true,
       menuDown: true
     }
   },
   components: {
-    DropMenu
   },
   methods: {
     // 初始化滚动
@@ -61,12 +58,18 @@ export default {
         this.horizontalScroll.refresh();
       }
     },
+    // 上下箭头切换
+    menuClick () {
+      this.menuDown = !this.menuDown;
+    },
     // 点击标题
     menuTitleClick (index) {
       // 让横向滑动到合适位置
       this.currentSubTitle = index;
       let el = this.$refs.menuTitles[index];
       this.horizontalScroll.scrollToElement(el, 500);
+      // 给父组件MyVip传递事件并将index值传递过去
+      this.$emit('menuTitleClick', index);
     }
   }
 }

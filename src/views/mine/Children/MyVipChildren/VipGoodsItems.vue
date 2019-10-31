@@ -63,7 +63,7 @@
             </div>
           </li>
         </ul>
-        <div class="bottomTip">到底了,看看其他的吧</div>
+        <div class="bottomTip">更多特权敬请期待...</div>
       </div>
     </section>
   </div>
@@ -92,6 +92,7 @@ export default {
     // 防止抖动
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
+    padding-bottom: 3rem;
     .productCategoryTitle {
       display: inline-block;
       font-size: 0.73rem;
@@ -179,7 +180,7 @@ export default {
     .bottomTip {
       padding-top: 0.8rem;
       color: grey;
-      font-size: 0.6rem;
+      font-size: 0.8rem;
       text-align: center;
     }
   }

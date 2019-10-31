@@ -71,8 +71,11 @@ export default {
         this.showBgColor = false;
       }
     }
+  },
+  beforeDestroy () {
+    // 移除监听事件
+    window.removeEventListener('scroll', this.handleScroll)
   }
-
 }
 </script>
 

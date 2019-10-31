@@ -177,3 +177,9 @@ import {
     Sticky
 } from 'vant';
 Vue.use(Sticky);
+
+// 29.骨架屏幕
+import {
+    Skeleton
+} from 'vant';
+Vue.use(Skeleton);

@@ -8,7 +8,8 @@
  * @描述 我的->我的绿卡模块
  */
 <template>
-  <div id="myVip">
+  <div id="myVip"
+       ref="myVip">
     <div v-if="!isShowLoading">
       <van-nav-bar title="绿卡"
                    :border=false
@@ -92,22 +93,28 @@
       <div class="coupons">
         <span class="number">3</span><span class="desc">绿卡专享特价</span>
         <!-- 可横向滑动的菜单 -->
-        <HorizontalScroll :menuTitlesArray="cate"></HorizontalScroll>
+        <van-sticky :offset-top="40">
+          <VipMenuTitleScroll :menuTitlesArray="cate"
+                              @menuTitleClick="menuTitleClick"></VipMenuTitleScroll>
+        </van-sticky>
         <!-- Vip商品列表 -->
         <VipGoodsItems :vipCateDetail="cateDetail"></VipGoodsItems>
       </div>
     </div>
     <!-- 底部按钮 -->
-    <div class="bottomJoinVip"
-         v-show="isShowBottomBtn">
-      <div class="bottomDesc">
-        <span class="yearCart">年卡</span><i>88元</i><span class="originPrice">180元</span>
+    <transition name="fade">
+      <div class="bottomJoinVip"
+           v-show="isShowBottomBtn"
+           transiton="fade">
+        <div class="bottomDesc">
+          <span class="yearCart">年卡</span><i>88元</i><span class="originPrice">180元</span>
+        </div>
+        <div class="joinVip"
+             @click="goToPayPage">
+          开通绿卡
+        </div>
       </div>
-      <div class="joinVip"
-           @click="goToPayPage">
-        开通绿卡
-      </div>
-    </div>
+    </transition>
     <!-- 数据加载提示gif -->
     <Loading :show="isShowLoading"></Loading>
   </div>
@@ -119,9 +126,9 @@ import { Dialog } from 'vant'
 import { getVipContent } from './../../../serve/api/index.js'
 
 // 水平滑动组件
-import HorizontalScroll from '../../../components/horizontalScroll/HorizontalScroll'
+import VipMenuTitleScroll from './MyVipChildren/VipMenuTitleScroll'
 // 商品列表组件
-import VipGoodsItems from './VipGoodsItems'
+import VipGoodsItems from './MyVipChildren/VipGoodsItems'
 
 import Loading from '../../../components/loading/LoadingGif'
 
@@ -134,7 +141,7 @@ export default {
       cateDetail: [],
       isShowLoading: true,
       currentSubTitle: 0,
-      isShowBottomBtn: true
+      isShowBottomBtn: false
     }
   },
   created () {
@@ -143,11 +150,14 @@ export default {
   mounted () {
     // 初始化数据
     this._initData();
-
+    let box = this.$refs.myVip;
+    box.addEventListener('scroll', () => {
+      this.handleScroll();
+    }, false);
   },
   components: {
     Loading,
-    HorizontalScroll,
+    VipMenuTitleScroll,
     VipGoodsItems
   },
   methods: {
@@ -158,16 +168,12 @@ export default {
     // 数据请求
     async  _initData () {
       let ref = await getVipContent();
-      console.log(ref);
-
       if (ref.success) {
         // 设置数据
         this.todayTicket = ref.data.today_ticket.tickets;
         this.weekTicket = ref.data.week_ticket.tickets;
         this.cate = ref.data.cate;
         this.cateDetail = ref.data.cate_detail
-        console.log(this.cateDetail);
-
         // 隐藏动画
         this.isShowLoading = false;
       }
@@ -186,19 +192,20 @@ export default {
     },
     // 开通绿卡支付
     goToPayPage () {
+      this.$router.push({ name: 'vipPay' });
     },
+    // 监听页面滑动显示和隐藏底部Button
     handleScroll () {
-      let that = this;
-      //垂直滚动的值兼容问题
-      let scrollTopE = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
-      console.log(scrollTopE);
-
-      if (scrollTopE > 100) {
-        // 添加搜索栏颜色
+      var scrollTop = this.$refs.myVip.scrollTop;
+      if (scrollTop > 500) {
         this.isShowBottomBtn = true;
       } else {
         this.isShowBottomBtn = false;
       }
+    },
+    // 处理子组件VipMenuTitleScroll传递的事件
+    menuTitleClick (index) {
+
     }
   }
 }
@@ -447,7 +454,6 @@ export default {
     width: 90%;
     left: 5%;
     right: 5%;
-    background-color: red;
     z-index: 999;
     border-radius: 1.5rem;
     .bottomDesc {
@@ -479,6 +485,18 @@ export default {
       border-radius: 0 1.5rem 1.5rem 0;
       color: white;
       font-size: 0.8rem;
+    }
+    .fade-enter {
+      opacity: 0;
+    }
+    .fade-enter-active {
+      transition: opacity 3s;
+    }
+    .fade-leave-to {
+      opacity: 0;
+    }
+    .fade-leave-active {
+      transition: opacity 3s;
     }
   }
 }
