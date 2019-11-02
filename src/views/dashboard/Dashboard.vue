@@ -15,7 +15,7 @@
       <van-tabbar-item v-for="(item,index) in tabbars"
                        :key="index"
                        @click="tab(index,item.name)"
-                       :info="item.name=='Cart'?goodsNum:''">
+                       :info="item.name=='cart'?goodsNum:''">
         <span :class="currIndex == index ? active:''">{{item.title}}</span>
         <template slot="icon"
                   slot-scope="props">
