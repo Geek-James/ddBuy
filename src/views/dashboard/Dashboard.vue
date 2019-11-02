@@ -40,28 +40,30 @@
 import { setStore } from '../../config/global.js'
 import { setLocalStore, getLocalStore } from '../../config/global.js'
 import { mapState, mapMutations, mapActions } from 'vuex'
-import { log } from 'util';
 export default {
   name: "DashBoard",
   mounted () {
   },
   created () {
-    //通过路由跳转判断选中的样式
-    if (this.$route.name === "home") {
-      this.active = 0;
-      console.log("首页");
-    } else if (this.$route.name === "category") {
-      console.log("分类界面");
-      this.active = 1;
-    } else if (this.$route.name === "eat") {
-      console.log("吃什么界面");
-      this.active = 2;
-    } else if (this.$route.name === "cart") {
-      console.log("购物车");
-      this.active = 3;
-    } else if (this.$route.name === "mine") {
-      console.log("我的");
-      this.active = 4;
+    //通过路由跳转绑定Tabbar的选中
+    switch (this.$route.name) {
+      case 'home':
+        this.active = 0;
+        break;
+      case 'category':
+        this.active = 1;
+        break;
+      case 'eat':
+        this.active = 2;
+        break;
+      case 'cart':
+        this.active = 3;
+        break;
+      case 'mine':
+        this.active = 4;
+        break;
+      default:
+        break;
     }
   },
   data () {
@@ -138,8 +140,7 @@ export default {
     }
   }
 }
-</script>
-
+</script>       
 <style lang="less" scoped>
 /*转场动画*/
 .router-slider-enter-active,
