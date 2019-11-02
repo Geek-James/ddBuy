@@ -186,6 +186,7 @@ export default {
         confirmButtonColor: '#60b86a'
       }).then(() => {
         // 跳转到开通会员界面
+        this.$router.push({ name: 'vipPay' });
       }).catch(() => {
         // on cancel
       });

@@ -115,14 +115,19 @@ export default {
     },
     // 2. 处理左边的点击
     async clickLeftLi (index) {
+      console.log(index);
+
       this.isShowLoadingGif = true;
       // 2.1 改变索引
       this.currentIndex = index;
       // 2.2 滚动到对应的位置
-      let menuLists = this.$refs.menuList;
-      let el = menuLists[index];
-      // 2.3 滚动到对应元素上
-      this.leftScroll.scrollToElement(el, 300);
+      setTimeout(() => {
+        let menuLists = this.$refs.menuList;
+        let el = menuLists[index];
+        // 2.3 滚动到对应元素上
+        this.leftScroll.scrollToElement(el, 300);
+      }, 800);
+
       // 2.4 获取右边的数据
       let param;
       if (index >= 9) {
@@ -130,14 +135,16 @@ export default {
       } else {
         param = `/lk00${index + 1}`;
       }
+      console.log(param);
+
       let rightRes = await getCategoryDetailData(param);
+      console.log(rightRes);
       if (rightRes.success) {
         this.categoriesDetailData = rightRes.data.cate;
-        this.isShowLoadingGif = false;
       }
+      this.isShowLoadingGif = false;
     }
-  },
-
+  }
 }
 </script>
 
