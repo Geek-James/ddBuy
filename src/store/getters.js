@@ -1,7 +1,8 @@
 import {
     SELECTED_GOODS_COUNT,
     SELECTED_GOODS,
-    SELECTED_GOODS_PRICE
+    SELECTED_GOODS_PRICE,
+    USER_SEX
 } from "./mutation-type";
 
 export default {
@@ -40,5 +41,15 @@ export default {
             }
         });
         return totalPrice;
+    },
+    // 性别
+    [USER_SEX](state) {
+        if (state.userInfo.sex == '1') {
+            return '美女'
+        } else if (state.userInfo.sex == '2') {
+            return '帅哥';
+        } else {
+            return '未填写'
+        }
     }
 }

@@ -324,14 +324,23 @@ export default {
           return;
         }
         // 5.2.2 请求后台
-        let ref = await pwdLogin(this.login_userName, this.login_password, this.imgCaptcha);
+        let ref = await phoneCaptchaLogin(this.login_userName, this.login_password);
         console.log(ref);
-        // this.$router.back();
+
+        this.syncuserInfo(ref.data);
+        this.$router.back();
       }
     },
     // 6.注册
-    register () {
-      alert('注册');
+    async register () {
+      // 6.1 请求后台登录接口
+      let ref = await phoneCaptchaLogin(this.register_userName, this.register_pwd);
+      console.log(ref);
+      // 设置userInfo 保存到vuex和本地
+      this.syncuserInfo(ref.data);
+
+
+      this.$router.back();
     },
     // 7.用户协议
     agreement (index) {
@@ -356,12 +365,12 @@ export default {
 
       if (value == 0) {
         Toast({
-          message: '微信登录',
+          message: '微信登录-暂未完成',
           duration: 800
         });
       } else {
         Toast({
-          message: 'QQ登录',
+          message: 'QQ登录-微信登录-暂未完成',
           duration: 800
         });
       }

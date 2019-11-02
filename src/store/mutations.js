@@ -10,6 +10,7 @@ import {
     INIT_USER_INFO,
     CHANGE_USER_NICK_NAME,
     USER_INFO_BRITHDAY,
+    USER_INFO_SEX,
     LOGIN_OUT
 } from './mutation-type'
 import Vue from 'vue'
@@ -209,7 +210,29 @@ export default {
         setLocalStore('userInfo', state.userInfo);
     },
 
-    // 11.退出登录
+    // 11.用户性别
+    [USER_INFO_SEX](state, {
+        sex
+    }) {
+        // 取出用户信息
+        let userInfo = state.userInfo;
+        Object.values(userInfo).forEach((info, index) => {
+            if (info.sex) { // 存在该生日
+                info.sex = sex;
+            } else {
+                Vue.set(userInfo, 'sex', sex);
+            }
+        });
+        // 10.2 同步state数据
+        state.userInfo = {
+            ...userInfo
+        };
+        // 10.3 将数据更新到本地
+        setLocalStore('userInfo', state.userInfo);
+
+    },
+
+    // 退出登录
     [LOGIN_OUT](state) {
         state.userInfo = {};
         state.shopCart = {};

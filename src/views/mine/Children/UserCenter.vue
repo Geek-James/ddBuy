@@ -25,6 +25,10 @@
                 is-link
                 :value="userInfo.user_name"
                 @click="goToChangeNickName" />
+      <van-cell title="性别"
+                is-link
+                :value="userSex"
+                @click="onChangeSex" />
       <van-cell title="生日"
                 is-link
                 @click="selectBrithday"
@@ -36,6 +40,7 @@
     <van-button size=large
                 style="margin-top:1rem"
                 @click="logOut">退出登录</van-button>
+    <!-- 时间选择器 -->
     <van-popup v-model="showDateTimePopView"
                round
                position="bottom">
@@ -47,6 +52,30 @@
                            :max-date="maxDate"
                            :min-date="minDate" />
     </van-popup>
+    <!-- 性别选择器 -->
+    <van-popup v-model="showChooseSex"
+               position="bottom"
+               :style="{ height: '25%' }">
+      <van-radio-group v-model="userInfo.sex">
+        <van-cell-group style="margin-top:2rem"
+                        @click="clickCell(radio)">
+          <van-cell title="美女"
+                    clickable
+                    @click="radio = '1'">
+            <van-radio slot="right-icon"
+                       name="1"
+                       checked-color="#07c160" />
+          </van-cell>
+          <van-cell title="帅哥"
+                    clickable
+                    @click="radio = '2'">
+            <van-radio slot="right-icon"
+                       name="2"
+                       checked-color="#07c160" />
+          </van-cell>
+        </van-cell-group>
+      </van-radio-group>
+    </van-popup>
     <!--路由的出口-->
     <transition name="router-slider"
                 mode="out-in">
@@ -57,7 +86,7 @@
 </template>
 <script type="text/javascript">
 
-import { mapState, mapMutations } from 'vuex'
+import { mapState, mapMutations, mapGetters } from 'vuex'
 import { Toast, Dialog } from 'vant'
 
 // 引入时间格式化组件Moment
@@ -67,6 +96,7 @@ export default {
   data () {
     return {
       showDateTimePopView: false,
+      showChooseSex: false,
       currentDate: new Date('1989/01/01'),
       // 最小时间
       minDate: new Date('1949/01/01'),
@@ -75,6 +105,9 @@ export default {
   },
   computed: {
     ...mapState(['userInfo']),
+    ...mapGetters({
+      userSex: 'USER_SEX'
+    }),
     phoneNumber () {
       // 设置隐藏手机号中间四位
       var mobile = String(this.userInfo.phone)
@@ -86,10 +119,35 @@ export default {
 
   },
   methods: {
-    ...mapMutations(['USER_INFO_BRITHDAY', 'LOGIN_OUT']),
+    ...mapMutations(['USER_INFO_BRITHDAY', 'LOGIN_OUT', 'USER_INFO_SEX']),
     // 返回
     onClickLeft () {
       this.$router.back();
+    },
+    // 修改昵称
+    goToChangeNickName () {
+      // 跳转路由并且将昵称传递过去
+      this.$router.push({
+        name: 'ChangeNickName',
+        params: {
+          nickName: this.userInfo.user_name
+        }
+      });
+    },
+    // 修改性别
+    onChangeSex () {
+      this.showChooseSex = true;
+    },
+    clickCell (radio) {
+      let sex = radio;
+      this.USER_INFO_SEX({ sex });
+      setTimeout(() => {
+        this.showChooseSex = false;
+        Toast({
+          message: '个人资料修改成功',
+          duration: 800
+        })
+      }, 300);
     },
     // 选择生日
     selectBrithday () {
@@ -121,16 +179,6 @@ export default {
     cancel () {
       this.showDateTimePopView = false;
     },
-    // 修改昵称
-    goToChangeNickName () {
-      // 跳转路由并且将昵称传递过去
-      this.$router.push({
-        name: 'ChangeNickName',
-        params: {
-          nickName: this.userInfo.user_name
-        }
-      });
-    },
     // 退出登录
     logOut () {
       Dialog.confirm({
@@ -161,12 +209,13 @@ export default {
   background-color: #f5f5f5;
   z-index: 999;
   .icon {
+    display: flex;
     height: 3rem;
     width: 100%;
     margin-top: 3rem;
-    border-bottom: 1px solid #ebedf0;
     padding: 0 16px;
     background-color: #ffffff;
+    align-items: center;
     .title {
       height: 3rem;
       line-height: 3rem;
@@ -174,10 +223,9 @@ export default {
       font-size: 14px;
     }
     img {
-      float: right;
-      margin-right: 1rem;
+      position: absolute;
+      right: 1.6rem;
       height: 2.5rem;
-      line-height: 3rem;
       width: 2.5rem;
     }
   }

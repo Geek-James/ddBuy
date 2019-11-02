@@ -61,7 +61,7 @@ export default {
         this.CHANGE_USER_NICK_NAME({ nickName });
         this.$router.back();
         Toast({
-          message: '昵称修改成功!',
+          message: '个人资料修改成功!',
           duration: 800
         })
       } else {
@@ -70,7 +70,7 @@ export default {
           duration: 800
         })
       }
-    },
+    }
   }
 }
 </script>

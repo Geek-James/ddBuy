@@ -26,6 +26,11 @@
             <img class="iconImage"
                  :src="user_image.login_icon"
                  alt="">
+            <div class="sex"
+                 v-if="userInfo.sex">
+              <img :src="userInfo.sex=='1'?user_image.female:user_image.male"
+                   alt="">
+            </div>
             <div class="personInfo"
                  v-if="userInfo.token">
               <span>{{userInfo.user_name}}</span>
@@ -43,7 +48,6 @@
               <div @click="login">立即登录</div>
             </div>
           </div>
-
         </template>
       </van-cell>
     </van-cell-group>
@@ -113,6 +117,7 @@
 <script type="text/javascript">
 // 引入vuex
 import { mapState } from 'vuex'
+import { request } from 'http';
 
 export default {
   data () {
@@ -120,7 +125,9 @@ export default {
       // 头像
       user_image: {
         login_icon: require('./../../images/mine/defaultImg.jpeg'),
-        noLogin_icon: require('./../../images/login/grey.jpg')
+        noLogin_icon: require('./../../images/login/grey.jpg'),
+        female: require('./../../images/mine/female.png'),
+        male: require('./../../images/mine/male.png')
       },
       orderData: [
         { icon: 'cart-circle-o', title: '待支付' },
@@ -137,6 +144,15 @@ export default {
       var mobile = String(this.userInfo.phone)
       var reg = /^(\d{3})\d{4}(\d{4})$/
       return mobile.replace(reg, '$1****$2')
+    },
+    userInfoSex () {
+      if (this.userInfo.sex == '1') {
+        return this.user_image.female;
+      } else if (this.userInfoSex.sex == '2') {
+        return this.user_image.male;
+      } else {
+        return '';
+      }
     }
   },
   components: {
@@ -174,6 +190,7 @@ export default {
     },
     // 跳转到我的收货地址
     goToMyAddredd () {
+      this.$router.push({ name: 'myAddress' });
 
     },
     // 跳转到绿卡会员
@@ -203,11 +220,23 @@ export default {
   .personMsg {
     display: flex;
     align-items: center;
+    .sex {
+      position: absolute;
+      top: 3.5rem;
+      left: 3.8rem;
+      width: 0.1rem;
+      height: 0.1rem;
+      img {
+        width: 1rem;
+        height: 1rem;
+      }
+    }
     img {
       width: 4rem;
       height: 4rem;
       border-radius: 50%;
     }
+
     .personInfo {
       display: flex;
       flex-direction: column;

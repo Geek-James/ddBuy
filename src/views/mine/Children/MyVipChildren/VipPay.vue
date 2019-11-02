@@ -67,24 +67,54 @@
       </div>
     </div>
     <!-- 支付方式 -->
+    <!-- 支付方式选择 -->
     <van-radio-group v-model="radio">
-      <van-cell-group>
-        <van-cell title="支付宝支付"
-                  clickable
+      <van-cell-group title="支付方式">
+        <van-cell clickable
                   @click="radio = '1'">
+          <template slot="title">
+            <img src="./../../../../images/order/wx.png"
+                 alt=""
+                 width="25px"
+                 height="25px"
+                 style=" vertical-align: middle;padding-right:5px">
+            <span>微信支付</span>
+          </template>
           <van-radio slot="right-icon"
                      name="1"
                      checked-color="#07c160" />
         </van-cell>
-        <van-cell title="微信支付"
-                  clickable
+        <van-cell clickable
                   @click="radio = '2'">
+          <template slot="title">
+            <img src="./../../../../images/order/zfb.png"
+                 alt=""
+                 width="25px"
+                 height="25px"
+                 style=" vertical-align: middle;padding-right:5px">
+            <span>支付宝支付</span>
+          </template>
           <van-radio slot="right-icon"
                      name="2"
                      checked-color="#07c160" />
         </van-cell>
+        <van-cell clickable
+                  @click="radio = '3'">
+          <template slot="title">
+            <img src="./../../../../images/order/hb.png"
+                 alt=""
+                 width="25px"
+                 height="25px"
+                 style=" vertical-align: middle;padding-right:5px">
+            <span>花呗支付</span>
+          </template>
+          <van-radio slot="right-icon"
+                     name="3"
+                     checked-color="#07c160" />
+        </van-cell>
       </van-cell-group>
     </van-radio-group>
+
     <div class="payButton"
          @click="clickPay">立即支付</div>
   </div>
