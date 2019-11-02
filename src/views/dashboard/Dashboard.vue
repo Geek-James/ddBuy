@@ -37,46 +37,65 @@
 </template>
 
 <script type="text/javascript">
-
 import { setStore } from '../../config/global.js'
 import { setLocalStore, getLocalStore } from '../../config/global.js'
-
 import { mapState, mapMutations, mapActions } from 'vuex'
-
+import { log } from 'util';
 export default {
   name: "DashBoard",
+  mounted () {
+  },
+  created () {
+    //通过路由跳转判断选中的样式
+    if (this.$route.name === "home") {
+      this.active = 0;
+      console.log("首页");
+    } else if (this.$route.name === "category") {
+      console.log("分类界面");
+      this.active = 1;
+    } else if (this.$route.name === "eat") {
+      console.log("吃什么界面");
+      this.active = 2;
+    } else if (this.$route.name === "cart") {
+      console.log("购物车");
+      this.active = 3;
+    } else if (this.$route.name === "mine") {
+      console.log("我的");
+      this.active = 4;
+    }
+  },
   data () {
     return {
       currIndex: 0,
-      active: Number(getLocalStore('tatbarActive')) || 0,
+      active: 0,
       tabbars: [
         {
-          name: "Home",
+          name: "home",
           title: "首页",
           normal: require("@/images/tabbar/home_default.png"),
           active: require("@/images/tabbar/home_selected.png")
         },
         {
-          name: "Category",
+          name: "category",
           title: "分类",
           normal: require("@/images/tabbar/category_default.png"),
           active: require("@/images/tabbar/category_selected.png")
         },
         {
-          name: "Eat",
+          name: "eat",
           title: "吃什么",
           normal: require("@/images/tabbar/eat_default.png"),
           active: require("@/images/tabbar/eat_selected.png"),
         },
         {
-          name: "Cart",
+          name: "cart",
           title: "购物车",
           normal: require("@/images/tabbar/shoppingcart_default.png"),
           active: require("@/images/tabbar/shoppingcart_selected.png"),
           num: 5
         },
         {
-          name: "Mine",
+          name: "mine",
           title: "我的",
           normal: require("@/images/tabbar/mine_default.png"),
           active: require("@/images/tabbar/mine_selected.png")
@@ -88,11 +107,6 @@ export default {
   },
   mounted () {
     this._initData();
-  },
-  watch: {
-    active (val) {
-      sessionStorage.setItem('tabbarActive', val);
-    }
   },
   computed: {
     ...mapState(['shopCart'], ['userInfo']),
@@ -115,7 +129,7 @@ export default {
       this.currIndex = index;
       this.$router.push(val);
       // 将索引保存到本地
-      setLocalStore('tatbarActive', index);
+      //   setLocalStore('tatbarActive', index);
     },
     // 2.初始化购物车数据
     _initData () {

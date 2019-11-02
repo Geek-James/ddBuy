@@ -61,10 +61,6 @@ export default new Router({
                 path: 'category',
                 name: 'category',
                 component: Category,
-                // 是否数据缓存
-                meta: {
-                    keepAlive: true
-                }
             }, {
                 // 吃什么
                 path: 'eat',

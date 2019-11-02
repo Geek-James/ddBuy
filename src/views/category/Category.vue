@@ -49,7 +49,6 @@ import { getCategoryData, getCategoryDetailData } from './../../serve/api/index.
 import Loading from '../../components/loading/LoadingGif'
 // 5.引入加载动画
 import LoadingGif from '../../components/loading/Loading'
-
 export default {
   name: "Category",
   data () {
@@ -66,10 +65,16 @@ export default {
     }
   },
   created () {
-    this._initData();
   },
   mounted () {
-
+    // 初始化数据
+    this._initData();
+    // 处理首页点击显示对应的列表数据
+    setTimeout(() => {
+      if (this.$route.params.currentIndex > -1) {
+        this.clickLeftLi(this.$route.params.currentIndex + 1);
+      }
+    }, 800);
   },
   components: {
     Header,
@@ -127,7 +132,6 @@ export default {
       }
       let rightRes = await getCategoryDetailData(param);
       if (rightRes.success) {
-
         this.categoriesDetailData = rightRes.data.cate;
         this.isShowLoadingGif = false;
       }

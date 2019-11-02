@@ -14,12 +14,14 @@
       <van-grid-item v-for="(nav,index) in nav_list"
                      :key="nav.cid"
                      :icon="nav.icon_url"
-                     :text="nav.name" />
+                     :text="nav.name"
+                     @click="gotoCategory(index)" />
     </van-grid>
   </div>
 </template>
 
 <script type="text/javascript">
+
 export default {
   props: {
     nav_list: Array
@@ -31,6 +33,11 @@ export default {
   },
   components: {
 
+  },
+  methods: {
+    gotoCategory (index) {
+      this.$router.push({ name: 'category', params: { currentIndex: index } })
+    }
   }
 }
 </script>
