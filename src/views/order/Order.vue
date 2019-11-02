@@ -103,11 +103,19 @@
 
     <!-- 优惠券及积分满减 -->
     <van-cell-group style="margin-top: 0.6rem">
-      <van-cell title="优惠券"
-                is-link
-                value="0张可用">
-      </van-cell>
+      <van-coupon-cell :coupons="coupons"
+                       :chosen-coupon="chosenCoupon"
+                       @click="showList = true" />
+
       <van-cell>
+        <!-- 优惠券列表 -->
+        <van-popup v-model="showList"
+                   position="bottom">
+          <van-coupon-list :coupons="coupons"
+                           :chosen-coupon="chosenCoupon"
+                           @change="onChange"
+                           @exchange="onExchange" />
+        </van-popup>
         <span slot="title">使用{{integral}}积分兑换<b>{{integralToprice | moneyFormat}}</b></span>
         <van-switch v-model="checked"
                     slot="right-icon"
@@ -167,7 +175,20 @@ export default {
       radio: '1',
       checked: false,
       isShowPreferential: false,
-      integral: 800 // 积分
+      integral: 800, // 积分,
+      showList: false,
+      coupons: [{
+        available: 1,
+        condition: '无使用门槛\n最多优惠15元',
+        reason: '',
+        value: 150,
+        name: '优惠券 ',
+        startAt: 1489104000,
+        endAt: 1514592000,
+        valueDesc: '1.5',
+        unitDesc: '元'
+      }],
+      chosenCoupon: -1,
     };
   },
   computed: {
@@ -179,7 +200,7 @@ export default {
       selectedTotalPrice: 'SELECTED_GOODS_PRICE'
     }),
     actualPrice () {
-      // 如果用户使用积分兑换
+      // 如果用户使用积分兑换或使用优惠券
       if (this.checked) {
         let discountsPrice = this.integralToprice.toFixed(2).toString().replace('.', '');
         let finalPrice = this.selectedTotalPrice - discountsPrice;
@@ -243,6 +264,16 @@ export default {
     // 5.选择地址
     chooseAddress () {
       this.$router.push('/order/myAddress');
+    },
+    onChange (index) {
+      console.log(index);
+      this.showList = false;
+      this.chosenCoupon = index;
+    },
+    onExchange (code) {
+      console.log(code);
+
+      this.coupons.push(coupon);
     }
   }
 }
