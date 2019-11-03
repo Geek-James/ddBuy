@@ -170,22 +170,32 @@ import { getLocalStore } from './../../config/global.js'
 export default {
   data () {
     return {
-      address_type: 'add',//地址卡片类型
-      address_name: null,
-      radio: '1',
-      checked: false,
-      isShowPreferential: false,
-      integral: 800, // 积分,
-      showList: false,
-      coupons: [{
+      address_type: 'add',           //地址卡片类型
+      address_name: null,            // 收货地址
+      radio: '1',                    // 支付方式  
+      checked: false,                // 积分兑换开关
+      isShowPreferential: false,     // 展示积分兑换
+      integral: 800,                // 积分,
+      showList: false,              // 展示优惠列表
+      coupons: [{                  // 优惠券信息     
         available: 1,
-        condition: '无使用门槛\n最多优惠15元',
+        condition: '无使用门槛\n最多优惠1.5元',
         reason: '',
         value: 150,
         name: '优惠券 ',
-        startAt: 1489104000,
-        endAt: 1514592000,
+        startAt: 1549104000,
+        endAt: 1614592000,
         valueDesc: '1.5',
+        unitDesc: '元'
+      }, {                  // 优惠券信息     
+        available: 1,
+        condition: '无使用门槛\n最多优惠2元',
+        reason: '',
+        value: 200,
+        name: '优惠券 ',
+        startAt: 1549104000,
+        endAt: 1614592000,
+        valueDesc: '2',
         unitDesc: '元'
       }],
       chosenCoupon: -1,
@@ -199,15 +209,21 @@ export default {
       goods: 'SELECTED_GOODS',
       selectedTotalPrice: 'SELECTED_GOODS_PRICE'
     }),
+
     actualPrice () {
       // 如果用户使用积分兑换或使用优惠券
+      let finalPrice;
       if (this.checked) {
         let discountsPrice = this.integralToprice.toFixed(2).toString().replace('.', '');
-        let finalPrice = this.selectedTotalPrice - discountsPrice;
-        return (finalPrice < 0 ? this.selectedTotalPrice : finalPrice);
+        finalPrice = this.selectedTotalPrice - discountsPrice;
       } else {
-        // 不使用积分兑换
-        return this.selectedTotalPrice;
+        finalPrice = this.selectedTotalPrice;
+      }
+      // 是否选择优惠券
+      if (this.chosenCoupon > -1) {
+        return finalPrice - this.coupons[this.chosenCoupon].value;
+      } else {
+        return finalPrice;
       }
     },
     // 计算积分兑换人民币
@@ -266,13 +282,10 @@ export default {
       this.$router.push('/order/myAddress');
     },
     onChange (index) {
-      console.log(index);
       this.showList = false;
       this.chosenCoupon = index;
     },
     onExchange (code) {
-      console.log(code);
-
       this.coupons.push(coupon);
     }
   }
