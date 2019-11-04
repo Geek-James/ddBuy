@@ -31,13 +31,13 @@ export default {
     return {
       coupons: [{
         available: 1,
-        condition: '无使用门槛\n最多优惠15元',
+        condition: '无使用门槛\n最多优惠1.5元',
         reason: '',
         value: 150,
         name: '优惠券 ',
         startAt: 1489104000,
         endAt: 1514592000,
-        valueDesc: '15',
+        valueDesc: '1.5',
         unitDesc: '元'
       }]
     }
@@ -54,7 +54,7 @@ export default {
     onExchange (code) {
       // 兑换优惠券
       if (code == '520it') {
-        this.coupons.push(coupon);
+        this.coupons.push(this.coupons[0]);
       }
     }
   }
