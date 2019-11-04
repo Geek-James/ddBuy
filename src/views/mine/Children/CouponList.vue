@@ -29,15 +29,25 @@
 export default {
   data () {
     return {
-      coupons: [{
+      coupons: [{                  // 优惠券信息     
         available: 1,
         condition: '无使用门槛\n最多优惠1.5元',
         reason: '',
         value: 150,
         name: '优惠券 ',
-        startAt: 1489104000,
-        endAt: 1514592000,
+        startAt: 1549104000,
+        endAt: 1614592000,
         valueDesc: '1.5',
+        unitDesc: '元'
+      }, {                  // 优惠券信息     
+        available: 1,
+        condition: '无使用门槛\n最多优惠2元',
+        reason: '',
+        value: 200,
+        name: '优惠券 ',
+        startAt: 1549104000,
+        endAt: 1614592000,
+        valueDesc: '2',
         unitDesc: '元'
       }]
     }

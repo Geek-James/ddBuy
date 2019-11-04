@@ -6,6 +6,7 @@
          class="noDataPlaceHold">
       <img src="./../../../../images/mine/noData.jpeg"
            alt="">
+      <span class="desc">暂时还没有相关订单</span>
     </div>
   </div>
 </template>
@@ -40,11 +41,16 @@ export default {
     width: 100%;
     height: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     img {
       width: 60%;
       height: 60%;
+    }
+    .desc {
+      color: grey;
+      font-size: 0.6rem;
     }
   }
   .noData {

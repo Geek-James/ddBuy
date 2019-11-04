@@ -70,7 +70,7 @@
     <van-cell-group style="margin-top:0.4rem">
       <van-cell title="我的优惠券"
                 icon="gold-coin"
-                :value="userInfo.token?'1张':''"
+                :value="userInfo.token?'2张':''"
                 @click="goToMyCouponList"
                 is-link />
       <van-cell title="我的收货地址"
