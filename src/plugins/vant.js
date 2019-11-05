@@ -177,3 +177,11 @@ import {
     Sticky
 } from 'vant';
 Vue.use(Sticky);
+
+// 29.侧边导航
+import {
+    Sidebar,
+    SidebarItem
+} from 'vant';
+Vue.use(Sidebar);
+Vue.use(SidebarItem);

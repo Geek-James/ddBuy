@@ -115,7 +115,6 @@ export default {
     },
     // 2. 处理左边的点击
     async clickLeftLi (index) {
-      console.log(index);
 
       this.isShowLoadingGif = true;
       // 2.1 改变索引

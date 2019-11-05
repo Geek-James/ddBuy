@@ -68,7 +68,7 @@
     <!-- 商品内容列表 -->
     <section class="r_list"
              ref="r_list">
-      <div>
+      <div ref="b">
         <div v-for="(it,index) in categoriesDetailData"
              :key="index"
              ref="good">
@@ -212,6 +212,9 @@ export default {
     },
     // 2.产品列表滚动初始化
     _initProductScroll () {
+      console.log(this.$refs.r_list.clientHeight);
+      console.log(this.$refs.b.clientHeight);
+
       if (!this.productScroll) {
         this.productScroll = new BScroll(this.$refs.r_list, {
           click: true,

@@ -19,17 +19,18 @@
                       :name="address_name"
                       @click="chooseAddress"
                       style="margin-top:3rem" />
-
     <van-cell-group>
       <van-cell title="送达时间"
                 value="请选择送达时间"
-                is-link>
+                is-link
+                @click="showTimePickView">
         <template slot="label">
           <span class="custom-title">超过十分钟可获得积分补偿</span>
           <van-icon name="question-o" />
         </template>
       </van-cell>
-
+      <!-- 送货时间区间选择器 -->
+      <TimeIntervalList v-model="showDateTimePopView"></TimeIntervalList>
       <!-- 商品缩略图 -->
       <div class="wrapper">
         <div class="productImageWrapper"
@@ -143,7 +144,7 @@
       </van-cell>
       <van-cell title="积分"
                 v-show="isShowPreferential">
-        <div class="money">{{integralToprice | moneyFormat}}</div>
+        <div class="integralToMoney">-{{integralToprice | moneyFormat}}</div>
       </van-cell>
     </van-cell-group>
 
@@ -162,10 +163,14 @@
 </template>
 
 <script type="text/javascript">
+
 import BScroll from 'better-scroll'
 import { mapState, mapGetters } from 'vuex'
 import { Toast, Dialog } from 'vant';
 import { getLocalStore } from './../../config/global.js'
+// 送货时间区间组件
+import TimeIntervalList from './children/TimeIntervalList'
+
 
 export default {
   data () {
@@ -177,7 +182,10 @@ export default {
       isShowPreferential: false,     // 展示积分兑换
       integral: 800,                // 积分,
       showList: false,              // 展示优惠列表
-      coupons: [{                  // 优惠券信息     
+      currentIndex: 0,
+      currentItem: 0,
+      showDateTimePopView: false,
+      coupons: [{                  // 优惠券信息  
         available: 1,
         condition: '无使用门槛\n最多优惠1.5元',
         reason: '',
@@ -209,7 +217,7 @@ export default {
       goods: 'SELECTED_GOODS',
       selectedTotalPrice: 'SELECTED_GOODS_PRICE'
     }),
-
+    // 实际价格
     actualPrice () {
       // 如果用户使用积分兑换或使用优惠券
       let finalPrice;
@@ -239,6 +247,10 @@ export default {
     });
   },
   created () {
+
+  },
+  components: {
+    TimeIntervalList
   },
   methods: {
     // 1.初始化滚动视图
@@ -287,6 +299,12 @@ export default {
     },
     onExchange (code) {
       this.coupons.push(coupon);
+    },
+    // 显示时间选择器
+    showTimePickView () {
+      console.log("dd");
+
+      this.showDateTimePopView = true;
     }
   }
 }
