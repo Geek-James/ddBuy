@@ -30,7 +30,9 @@
         </template>
       </van-cell>
       <!-- 送货时间区间选择器 -->
-      <TimeIntervalList v-model="showDateTimePopView"></TimeIntervalList>
+      <TimeIntervalList :showDateTimePopView="showDateTimePopView"
+                        @changeData="changeData"></TimeIntervalList>
+
       <!-- 商品缩略图 -->
       <div class="wrapper">
         <div class="productImageWrapper"
@@ -53,7 +55,6 @@
         </ul>
       </div>
     </van-cell-group>
-
     <!-- 支付方式选择 -->
     <van-radio-group v-model="radio">
       <van-cell-group title="支付方式">
@@ -165,12 +166,12 @@
 <script type="text/javascript">
 
 import BScroll from 'better-scroll'
-import { mapState, mapGetters } from 'vuex'
+import { mapState, mapGetters, mapMutations } from 'vuex'
 import { Toast, Dialog } from 'vant';
 import { getLocalStore } from './../../config/global.js'
+
 // 送货时间区间组件
 import TimeIntervalList from './children/TimeIntervalList'
-
 
 export default {
   data () {
@@ -210,7 +211,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(['shopCart']),
+
     // 数量
     ...mapGetters({
       selectedCount: 'SELECTED_GOODS_COUNT',
@@ -239,7 +240,7 @@ export default {
       if (this.integral > 0) {
         return (this.integral / 100);
       }
-    }
+    },
   },
   mounted () {
     this.$nextTick(() => {
@@ -302,11 +303,12 @@ export default {
     },
     // 显示时间选择器
     showTimePickView () {
-      console.log("dd");
-
       this.showDateTimePopView = true;
+    },
+    changeData (val) {
+      this.showDateTimePopView = val;
     }
-  }
+  },
 }
 </script>
 <style lang="less" scoped>

@@ -1,16 +1,25 @@
+/**
+ * @Author: 极客James  
+ * @Date: 2019-10-1 11:44:08 
+ * @Last Modified by: 极客James
+ * @Last Modified time: 2019-10-30 11:53:10
+ * @GitHub https://github.com/Geek-James
+ * @掘金 https://juejin.im/user/5c4ebc72e51d4511dc7306ce
+ * @描述 订单模块->配送时间列表
+ */
 <template>
   <div id="timeIntervalList">
     <!-- 时间选择器 -->
     <van-popup v-model="showDateTimePopView"
                round
+               lock-scroll
+               closeable
+               @closed="closePopView"
                :style="{ height: '70%' }"
                position="bottom">
       <!-- 头部 -->
       <div class="itemHeader">
         <span class="timeTitle">选择送达时间</span>
-        <van-icon name="cross"
-                  class="close" />
-        <van-divider />
       </div>
       <div class="listWrapper">
         <div class="leftContent">
@@ -46,21 +55,22 @@
 </template>
 
 <script type="text/javascript">
+
+import PubSub from 'pubsub-js'
 // 时间处理
 import Moment from 'moment'
 import 'moment/locale/zh-cn'
+
+import { mapState, mapMutations } from 'vuex'
+
 // npm install --save @types/twix  moment的插件处理时间区间
 require('twix');
 export default {
   props: {
     showDateTimePopView: Boolean
   },
-  mounted () {
-
-  },
   data () {
     return {
-      //   showDateTimePopView: true,     // 送达时间   
       currentIndex: 0,
       currentItem: 0,
     }
@@ -100,6 +110,7 @@ export default {
 
   },
   methods: {
+    ...mapMutations(['ORDER_TIMEINTERVAL']),
     // 时间区间段换算
     timeIntervalList (startTime, endTime) {
       // 获取当前时间并分割出年月日
@@ -116,11 +127,13 @@ export default {
     },
     // 确认选择时间
     sureCheckTime () {
-
     },
     clickLeftLi (index) {
       this.currentIndex = index;
     },
+    closePopView () {
+      this.$emit('changeData', false);
+    }
   }
 }
 </script>
@@ -129,14 +142,11 @@ export default {
 #timeIntervalList {
   .itemHeader {
     height: 2.5rem;
+    line-height: 2.5rem;
+    border-bottom: solid 0.01rem #e8e9e8;
     .timeTitle {
-      text-align: center;
       font-size: 0.8rem;
       margin-left: 40%;
-    }
-    .close {
-      padding-top: 0.5rem;
-      margin-left: 30%;
     }
   }
   .integralToMoney {
