@@ -32,17 +32,27 @@
           </li>
         </div>
         <div class="rightContent">
+          <!-- 今天 -->
+          <li v-for="(time,index) in timeList.today "
+              @click="clickTodayTimeList(index,time)"
+              :class="{checked:todayIndex === index}"
+              :key="index.id"
+              v-show="!currentIndex">{{time}}
+            <van-icon name="success"
+                      style="margin-left:40%"
+                      v-show="todayIndex === index" />
+          </li>
+          <!-- 明天 -->
           <li v-for="(time,index) in timeList.tomorrow "
               :key="index.id"
-              :class="{checked:currentItem===index}"
-              @click="clickTimeList(index,time)"
-              v-show="currentIndex">{{time}}</li>
+              :class="{checked:tomorrowIndex === index}"
+              @click="clickTomorrowTimeList(index,time)"
+              v-show="currentIndex">{{time}}
+            <van-icon name="success"
+                      style="margin-left:40%"
+                      v-show="tomorrowIndex === index" />
+          </li>
 
-          <li v-for="(time,index) in timeList.today "
-              @click="clickTimeList(index,time)"
-              :class="{checked:currentItem===index}"
-              :key="index.id"
-              v-show="!currentIndex">{{time}}</li>
         </div>
       </div>
       <div class="sureButton"
@@ -50,10 +60,8 @@
         确定
       </div>
     </van-popup>
-
   </div>
 </template>
-
 <script type="text/javascript">
 
 import PubSub from 'pubsub-js'
@@ -62,7 +70,6 @@ import Moment from 'moment'
 import 'moment/locale/zh-cn'
 
 import { mapState, mapMutations } from 'vuex'
-
 // npm install --save @types/twix  moment的插件处理时间区间
 require('twix');
 export default {
@@ -72,6 +79,9 @@ export default {
   data () {
     return {
       currentIndex: 0,
+      chooseDeliveryTime: '',
+      todayIndex: 0,
+      tomorrowIndex: 0,
       currentItem: 0,
     }
   },
@@ -122,17 +132,33 @@ export default {
           return st.format({ hideDate: true });
         });
     },
-    clickTimeList (index, time) {
-      this.currentItem = index;
+    // 点击今天
+    clickTodayTimeList (index, time) {
+      this.todayIndex = index;
+      this.chooseDeliveryTime = time;
+    },
+    // 点击明天
+    clickTomorrowTimeList (index, time) {
+      this.tomorrowIndex = index;
+      this.chooseDeliveryTime = time;
     },
     // 确认选择时间
     sureCheckTime () {
+      let date = this.currentIndex == 0 ? "今天" : "明天";
+      if (this.chooseDeliveryTime.length < 1) {
+        // 设置默认值
+        let fristTodayData = this.timeList.today[0];
+        let secondDayData = this.timeList.tomorrow[0];
+        this.chooseDeliveryTime = this.currentIndex == 0 ? fristTodayData : secondDayData;
+      }
+      this.$emit('changeData', false, date + this.chooseDeliveryTime);
     },
     clickLeftLi (index) {
       this.currentIndex = index;
     },
     closePopView () {
-      this.$emit('changeData', false);
+      let date = this.currentIndex == 0 ? "今天" : "明天";
+      this.$emit('changeData', false, date + this.chooseDeliveryTime);
     }
   }
 }

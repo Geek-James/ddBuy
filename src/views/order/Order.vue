@@ -21,7 +21,7 @@
                       style="margin-top:3rem" />
     <van-cell-group>
       <van-cell title="送达时间"
-                value="请选择送达时间"
+                :value="deliveryTime"
                 is-link
                 @click="showTimePickView">
         <template slot="label">
@@ -30,9 +30,9 @@
         </template>
       </van-cell>
       <!-- 送货时间区间选择器 -->
-      <TimeIntervalList :showDateTimePopView="showDateTimePopView"
-                        @changeData="changeData"></TimeIntervalList>
-
+      <TimeIntervalList ref="timeInterval"
+                        :showDateTimePopView="showDateTimePopView"
+                        @changeData="changeData(arguments)"></TimeIntervalList>
       <!-- 商品缩略图 -->
       <div class="wrapper">
         <div class="productImageWrapper"
@@ -185,6 +185,7 @@ export default {
       showList: false,              // 展示优惠列表
       currentIndex: 0,
       currentItem: 0,
+      deliveryTime: '请选择配送时间',
       showDateTimePopView: false,
       coupons: [{                  // 优惠券信息  
         available: 1,
@@ -211,7 +212,6 @@ export default {
     };
   },
   computed: {
-
     // 数量
     ...mapGetters({
       selectedCount: 'SELECTED_GOODS_COUNT',
@@ -290,14 +290,16 @@ export default {
         this.isShowPreferential = !this.isShowPreferential;
       }
     },
-    // 5.选择地址
+    // 选择地址
     chooseAddress () {
       this.$router.push('/order/myAddress');
     },
+    // 选择优惠券
     onChange (index) {
       this.showList = false;
       this.chosenCoupon = index;
     },
+    // 优惠券兑换
     onExchange (code) {
       this.coupons.push(coupon);
     },
@@ -305,8 +307,9 @@ export default {
     showTimePickView () {
       this.showDateTimePopView = true;
     },
-    changeData (val) {
-      this.showDateTimePopView = val;
+    changeData () {
+      this.showDateTimePopView = arguments[0][0];
+      this.deliveryTime = arguments[0][1];
     }
   },
 }
