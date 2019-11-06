@@ -94,10 +94,11 @@
       <van-cell title="联系客服"
                 icon="phone"
                 value="客服时间 07:00-22:00"
-                is-link></van-cell>
+                is-link />
       <van-cell title="意见反馈"
                 icon="comment-circle"
-                is-link></van-cell>
+                is-link
+                @click="onFeedBack" />
     </van-cell-group>
 
     <van-cell-group style="margin-top:0.4rem">
@@ -117,7 +118,7 @@
 <script type="text/javascript">
 // 引入vuex
 import { mapState } from 'vuex'
-import { request } from 'http';
+import { Dialog } from 'vant'
 
 export default {
   data () {
@@ -200,6 +201,17 @@ export default {
       } else {
         this.login();
       }
+    },
+    // 意见反馈
+    onFeedBack () {
+
+      Dialog.alert({
+        confirmButtonText: '记得点个小星❤️哦~',
+        title: '💘感谢您的关注💘',
+        message: 'GitHub上搜索 \nGeek-James/ddBuy \n🦉欢迎提出优化建议🙉'
+      }).then(() => {
+        // on close
+      });
     }
   }
 }
