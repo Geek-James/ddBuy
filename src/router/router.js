@@ -23,6 +23,8 @@ const MyVip = () => import('../views/mine/Children/MyVip.vue')
 const VipPay = () => import('../views/mine/Children/MyVipChildren/VipPay.vue')
 // 我的订单
 const MyOrder = () => import('../views/mine/Children/MyOrder');
+// 订单商品详情页
+const OrderGoodsList = () => import('../views/order/children/OrderGoodsList')
 
 // 加载订单相关的组件
 const Order = () => import('../views/order/Order.vue');
@@ -100,7 +102,7 @@ export default new Router({
                     // 我的订单
                     path: 'myOrder',
                     name: 'myOrder',
-                    component: MyOrder
+                    component: MyOrder,
                 }, {
                     // 绿卡会员
                     path: 'myVip',
@@ -138,6 +140,10 @@ export default new Router({
                     name: 'editAddress',
                     component: EditAddress
                 }]
+            }, {
+                path: 'orderGoodsList',
+                name: 'orderGoodsList',
+                component: OrderGoodsList
             }]
         },
         {

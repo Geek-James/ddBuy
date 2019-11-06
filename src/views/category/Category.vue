@@ -134,10 +134,7 @@ export default {
       } else {
         param = `/lk00${index + 1}`;
       }
-      console.log(param);
-
       let rightRes = await getCategoryDetailData(param);
-      console.log(rightRes);
       if (rightRes.success) {
         this.categoriesDetailData = rightRes.data.cate;
       }

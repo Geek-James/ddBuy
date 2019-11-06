@@ -34,7 +34,8 @@
                         :showDateTimePopView="showDateTimePopView"
                         @changeData="changeData(arguments)"></TimeIntervalList>
       <!-- 商品缩略图 -->
-      <div class="wrapper">
+      <div class="wrapper"
+           @click="goToGoodsList">
         <div class="productImageWrapper"
              ref="productImageWrapper">
           <ul class="imageWrapper"
@@ -289,6 +290,10 @@ export default {
       } else {
         this.isShowPreferential = !this.isShowPreferential;
       }
+    },
+    goToGoodsList () {
+      this.$router.push({ name: 'orderGoodsList' })
+
     },
     // 选择地址
     chooseAddress () {

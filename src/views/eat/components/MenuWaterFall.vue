@@ -59,7 +59,6 @@ export default {
       }
     },
     loadmore (num) {
-      console.log('loadmore')
       let index = ++this.page;
       let param;
       if (index > 31) {

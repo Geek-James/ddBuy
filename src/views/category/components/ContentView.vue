@@ -80,8 +80,10 @@
                 :key="index"
                 class="list ">
               <div class="list_item flex">
-                <p @click="getDetails(item)"><img v-lazy="item.small_image"
-                       alt=""></p>
+                <p @click="getDetails(item)">
+                  <img v-lazy="item.small_image"
+                       alt="">
+                </p>
                 <div>
                   <p class="name">{{item.product_name}}</p>
                   <p class="des">{{item.spec}}</p>
@@ -212,9 +214,6 @@ export default {
     },
     // 2.产品列表滚动初始化
     _initProductScroll () {
-      console.log(this.$refs.r_list.clientHeight);
-      console.log(this.$refs.b.clientHeight);
-
       if (!this.productScroll) {
         this.productScroll = new BScroll(this.$refs.r_list, {
           click: true,
