@@ -21,12 +21,14 @@
                       :search-result="searchResult"
                       save-button-text="保存并使用"
                       @save="onSave"
-                      @change-detail="onChangeDetail"
                       style="margin-top:3rem" />
   </div>
 </template>
 
 <script type="text/javascript">
+
+import { mapMutations, mapState } from 'vuex'
+
 import { Toast } from 'vant'
 import areaList from './../../../../config/area.js'
 export default {
@@ -40,25 +42,27 @@ export default {
 
   },
   methods: {
+    ...mapMutations(['ADD_USER_SHOPPING_ADDRESS']),
     // 1.返回上级界面
     onClickLeft () {
       this.$router.go(-1);
-      //   this.$router.back();
     },
     // 2. 保存
-    onSave () {
-      Toast('save');
+    onSave (content) {
+      let addressID = this.addressID().toString();
+      content['id'] = addressID;
+      content['address'] = content.province + content.city + content.county + content.addressDetail;
+      console.log(content);
+      this.ADD_USER_SHOPPING_ADDRESS({
+        addressID,
+        content
+      });
+      this.$router.back();
     },
-    // 3.数据改变
-    onChangeDetail (val) {
-      if (val) {
-        this.searchResult = [{
-          name: '黄龙万科中心',
-          address: '杭州市西湖区'
-        }];
-      } else {
-        this.searchResult = [];
-      }
+    // 生成不重复的id
+    addressID () {
+      var lastUuid = 0;
+      return (new Date()).getTime() * 1000 + (lastUuid++) % 1000;
     }
   }
 }

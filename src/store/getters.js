@@ -5,6 +5,13 @@ import {
     USER_SEX
 } from "./mutation-type";
 
+// 引入本地存储
+import {
+    getLocalStore,
+    setLocalStore,
+    removeLocalStore
+} from '../config/global'
+
 export default {
     // 1. 选中商品的数量
     SELECTED_GOODS_COUNT(state) {
@@ -22,7 +29,9 @@ export default {
     // 2.选中的商品
     SELECTED_GOODS(state) {
         let goodsArray = [];
+        // 从本地取出数据
         let shopCart = state.shopCart;
+        // let shopCart = JSON.parse(getLocalStore('shopCart'));
         Object.values(shopCart).forEach((good, index) => {
             if (good.checked) {
                 goodsArray.push(shopCart[good.id]);

@@ -72,7 +72,7 @@ export default {
   },
   mounted () {
     //  1.接受订阅
-    PubSub.subscribe(ADD_TO_CART, (msg, goods) => {
+    (ADD_TO_CART, (msg, goods) => {
       // 1.1 判断发布是否是'ADD_TO_CART'
       if (msg == ADD_TO_CART) {
         // 1.2 判断是否有用户登录

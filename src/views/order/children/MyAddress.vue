@@ -15,18 +15,22 @@
                  :fixed=true
                  :border=true
                  @click-left="onClickLeft"></van-nav-bar>
+    <!-- 没有数据的占位图 -->
+    <div class="noDataPlaceHold"
+         v-show="shippingAddress.length<1">
+      <img src="./../../../images/order/noAddress.png"
+           alt="">
+      <span class="desc">还没有添加过地址呢😝添加一个吧😄</span>
+    </div>
     <!-- 联系人 -->
     <van-address-list v-model="chosenAddressId"
-                      :list="list"
+                      :list="shippingAddress"
                       @add="onAdd"
                       @edit="onEdit"
+                      @select="onBackAddress"
                       style="margin-top: 3rem"
                       add-button-text="+ 增加新地址">
-
     </van-address-list>
-    <van-cell :border=false
-              title="单元格"
-              value="内容" />
     <!-- 路由出口 -->
     <transition name="router-slider"
                 mode="out-in">
@@ -35,40 +39,47 @@
   </div>
 </template>
 <script type="text/javascript">
+
+import { mapState, mapMutations } from 'vuex'
 import { Toast } from 'vant'
+import { getLocalStore } from './../../../config/global.js'
+// 引入发布订阅
+import { CHOOSE_USER_ADDRESS } from './../../../config/pubsub_type.js'
+import PubSub from 'pubsub-js'
+
 export default {
   data () {
     return {
-      chosenAddressId: '1',
-      list: [
-        {
-          id: '1',
-          name: '张三',
-          tel: '13000000000',
-          address: '浙江省杭州市西湖区文三路 138 号东方通信大厦 7 楼 501 室'
-        },
-        {
-          id: '2',
-          name: '李四',
-          tel: '1310000000',
-          address: '浙江省杭州市拱墅区莫干山路 50 号'
-        }
-      ]
+      chosenAddressId: 0
     }
+  },
+  computed: {
+    ...mapState(['shippingAddress']),
+  },
+  mounted () {
+    this.INIT_USER_SHOPPING_ADDRESS();
   },
   components: {
 
   },
   methods: {
+    ...mapMutations(['INIT_USER_SHOPPING_ADDRESS']),
     onClickLeft () {
       this.$router.back();
     },
     onAdd () {
       this.$router.push({ path: '/order/myAddress/addAddress' });
     },
-
     onEdit (item, index) {
-      this.$router.push({ path: '/order/myAddress/editAddress' });
+      console.log(item);
+
+      this.$router.push({ name: 'editAddress', params: { content: item } });
+    },
+    onBackAddress (item, index) {
+      // 发布通知到订单界面修改值
+      PubSub.publish(CHOOSE_USER_ADDRESS, item);
+      // 返回到上一个界面
+      this.$router.back();
     }
   }
 }
@@ -81,9 +92,24 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #f5f5f5;
+  background-color: #ffffff;
   z-index: 200;
-
+  .noDataPlaceHold {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    img {
+      width: 50%;
+      height: 30%;
+    }
+    .desc {
+      color: grey;
+      font-size: 0.6rem;
+    }
+  }
   /*转场动画*/
   .router-slider-enter-active,
   .router-slider-leave-active {

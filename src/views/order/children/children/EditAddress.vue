@@ -19,49 +19,56 @@
                       show-delete
                       show-set-default
                       show-search-result
+                      :addressInfo="addressInfo"
                       :search-result="searchResult"
                       @save="onSave"
-                      @change-detail="onChangeDetail"
+                      @delete="onDelete"
                       style="margin-top:3rem" />
   </div>
 </template>
 
 <script type="text/javascript">
+import { mapMutations, mapState } from 'vuex'
 import areaList from './../../../../config/area.js'
 
 export default {
   data () {
     return {
       areaList: areaList,
+      addressInfo: {},
       searchResult: []
     }
+  },
+  mounted () {
+    // 处理路由传过来的数据
+    console.log(this.$route.params.content);
+    this.addressInfo = this.$route.params.content;
   },
   components: {
 
   }, methods: {
+    ...mapMutations(['ADD_USER_SHOPPING_ADDRESS', 'DELETE_USER_SHOPPING_ADDRESS', 'CHANGE_USER_SHOPPING_ADDRESS']),
     // 1.返回上级界面
     onClickLeft () {
       this.$router.go(-1);
-      //   this.$router.back();
     },
     // 2. 保存
-    onSave () {
-      Toast('save');
+    onSave (content) {
+      let id = content.id;
+      this.CHANGE_USER_SHOPPING_ADDRESS({
+        id, content
+      });
+      this.$router.back();
     },
-    onChangeDetail (val) {
-      if (val) {
-        this.searchResult = [{
-          name: '黄龙万科中心',
-          address: '杭州市西湖区'
-        }];
-      } else {
-        this.searchResult = [];
-      }
+    // 删除
+    onDelete (content) {
+      let id = content.id;
+      this.DELETE_USER_SHOPPING_ADDRESS({ id });
+      this.$router.back();
     }
   }
 }
 </script>
-
 <style lang="less" scoped>
 #editAddress {
   position: fixed;

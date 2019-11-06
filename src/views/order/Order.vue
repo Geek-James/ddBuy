@@ -17,6 +17,7 @@
     <van-contact-card :type="address_type"
                       add-text="选择收货地址"
                       :name="address_name"
+                      :tel="address_phone"
                       @click="chooseAddress"
                       style="margin-top:3rem" />
     <van-cell-group>
@@ -165,11 +166,13 @@
 </template>
 
 <script type="text/javascript">
-
 import BScroll from 'better-scroll'
 import { mapState, mapGetters, mapMutations } from 'vuex'
 import { Toast, Dialog } from 'vant';
 import { getLocalStore } from './../../config/global.js'
+// 引入发布订阅
+import { CHOOSE_USER_ADDRESS } from '../../config/pubsub_type.js'
+import PubSub from 'pubsub-js'
 
 // 送货时间区间组件
 import TimeIntervalList from './children/TimeIntervalList'
@@ -178,15 +181,17 @@ export default {
   data () {
     return {
       address_type: 'add',           //地址卡片类型
-      address_name: null,            // 收货地址
+      address_name: null,            // 收货人
+      address_phone: null,           // 收货人电话
+      address_id: null,              // 收货人地址ID
+
       radio: '1',                    // 支付方式  
       checked: false,                // 积分兑换开关
       isShowPreferential: false,     // 展示积分兑换
       integral: 800,                // 积分,
       showList: false,              // 展示优惠列表
-      currentIndex: 0,
-      currentItem: 0,
-      deliveryTime: '请选择配送时间',
+
+      deliveryTime: '请选择送达时间',
       showDateTimePopView: false,
       coupons: [{                  // 优惠券信息  
         available: 1,
@@ -244,17 +249,31 @@ export default {
     },
   },
   mounted () {
-    this.$nextTick(() => {
-      this._initScroll();
+    // 初始化本地购物车数据
+    this.INIT_SHOP_CART();
+    // 有商品才加载可滑动组件
+    if (this.goods.length > 0) {
+      this.$nextTick(() => {
+        this._initScroll();
+      });
+    }
+    // 订阅发布的通知
+    PubSub.subscribe(CHOOSE_USER_ADDRESS, (msg, data) => {
+      if (msg == CHOOSE_USER_ADDRESS) {
+        // 修改卡片类型
+        this.address_type = 'edit';
+        this.address_name = data.name;
+        this.address_phone = data.tel;
+        this.address_id = data.id;
+      }
     });
-  },
-  created () {
-
   },
   components: {
     TimeIntervalList
   },
   methods: {
+    // 初始化本地购物车数据
+    ...mapMutations(['INIT_SHOP_CART']),
     // 1.初始化滚动视图
     _initScroll () {
       if (!this.productImageScroll) {
@@ -275,6 +294,22 @@ export default {
     },
     // 3.提交订单
     onSubmit () {
+      if (!this.address_name) {
+        Toast({
+          message: '请选择收货地址',
+          duration: 800
+        });
+      } else if (this.deliveryTime == '请选择送达时间') {
+        Toast({
+          message: this.deliveryTime,
+          duration: 800
+        });
+      } else {
+        Toast({
+          message: '提交订单',
+          duration: 800
+        });
+      }
     },
     // 4.switch开关
     onInput (checked) {
@@ -293,7 +328,6 @@ export default {
     },
     goToGoodsList () {
       this.$router.push({ name: 'orderGoodsList' })
-
     },
     // 选择地址
     chooseAddress () {
@@ -317,6 +351,10 @@ export default {
       this.deliveryTime = arguments[0][1];
     }
   },
+  beforeDestroy () {
+    // 销毁订阅
+    PubSub.unsubscribe(CHOOSE_USER_ADDRESS);
+  }
 }
 </script>
 <style lang="less" scoped>

@@ -32,3 +32,12 @@ export const USER_INFO_SEX = 'USER_INFO_SEX';
 export const USER_SEX = 'USER_SEX';
 // 15.退出登录
 export const LOGIN_OUT = 'LOGIN_OUT';
+
+// 15.初始化用户收货地址
+export const INIT_USER_SHOPPING_ADDRESS = 'INIT_USER_SHOPPING_ADDRESS';
+// 16.增加用户收货地址
+export const ADD_USER_SHOPPING_ADDRESS = 'ADD_USER_SHOPPING_ADDRESS';
+// 17.删除用户收货地址
+export const DELETE_USER_SHOPPING_ADDRESS = 'DELETE_USER_SHOPPING_ADDRESS';
+// 18.修改用户收货地址
+export const CHANGE_USER_SHOPPING_ADDRESS = 'CHANGE_USER_SHOPPING_ADDRESS';

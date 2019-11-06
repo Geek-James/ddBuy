@@ -11,7 +11,11 @@ import {
     CHANGE_USER_NICK_NAME,
     USER_INFO_BRITHDAY,
     USER_INFO_SEX,
-    LOGIN_OUT
+    LOGIN_OUT,
+    INIT_USER_SHOPPING_ADDRESS,
+    ADD_USER_SHOPPING_ADDRESS,
+    DELETE_USER_SHOPPING_ADDRESS,
+    CHANGE_USER_SHOPPING_ADDRESS
 } from './mutation-type'
 import Vue from 'vue'
 
@@ -21,6 +25,9 @@ import {
     setLocalStore,
     removeLocalStore
 } from '../config/global'
+import {
+    log
+} from 'util';
 
 export default {
     // 注意:外界传值的参数一定要和定义的参数一致 例如 goodsID  isCheckedAll
@@ -36,7 +43,6 @@ export default {
         if (shopCart[goodsID]) {
             // 让数量goodsID里面的num +1
             shopCart[goodsID]['num']++;
-
         } else {
             // 1.2 不存在则设置默认值
             shopCart[goodsID] = {
@@ -94,6 +100,7 @@ export default {
     [SINGLE_SELECT_GOODS](state, {
         goodsID
     }) {
+        console.log(goodsID);
         // 4.1 取出state中的商品数据
         let shopCart = state.shopCart;
         // 4.2 根据商品id取到goods
@@ -209,7 +216,6 @@ export default {
         // 10.3 将数据更新到本地
         setLocalStore('userInfo', state.userInfo);
     },
-
     // 11.用户性别
     [USER_INFO_SEX](state, {
         sex
@@ -229,7 +235,6 @@ export default {
         };
         // 10.3 将数据更新到本地
         setLocalStore('userInfo', state.userInfo);
-
     },
 
     // 退出登录
@@ -238,7 +243,63 @@ export default {
         state.shopCart = {};
         removeLocalStore('userInfo');
         removeLocalStore('shopCart');
-
+    },
+    //  初始化获取用户收货地址
+    [INIT_USER_SHOPPING_ADDRESS](state) {
+        // 8.1 先存本地用户数据
+        let initUsershoppingAddress = getLocalStore('shippingAddress');
+        if (initUsershoppingAddress) {
+            state.shippingAddress = JSON.parse(initUsershoppingAddress);
+        }
+    },
+    // 增加用户地址
+    [ADD_USER_SHOPPING_ADDRESS](state, {
+        content
+    }) {
+        // 取出state中的shippingAddress
+        let shippingAddress = state.shippingAddress;
+        // 给shippingAddress赋值
+        shippingAddress.push(content);
+        // 产生新对象
+        state.shippingAddress = [...shippingAddress];
+        // 将数据存储到本地
+        setLocalStore('shippingAddress', state.shippingAddress);
+    },
+    // 删除用户地址
+    [DELETE_USER_SHOPPING_ADDRESS](state, {
+        id
+    }) {
+        // 取出state中的shippingAddress
+        let shippingAddress = state.shippingAddress;
+        // 删除
+        for (let i = 0; i < shippingAddress.length; i++) {
+            if (shippingAddress[i].id == id) {
+                shippingAddress.splice(i, 1);
+                break;
+            }
+        }
+        // 更新store数据
+        state.shippingAddress = [...shippingAddress];
+        // 更新本地数据
+        setLocalStore('shippingAddress', state.shippingAddress);
+    },
+    // 修改用户地址信息
+    [CHANGE_USER_SHOPPING_ADDRESS](state, {
+        content
+    }) {
+        // 取出state中的shippingAddress
+        let shippingAddress = state.shippingAddress;
+        // 查找id的那个对象
+        for (let index = 0; index < shippingAddress.length; index++) {
+            if (shippingAddress[index].id == content.id) {
+                console.log(shippingAddress[index]);
+                shippingAddress[index] = content;
+                break;
+            }
+        }
+        // 更新store数据
+        state.shippingAddress = [...shippingAddress];
+        // 更新本地数据
+        setLocalStore('shippingAddress', state.shippingAddress);
     }
-
 }
