@@ -288,7 +288,6 @@ export default {
         bottom: 2.6rem;
       }
     }
-
     .emptyCart {
       display: flex;
       flex-direction: column;

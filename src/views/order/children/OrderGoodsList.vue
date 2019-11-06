@@ -73,6 +73,8 @@ export default {
   bottom: 0;
   background-color: #f5f5f5;
   z-index: 200;
+  overflow-y: auto;
+  overflow-x: hidden;
   .listitle {
     padding-left: 0.5rem;
     margin-top: 3rem;
@@ -98,6 +100,7 @@ export default {
       height: 3rem;
       width: 10%;
       img {
+        padding: 0.5rem;
         width: 100%;
         height: 2.5rem;
       }
@@ -105,7 +108,7 @@ export default {
     .textDetail {
       height: 3rem;
       width: 70%;
-      padding-left: 0.5rem;
+      padding-left: 0.9rem;
       .name {
         font-size: 0.8rem;
         padding: 0.3rem 0;
