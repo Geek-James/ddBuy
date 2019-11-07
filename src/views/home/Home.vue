@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-07 15:42:31
+ * @LastEditTime: 2019-11-07 17:35:58
  * @Description: Home 首页模块
  * @FilePath: /ddBuy/src/views/home/Home.vue
  -->
@@ -35,8 +35,7 @@
     <!-- 数据加载提示gif -->
     <Loading :show="isShowLoading"></Loading>
     <!-- 回到顶部按钮 -->
-    <BackTop v-show="showBackToTop"
-             v-on:scrollToTop="scrollToTop"></BackTop>
+    <v-top></v-top>
   </div>
 
 </template>
@@ -63,19 +62,20 @@ import VipTip from './components/myVip/VipTip'
 import FlashBuy from './components/flash/FlashBuy'
 import SpecialZone from './components/special/SpecialZone'
 import TabbarGoodsItem from './components/tabbar/TabbarGoodsItem'
-import BackTop from '../../components/backToTop/BackTop'
 import Loading from '../../components/loading/LoadingGif'
 
 export default {
 
   name: 'Home',
   created () {
-    this._initData();
+
   },
   computed: {
     ...mapState(['userInfo']),
   },
   mounted () {
+    // 0.数据初始化
+    this._initData();
     //  1.接受订阅
     PubSub.subscribe(ADD_TO_CART, (msg, goods) => {
       // 1.1 判断发布是否是'ADD_TO_CART'
@@ -102,14 +102,12 @@ export default {
   },
   data () {
     return {
-      sowing_list: [], // 首页轮播图数据
-      isShowLoading: true,
+      sowing_list: [],              // 首页轮播图数据
+      isShowLoading: true,          // 是否加载动画    
       nav_list: [],
-      flash_sale_product_list: [], // 限时抢购  
-      showBackToTop: false,
+      flash_sale_product_list: [],  // 限时抢购  
       tabbar_all_product_list: [],
-      // 特色专区数据
-      specialZone: {}
+      specialZone: {}                // 特色专区数据
     }
   },
   components: {
@@ -119,10 +117,9 @@ export default {
     Nav,
     VipTip,
     FlashBuy,
-    BackTop,
     SpecialZone,
     TabbarGoodsItem,
-    Loading
+    Loading,
   },
   methods: {
     // Vuex中的方法ADD_GOODS
@@ -143,10 +140,6 @@ export default {
           this.isShowLoading = false
           //   给特色专区赋值
           this.specialZone = response.data.special_zone;
-          // 是否显示回到顶部图标
-          showBackIcon((status) => {
-            this.showBackToTop = status;
-          })
         }
       }).catch(error => {
         console.log(error);

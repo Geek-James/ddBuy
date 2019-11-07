@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-07 09:26:27
+ * @LastEditTime: 2019-11-07 17:26:28
  * @Description: 购物车模块
  * @FilePath: /ddBuy/src/views/cart/Cart.vue
  -->
@@ -83,6 +83,8 @@
                    :style="isShowEmptyCart?'padding-bottom:5.5rem':'padding-bottom:3rem'"></produceItem>
     </div>
     <Loading :show="isShowLoading"></Loading>
+    <!-- 回到顶部组件 -->
+    <v-top></v-top>
   </div>
 </template>
 
