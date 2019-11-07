@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-07 14:26:39
+ * @LastEditTime: 2019-11-07 15:37:50
  * @Description: 我的
  * @FilePath: /ddBuy/src/views/mine/Mine.vue
  -->
@@ -188,8 +188,11 @@ export default {
     },
     // 跳转到我的收货地址
     goToMyAddredd () {
-      this.$router.push({ name: 'myAddress' });
-
+      // 判断是否登录
+      if (this.userInfo.token) {
+        this.$router.push({ name: 'myAddress' });      } else {
+        this.login();
+      }
     },
     // 跳转到绿卡会员
     goToMyVip () {
