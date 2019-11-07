@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-07 09:15:23
+ * @LastEditTime: 2019-11-07 11:13:19
  * @Description: Home 首页模块
  * @FilePath: /ddBuy/src/views/home/Home.vue
  -->
@@ -11,13 +11,17 @@
   <div id="home">
     <div v-if="!isShowLoading">
       <!-- 头部地理位置和搜索框 -->
-      <Header></Header>
-      <!-- 轮播图 -->
-      <Sowing :sowing_list="sowing_list"></Sowing>
-      <!-- tip -->
-      <Tip></Tip>
+      <div class="head">
+        <Header></Header>
+        <!-- 轮播图 -->
+        <Sowing :sowing_list="sowing_list"></Sowing>
+        <!-- tip -->
+        <Tip></Tip>
+      </div>
       <!-- Nav -->
       <Nav :nav_list="nav_list"></Nav>
+      <!-- 跳转到会员界面 -->
+      <VipTip></VipTip>
       <!-- 限时抢购 -->
       <FlashBuy :flash_sale_product_list="flash_sale_product_list"></FlashBuy>
       <!-- 特色专区 -->
@@ -55,6 +59,7 @@ import Header from './components/header/Header'
 import Sowing from './components/sowing/Sowing'
 import Tip from './components/tip/Tip'
 import Nav from './components/nav/Nav'
+import VipTip from './components/myVip/VipTip'
 import FlashBuy from './components/flash/FlashBuy'
 import SpecialZone from './components/special/SpecialZone'
 import TabbarGoodsItem from './components/tabbar/TabbarGoodsItem'
@@ -112,6 +117,7 @@ export default {
     Sowing,
     Tip,
     Nav,
+    VipTip,
     FlashBuy,
     BackTop,
     SpecialZone,
@@ -137,7 +143,6 @@ export default {
           this.isShowLoading = false
           //   给特色专区赋值
           this.specialZone = response.data.special_zone;
-
           // 是否显示回到顶部图标
           showBackIcon((status) => {
             this.showBackToTop = status;
@@ -155,10 +160,15 @@ export default {
 }
 </script>
 
-<style  scoped>
+<style lang="less" scoped>
 #home {
   background-color: "#f5f5f5";
   padding-bottom: 3rem;
+  .head {
+    margin-top: -3rem;
+    width: 100%;
+    background-image: url("http://518taole.7-orange.cn/backImage.png");
+  }
 }
 .van-divider {
   background-color: #f5f5f5;

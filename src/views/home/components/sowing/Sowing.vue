@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-07 09:16:57
+ * @LastEditTime: 2019-11-07 11:00:57
  * @Description: 首页->轮播组件
  * @FilePath: /ddBuy/src/views/home/components/sowing/Sowing.vue
  -->
@@ -83,8 +83,10 @@ export default {
 
 <style scoped>
 #swiper {
-  width: 100%;
-  height: 12rem;
+  padding-top: 6rem;
+  width: 95%;
+  height: 10rem;
+  border-radius: 1rem;
 }
 #swiper img {
   width: 100%;
