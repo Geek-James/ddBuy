@@ -222,3 +222,6 @@ export const removeLocalStore = (name) => {
     if (!name) return;
     return window.localStorage.removeItem(name);
 }
+
+// 版本信息
+export const _VERSION_ = "1.0.0";

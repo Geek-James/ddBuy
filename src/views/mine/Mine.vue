@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-07 09:24:03
+ * @LastEditTime: 2019-11-07 14:26:39
  * @Description: 我的
  * @FilePath: /ddBuy/src/views/mine/Mine.vue
  -->
@@ -100,13 +100,7 @@
                 is-link
                 @click="onFeedBack" />
     </van-cell-group>
-
-    <van-cell-group style="margin-top:0.4rem">
-      <van-cell title="叮咚买菜APP"
-                icon="gem"
-                value="下载APP体验更佳"
-                is-link></van-cell>
-    </van-cell-group>
+    <div class="version">当前版本{{version}}</div>
     <!--路由的出口-->
     <transition name="router-slider"
                 mode="out-in">
@@ -119,6 +113,7 @@
 // 引入vuex
 import { mapState } from 'vuex'
 import { Dialog } from 'vant'
+import { _VERSION_ } from './../../config/global'
 
 export default {
   data () {
@@ -130,12 +125,14 @@ export default {
         female: require('./../../images/mine/female.png'),
         male: require('./../../images/mine/male.png')
       },
+      // 订单状态
       orderData: [
         { icon: 'cart-circle-o', title: '待支付' },
         { icon: 'gift-o', title: '待收货' },
         { icon: 'smile-comment-o', title: '待评价' },
         { icon: 'cash-back-record', title: '售后/退款' }
-      ]
+      ],
+      version: _VERSION_,           // 版本信息
     }
   },
   computed: {
@@ -222,6 +219,15 @@ export default {
   width: 100%;
   background-color: #f5f5f5;
   margin-bottom: 3rem;
+  .version {
+    margin: 0 auto;
+    text-align: center;
+    font-size: 0.6rem;
+    background-color: #ffffff;
+    height: 2rem;
+    color: grey;
+    line-height: 2rem;
+  }
   .van-nav-bar {
     background-color: #3bba63;
     font-size: 0.6rem;
@@ -255,6 +261,7 @@ export default {
       margin-left: 0.8rem;
     }
   }
+
   .van-cell__left-icon {
     color: #45c763;
     font-size: 1.2rem;

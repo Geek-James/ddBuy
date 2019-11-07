@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-07 09:26:48
+ * @LastEditTime: 2019-11-07 14:18:45
  * @Description: 分类模块->可滑动标题组件
  * @FilePath: /ddBuy/src/views/category/components/ContentView.vue
  -->
@@ -366,6 +366,7 @@ export default {
         margin-left: 0.2rem;
         .name {
           font-size: 0.8375rem;
+          line-height: 1rem;
           color: rgb(7, 17, 27);
           margin-bottom: 0.16rem;
         }
