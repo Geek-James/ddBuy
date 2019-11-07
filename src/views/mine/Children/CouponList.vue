@@ -1,12 +1,12 @@
-/**
- * @Author: 极客James  
- * @Date: 2019-10-1 11:44:08 
- * @Last Modified by: 极客James
- * @Last Modified time: 2019-10-30 11:53:10
- * @GitHub https://github.com/Geek-James
- * @掘金 https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @描述 我的->我的优惠券
- */
+<!--
+ * @Author: 极客James
+ * @Motto: 求知若渴,虚心若愚
+ * @Github: https://github.com/Geek-James/ddBuy
+ * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
+ * @LastEditTime: 2019-11-07 09:21:31
+ * @Description: 我的->我的优惠券
+ * @FilePath: /ddBuy/src/views/mine/Children/CouponList.vue
+ -->
 <template>
   <div id="couponList">
     <van-nav-bar title="我的优惠券"

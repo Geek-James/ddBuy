@@ -1,3 +1,12 @@
+<!--
+ * @Author: 极客James
+ * @Motto: 求知若渴,虚心若愚
+ * @Github: https://github.com/Geek-James/ddBuy
+ * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
+ * @LastEditTime: 2019-11-07 09:21:47
+ * @Description: 我的->我的订单
+ * @FilePath: /ddBuy/src/views/mine/Children/MyOrder.vue
+ -->
 <template>
   <div id="myOrder">
     <van-nav-bar title="我的订单"

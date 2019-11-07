@@ -1,3 +1,12 @@
+<!--
+ * @Author: 极客James
+ * @Motto: 求知若渴,虚心若愚
+ * @Github: https://github.com/Geek-James/ddBuy
+ * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
+ * @LastEditTime: 2019-11-07 09:20:51
+ * @Description: 我的->我的绿卡->水平滑动组件
+ * @FilePath: /ddBuy/src/views/mine/Children/MyVipChildren/VipMenuTitleScroll.vue
+ -->
 <template>
   <div id="horizontalScroll">
     <!-- 水平滑动 -->

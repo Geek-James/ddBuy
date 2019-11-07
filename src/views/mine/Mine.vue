@@ -1,12 +1,12 @@
-/**
- * @Author: 极客James  
- * @Date: 2019-10-1 11:44:08 
- * @Last Modified by: james
- * @Last Modified time: 2019-10-30 21:22:47
- * @GitHub https://github.com/Geek-James
- * @掘金 https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @描述 我的 模块
- */
+<!--
+ * @Author: 极客James
+ * @Motto: 求知若渴,虚心若愚
+ * @Github: https://github.com/Geek-James/ddBuy
+ * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
+ * @LastEditTime: 2019-11-07 09:24:03
+ * @Description: 我的
+ * @FilePath: /ddBuy/src/views/mine/Mine.vue
+ -->
 <template>
   <div id="mine">
     <van-nav-bar title="我的"

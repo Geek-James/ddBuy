@@ -1,3 +1,12 @@
+<!--
+ * @Author: 极客James
+ * @Motto: 求知若渴,虚心若愚
+ * @Github: https://github.com/Geek-James/ddBuy
+ * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
+ * @LastEditTime: 2019-11-07 09:18:59
+ * @Description: 我的->我的订单->订单类型
+ * @FilePath: /ddBuy/src/views/mine/Children/MyOrderChildren/OrderType.vue
+ -->
 <template>
   <div id="orderType">
     <div v-if="orderTypeDataArray.length>0">

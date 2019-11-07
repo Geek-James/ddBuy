@@ -1,12 +1,12 @@
-/**
- * @Author: 极客James  
- * @Date: 2019-10-1 11:44:08 
- * @Last Modified by: james
- * @Last Modified time: 2019-10-30 23:19:04
- * @GitHub https://github.com/Geek-James
- * @掘金 https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @描述 首页->abBar组件
- */
+<!--
+ * @Author: 极客James
+ * @Motto: 求知若渴,虚心若愚
+ * @Github: https://github.com/Geek-James/ddBuy
+ * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
+ * @LastEditTime: 2019-11-07 09:17:39
+ * @Description: 首页->TabBar组件
+ * @FilePath: /ddBuy/src/views/home/components/tabbar/TabbarGoodsItem.vue
+ -->
 <template>
   <div id="tabbarItem">
     <van-tabs v-model="active"
