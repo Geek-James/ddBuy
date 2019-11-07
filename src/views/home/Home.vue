@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-07 11:13:19
+ * @LastEditTime: 2019-11-07 15:42:31
  * @Description: Home 首页模块
  * @FilePath: /ddBuy/src/views/home/Home.vue
  -->
@@ -77,7 +77,7 @@ export default {
   },
   mounted () {
     //  1.接受订阅
-    (ADD_TO_CART, (msg, goods) => {
+    PubSub.subscribe(ADD_TO_CART, (msg, goods) => {
       // 1.1 判断发布是否是'ADD_TO_CART'
       if (msg == ADD_TO_CART) {
         // 1.2 判断是否有用户登录
