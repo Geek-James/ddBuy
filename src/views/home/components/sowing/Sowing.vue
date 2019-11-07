@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-07 11:00:57
+ * @LastEditTime: 2019-11-07 23:00:38
  * @Description: 首页->轮播组件
  * @FilePath: /ddBuy/src/views/home/components/sowing/Sowing.vue
  -->
@@ -14,7 +14,7 @@
     <!-- slides -->
     <swiper-slide v-for="(sowing,index) in sowing_list"
                   :key="sowing.public_id">
-      <img :src="sowing.icon_url"
+      <img v-lazy="sowing.icon_url"
            :alt="sowing.public_name">
     </swiper-slide>
 

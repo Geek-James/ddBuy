@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-07 09:16:14
+ * @LastEditTime: 2019-11-07 22:37:20
  * @Description: 首页->限时抢购
  * @FilePath: /ddBuy/src/views/home/components/flash/FlashFood.vue
  -->
@@ -74,8 +74,9 @@
 // 引入第三方组件
 import BScroll from 'better-scroll'
 import { Toast } from 'vant'
-// 引入消息发布订阅
-import PubSub from 'pubsub-js'
+// 引入中央事件总线
+import Bus from '../../../../config/bus'
+
 import { ADD_TO_CART } from './../../../../config/pubsub_type.js'
 export default {
   props: {
@@ -114,8 +115,8 @@ export default {
   },
   methods: {
     addToCart (goods) {
-      // 发送通知
-      PubSub.publish(ADD_TO_CART, goods);
+      // 通过中央事件总线来传递加入购物车事件
+      Bus.$emit('addToCart', goods);
     }
   }
 }

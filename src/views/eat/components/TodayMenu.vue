@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-07 09:26:08
+ * @LastEditTime: 2019-11-07 21:57:02
  * @Description: 吃什么->今日菜单
  * @FilePath: /ddBuy/src/views/eat/components/TodayMenu.vue
  -->
@@ -174,7 +174,7 @@ export default {
   margin-bottom: 3rem;
   .todayMenuWrapper {
     width: 100%;
-    height: 2rem;
+    height: 1.5rem;
     display: inline-block;
     white-space: nowrap;
     border-bottom: solid 0.01rem #e8e9e8;

@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-07 09:17:23
+ * @LastEditTime: 2019-11-07 22:34:48
  * @Description: 首页->产品列表
  * @FilePath: /ddBuy/src/views/home/components/tabbar/ProduceItem.vue
  -->
@@ -70,6 +70,8 @@
 import { Toast } from 'vant'
 // 引入消息发布订阅
 import PubSub from 'pubsub-js'
+import Bus from '../../../../config/bus'
+
 import { ADD_TO_CART } from './../../../../config/pubsub_type.js'
 
 export default {
@@ -89,8 +91,8 @@ export default {
   },
   methods: {
     addCart (goods) {
-      // 发送通知
-      PubSub.publish(ADD_TO_CART, goods)
+      // 通过中央事件总线来传递加入购物车事件
+      Bus.$emit('addToCart', goods);
     }
   }
 }

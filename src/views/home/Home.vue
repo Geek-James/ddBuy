@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-07 17:35:58
+ * @LastEditTime: 2019-11-07 22:59:24
  * @Description: Home 首页模块
  * @FilePath: /ddBuy/src/views/home/Home.vue
  -->
@@ -49,8 +49,10 @@ import { showBackIcon, animate } from './../../config/global.js'
 import { mapMutations, mapState } from 'vuex'
 // 引入vant组件
 import { Toast } from 'vant'
-// 引入消息发布订阅
-import PubSub from 'pubsub-js'
+
+// 引入中央数据总线
+import Bus from '../../config/bus'
+
 import { ADD_TO_CART } from './../../config/pubsub_type.js'
 
 // 引入页面组件
@@ -65,10 +67,7 @@ import TabbarGoodsItem from './components/tabbar/TabbarGoodsItem'
 import Loading from '../../components/loading/LoadingGif'
 
 export default {
-
-  name: 'Home',
   created () {
-
   },
   computed: {
     ...mapState(['userInfo']),
@@ -76,29 +75,10 @@ export default {
   mounted () {
     // 0.数据初始化
     this._initData();
-    //  1.接受订阅
-    PubSub.subscribe(ADD_TO_CART, (msg, goods) => {
-      // 1.1 判断发布是否是'ADD_TO_CART'
-      if (msg == ADD_TO_CART) {
-        // 1.2 判断是否有用户登录
-        if (this.userInfo.token) {
-          Toast({
-            message: '已加入购物车',
-            duration: 800
-          });
-          // 1.3 添加数据
-          this.ADD_GOODS({
-            goodsID: goods.id,
-            goodsName: goods.name,
-            smallImage: goods.small_image,
-            goodsPrice: goods.price
-          });
-        } else {
-          // 1.4 如何没有登录跳转到登录界面
-          this.$router.push('/login');
-        }
-      }
-    });
+    // 通过中心事件总线触发加入购物车事件
+    Bus.$on('addToCart', (goods) => {
+      this.addToCart(goods);
+    })
   },
   data () {
     return {
@@ -122,13 +102,9 @@ export default {
     Loading,
   },
   methods: {
-    // Vuex中的方法ADD_GOODS
+    // Vuex中的方法
     ...mapMutations(['ADD_GOODS']),
-    scrollToTop () {
-      let documentBody = document.documentElement || document.body;
-      // 做缓动动画
-      animate(documentBody, { scrollTop: '0' }, 400, 'ease-out');
-    },
+    // 数据初始化
     _initData () {
       getHomeData().then(response => {
         if (response.success) {
@@ -138,18 +114,38 @@ export default {
           this.flash_sale_product_list = response.data.list[3].product_list;
           this.tabbar_all_product_list = response.data.list[12].product_list;
           this.isShowLoading = false
-          //   给特色专区赋值
+          // 给特色专区赋值
           this.specialZone = response.data.special_zone;
         }
       }).catch(error => {
         console.log(error);
       });
+    },
+    // 添加到购物车
+    addToCart (goods) {
+      // 1.1 判断是否有用户登录
+      if (this.userInfo.token) {
+        Toast({
+          message: '已加入购物车',
+          duration: 800
+        });
+        // 1.2 添加数据
+        this.ADD_GOODS({
+          goodsID: goods.id,
+          goodsName: goods.name,
+          smallImage: goods.small_image,
+          goodsPrice: goods.price
+        });
+      } else {
+        // 1.3 如何没有登录跳转到登录界面
+        this.$router.push('/login');
+      }
     }
   },
   beforeDestroy () {
-    // 发布订阅后,记得记得销毁哦,不然会阻塞线程~
-    PubSub.unsubscribe(ADD_TO_CART);
-  },
+    // 手动销毁 $on 事件，防止多次触发
+    Bus.$off('addToCart', this.someBusMessage);
+  }
 }
 </script>
 
