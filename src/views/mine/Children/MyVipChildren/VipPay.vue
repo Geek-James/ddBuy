@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-07 09:21:10
+ * @LastEditTime: 2019-11-07 16:07:04
  * @Description: 我的->我的绿卡->开通绿卡
  * @FilePath: /ddBuy/src/views/mine/Children/MyVipChildren/VipPay.vue
  -->
@@ -187,6 +187,9 @@ export default {
   bottom: 0;
   background-color: #ffffff;
   z-index: 100;
+  overflow: hidden;
+  overflow-y: auto;
+  padding-bottom: 4rem;
   .van-nav-bar {
     background-color: #303747;
     font-size: 0.6rem;
