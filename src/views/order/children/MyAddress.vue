@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-07 09:24:50
+ * @LastEditTime: 2019-11-08 17:23:05
  * @Description: 订单->我的地址
  * @FilePath: /ddBuy/src/views/order/children/MyAddress.vue
  -->
@@ -50,10 +50,11 @@ import PubSub from 'pubsub-js'
 export default {
   data () {
     return {
-      chosenAddressId: 0
+      chosenAddressId: 0,
     }
   },
   computed: {
+
     ...mapState(['shippingAddress']),
   },
   mounted () {

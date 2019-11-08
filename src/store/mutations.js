@@ -25,9 +25,6 @@ import {
     setLocalStore,
     removeLocalStore
 } from '../config/global'
-import {
-    log
-} from 'util';
 
 export default {
     // 注意:外界传值的参数一定要和定义的参数一致 例如 goodsID  isCheckedAll
@@ -116,11 +113,11 @@ export default {
                 Vue.set(goods, 'checked', true);
             }
         }
-        // 4.4 将数据同步到state中
+        // 4.7 将数据同步到state中
         state.shopCart = {
             ...shopCart
         };
-        // 4.5 将数据更新到本地
+        // 4.8 将数据更新到本地
         setLocalStore('shopCart', state.shopCart);
     },
     // 5.全选商品 外界出过来一个isSelected
@@ -182,17 +179,19 @@ export default {
     [CHANGE_USER_NICK_NAME](state, {
         nickName
     }) {
+        // 9.1 从state中取出userInfo
         let userInfo = state.userInfo;
+        // 9.2 遍历userInfo的key取出User_name,替换Value值
         Object.keys(userInfo).forEach((info, index) => {
             if (info == 'user_name') {
                 userInfo['user_name'] = nickName;
             }
         });
-        // 5.2 同步state数据
+        // 9.3 同步state数据
         state.userInfo = {
             ...userInfo
         };
-        // 5.3 将数据更新到本地
+        // 9.4 将数据更新到本地
         setLocalStore('userInfo', state.userInfo);
     },
 
@@ -202,94 +201,103 @@ export default {
     }) {
         // 10.1 取出state中的用户信息
         let userInfo = state.userInfo;
+        // 10.2 遍历userInfo的value值
         Object.values(userInfo).forEach((info, index) => {
-            if (info.brithday) { // 存在该生日
+            // 10.3 判断是否有brithday
+            if (info.brithday) {
                 info.brithday = brithday;
             } else {
                 Vue.set(userInfo, 'brithday', brithday);
             }
         });
-        // 10.2 同步state数据
+        // 10.4 同步state数据
         state.userInfo = {
             ...userInfo
         };
-        // 10.3 将数据更新到本地
+        // 10.5 将数据更新到本地
         setLocalStore('userInfo', state.userInfo);
     },
     // 11.用户性别
     [USER_INFO_SEX](state, {
         sex
     }) {
-        // 取出用户信息
+        // 11.1 取出用户信息
         let userInfo = state.userInfo;
         Object.values(userInfo).forEach((info, index) => {
-            if (info.sex) { // 存在该生日
+            // 11.2 判断是否有sex
+            if (info.sex) {
                 info.sex = sex;
             } else {
                 Vue.set(userInfo, 'sex', sex);
             }
         });
-        // 10.2 同步state数据
+        // 11.3 同步state数据
         state.userInfo = {
             ...userInfo
         };
-        // 10.3 将数据更新到本地
+        // 11.4 将数据更新到本地
         setLocalStore('userInfo', state.userInfo);
     },
 
-    // 退出登录
+    // 15 退出登录
     [LOGIN_OUT](state) {
         state.userInfo = {};
         state.shopCart = {};
         removeLocalStore('userInfo');
         removeLocalStore('shopCart');
     },
-    //  初始化获取用户收货地址
+    //  16.初始化获取用户收货地址
     [INIT_USER_SHOPPING_ADDRESS](state) {
-        // 8.1 先存本地用户数据
-        let initUsershoppingAddress = getLocalStore('shippingAddress');
-        if (initUsershoppingAddress) {
-            state.shippingAddress = JSON.parse(initUsershoppingAddress);
+        if (state.shippingAddress.length > 0) {
+            // 16.1 先存本地用户数据
+            let initUsershoppingAddress = getLocalStore('shippingAddress');
+            if (initUsershoppingAddress) {
+                state.shippingAddress = JSON.parse(initUsershoppingAddress);
+            }
+        } else {
+            state.shippingAddress = [];
         }
     },
-    // 增加用户地址
+
+    // 17.增加用户地址
     [ADD_USER_SHOPPING_ADDRESS](state, {
         content
     }) {
-        // 取出state中的shippingAddress
+        // 17.1 取出state中的shippingAddress
         let shippingAddress = state.shippingAddress;
-        // 给shippingAddress赋值
+        // 17.2 给shippingAddress赋值
         shippingAddress.push(content);
-        // 产生新对象
+        // 17.3 产生新对象
         state.shippingAddress = [...shippingAddress];
-        // 将数据存储到本地
+        // 17.4 将数据存储到本地
         setLocalStore('shippingAddress', state.shippingAddress);
     },
-    // 删除用户地址
+
+    // 18.删除用户地址
     [DELETE_USER_SHOPPING_ADDRESS](state, {
         id
     }) {
-        // 取出state中的shippingAddress
+        // 18.1 取出state中的shippingAddress
         let shippingAddress = state.shippingAddress;
-        // 删除
+        // 18.2 删除
         for (let i = 0; i < shippingAddress.length; i++) {
             if (shippingAddress[i].id == id) {
                 shippingAddress.splice(i, 1);
                 break;
             }
         }
-        // 更新store数据
+        // 18.3更新store数据
         state.shippingAddress = [...shippingAddress];
-        // 更新本地数据
+        // 18.4更新本地数据
         setLocalStore('shippingAddress', state.shippingAddress);
     },
-    // 修改用户地址信息
+    // 19.修改用户地址信息
     [CHANGE_USER_SHOPPING_ADDRESS](state, {
         content
     }) {
-        // 取出state中的shippingAddress
+        // 19.1 取出state中的shippingAddress
         let shippingAddress = state.shippingAddress;
-        // 查找id的那个对象
+        // 19.2查找id的那个对象
         for (let index = 0; index < shippingAddress.length; index++) {
             if (shippingAddress[index].id == content.id) {
                 console.log(shippingAddress[index]);
@@ -297,9 +305,9 @@ export default {
                 break;
             }
         }
-        // 更新store数据
+        // 19.3更新store数据
         state.shippingAddress = [...shippingAddress];
-        // 更新本地数据
+        // 19.4更新本地数据
         setLocalStore('shippingAddress', state.shippingAddress);
     }
 }
