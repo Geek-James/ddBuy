@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-07 22:59:24
+ * @LastEditTime: 2019-11-08 10:20:34
  * @Description: Home 首页模块
  * @FilePath: /ddBuy/src/views/home/Home.vue
  -->
@@ -16,7 +16,7 @@
         <!-- 轮播图 -->
         <Sowing :sowing_list="sowing_list"></Sowing>
         <!-- tip -->
-        <Tip></Tip>
+        <Tip :home_ad="home_ad"></Tip>
       </div>
       <!-- Nav -->
       <Nav :nav_list="nav_list"></Nav>
@@ -87,7 +87,8 @@ export default {
       nav_list: [],
       flash_sale_product_list: [],  // 限时抢购  
       tabbar_all_product_list: [],
-      specialZone: {}                // 特色专区数据
+      specialZone: {},               // 特色专区数据
+      home_ad: ''                    // 首页广告
     }
   },
   components: {
@@ -108,6 +109,7 @@ export default {
     _initData () {
       getHomeData().then(response => {
         if (response.success) {
+
           // 给轮播组件 sowing_list赋值 
           this.sowing_list = response.data.list[0].icon_list;
           this.nav_list = response.data.list[2].icon_list;
@@ -116,6 +118,8 @@ export default {
           this.isShowLoading = false
           // 给特色专区赋值
           this.specialZone = response.data.special_zone;
+          // 获取首页广告图
+          this.home_ad = response.data.home_ad.image_url;
         }
       }).catch(error => {
         console.log(error);

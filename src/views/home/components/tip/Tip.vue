@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-07 09:17:58
+ * @LastEditTime: 2019-11-08 10:34:41
  * @Description: 首页->Tip组件
  * @FilePath: /ddBuy/src/views/home/components/tip/Tip.vue
  -->
@@ -20,24 +20,29 @@
            alt="">
       <span class="tipText">0元起送 0配送费</span>
     </div>
+
     <div class="tipBox">
       <img src="../../../../images/icon/seal.png"
            alt="">
       <span class="tipText">安心退</span>
     </div>
-    <div>
+    <router-link :to="{ name: 'myVip' }"
+                 tag="div">
       <img class="adImg"
-           src="http:\/\/img.ddimg.mobi\/o_1dkib68ka1t1i1l0cctkvgi1s0e10.jpg">
-      <div class="adTitle">点击<br>
-        领取
+           :src="home_ad">
+      <div class="adTitle">加入<br>
+        会员
       </div>
-    </div>
+    </router-link>
   </div>
 </template>
 
 <script type="text/javascript">
 export default {
-
+  props: {
+    // 父组件传递过来的数据
+    home_ad: [String]
+  },
   data () {
     return {
     }
@@ -47,7 +52,6 @@ export default {
 
 <style lang="less" scoped>
 #tip {
-  //   display: flex;
   margin-top: 0.3rem;
   position: relative;
 }
@@ -70,19 +74,20 @@ export default {
   color: #45c763;
 }
 .adImg {
-  margin-top: 0.5rem;
+  margin-top: 0.8rem;
   width: 100%;
   height: 6rem;
+  margin-bottom: -0.2rem;
 }
 .adTitle {
   position: absolute;
   top: 3.4rem;
-  right: 0.3rem;
-  width: 3rem;
-  height: 3rem;
-  line-height: 1.4rem;
+  left: 14%;
+  width: 2.5rem;
+  height: 2.5rem;
+  line-height: 1.2rem;
   border-radius: 50%;
-  font-size: 0.6rem;
+  font-size: 0.1rem;
   text-align: center;
   color: gold;
   background-image: linear-gradient(to right, #ff9569 0%, #e92758 100%);
