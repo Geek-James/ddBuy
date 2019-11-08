@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-08 17:23:05
+ * @LastEditTime: 2019-11-08 17:52:59
  * @Description: 订单->我的地址
  * @FilePath: /ddBuy/src/views/order/children/MyAddress.vue
  -->
@@ -20,7 +20,7 @@
          v-show="shippingAddress.length<1">
       <img src="./../../../images/order/noAddress.png"
            alt="">
-      <span class="desc">还没有添加过地址呢😝添加一个吧😄</span>
+      <span class="desc">还没有添加过地址呢,添加一个吧😄</span>
     </div>
     <!-- 联系人 -->
     <van-address-list v-model="chosenAddressId"
@@ -103,8 +103,8 @@ export default {
     justify-content: center;
     align-items: center;
     img {
-      width: 50%;
-      height: 30%;
+      width: 40%;
+      height: 20%;
     }
     .desc {
       color: grey;
