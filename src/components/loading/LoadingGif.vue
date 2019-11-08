@@ -3,8 +3,8 @@
        :class="show?'active':''">
     <div class="spinner">
       <div class="double-bounce1"></div>
-      <div class="double-bounce2"></div>
-      Loading..
+      <div class="double-bounce2">loading...</div>
+      <div class="double-bounce3"></div>
     </div>
   </div>
 </template>
@@ -61,7 +61,8 @@ export default {
 }
 
 .double-bounce1,
-.double-bounce2 {
+.double-bounce2,
+.double-bounce3 {
   width: 100%;
   height: 100%;
   border-radius: 50%;
@@ -76,8 +77,13 @@ export default {
 }
 
 .double-bounce2 {
-  -webkit-animation-delay: -1s;
-  animation-delay: -1s;
+  -webkit-animation-delay: -0.8s;
+  animation-delay: -0.8s;
+}
+
+.double-bounce3 {
+  -webkit-animation-delay: -1.8s;
+  animation-delay: -1.8s;
 }
 
 @-webkit-keyframes bounce {

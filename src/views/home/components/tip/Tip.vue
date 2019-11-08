@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-08 10:34:41
+ * @LastEditTime: 2019-11-08 11:01:22
  * @Description: 首页->Tip组件
  * @FilePath: /ddBuy/src/views/home/components/tip/Tip.vue
  -->
@@ -30,9 +30,9 @@
                  tag="div">
       <img class="adImg"
            :src="home_ad">
-      <div class="adTitle">加入<br>
+      <!-- <div class="adTitle">加入<br>
         会员
-      </div>
+      </div> -->
     </router-link>
   </div>
 </template>
