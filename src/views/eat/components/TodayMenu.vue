@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-07 21:57:02
+ * @LastEditTime: 2019-11-10 13:57:55
  * @Description: 吃什么->今日菜单
  * @FilePath: /ddBuy/src/views/eat/components/TodayMenu.vue
  -->
@@ -56,9 +56,11 @@
           </span>
         </div>
       </div>
+
       <MenuCategoryLists :todayMenuCategoryLists="todayMenuCategoryLists"
                          :isShowMenuList="isShowMenuList"
-                         v-on:hiddenMenu="clickAll"></MenuCategoryLists>
+                         v-on:hiddenMenu="clickAll">
+      </MenuCategoryLists>
     </div>
     <Loading :show="isShowLoading">
     </Loading>
@@ -71,7 +73,7 @@ import BScroll from 'better-scroll'
 import MenuCategoryLists from './MenuCategoryLists'
 
 // 引入通知
-import Pubsub from 'pubsub-js'
+import PubSub from 'pubsub-js'
 import { EAT_MENUTITLE_CLICK } from '../../../config/pubsub_type.js'
 
 // 引入加载动画
@@ -162,14 +164,16 @@ export default {
         }
       });
     }
+  },
+  beforeDestroy () {
+    PubSub.unsubscribe(EAT_MENUTITLE_CLICK);
   }
 }
 </script>
 <style lang="less" scoped>
 #todayMenu {
-  width: 97%;
-  padding-left: 0.3rem;
-  margin-top: 8rem;
+  width: 100%;
+  margin-top: 6.5rem;
   overflow: hidden;
   margin-bottom: 3rem;
   .todayMenuWrapper {
