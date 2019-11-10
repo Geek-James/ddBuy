@@ -11,6 +11,11 @@ const Eat = () => import('../views/eat/Eat.vue');
 const Cart = () => import('../views/cart/Cart.vue');
 const Mine = () => import('../views/mine/Mine.vue');
 
+// 解决多次点击重复路由报错
+const originalPush = Router.prototype.push
+Router.prototype.push = function push(location) {
+    return originalPush.call(this, location).catch(err => err)
+}
 // Mine的子组件 用户中心
 const UserCenter = () => import('../views/mine/Children/UserCenter.vue');
 // 修改用户昵称
