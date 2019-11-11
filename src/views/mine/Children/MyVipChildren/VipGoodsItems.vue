@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-07 09:19:29
+ * @LastEditTime: 2019-11-10 15:04:28
  * @Description: 我的->我的绿卡->绿卡产品列表
  * @FilePath: /ddBuy/src/views/mine/Children/MyVipChildren/VipGoodsItems.vue
  -->
@@ -18,8 +18,10 @@
               :key="index"
               class="list ">
             <div class="list_item flex">
-              <p><img :src="item.small_image"
-                     alt=""></p>
+              <p>
+                <img :src="item.small_image"
+                     alt="">
+              </p>
               <div>
                 <p class="name">{{item.product_name}}</p>
                 <p class="des">{{item.spec}}</p>
@@ -40,9 +42,9 @@
                                       r="93.8427229%"
                                       id="radialGradient-1">
                         <stop stop-color="#d7d7d7"
-                              offset="0%"></stop>
+                              offset="0%" />
                         <stop stop-color="#d7d7d7"
-                              offset="100%"></stop>
+                              offset="100%" />
                       </radialGradient>
                     </defs>
                     <g stroke="none"

@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-08 10:20:34
+ * @LastEditTime: 2019-11-10 14:50:16
  * @Description: Home 首页模块
  * @FilePath: /ddBuy/src/views/home/Home.vue
  -->
@@ -14,30 +14,29 @@
       <div class="head">
         <Header></Header>
         <!-- 轮播图 -->
-        <Sowing :sowing_list="sowing_list"></Sowing>
+        <Sowing :sowing_list="sowing_list" />
         <!-- tip -->
-        <Tip :home_ad="home_ad"></Tip>
+        <Tip :home_ad="home_ad" />
       </div>
       <!-- Nav -->
-      <Nav :nav_list="nav_list"></Nav>
+      <Nav :nav_list="nav_list" />
       <!-- 跳转到会员界面 -->
       <VipTip></VipTip>
       <!-- 限时抢购 -->
-      <FlashBuy :flash_sale_product_list="flash_sale_product_list"></FlashBuy>
+      <FlashBuy :flash_sale_product_list="flash_sale_product_list" />
       <!-- 特色专区 -->
-      <SpecialZone :specialZone="specialZone"></SpecialZone>
+      <SpecialZone :specialZone="specialZone" />
       <!--TabbarItem 商品 -->
       <TabbarGoodsItem :tabbar_all_product_list="tabbar_all_product_list"
-                       :flash_sale_product_list="flash_sale_product_list"></TabbarGoodsItem>
+                       :flash_sale_product_list="flash_sale_product_list" />
       <!-- 最底部 -->
       <van-divider>我是有底线的</van-divider>
     </div>
     <!-- 数据加载提示gif -->
-    <Loading :show="isShowLoading"></Loading>
+    <Loading :show="isShowLoading" />
     <!-- 回到顶部按钮 -->
-    <v-top></v-top>
+    <v-top />
   </div>
-
 </template>
 
 <script type="text/javascript">
@@ -67,10 +66,10 @@ import TabbarGoodsItem from './components/tabbar/TabbarGoodsItem'
 import Loading from '../../components/loading/LoadingGif'
 
 export default {
-  created () {
-  },
   computed: {
     ...mapState(['userInfo']),
+  },
+  created () {
   },
   mounted () {
     // 0.数据初始化

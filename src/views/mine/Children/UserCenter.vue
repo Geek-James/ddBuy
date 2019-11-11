@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-07 09:22:13
+ * @LastEditTime: 2019-11-10 15:01:58
  * @Description: 我的->个人资料
  * @FilePath: /ddBuy/src/views/mine/Children/UserCenter.vue
  -->
@@ -14,7 +14,7 @@
                  :border=false
                  @click-left="onClickLeft"
                  left-arrow
-                 style="height:2.5rem"></van-nav-bar>
+                 style="height:2.5rem" />
     <div class="icon">
       <span class="title">头像</span>
       <img src="./../../../images/mine/defaultImg.jpeg"

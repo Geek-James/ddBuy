@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-07 15:37:50
+ * @LastEditTime: 2019-11-10 15:01:46
  * @Description: 我的
  * @FilePath: /ddBuy/src/views/mine/Mine.vue
  -->
@@ -12,7 +12,7 @@
     <van-nav-bar title="我的"
                  :fixed=true
                  :border=false
-                 style="height:2.5rem"></van-nav-bar>
+                 style="height:2.5rem" />
     <van-cell-group style="margin-top:2.4rem">
       <van-cell style="background-color: #3bba63;color:#FFF;"
                 label-class="labelClass"

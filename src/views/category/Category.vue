@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-07 09:27:23
+ * @LastEditTime: 2019-11-10 14:51:11
  * @Description: 分类
  * @FilePath: /ddBuy/src/views/category/Category.vue
  -->
@@ -28,12 +28,12 @@
         </ul>
       </div>
       <!--右边-->
-      <ContentView :categoriesDetailData="categoriesDetailData"></ContentView>
+      <ContentView :categoriesDetailData="categoriesDetailData" />
     </div>
     <!-- 加载动画 -->
-    <Loading :show="isShowLoading"></Loading>
+    <Loading :show="isShowLoading" />
     <!-- 点击左边按钮加载数据时候显示动画 -->
-    <LoadingGif v-show="isShowLoadingGif"></LoadingGif>
+    <LoadingGif v-show="isShowLoadingGif" />
   </div>
 </template>
 

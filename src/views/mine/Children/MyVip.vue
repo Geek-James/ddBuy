@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-07 09:22:02
+ * @LastEditTime: 2019-11-10 15:02:56
  * @Description: 我的->我的绿卡
  * @FilePath: /ddBuy/src/views/mine/Children/MyVip.vue
  -->
@@ -95,10 +95,10 @@
         <!-- 可横向滑动的菜单 -->
         <van-sticky :offset-top="40">
           <VipMenuTitleScroll :menuTitlesArray="cate"
-                              @menuTitleClick="menuTitleClick"></VipMenuTitleScroll>
+                              @menuTitleClick="menuTitleClick" />
         </van-sticky>
         <!-- Vip商品列表 -->
-        <VipGoodsItems :vipCateDetail="cateDetail"></VipGoodsItems>
+        <VipGoodsItems :vipCateDetail="cateDetail" />
       </div>
     </div>
     <!-- 底部按钮 -->
@@ -116,7 +116,7 @@
       </div>
     </transition>
     <!-- 数据加载提示gif -->
-    <Loading :show="isShowLoading"></Loading>
+    <Loading :show="isShowLoading" />
   </div>
 </template>
 

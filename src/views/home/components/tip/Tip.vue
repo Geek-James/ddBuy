@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-08 11:01:22
+ * @LastEditTime: 2019-11-10 14:08:25
  * @Description: 首页->Tip组件
  * @FilePath: /ddBuy/src/views/home/components/tip/Tip.vue
  -->
@@ -26,18 +26,18 @@
            alt="">
       <span class="tipText">安心退</span>
     </div>
-    <router-link :to="{ name: 'myVip' }"
-                 tag="div">
+    <div @click="goToVip">
       <img class="adImg"
            :src="home_ad">
       <!-- <div class="adTitle">加入<br>
         会员
       </div> -->
-    </router-link>
+    </div>
   </div>
 </template>
 
 <script type="text/javascript">
+import { mapState } from 'vuex'
 export default {
   props: {
     // 父组件传递过来的数据
@@ -47,6 +47,19 @@ export default {
     return {
     }
   },
+  computed: {
+    ...mapState(['userInfo'])
+
+  },
+  methods: {
+    goToVip () {
+      if (this.userInfo.token) {
+        this.$router.push({ name: 'myVip' });
+      } else {
+        this.$router.push('/login');
+      }
+    }
+  }
 }
 </script>
 

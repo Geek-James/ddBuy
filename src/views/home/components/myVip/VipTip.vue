@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-07 12:04:58
+ * @LastEditTime: 2019-11-10 14:04:22
  * @Description: 首页->加入会员Tip
  * @FilePath: /ddBuy/src/views/home/components/myVip/VipTip.vue
  -->
@@ -49,21 +49,28 @@
 </template>
 
 <script type="text/javascript">
+import { mapState } from 'vuex'
+
 export default {
   mounted () {
-
   },
   data () {
     return {
 
     }
   },
+  computed: {
+    ...mapState(['userInfo']),
+  },
   components: {
-
   },
   methods: {
     goToMyVip () {
-      this.$router.push({ name: 'myVip' });
+      if (this.userInfo.token) {
+        this.$router.push({ name: 'myVip' });
+      } else {
+        this.$router.push('/login');
+      }
     }
   }
 }

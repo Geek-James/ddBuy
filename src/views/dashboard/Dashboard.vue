@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-10 13:30:45
+ * @LastEditTime: 2019-11-10 14:59:50
  * @Description: 项目根入口
  * @FilePath: /ddBuy/src/views/dashboard/Dashboard.vue
  -->
@@ -25,9 +25,9 @@
     </van-tabbar>
     <!-- 是否缓存界面选择加载 -->
     <keep-alive>
-      <router-view v-if="$route.meta.keepAlive"></router-view>
+      <router-view v-if="$route.meta.keepAlive" />
     </keep-alive>
-    <router-view v-if="!$route.meta.keepAlive"></router-view>
+    <router-view v-if="!$route.meta.keepAlive" />
   </div>
 </template>
 

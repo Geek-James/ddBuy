@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-07 22:58:15
+ * @LastEditTime: 2019-11-10 14:52:37
  * @Description: 购物车模块
  * @FilePath: /ddBuy/src/views/cart/Cart.vue
  -->
@@ -80,11 +80,11 @@
       </van-divider>
       <!-- 商品详情组件 需要注意下底部是否被遮盖 动态设置padding-bottom -->
       <produceItem :product_lists="youLike_product_lists"
-                   :style="isShowEmptyCart?'padding-bottom:5.5rem':'padding-bottom:3rem'"></produceItem>
+                   :style="isShowEmptyCart?'padding-bottom:5.5rem':'padding-bottom:3rem'" />
     </div>
-    <Loading :show="isShowLoading"></Loading>
+    <Loading :show="isShowLoading" />
     <!-- 回到顶部组件 -->
-    <v-top></v-top>
+    <v-top />
   </div>
 </template>
 

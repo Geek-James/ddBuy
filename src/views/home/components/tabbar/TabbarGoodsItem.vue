@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-07 09:17:39
+ * @LastEditTime: 2019-11-10 14:58:49
  * @Description: 首页->TabBar组件
  * @FilePath: /ddBuy/src/views/home/components/tabbar/TabbarGoodsItem.vue
  -->
@@ -25,28 +25,28 @@
         <div slot="title">
           <span>{{itemsTitle[0]}}</span>
         </div>
-        <ProduceItem :product_lists="tabbar_all_product_list"></ProduceItem>
+        <ProduceItem :product_lists="tabbar_all_product_list" />
       </van-tab>
       <!-- 晚餐 -->
       <van-tab>
         <div slot="title">
           <span>{{itemsTitle[1]}}</span>
         </div>
-        <ProduceItem :product_lists="flash_sale_product_list"></ProduceItem>
+        <ProduceItem :product_lists="flash_sale_product_list" />
       </van-tab>
       <!-- 人气 -->
       <van-tab>
         <div slot="title">
           <span>{{itemsTitle[2]}}</span>
         </div>
-        <ProduceItem :product_lists="tabbar_all_product_list"></ProduceItem>
+        <ProduceItem :product_lists="tabbar_all_product_list" />
       </van-tab>
       <!-- 心选 -->
       <van-tab>
         <div slot="title">
           <span>{{itemsTitle[3]}}</span>
         </div>
-        <ProduceItem :product_lists="flash_sale_product_list"></ProduceItem>
+        <ProduceItem :product_lists="flash_sale_product_list" />
       </van-tab>
     </van-tabs>
   </div>

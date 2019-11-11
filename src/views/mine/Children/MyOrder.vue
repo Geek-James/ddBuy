@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-07 09:21:47
+ * @LastEditTime: 2019-11-10 15:03:29
  * @Description: 我的->我的订单
  * @FilePath: /ddBuy/src/views/mine/Children/MyOrder.vue
  -->
@@ -31,28 +31,28 @@
         <div slot="title">
           <span>{{itemsTitle[0]}}</span>
         </div>
-        <OrderType :orderTypeDataArray="typeArray"></OrderType>
+        <OrderType :orderTypeDataArray="typeArray" />
       </van-tab>
       <!-- 待支付 -->
       <van-tab>
         <div slot="title">
           <span>{{itemsTitle[1]}}</span>
         </div>
-        <OrderType :orderTypeDataArray="typeArray"></OrderType>
+        <OrderType :orderTypeDataArray="typeArray" />
       </van-tab>
       <!-- 待收货 -->
       <van-tab>
         <div slot="title">
           <span>{{itemsTitle[2]}}</span>
         </div>
-        <OrderType :orderTypeDataArray="typeArray"></OrderType>
+        <OrderType :orderTypeDataArray="typeArray" />
       </van-tab>
       <!-- 待评价-->
       <van-tab>
         <div slot="title">
           <span>{{itemsTitle[3]}}</span>
         </div>
-        <OrderType :orderTypeDataArray="typeArray"></OrderType>
+        <OrderType :orderTypeDataArray="typeArray" />
       </van-tab>
     </van-tabs>
   </div>
@@ -66,7 +66,6 @@ export default {
       // 路由传递过来的数据 active
       active: this.$route.params.active,
       itemsTitle: ['全部', '待支付', '待收货', '待评价'],
-
     }
   },
   components: {
