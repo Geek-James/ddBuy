@@ -57,23 +57,7 @@
 **欢迎提Bug,如有新的需求和想法，欢迎 issue 和 pr**
 
 ## 完整项目gif图
-<figure class="third">
-    <img src="http://518taole.7-orange.cn/home.gif" width="150">
-    <img src="http://518taole.7-orange.cn/category.gif" width="150">
-    <img src="http://518taole.7-orange.cn/eat.gif" width="150">
-</figure>
-
-<figure class="third">
-    <img src="http://518taole.7-orange.cn/login.gif" width="150">
-    <img src="http://518taole.7-orange.cn/shopCar.png" width="150">
-    <img src="http://518taole.7-orange.cn/mine.png" width="150">
-</figure>
-
-<figure class="third">
-    <img src="http://518taole.7-orange.cn/my.gif" width="150">
-    <img src="http://518taole.7-orange.cn/carbuy.gif" width="150">
-    <img src="http://518taole.7-orange.cn/order.gif" width="150">
-</figure>
+![image](http://518taole.7-orange.cn/homePage.jpg)
 
 ## 如何运行
 
