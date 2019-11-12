@@ -1,6 +1,6 @@
 <div align = "center" height="100">
   <img src="http://518taole.7-orange.cn/geek.png" width="100" height="100">
-  <div>
+</div>
 <p align="center">
   <a href="https://github.com/vuejs/vue">
     <img src="https://img.shields.io/badge/Vue-2.6.10-brightgreen.svg" alt="Vue">
