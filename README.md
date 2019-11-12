@@ -20,7 +20,7 @@
   </a>
 </p>
 
-简体中文 
+简体中文 | [English](https://github.com/Geek-James/ddBuy/blob/master/README.en.md)
 
 ## 简介
 
@@ -30,7 +30,7 @@
 
 作者 **[极客James](https://juejin.im/user/5c4ebc72e51d4511dc7306ce)**
 
-会经常分享一些技术相关的东西，或者加入 [微信群]() 或者关注 [公众号]()
+会经常分享一些技术相关的东西，可以加我 [微信](http://518taole.7-orange.cn/myWechat) 拉你进群和大神一起学习,或者关注我的 [公众号](http://518taole.7-orange.cn/wechat.jpg)免费领学习资料.
 
 ## 前序准备
 
@@ -59,7 +59,9 @@
 ## 完整项目图
 ![image](http://518taole.7-orange.cn/homePage.jpg)
 
-![image](http://518taole.7-orange.cn/categoryAndEat.png)
+![image](http://518taole.7-orange.cn/categorytwo.jpg)
+
+![image](http://518taole.7-orange.cn/myOrder.jpg)
 
 ## 如何运行
 
