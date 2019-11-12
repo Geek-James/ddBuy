@@ -30,7 +30,7 @@
 
 作者 **[极客James](https://juejin.im/user/5c4ebc72e51d4511dc7306ce)**
 
-会经常分享一些技术相关的东西，或者加入 [微信群](https://github.com/PanJiaChen/vue-element-admin/issues/602) 或者关注 [公众号](https://weibo.com/u/3423485724?is_all=1)
+会经常分享一些技术相关的东西，或者加入 [微信群]() 或者关注 [公众号]()
 
 ## 前序准备
 
