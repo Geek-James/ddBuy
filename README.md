@@ -1,6 +1,6 @@
-<p align="center">
-  <img width="100" src="http://518taole.7-orange.cn/geek2.jpg">
-</p>
+<div align="center">
+  <img width="100" src="http://518taole.7-orange.cn/geek.jpg">
+</div>
 <p align="center">
   <a href="https://github.com/vuejs/vue">
     <img src="https://img.shields.io/badge/Vue-2.6.10-brightgreen.svg" alt="Vue">
