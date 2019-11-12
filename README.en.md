@@ -59,6 +59,8 @@ Later,the whole project will be divided into several technical points and shared
 **Welcome find bug and if you have new ideas and suggestions,glad to you commit issue and pull request.**
 
 ## Project Image
+[Project Struction Tree](https://github.com/Geek-James/ddBuy/blob/master/README.structure.md)
+
 ![image](http://518taole.7-orange.cn/homePage.jpg)
 
 ![image](http://518taole.7-orange.cn/categorytwo.jpg)
