@@ -52,7 +52,6 @@ export default {
       let addressID = this.addressID().toString();
       content['id'] = addressID;
       content['address'] = content.province + content.city + content.county + content.addressDetail;
-      console.log(content);
       this.ADD_USER_SHOPPING_ADDRESS({
         addressID,
         content

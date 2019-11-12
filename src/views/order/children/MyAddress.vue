@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-12 09:25:54
+ * @LastEditTime: 2019-11-12 09:43:34
  * @Description: 订单->我的地址
  * @FilePath: /ddBuy/src/views/order/children/MyAddress.vue
  -->
@@ -59,8 +59,6 @@ export default {
   },
   mounted () {
     this.INIT_USER_SHOPPING_ADDRESS();
-    console.log("laile");
-    
   },
   components: {
 

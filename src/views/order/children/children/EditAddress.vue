@@ -41,7 +41,6 @@ export default {
   },
   mounted () {
     // 处理路由传过来的数据
-    console.log(this.$route.params.content);
     this.addressInfo = this.$route.params.content;
   },
   components: {
