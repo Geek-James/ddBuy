@@ -1,6 +1,4 @@
-<div align = "center" height="100">
-![image](http://518taole.7-orange.cn/geek3.png)
-</div>
+![](http://518taole.7-orange.cn/geek3.png)
 <p align="center">
   <a href="https://github.com/vuejs/vue">
     <img src="https://img.shields.io/badge/Vue-2.6.10-brightgreen.svg" alt="Vue">
