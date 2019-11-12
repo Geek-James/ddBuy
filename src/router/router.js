@@ -16,6 +16,7 @@ const originalPush = Router.prototype.push
 Router.prototype.push = function push(location) {
     return originalPush.call(this, location).catch(err => err)
 }
+
 // Mine的子组件 用户中心
 const UserCenter = () => import('../views/mine/Children/UserCenter.vue');
 // 修改用户昵称
@@ -42,6 +43,17 @@ const Login = () => import('../views/login/Login.vue');
 Vue.use(Router)
 
 export default new Router({
+    // 解决路由跳转页面没有置顶
+    scrollBehavior(to, from, savedPosition) {
+        if (savedPosition) {
+            return savedPosition
+        } else {
+            return {
+                x: 0,
+                y: 0
+            }
+        }
+    },
     // !!注意: 二级路由不需要加 '/'
     routes: [{
             path: '/',
