@@ -57,6 +57,8 @@
 **欢迎提Bug,如有新的需求和想法，欢迎 issue 和 pr**
 
 ## 完整项目图
+[项目架构树](https://github.com/Geek-James/ddBuy/blob/master/README.structure.md)
+
 ![image](http://518taole.7-orange.cn/homePage.jpg)
 
 ![image](http://518taole.7-orange.cn/categorytwo.jpg)
