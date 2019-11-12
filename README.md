@@ -1,5 +1,5 @@
 <div align="center">
-  <img width="100" src="http://518taole.7-orange.cn/geek2.jpg">
+  <img width="100" src="http://518taole.7-orange.cn/geek.png">
 </div>
 <p align="center">
   <a href="https://github.com/vuejs/vue">
@@ -59,7 +59,7 @@
 ## 完整项目图
 ![image](http://518taole.7-orange.cn/homePage.jpg)
 
-![image](http://518taole.7-orange.cn/categoryAndEat.jpg)
+![image](http://518taole.7-orange.cn/categoryAndEat.png)
 
 ## 如何运行
 
