@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-12 09:53:55
+ * @LastEditTime: 2019-11-12 16:56:09
  * @Description: 分类模块->可滑动标题组件
  * @FilePath: /ddBuy/src/views/category/components/ContentView.vue
  -->
@@ -278,6 +278,13 @@ export default {
       let subTitleWrapperWidth = this.$refs.subTitleWrapper.clientWidth;
       let ulContentWidth = this.$refs.ulContent.clientWidth;
       this.isShowDropMenu = ulContentWidth > subTitleWrapperWidth ? true : false;
+    },
+    // 8.商品详情
+    getDetails (item) {
+      Toast({
+        message: '商品详情暂未实现哦~',
+        duration: 800
+      });
     }
   }
 }

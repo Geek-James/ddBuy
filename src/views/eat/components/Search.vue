@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-07 09:25:59
+ * @LastEditTime: 2019-11-12 16:57:37
  * @Description: 吃什么->搜索栏
  * @FilePath: /ddBuy/src/views/eat/components/Search.vue
  -->
@@ -44,6 +44,7 @@
 </template>
 
 <script type="text/javascript">
+import { Toast } from 'vant'
 export default {
   data () {
     return {
@@ -55,10 +56,16 @@ export default {
   },
   methods: {
     clickCollerction () {
-      alert('跳转到收藏页面');
+      Toast({
+        message: "收藏暂未实现哦~",
+        duration: 800
+      })
     },
     clickSearch () {
-      alert('跳转到搜索界面');
+      Toast({
+        message: "搜索暂未实现哦~",
+        duration: 800
+      })
     }
   }
 }

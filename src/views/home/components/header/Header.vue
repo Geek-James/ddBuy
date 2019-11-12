@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-07 09:16:28
+ * @LastEditTime: 2019-11-12 16:55:31
  * @Description: 首页->顶部搜索栏
  * @FilePath: /ddBuy/src/views/home/components/header/Header.vue
  -->
@@ -28,7 +28,8 @@
 
     </div>
     <div class="searchWrapper"
-         ref="search">
+         ref="search"
+         @click="goSearch">
       <div class="searchContent">
         <div class="iconSearchWrapper">
           <svg viewBox="0 0 32 32"
@@ -44,7 +45,7 @@
   </div>
 </template>
 <script type="text/javascript">
-
+import { Toast } from 'vant'
 export default {
   data () {
     return {
@@ -70,6 +71,13 @@ export default {
       } else {
         this.showBgColor = false;
       }
+    },
+    // 到搜索界面
+    goSearch () {
+      Toast({
+        message: '暂未实现哦~',
+        duration: 800
+      });
     }
   },
   beforeDestroy () {

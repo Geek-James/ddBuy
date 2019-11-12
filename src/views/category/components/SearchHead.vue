@@ -3,13 +3,14 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-07 09:27:14
+ * @LastEditTime: 2019-11-12 16:55:53
  * @Description: 分类模块->搜索框
  * @FilePath: /ddBuy/src/views/category/components/SearchHead.vue
  -->
 <template>
   <div class="searchWrapper">
-    <div class="searchBox">
+    <div class="searchBox"
+         @click="goSearch">
       <div class="iconSearchWrapper">
         <svg viewBox="0 0 32 32"
              class="icon iconSearch">
@@ -24,6 +25,8 @@
 </template>
 
 <script type="text/javascript">
+import { Toast } from 'vant'
+
 export default {
   data () {
     return {
@@ -32,6 +35,15 @@ export default {
   },
   components: {
 
+  },
+  methods: {
+    // 到搜索界面
+    goSearch () {
+      Toast({
+        message: '暂未实现哦~',
+        duration: 800
+      });
+    }
   }
 }
 </script>
