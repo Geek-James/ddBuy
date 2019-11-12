@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-08 17:52:59
+ * @LastEditTime: 2019-11-12 09:25:54
  * @Description: 订单->我的地址
  * @FilePath: /ddBuy/src/views/order/children/MyAddress.vue
  -->
@@ -59,6 +59,8 @@ export default {
   },
   mounted () {
     this.INIT_USER_SHOPPING_ADDRESS();
+    console.log("laile");
+    
   },
   components: {
 
@@ -72,8 +74,6 @@ export default {
       this.$router.push({ path: '/order/myAddress/addAddress' });
     },
     onEdit (item, index) {
-      console.log(item);
-
       this.$router.push({ name: 'editAddress', params: { content: item } });
     },
     onBackAddress (item, index) {

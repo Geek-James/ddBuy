@@ -239,21 +239,19 @@ export default {
         setLocalStore('userInfo', state.userInfo);
     },
 
-    // 15 退出登录
+    // 15. 退出登录
     [LOGIN_OUT](state) {
         state.userInfo = {};
         state.shopCart = {};
         removeLocalStore('userInfo');
         removeLocalStore('shopCart');
+        removeLocalStore('shippingAddress');
     },
     //  16.初始化获取用户收货地址
     [INIT_USER_SHOPPING_ADDRESS](state) {
-        if (state.shippingAddress.length > 0) {
-            // 16.1 先存本地用户数据
-            let initUsershoppingAddress = getLocalStore('shippingAddress');
-            if (initUsershoppingAddress) {
-                state.shippingAddress = JSON.parse(initUsershoppingAddress);
-            }
+        let initUsershoppingAddress = getLocalStore('shippingAddress');
+        if (initUsershoppingAddress) {
+            state.shippingAddress = JSON.parse(initUsershoppingAddress);
         } else {
             state.shippingAddress = [];
         }
