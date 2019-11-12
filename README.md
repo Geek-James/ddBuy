@@ -56,8 +56,10 @@
 
 **欢迎提Bug,如有新的需求和想法，欢迎 issue 和 pr**
 
-## 完整项目gif图
+## 完整项目图
 ![image](http://518taole.7-orange.cn/homePage.jpg)
+
+![image](http://518taole.7-orange.cn/categoryAndEat.jpg)
 
 ## 如何运行
 
