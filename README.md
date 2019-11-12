@@ -1,5 +1,5 @@
 <div align="center">
-  <img width=""100" margin="0 auto" src="http://518taole.7-orange.cn/geek.png">
+  <img width="100" margin="0 auto" src="http://518taole.7-orange.cn/geek.png">
 </div>
 <p align="center">
   <a href="https://github.com/vuejs/vue">
