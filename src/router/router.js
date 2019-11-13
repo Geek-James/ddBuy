@@ -10,6 +10,8 @@ const Category = () => import('../views/category/Category.vue');
 const Eat = () => import('../views/eat/Eat.vue');
 const Cart = () => import('../views/cart/Cart.vue');
 const Mine = () => import('../views/mine/Mine.vue');
+// 百度地图
+const BaiduMap = () => import('../views/home/components/map/BaiduMap.vue');
 
 // 解决多次点击重复路由报错
 const originalPush = Router.prototype.push
@@ -74,7 +76,12 @@ export default new Router({
                 // 是否数据缓存
                 meta: {
                     keepAlive: true
-                }
+                },
+                children: [{
+                    path: 'baiduMap',
+                    name: 'baiduMap',
+                    component: BaiduMap,
+                }]
             }, {
                 // 分类
                 path: 'category',
