@@ -67,11 +67,9 @@
 </template>
 
 <script type="text/javascript">
-import { Toast } from 'vant'
 // 引入消息发布订阅
 import PubSub from 'pubsub-js'
-import Bus from '../../../../config/bus'
-
+import { mapMutations } from 'vuex'
 import { ADD_TO_CART } from './../../../../config/pubsub_type.js'
 
 export default {
@@ -90,10 +88,9 @@ export default {
 
   },
   methods: {
-    addCart (goods) {
-      // 通过中央事件总线来传递加入购物车事件
-      Bus.$emit('addToCart', goods);
-    }
+    ...mapMutations({
+            addCart: 'ADD_TO_CART'
+    })
   }
 }
 </script>

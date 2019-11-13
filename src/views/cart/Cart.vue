@@ -89,8 +89,6 @@
 </template>
 
 <script type="text/javascript">
-// 引入中央数据总线
-import Bus from '../../config/bus'
 // 引入组件
 import ProduceItem from './../home/components/tabbar/ProduceItem'
 import { getGuessYouLike } from './../../serve/api/index.js'
@@ -104,9 +102,6 @@ export default {
   mounted () {
     // 初始化数据
     this._initData();
-    Bus.$on('addToCart', (goods) => {
-      this.addToCart(goods);
-    });
   },
   data () {
     return {
@@ -177,7 +172,7 @@ export default {
   },
   methods: {
     // 0.延展mutations中的方法
-    ...mapMutations(['ADD_GOODS', 'REDUCE_GOODS', 'SINGLE_SELECT_GOODS', 'ALL_SELECT_GOODS', 'DELETE_SELECT_GOODS']),
+    ...mapMutations(['ADD_GOODS', 'REDUCE_GOODS', 'SINGLE_SELECT_GOODS', 'ALL_SELECT_GOODS', 'DELETE_SELECT_GOODS','ADD_TO_CART']),
     // 1.右上角删除
     clearCart () {
       if (this.selectedGoodsCount > 0) {
@@ -245,32 +240,7 @@ export default {
         });
       }
     },
-    // 7.添加购物车
-    addToCart (goods) {
-      // 1.1 判断发布是否是'ADD_TO_CART'
-      // 1.2 判断是否有用户登录
-      if (this.userInfo.token) {
-        Toast({
-          message: '已加入购物车',
-          duration: 800
-        });
-        // 1.3 添加数据
-        this.ADD_GOODS({
-          goodsID: goods.id,
-          goodsName: goods.name,
-          smallImage: goods.small_image,
-          goodsPrice: goods.price
-        });
-      } else {
-        // 1.4 如何没有登录跳转到登录界面
-        this.$router.push('/login');
-      }
-    }
   },
-  //   beforeDestroy () {
-  //     // 手动销毁 $on 事件，防止多次触发
-  //     Bus.$off('addToCart', this.someBusMessage);
-  //   }
 }
 </script>
 <style lang="less" scoped>
