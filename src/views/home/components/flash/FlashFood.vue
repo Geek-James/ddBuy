@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-07 22:37:20
+ * @LastEditTime: 2019-11-13 10:43:09
  * @Description: 首页->限时抢购
  * @FilePath: /ddBuy/src/views/home/components/flash/FlashFood.vue
  -->
@@ -113,9 +113,10 @@ export default {
 
   },
   methods: {
-      ...mapMutations({
-          addToCart: 'ADD_TO_CART'
-      })
+    // 添加到购物车
+    ...mapMutations({
+      addToCart: 'ADD_TO_CART'
+    })
   }
 }
 </script>
