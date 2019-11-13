@@ -75,8 +75,7 @@
 import BScroll from 'better-scroll'
 import { Toast } from 'vant'
 // 引入中央事件总线
-import Bus from '../../../../config/bus'
-
+import { mapMutations } from 'vuex'
 import { ADD_TO_CART } from './../../../../config/pubsub_type.js'
 export default {
   props: {
@@ -114,10 +113,9 @@ export default {
 
   },
   methods: {
-    addToCart (goods) {
-      // 通过中央事件总线来传递加入购物车事件
-      Bus.$emit('addToCart', goods);
-    }
+      ...mapMutations({
+          addToCart: 'ADD_TO_CART'
+      })
   }
 }
 </script>

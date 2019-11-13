@@ -18,13 +18,15 @@ import {
     CHANGE_USER_SHOPPING_ADDRESS
 } from './mutation-type'
 import Vue from 'vue'
-
+import { Toast } from 'vant'
+import router from '@/router/router'
 // 引入本地存储
 import {
     getLocalStore,
     setLocalStore,
     removeLocalStore
 } from '../config/global'
+import {ADD_TO_CART} from "../config/pubsub_type";
 
 export default {
     // 注意:外界传值的参数一定要和定义的参数一致 例如 goodsID  isCheckedAll
@@ -54,9 +56,9 @@ export default {
             state.shopCart = {
                 ...shopCart
             };
-            // 1.4 将数据存储到本地
-            setLocalStore('shopCart', state.shopCart);
         }
+        // 1.4 将数据存储到本地
+        setLocalStore('shopCart', state.shopCart);
     },
     // 2.页面初始化,获取本地购物车的数据
     [INIT_SHOP_CART](state) {
@@ -307,5 +309,26 @@ export default {
         state.shippingAddress = [...shippingAddress];
         // 19.4更新本地数据
         setLocalStore('shippingAddress', state.shippingAddress);
+    },
+    // 添加商品进购物车
+    [ADD_TO_CART](state,goods) {
+        // 判断是否有用户登录
+        if (state.userInfo.token) {
+            Toast({
+                message: '已加入购物车',
+                duration: 800
+            });
+            // 1.3 添加数据
+            this.commit('ADD_GOODS',{
+                goodsID: goods.id,
+                goodsName: goods.name,
+                smallImage: goods.small_image,
+                goodsPrice: goods.price
+            })
+        } else {
+            // 1.4 如何没有登录跳转到登录界面
+            router.push('/login');
+        }
     }
+
 }
