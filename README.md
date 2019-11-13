@@ -33,9 +33,10 @@
 会经常分享一些技术相关的东西，可以加我 [微信:szfter](http://518taole.7-orange.cn/myWechat) 拉你进群和大神一起学习,或者关注我的 [公众号:前端甜甜圈](http://518taole.7-orange.cn/wechat.jpg)免费领学习资料.
 
 **加入微信交流群**
-<div align=left>
+<div>
 <img src="http://518taole.7-orange.cn/wechatQ.jpeg" width = "100" height = "100" div align=left />
 </div>
+<br>
 
 ## 前序准备
 
