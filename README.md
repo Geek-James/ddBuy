@@ -34,9 +34,8 @@
 
 **加入微信交流群**
 <div>
-<img src="http://518taole.7-orange.cn/wechatQ.jpeg" width = "100" height = "100" div align=left />
+<img src="http://518taole.7-orange.cn/wechatQ.jpeg" width = "100" height = "100" />
 </div>
-<br>
 
 ## 前序准备
 
