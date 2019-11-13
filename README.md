@@ -32,6 +32,11 @@
 
 会经常分享一些技术相关的东西，可以加我 [微信:szfter](http://518taole.7-orange.cn/myWechat) 拉你进群和大神一起学习,或者关注我的 [公众号:前端甜甜圈](http://518taole.7-orange.cn/wechat.jpg)免费领学习资料.
 
+**加入微信交流群**
+<div align=left>
+<img src="http://518taole.7-orange.cn/wechatQ.jpeg" width = "100" height = "100" div align=left />
+</div>
+
 ## 前序准备
 
 >如果你是刚入门Vue的小白墙裂建议过一遍[Vue官方文档](https://cn.vuejs.org/),如果你已经掌握了Vue,那么墙裂建议按照[Vue代码风格指南](https://cn.vuejs.org/v2/style-guide/)来写代码。
