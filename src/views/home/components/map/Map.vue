@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-14 23:20:09
+ * @LastEditTime: 2019-11-15 14:57:02
  * @Description: 地图
  * @FilePath: /ddBuy/src/views/home/components/map/Map.vue
  -->
@@ -16,6 +16,7 @@
                  @click-left="onClickLeft"
                  left-arrow
                  style="height:2.5rem" />
+    <!-- 地图部分 -->
     <div class="aMap">
       <el-amap-search-box class="search-box"
                           :search-option="searchOption"
@@ -27,7 +28,8 @@
                  :zoom="zoom"
                  :center="center"
                  class="amap-map"
-                 :events="events">
+                 :events="events"
+                 v-show="showMap">
           <el-amap-marker vid="component-marker"
                           :position="makerConf.position"
                           :content="makerConf.content" />
@@ -66,6 +68,8 @@
 import VueAMap from 'vue-amap'
 import Vue from 'vue'
 import { AMapManager } from 'vue-amap';
+import BScroll from 'better-scroll'
+
 Vue.use(VueAMap);
 VueAMap.initAMapApiLoader({
   // 申请的高德key
@@ -89,6 +93,7 @@ export default {
     var me = this;
     me.city = me.city;
     return {
+      showMap: true,
       list: [],
       currentLocation: [],
       currIndex: 0,
@@ -104,12 +109,18 @@ export default {
               me.getList(result);
             }
           });
-          //   Map UI优化
+          // Map UI优化
           this.$nextTick(() => {
             //去掉logo
             document.getElementsByClassName("amap-logo")[0].style.display = "none";
             // 去掉版权信息
             document.getElementsByClassName('amap-copyright')[0].style.opacity = "0";
+            // 修改搜索结果框的宽度
+            document.getElementsByClassName('search-tips')[0].style.width = '60%';
+            // 隐藏比例尺
+            document.getElementsByClassName('amap-scalecontrol')[0].style.visibility = "hidden";
+            // 修改定位当前位置
+            document.getElementsByClassName('amap-geolocation-con')[0].style.left = "85%";
           })
         },
         // 拖拽 
@@ -172,7 +183,7 @@ export default {
       me.makerConf.position = [point.lng, point.lat];
       me.center = [point.lng, point.lat];
     },
-    // this.$refs.map.$$getCenter()
+    // 获取位置列表
     getList: function (result) {
       //获取列表
       var me = this;
@@ -233,6 +244,11 @@ export default {
     onClickLeft () {
       this.$router.back();
     },
+    // 初始化滚动页面
+    _initnAddressListScroll () {
+
+
+    }
   },
   watch: {
     list: function () {
@@ -253,14 +269,12 @@ export default {
   z-index: 200;
   background-color: #f5f5f5;
   .adrs {
-    top: 50%;
     width: 100%;
-    position: absolute;
+    // height: 100%;
     overflow: hidden;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    height: calc(100vh);
-    bottom: 30%;
+    // overflow-y: auto;
+    // -webkit-overflow-scrolling: touch;
+    // height: calc(100vh);
     .title {
       color: black;
       font-size: 0.8rem;
@@ -271,8 +285,10 @@ export default {
     }
   }
   .search-box {
-    top: 3rem;
+    top: 2.7rem;
     width: 100%;
+    font-size: 0.8rem;
+    color: #3bba63;
   }
   .nearLists {
     padding-top: 1rem;

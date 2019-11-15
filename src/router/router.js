@@ -12,6 +12,7 @@ const Cart = () => import('../views/cart/Cart.vue');
 const Mine = () => import('../views/mine/Mine.vue');
 // 地图
 const Map = () => import('../views/home/components/map/Map.vue');
+const Amap = () => import('../views/home/components/map/Amap.vue');
 // 解决多次点击重复路由报错
 const originalPush = Router.prototype.push
 Router.prototype.push = function push(location) {
@@ -80,6 +81,10 @@ export default new Router({
                     path: 'map',
                     name: 'map',
                     component: Map,
+                }, {
+                    path: 'amap',
+                    name: 'amap',
+                    component: Amap,
                 }]
             }, {
                 // 分类
