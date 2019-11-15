@@ -9,3 +9,6 @@ export const ADD_TO_CART = 'ADD_TO_CART';
 
 // 4.选中地址
 export const CHOOSE_USER_ADDRESS = 'CHOOSE_USER_ADDRESS';
+
+// 5.定位地址
+export const LOCATION_ADDRESS = 'LOCATION_ADDRESS';

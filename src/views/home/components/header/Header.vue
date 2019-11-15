@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-15 14:41:05
+ * @LastEditTime: 2019-11-15 18:03:51
  * @Description: 首页->顶部搜索栏
  * @FilePath: /ddBuy/src/views/home/components/header/Header.vue
  -->
@@ -19,9 +19,9 @@
               d="M14.521 30.445c.817.738 2.142.75 2.958 0 0 0 11.521-9.82 11.521-17.158C29 5.95 23.18 0 16 0S3 5.949 3 13.287c0 7.339 11.521 17.158 11.521 17.158zM16 18a5 5 0 1 0 0-10 5 5 0 0 0 0 10z"></path>
       </svg>
       <!-- 跳转到百度地图界面 -->
-      <router-link to="/dashboard/home/amap"
+      <router-link to="/dashboard/home/map"
                    tag="span"
-                   class="address">{{"圆融时代广场(久光百货)负一楼"}}</router-link>
+                   class="address">{{location}}</router-link>
       <svg viewBox="0 0 30 30"
            class="icon iconArrow">
         <path fill="#FFFFFF"
@@ -48,10 +48,14 @@
 </template>
 <script type="text/javascript">
 import { Toast } from 'vant'
+import PubSub from 'pubsub-js'
+import { LOCATION_ADDRESS } from '../../../../config/pubsub_type'
+
 export default {
   data () {
     return {
-      showBgColor: false
+      showBgColor: false,
+      location: '请选择位置..'
     }
   },
   mounted () {
@@ -60,6 +64,11 @@ export default {
       //监听滚动事件
       window.addEventListener('scroll', that.handleScroll)
     });
+    PubSub.subscribe(LOCATION_ADDRESS, (msg, data) => {
+      if (msg == LOCATION_ADDRESS) {
+        this.location = data;
+      }
+    })
   },
   methods: {
     handleScroll () {
@@ -84,7 +93,9 @@ export default {
   },
   beforeDestroy () {
     // 移除监听事件
-    window.removeEventListener('scroll', this.handleScroll)
+    window.removeEventListener('scroll', this.handleScroll);
+    // 移除通知时间
+    PubSub.subscribe(LOCATION_ADDRESS);
   }
 }
 </script>

@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-15 14:57:02
+ * @LastEditTime: 2019-11-15 18:01:25
  * @Description: 地图
  * @FilePath: /ddBuy/src/views/home/components/map/Map.vue
  -->
@@ -18,9 +18,11 @@
                  style="height:2.5rem" />
     <!-- 地图部分 -->
     <div class="aMap">
+      <!-- 搜索框 -->
       <el-amap-search-box class="search-box"
                           :search-option="searchOption"
                           :on-search-result="onSearchResult" />
+      <!-- 地图 -->
       <div class="amap-page-container">
         <el-amap ref="map"
                  vid="amapDemo"
@@ -35,6 +37,7 @@
                           :content="makerConf.content" />
         </el-amap>
       </div>
+      <!-- 地址列表 -->
       <div class="adrs">
         <ul v-if="list.length > 0">
           <van-cell-group title="您当前的位置">
@@ -53,8 +56,10 @@
             <ul>
               <li class="nearLists"
                   v-for="(item,index) in list"
-                  :key="index">
-                <p class="title">{{item.name}}</p>
+                  :key="index"
+                  @click="clickAddredd(item)">
+                <p class="
+                  title">{{item.name}}</p>
                 <p class="subTitle">{{item.address}}</p>
               </li>
             </ul>
@@ -68,7 +73,9 @@
 import VueAMap from 'vue-amap'
 import Vue from 'vue'
 import { AMapManager } from 'vue-amap';
-import BScroll from 'better-scroll'
+import PubSub from 'pubsub-js'
+import { LOCATION_ADDRESS } from '../../../../config/pubsub_type'
+import { setLocalStore } from '../../../../config/global'
 
 Vue.use(VueAMap);
 VueAMap.initAMapApiLoader({
@@ -176,13 +183,6 @@ export default {
     };
   },
   methods: {
-    select: function (item, index) {
-      var me = this;
-      me.currIndex = index;
-      var point = item.location;
-      me.makerConf.position = [point.lng, point.lat];
-      me.center = [point.lng, point.lat];
-    },
     // 获取位置列表
     getList: function (result) {
       //获取列表
@@ -190,7 +190,6 @@ export default {
       me.$Geocoder({
         lnglatXY: result,
         success: function (res) {
-          console.log("获取附近地址");
           if (res.regeocode && res.regeocode.pois) {
             me.list = res.regeocode.pois;
           } else {
@@ -202,8 +201,8 @@ export default {
         }
       });
     },
+    // 搜索结果
     onSearchResult (pois) {
-      //搜索
       let latSum = 0;
       let lngSum = 0;
       var me = this;
@@ -221,8 +220,8 @@ export default {
         me.list = [];
       }
     },
+    //将坐标点转化为，详细地址
     $Geocoder (options) {
-      //将坐标点转化为，详细地址
       options = options || {};
       if (AMap) {
         AMap.plugin(['AMap.Geocoder'], () => {
@@ -244,10 +243,11 @@ export default {
     onClickLeft () {
       this.$router.back();
     },
-    // 初始化滚动页面
-    _initnAddressListScroll () {
-
-
+    clickAddredd (item) {
+      // 发通知给Header组件修改名称
+      //   this.$emit('addressName', item.name);
+      PubSub.publish(LOCATION_ADDRESS, item.name);
+      this.$router.back();
     }
   },
   watch: {
@@ -270,11 +270,11 @@ export default {
   background-color: #f5f5f5;
   .adrs {
     width: 100%;
-    // height: 100%;
+    height: 100%;
     overflow: hidden;
-    // overflow-y: auto;
-    // -webkit-overflow-scrolling: touch;
-    // height: calc(100vh);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    height: calc(100vh);
     .title {
       color: black;
       font-size: 0.8rem;
