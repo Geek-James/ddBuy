@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-07 09:18:07
+ * @LastEditTime: 2019-11-16 13:02:50
  * @Description: 登录模块
  * @FilePath: /ddBuy/src/views/login/Login.vue
  -->
@@ -93,7 +93,8 @@
             <van-cell-group>
               <van-field v-model="register_userName"
                          clearable
-                         placeholder="请输入用户名或手机号"
+                         maxlength="11"
+                         placeholder="请输入手机号"
                          required />
               <van-field v-model="register_pwd"
                          type="password"
@@ -333,14 +334,33 @@ export default {
     },
     // 6.注册
     async register () {
-      // 6.1 请求后台登录接口
-      let ref = await phoneCaptchaLogin(this.register_userName, this.register_pwd);
-      console.log(ref);
-      // 设置userInfo 保存到vuex和本地
-      this.syncuserInfo(ref.data);
-
-
-      this.$router.back();
+      if (this.register_userName.length < 1) {
+        Toast({
+          message: '手机号不能为空',
+          duration: 800
+        })
+      } else if (!(/[1][3,4,5,6,7,8][0-9]{9}$/.test(this.register_userName))) {
+        Toast({
+          message: '手机号格式不正确',
+          duration: 800
+        })
+      } else if (this.register_pwd.length < 0) {
+        Toast({
+          message: '请输入密码',
+          duration: 800
+        })
+      } else if (this.register_pwd.length < 6) {
+        Toast({
+          message: '密码至少为6位哦!',
+          duration: 800
+        })
+      } else {
+        // 6.1 请求后台登录接口
+        let ref = await phoneCaptchaLogin(this.register_userName, this.register_pwd);
+        // 设置userInfo 保存到vuex和本地
+        this.syncuserInfo(ref.data);
+        this.$router.back();
+      }
     },
     // 7.用户协议
     agreement (index) {
