@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-10 14:50:16
+ * @LastEditTime: 2019-11-13 09:55:15
  * @Description: Home 首页模块
  * @FilePath: /ddBuy/src/views/home/Home.vue
  -->
@@ -36,6 +36,8 @@
     <Loading :show="isShowLoading" />
     <!-- 回到顶部按钮 -->
     <v-top />
+    <!-- 路由出口 -->
+    <router-view></router-view>
   </div>
 </template>
 

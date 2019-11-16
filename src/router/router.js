@@ -10,6 +10,8 @@ const Category = () => import('../views/category/Category.vue');
 const Eat = () => import('../views/eat/Eat.vue');
 const Cart = () => import('../views/cart/Cart.vue');
 const Mine = () => import('../views/mine/Mine.vue');
+// 地图
+const Map = () => import('../views/home/components/map/Map.vue');
 
 // 解决多次点击重复路由报错
 const originalPush = Router.prototype.push
@@ -74,7 +76,12 @@ export default new Router({
                 // 是否数据缓存
                 meta: {
                     keepAlive: true
-                }
+                },
+                children: [{
+                    path: 'map',
+                    name: 'map',
+                    component: Map,
+                }]
             }, {
                 // 分类
                 path: 'category',
