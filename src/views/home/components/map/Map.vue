@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-16 12:21:14
+ * @LastEditTime: 2019-11-16 12:26:07
  * @Description: 地图
  * @FilePath: /ddBuy/src/views/home/components/map/Map.vue
  -->
@@ -96,7 +96,7 @@ export default {
   components: {},
   data () {
     var me = this;
-    me.city = me.city;
+    me.city = me.city || '苏州';
     return {
       showMap: true,
       list: [],
