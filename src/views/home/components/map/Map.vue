@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-15 18:01:25
+ * @LastEditTime: 2019-11-16 12:21:14
  * @Description: 地图
  * @FilePath: /ddBuy/src/views/home/components/map/Map.vue
  -->
@@ -18,10 +18,10 @@
                  style="height:2.5rem" />
     <!-- 地图部分 -->
     <div class="aMap">
-      <!-- 搜索框 -->
-      <el-amap-search-box class="search-box"
+      <!-- 搜索框 不是很好用-->
+      <!-- <el-amap-search-box class="search-box"
                           :search-option="searchOption"
-                          :on-search-result="onSearchResult" />
+                          :on-search-result="onSearchResult" /> -->
       <!-- 地图 -->
       <div class="amap-page-container">
         <el-amap ref="map"
@@ -72,16 +72,14 @@
 <script>
 import VueAMap from 'vue-amap'
 import Vue from 'vue'
-import { AMapManager } from 'vue-amap';
 import PubSub from 'pubsub-js'
 import { LOCATION_ADDRESS } from '../../../../config/pubsub_type'
 import { setLocalStore } from '../../../../config/global'
-
 Vue.use(VueAMap);
 VueAMap.initAMapApiLoader({
   // 申请的高德key
   key: 'cde7aa4cab0681d34ddb6916431125b2',
-  // 插件集合
+  // 插件集合所有的
   plugin: ['AMap.Autocomplete', 'AMap.PlaceSearch',
     'AMap.Scale', 'AMap.OverView',
     'AMap.ToolBar', 'AMap.MapType',
@@ -123,7 +121,7 @@ export default {
             // 去掉版权信息
             document.getElementsByClassName('amap-copyright')[0].style.opacity = "0";
             // 修改搜索结果框的宽度
-            document.getElementsByClassName('search-tips')[0].style.width = '60%';
+            // document.getElementsByClassName('search-tips')[0].style.width = '60%';
             // 隐藏比例尺
             document.getElementsByClassName('amap-scalecontrol')[0].style.visibility = "hidden";
             // 修改定位当前位置
@@ -244,8 +242,7 @@ export default {
       this.$router.back();
     },
     clickAddredd (item) {
-      // 发通知给Header组件修改名称
-      //   this.$emit('addressName', item.name);
+      // 发通知给Header组件修改名称      
       PubSub.publish(LOCATION_ADDRESS, item.name);
       this.$router.back();
     }
