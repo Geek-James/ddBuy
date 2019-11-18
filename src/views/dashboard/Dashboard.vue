@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-16 12:39:22
+ * @LastEditTime: 2019-11-18 17:05:29
  * @Description: 项目根入口
  * @FilePath: /ddBuy/src/views/dashboard/Dashboard.vue
  -->
@@ -12,8 +12,10 @@
     <van-tabbar v-model="active"
                 class="active_tab"
                 active-color="#75a342">
+      <!-- 给购物车的Tabbar加个ID 方便做加入购物车的小球动画 -->
       <van-tabbar-item v-for="(item,index) in tabbars"
                        :key="index"
+                       :id="index==3?'buycar':''"
                        @click="tab(index,item.name)"
                        :info="item.name=='cart'?goodsNum:''">
         <span :class="currIndex == index ? active:''">{{item.title}}</span>
@@ -38,6 +40,7 @@ import { mapState, mapMutations, mapActions } from 'vuex'
 export default {
   name: "DashBoard",
   mounted () {
+
   },
   watch: {
     // 监听路由变化,保证路由跳转Tabbar选中正常

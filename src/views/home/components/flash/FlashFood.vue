@@ -3,19 +3,21 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-13 10:43:09
+ * @LastEditTime: 2019-11-18 23:16:41
  * @Description: 首页->限时抢购
  * @FilePath: /ddBuy/src/views/home/components/flash/FlashFood.vue
  -->
 <template>
   <div id="flashFood">
     <div class="flashItemwrapper">
+
       <ul class="itemWrapper"
           ref="ulWrapper">
         <li class="itemInCovers"
             v-for="(product,index) in flash_sale_product_list"
             :key="product.id"
             ref="productItem">
+
           <img v-lazy="product.small_image"
                class="itemImage">
           <span class="title">{{product.name}}</span>
@@ -65,6 +67,13 @@
           </div>
         </li>
       </ul>
+      <transition @before-enter="beforeEnter"
+                  @enter="enter"
+                  @after-enter="afterEnter">
+        <div class="ball"
+             v-show="ballFlag"
+             ref="ball"></div>
+      </transition>
     </div>
   </div>
 </template>
@@ -83,6 +92,7 @@ export default {
   },
   data () {
     return {
+      ballFlag: true
     }
   },
   mounted () {
@@ -114,9 +124,38 @@ export default {
   },
   methods: {
     // 添加到购物车
-    ...mapMutations({
-      addToCart: 'ADD_TO_CART'
-    })
+    ...mapMutations(['ADD_TO_CART']),
+    addToCart (item) {
+      this.ballFlag = !this.ballFlag;
+      this.ADD_TO_CART(item);
+    },
+    beforeEnter (el) {
+      el.style.transform = "translate(0,0)";
+    },
+    enter (el, done) {
+      el.offsetWidth;
+      // 获取小球的位置
+      console.log(this.$refs.ball[0]);
+
+      const ballPosition = this.$refs.ball.getBoundingClientRect();
+
+      console.log(ballPosition);
+
+      // 获取徽标的位置
+      const badgePosition = document
+        .getElementById("buycar")
+        .getBoundingClientRect();
+
+      const xDist = badgePosition.left - ballPosition.left;
+      const yDist = badgePosition.top - ballPosition.top;
+
+      el.style.transform = `translate(${xDist}px, ${yDist}px)`;
+      el.style.transition = "all 0.5s cubic-bezier(.4,-0.3,1,.68)";
+      done();
+    },
+    afterEnter () {
+      this.ballFlag = !this.ballFlag;
+    },
   }
 }
 </script>
@@ -125,6 +164,15 @@ export default {
   .flashItemwrapper {
     width: 100%;
     overflow: hidden;
+    .ball {
+      position: absolute;
+      width: 2rem;
+      height: 2rem;
+      background-color: red;
+      border-radius: 50%;
+      margin-top: -5rem;
+      left: 10rem;
+    }
     .itemWrapper {
       display: flex;
       justify-content: flex-start;
@@ -136,6 +184,7 @@ export default {
       padding-right: 0.5rem;
       .itemImage {
         width: 100%;
+        border-radius: 50%;
         // 等比缩小图片来适应元素的尺寸
         background-size: contain;
         background-image: url("../../../../images/placeholderImg/product-img-load.png");
