@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-16 13:02:50
+ * @LastEditTime: 2019-11-19 11:04:15
  * @Description: 登录模块
  * @FilePath: /ddBuy/src/views/login/Login.vue
  -->
@@ -28,10 +28,12 @@
               <van-field v-model="login_userName"
                          required
                          clearable
-                         label="用户名"
+                         label="手机号"
+                         maxlength="11"
                          @click.stop="
                          changeImage(0)"
-                         placeholder="请输入手机号或用户名" />
+                         :error-message="phoneNumberRight?'':'手机号格式不正确'"
+                         placeholder="请输入手机号" />
               <van-field v-model="login_password"
                          type="password"
                          label="密码"
@@ -94,10 +96,12 @@
               <van-field v-model="register_userName"
                          clearable
                          maxlength="11"
+                         label="手机号码"
                          placeholder="请输入手机号"
                          required />
               <van-field v-model="register_pwd"
                          type="password"
+                         label="密码"
                          placeholder="请输入密码(不少于6位)"
                          required />
             </van-cell-group>
@@ -216,9 +220,10 @@ export default {
   computed: {
     // 1.手机号码验证
     phoneNumberRight () {
+      let value = this.isShowSMSLogin ? this.login_phone : this.login_userName;
       // 1.1 当输入的手机号大于10位进行验证
-      if (this.login_phone.length > 10) {
-        return /[1][3,4,5,6,7,8][0-9]{9}$/.test(this.login_phone);
+      if (value.length > 10) {
+        return /[1][3,4,5,6,7,8][0-9]{9}$/.test(value);
       } else {
         return true;
       }
@@ -307,7 +312,13 @@ export default {
         // 5.2.1 验证输入框
         if (this.login_userName.length < 1) {
           Toast({
-            message: '请输入用户名',
+            message: '请输入手机号',
+            duration: 800
+          });
+          return;
+        } else if (!this.phoneRegex(this.login_userName)) {
+          Toast({
+            message: '手机号格式不正确',
             duration: 800
           });
           return;
@@ -326,8 +337,6 @@ export default {
         }
         // 5.2.2 请求后台
         let ref = await phoneCaptchaLogin(this.login_userName, this.login_password);
-        console.log(ref);
-
         this.syncuserInfo(ref.data);
         this.$router.back();
       }
@@ -339,7 +348,7 @@ export default {
           message: '手机号不能为空',
           duration: 800
         })
-      } else if (!(/[1][3,4,5,6,7,8][0-9]{9}$/.test(this.register_userName))) {
+      } else if (!this.phoneRegex(this.register_userName)) {
         Toast({
           message: '手机号格式不正确',
           duration: 800
@@ -390,11 +399,15 @@ export default {
         });
       } else {
         Toast({
-          message: 'QQ登录-微信登录-暂未完成',
+          message: 'QQ登录-暂未完成',
           duration: 800
         });
       }
     },
+    // 正则验证
+    phoneRegex (number) {
+      return (/[1][3,4,5,6,7,8][0-9]{9}$/.test(number));
+    }
   }
 }
 </script>
