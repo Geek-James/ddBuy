@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-16 12:39:22
+ * @LastEditTime: 2019-11-19 11:21:24
  * @Description: 项目根入口
  * @FilePath: /ddBuy/src/views/dashboard/Dashboard.vue
  -->
@@ -39,29 +39,15 @@ export default {
   name: "DashBoard",
   mounted () {
   },
+  created () {
+    //通过路由跳转绑定Tabbar的选中
+    this.tabbarSelected(this.$route.name);
+  },
   watch: {
     // 监听路由变化,保证路由跳转Tabbar选中正常
     $route: {
       handler (val, oldval) {
-        switch (val.name) {
-          case "home":
-            this.active = 0;
-            break;
-          case "category":
-            this.active = 1;
-            break;
-          case "eat":
-            this.active = 2;
-            break;
-          case "cart":
-            this.active = 3;
-            break;
-          case "mine":
-            this.active = 4;
-            break;
-          default:
-            break;
-        }
+        this.tabbarSelected(val.name);
       }
     },
     deep: true
@@ -137,6 +123,27 @@ export default {
     _initData () {
       this.INIT_SHOP_CART();
       this.INIT_USER_INFO();
+    },
+    tabbarSelected (item) {
+      switch (item) {
+        case 'home':
+          this.active = 0;
+          break;
+        case 'category':
+          this.active = 1;
+          break;
+        case 'eat':
+          this.active = 2;
+          break;
+        case 'cart':
+          this.active = 3;
+          break;
+        case 'mine':
+          this.active = 4;
+          break;
+        default:
+          break;
+      }
     }
   }
 }
