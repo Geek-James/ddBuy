@@ -26,17 +26,16 @@
 
 **ddBuy**是一个移动端开源电商项目，它基于 [vue 2.x](https://github.com/vuejs/vue) 和 [vant 2.x](https://youzan.github.io/vant/#/zh-CN/intro)实现。使用了最新的Vue全家桶技术栈，以及一些优秀的开源库如[better-scroll](http://ustbhuangyi.github.io/better-scroll/doc/api.html)、 [moment.js](https://github.com/moment/moment/)、[twix.js](https://github.com/icambron/twix.js)、[pubsub-js](https://github.com/mroderick/PubSubJS),后台数据通过[Easy-Mock](https://github.com/easy-mock/easy-mock)搭建。相信不管你是处于哪个段位的攻城狮，本项目都能帮助到你。
 
-**目前版本为 `v1.1.0` 基于 `vue-cli3` 进行构建，若发现问题，欢迎提[issue](https://github.com/Geek-James/ddBuy/issues)**
-
 作者 **[极客James](https://juejin.im/user/5c4ebc72e51d4511dc7306ce)**
 
-会经常分享一些技术相关的东西，可以加我 [微信:szfter](http://518taole.7-orange.cn/myWechat) 拉你进群和大神一起学习,或者关注我的 [公众号:前端甜甜圈](http://518taole.7-orange.cn/wechat.jpg)免费领学习资料.
-
-**号外:招募会写node.js的攻城狮,一起搭建ddBuy的后台系统,有意向加我微!**
-
-**加入微信交流群 扫码回复加群**
+**微信群:扫码回复 加群 带你和大厂大佬们一起交流学习**
 <div>
 <img src="http://518taole.7-orange.cn/weixing.png" width = "120" height = "140" />
+</div>
+
+**公众号:扫码回复 学习 免费领前端最新学习资料**
+<div>
+<img src="http://518taole.7-orange.cn/wxqrcode.jpg" width = "120" height = "140" />
 </div>
 
 ## 前序准备
