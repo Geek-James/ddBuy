@@ -34,9 +34,9 @@
 
 **号外:招募会写node.js的攻城狮,一起搭建ddBuy的后台系统,有意向加我微!**
 
-**加入微信交流群**
+**加入微信交流群 扫码回复加群**
 <div>
-<img src="http://518taole.7-orange.cn/wechatQ2.jpeg" width = "120" height = "140" />
+<img src="http://518taole.7-orange.cn/weixing.png" width = "120" height = "140" />
 </div>
 
 ## 前序准备
