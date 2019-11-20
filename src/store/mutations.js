@@ -18,7 +18,9 @@ import {
     CHANGE_USER_SHOPPING_ADDRESS
 } from './mutation-type'
 import Vue from 'vue'
-import { Toast } from 'vant'
+import {
+    Toast
+} from 'vant'
 import router from '@/router/router'
 // 引入本地存储
 import {
@@ -26,7 +28,9 @@ import {
     setLocalStore,
     removeLocalStore
 } from '../config/global'
-import {ADD_TO_CART} from "../config/pubsub_type";
+import {
+    ADD_TO_CART
+} from "../config/pubsub_type";
 
 export default {
     // 注意:外界传值的参数一定要和定义的参数一致 例如 goodsID  isCheckedAll
@@ -311,24 +315,22 @@ export default {
         setLocalStore('shippingAddress', state.shippingAddress);
     },
     // 添加商品进购物车
-    [ADD_TO_CART](state,goods) {
+    [ADD_TO_CART](state, goods) {
         // 判断是否有用户登录
         if (state.userInfo.token) {
-            Toast({
-                message: '已加入购物车',
-                duration: 800
-            });
             // 1.3 添加数据
-            this.commit('ADD_GOODS',{
-                goodsID: goods.id,
-                goodsName: goods.name,
-                smallImage: goods.small_image,
-                goodsPrice: goods.price
-            })
+            // 延迟900毫秒等待动画结束
+            setTimeout(() => {
+                this.commit('ADD_GOODS', {
+                    goodsID: goods.id,
+                    goodsName: goods.name,
+                    smallImage: goods.small_image,
+                    goodsPrice: goods.price
+                })
+            }, 900);
         } else {
             // 1.4 如何没有登录跳转到登录界面
             router.push('/login');
         }
     }
-
 }
