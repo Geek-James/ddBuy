@@ -3,12 +3,26 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-07 22:34:48
+ * @LastEditTime: 2019-11-22 17:55:10
  * @Description: 首页->产品列表
  * @FilePath: /ddBuy/src/views/home/components/tabbar/ProduceItem.vue
  -->
 <template>
-  <div id="produceItem">
+  <div id="produceItem"
+       ref="produceItem">
+    <transition appear
+                @after-appear='afterEnter'
+                @before-appear="beforeEnter"
+                v-for="(item,index) in showMoveDot"
+                :key="index.id">
+      <div class="move_dot"
+           ref="ball"
+           v-if="item">
+        <!-- 小球图片 -->
+        <!-- <img :src="dropImage"
+             alt=""> -->
+      </div>
+    </transition>
     <div class="item"
          v-for="(product,index) in product_lists"
          :key="product.id">
@@ -23,7 +37,8 @@
       </span>
       <span class="originPrice">{{product.origin_price | moneyFormat}}</span>
       <div class="buyCar"
-           @click="addCart(product)">
+           @click="addCart(product,index)"
+           ref="buyCar">
         <svg viewBox="0 0 52 52"
              class="icon icon-60">
           <defs>
@@ -78,7 +93,11 @@ export default {
   },
   data () {
     return {
-      isShowEatTag: false
+      isShowEatTag: false,
+      showMoveDot: [], //控制下落的小圆点显示隐藏
+      elLeft: 0, //当前点击购物车按钮在网页中的绝对top值
+      elTop: 0, //当前点击购物车按钮在网页中的绝对left值
+      dropImage: ''
     }
   },
   components: {
@@ -88,9 +107,84 @@ export default {
 
   },
   methods: {
-    ...mapMutations({
-            addCart: 'ADD_TO_CART'
-    })
+    ...mapMutations(['ADD_TO_CART']),
+    addCart (product, num) {
+      // 遍历数据取出商品的图片
+      this.product_lists.forEach((item, index) => {
+        if (num == index) {
+          this.dropImage = item.small_image;
+        }
+      });
+      this.ADD_TO_CART(product);
+      //   console.log(event.screenX);
+      //   console.log(event.screenY);
+      console.log("offsetaLeft", this.$refs.buyCar.offsetLeft);
+
+
+      this.elLeft = event.target.getBoundingClientRect().left;
+      this.elTop = event.target.getBoundingClientRect().top;
+
+      //   console.log("X=" + this.elLeft);
+      //   console.log("Y=" + this.elTop);
+
+      this.showMoveDot = [...this.showMoveDot, true];
+
+      //   console.log(this.showMoveDot);
+
+    },
+    beforeEnter (el) {
+      console.log("来了");
+      // 设置transform值
+      //   console.log("购物车的顶部" + this.elTop);
+      //   console.log("购物车的左边" + this.elLeft);
+      //   console.log("屏幕高度" + itemHeight);
+      //   console.log("屏幕宽度" + itemLeft);
+      let x = window.pageXOffset;
+      let y = window.pageYOffset;
+
+      console.log("滚动的x", x);
+      console.log("滚动的y", y - this.elTop);
+
+      console.log();
+
+
+      el.style.transform = `translate3d(${this.elLeft}px,${this.elTop}px , 0)`;
+      //   el.style.transform = translate3d(0, 0, 0);
+
+      // 设置透明度
+      el.style.opacity = 0;
+    },
+    afterEnter (el) {
+      // 获取底部购物车徽标的位置
+      const badgePosition = document
+        .getElementById("buycar")
+        .getBoundingClientRect();
+      // 设置位移
+      el.style.transform = `translate3d(${badgePosition.left + 30}px, ${badgePosition.top - 30}px, 0)`
+      // 增加贝塞尔曲线  
+      el.style.transition = 'transform .88s cubic-bezier(0.3, -0.25, 0.7, -0.15)';
+      el.style.transition = 'transform .88s linear';
+      this.showMoveDot = this.showMoveDot.map(item => false);
+      // 设置透明度
+      el.style.opacity = 1;
+      // 监听小球动画结束方法
+      //   el.addEventListener('transitionend', () => {
+      //     el.style.display = 'none';
+      //     this.listenInCart();
+      //   })
+      //   el.addEventListener('webkitAnimationEnd', () => {
+      //     el.style.display = 'none';
+      //     this.listenInCart();
+      //   })
+    },
+    listenInCart () {
+      // 拿到购物车的DOM添加class
+      document.getElementById("buycar").classList.add('moveToCart');
+      setTimeout(() => {
+        // 500毫秒后移除class
+        document.getElementById("buycar").classList.remove('moveToCart');
+      }, 500);
+    }
   }
 }
 </script>
@@ -98,81 +192,155 @@ export default {
 <style lang="less" scoped>
 #produceItem {
   background-color: #f5f5f5;
-  height: auto;
+  //   height: auto;
   padding-left: 2%;
   padding-top: 0.5rem;
-}
-.item {
-  position: relative;
-  display: inline-block;
-  width: 48%;
-  margin-right: 2%;
-  margin-bottom: 0.5rem;
-  background-color: white;
-  border-radius: 0.3rem;
-  padding-bottom: 0.6rem;
-}
+  .move_dot {
+    position: fixed;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background-color: red;
+    z-index: 100;
+  }
+  .item {
+    position: relative;
+    display: inline-block;
+    width: 48%;
+    margin-right: 2%;
+    margin-bottom: 0.5rem;
+    background-color: white;
+    border-radius: 0.3rem;
+    padding-bottom: 0.6rem;
+    .itemTitle {
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+      line-height: 1rem;
+      font-size: 0.625rem;
+      word-break: break-all;
+      display: -webkit-box;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+    .itemSubTitle {
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+      color: gray;
+      padding-top: 0.2rem;
+      font-size: 0.45rem;
+      line-height: 1rem;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      word-break: break-all;
+      margin-bottom: 1.5rem;
+    }
+    .price {
+      padding-left: 0.5rem;
+      color: #f37078;
+      font-size: 0.928rem;
+    }
+    img {
+      width: 100%;
+      height: 100%;
+      // 等比缩小图片来适应元素的尺寸
+      background-size: contain;
+      background-image: url("../../../../images/placeholderImg/product-img-load.png");
+    }
+    .tagEat {
+      margin-left: 0.5rem;
+      padding: 0.09rem;
+      color: orangered;
+      width: 2.5rem;
+      height: 0.1rem;
+      border-radius: 0.2rem;
+      font-size: 0.3rem;
+      border: 0.05rem solid red;
+    }
 
-.item img {
-  width: 100%;
-  height: 100%;
-  // 等比缩小图片来适应元素的尺寸
-  background-size: contain;
-  background-image: url("../../../../images/placeholderImg/product-img-load.png");
-}
-.item .itemTitle {
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-  line-height: 1rem;
-  font-size: 0.625rem;
-  word-break: break-all;
-  display: -webkit-box;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-}
+    .originPrice {
+      font-size: 0.6875rem;
+      color: #999999;
+      text-decoration: line-through;
+    }
+    .buyCar {
+      position: absolute;
+      height: 1.5rem;
+      width: 1.5rem;
+      right: 1rem;
+      bottom: 0.5rem;
+    }
+  }
 
-.item .itemSubTitle {
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-  color: gray;
-  padding-top: 0.2rem;
-  font-size: 0.45rem;
-  line-height: 1rem;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  word-break: break-all;
-  margin-bottom: 1.5rem;
-}
-
-.item .price {
-  padding-left: 0.5rem;
-  color: #f37078;
-  font-size: 0.928rem;
-}
-.tagEat {
-  margin-left: 0.5rem;
-  padding: 0.09rem;
-  color: orangered;
-  width: 2.5rem;
-  height: 0.1rem;
-  border-radius: 0.2rem;
-  font-size: 0.3rem;
-  border: 0.05rem solid red;
-}
-
-.originPrice {
-  font-size: 0.6875rem;
-  color: #999999;
-  text-decoration: line-through;
-}
-.buyCar {
-  position: absolute;
-  height: 1.5rem;
-  width: 1.5rem;
-  right: 1rem;
-  bottom: 0.5rem;
+  @keyframes mymove {
+    0% {
+      transform: scale(1);
+    }
+    25% {
+      transform: scale(0.8);
+    }
+    50% {
+      transform: scale(0.6);
+    }
+    75% {
+      transform: scale(0.4);
+    }
+    100% {
+      transform: scale(0.2);
+    }
+  }
+  @-moz-keyframes mymove {
+    0% {
+      transform: scale(1);
+    }
+    25% {
+      transform: scale(0.8);
+    }
+    50% {
+      transform: scale(0.6);
+    }
+    75% {
+      transform: scale(0.4);
+    }
+    100% {
+      transform: scale(0.2);
+    }
+  }
+  @-webkit-keyframes mymove {
+    0% {
+      transform: scale(1);
+    }
+    25% {
+      transform: scale(0.8);
+    }
+    50% {
+      transform: scale(0.6);
+    }
+    75% {
+      transform: scale(0.4);
+    }
+    100% {
+      transform: scale(0.2);
+    }
+  }
+  @-o-keyframes mymove {
+    0% {
+      transform: scale(1);
+    }
+    25% {
+      transform: scale(0.8);
+    }
+    50% {
+      transform: scale(0.6);
+    }
+    75% {
+      transform: scale(0.4);
+    }
+    100% {
+      transform: scale(0.2);
+    }
+  }
 }
 </style>

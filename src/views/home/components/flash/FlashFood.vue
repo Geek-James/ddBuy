@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-20 17:55:15
+ * @LastEditTime: 2019-11-22 21:55:49
  * @Description: 首页->限时抢购
  * @FilePath: /ddBuy/src/views/home/components/flash/FlashFood.vue
  -->
@@ -73,6 +73,7 @@
         <div class="move_dot"
              ref="ball"
              v-if="item">
+          <!-- 小球图片 -->
           <img :src="dropImage"
                alt="">
         </div>
@@ -88,9 +89,6 @@ import { Toast } from 'vant'
 // 引入中央事件总线
 import { mapMutations } from 'vuex'
 import { ADD_TO_CART } from './../../../../config/pubsub_type.js'
-import { basename } from 'path'
-
-
 export default {
   props: {
     flash_sale_product_list: Array
@@ -98,8 +96,8 @@ export default {
   data () {
     return {
       showMoveDot: [], //控制下落的小圆点显示隐藏
-      elLeft: 0, //当前点击加按钮在网页中的绝对top值
-      elTop: 0, //当前点击加按钮在网页中的绝对left值
+      elLeft: 0, //当前点击购物车按钮在网页中的绝对top值
+      elTop: 0, //当前点击购物车按钮在网页中的绝对left值
       dropImage: ''
     }
   },
@@ -139,18 +137,13 @@ export default {
     // 添加到购物车
     ...mapMutations(['ADD_TO_CART']),
     addToCart (product, num) {
-      // 遍历数据取出商品的图片
-      this.flash_sale_product_list.forEach((item, index) => {
-        if (num == index) {
-          this.dropImage = item.small_image;
-        }
-      });
+      // 取出商品的图片
+      this.dropImage = product.small_image;
+      // 增加到购物车
       this.ADD_TO_CART(product);
-      let elLeft = event.target.getBoundingClientRect().left;
-      let elTop = event.target.getBoundingClientRect().top;
+      this.elLeft = event.target.getBoundingClientRect().left;
+      this.elTop = event.target.getBoundingClientRect().top;
       this.showMoveDot = [...this.showMoveDot, true];
-      this.elLeft = elLeft;
-      this.elTop = elTop;
     },
     beforeEnter (el) {
       // 设置transform值
@@ -171,6 +164,7 @@ export default {
       this.showMoveDot = this.showMoveDot.map(item => false);
       // 设置透明度
       el.style.opacity = 1;
+      // 监听小球动画结束方法
       el.addEventListener('transitionend', () => {
         el.style.display = 'none';
         this.listenInCart();

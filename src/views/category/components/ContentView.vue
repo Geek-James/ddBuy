@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-13 10:41:58
+ * @LastEditTime: 2019-11-22 22:43:52
  * @Description: 分类模块->可滑动标题组件
  * @FilePath: /ddBuy/src/views/category/components/ContentView.vue
  -->
@@ -90,7 +90,7 @@
                   <p class="price">{{item.price | moneyFormat}}</p>
                   <p class="originPrice">{{item.origin_price | moneyFormat}}</p>
                   <div class="iconCartWrapper"
-                       @click="addToCart(item)">
+                       @click="addToCart(item,index)">
                     <svg viewBox="0 0 52 52"
                          class="icon iconCart">
                       <defs>
@@ -133,6 +133,17 @@
               </div>
             </li>
           </ul>
+          <transition appear
+                      @after-appear='afterEnter'
+                      @before-appear="beforeEnter"
+                      v-for="(item,index) in showMoveDot"
+                      :key="index.id">
+            <div class="move_dot"
+                 v-if="item">
+              <img :src="dropImage"
+                   alt="">
+            </div>
+          </transition>
         </div>
         <div class="bottomTip">到底了,看看别的分类吧</div>
       </div>
@@ -156,7 +167,12 @@ export default {
       flag: true,
       value: 0,
       menuDown: true,
-      isShowDropMenu: false
+      isShowDropMenu: false,
+
+      showMoveDot: [], //控制下落的小圆点显示隐藏
+      elLeft: 0, //当前点击购物车按钮在网页中的绝对top值
+      elTop: 0, //当前点击购物车按钮在网页中的绝对left值
+      dropImage: ''
     }
   },
   props: {
@@ -191,7 +207,7 @@ export default {
   },
   methods: {
     // 0.延展Vuex的方法
-    ...mapMutations(['ADD_GOODS', 'ADD_TO_CART']),
+    ...mapMutations(['ADD_GOODS']),
     // 1.titleScroll 滚动初始化
     _initTitleScroll () {
       let contentWrapperWidth = 120;
@@ -242,9 +258,18 @@ export default {
       }, 100);
     },
     // 4.添加购物车
-    ...mapMutations({
-      addToCart: 'ADD_TO_CART'
-    }),
+    ...mapMutations(['ADD_TO_CART']),
+    addToCart (prodect, num) {
+      this.dropImage = prodect.small_image;
+      this.ADD_TO_CART(prodect);
+      this.elLeft = event.target.getBoundingClientRect().left;
+      this.elTop = event.target.getBoundingClientRect().top;
+      this.showMoveDot = [...this.showMoveDot, true];
+
+      console.log("购物车的左边", this.elLeft);
+      console.log("购物车的顶部", this.elTop);
+
+    },
     // 5.点击下拉菜单
     menuClick () {
       this.menuDown = !this.menuDown;
@@ -269,11 +294,42 @@ export default {
         message: '商品详情暂未实现哦~',
         duration: 800
       });
-    }
+    },
+    beforeEnter (el) {
+      // 设置transform值
+      let scrollTop = window.pageYOffset
+      console.log("滚动距离", scrollTop);
+
+      //   el.style.transform = `translate3d(${this.elLeft},300px, 0)`;
+      // 设置透明度
+      el.style.opacity = 0;
+    },
+    afterEnter (el) {
+      // 获取底部购物车徽标的位置
+      const badgePosition = document
+        .getElementById("buycar")
+        .getBoundingClientRect();
+      // 设置位移
+      //   el.style.transform = `translate3d(${badgePosition.left + 30}px,${badgePosition.top - 30}px,0)`
+      // 增加贝塞尔曲线  
+      //   el.style.transition = 'transform .88s cubic-bezier(0.3, -0.25, 0.7, -0.15)';
+      //   el.style.transition = 'transform .88s linear';
+      this.showMoveDot = this.showMoveDot.map(item => false);
+      // 设置透明度
+      el.style.opacity = 1;
+      // 监听小球动画结束方法
+      el.addEventListener('transitionend', () => {
+        el.style.display = 'none';
+        // this.listenInCart();
+      })
+      el.addEventListener('webkitAnimationEnd', () => {
+        el.style.display = 'none';
+        // this.listenInCart();
+      })
+    },
   }
 }
 </script>
-
 <style <style lang="less" scoped>
 /**scrollTitle  CSS***/
 .wrapper {
@@ -393,7 +449,7 @@ export default {
           bottom: 0.28rem;
         }
         .iconCartWrapper {
-          position: absolute;
+          //   position: absolute;
           width: 1.875rem;
           top: 3.4rem;
           right: 0.6rem;
@@ -416,6 +472,91 @@ export default {
     color: grey;
     font-size: 0.6rem;
     text-align: center;
+  }
+
+  @keyframes mymove {
+    0% {
+      transform: scale(1);
+    }
+    25% {
+      transform: scale(0.8);
+    }
+    50% {
+      transform: scale(0.6);
+    }
+    75% {
+      transform: scale(0.4);
+    }
+    100% {
+      transform: scale(0.2);
+    }
+  }
+  @-moz-keyframes mymove {
+    0% {
+      transform: scale(1);
+    }
+    25% {
+      transform: scale(0.8);
+    }
+    50% {
+      transform: scale(0.6);
+    }
+    75% {
+      transform: scale(0.4);
+    }
+    100% {
+      transform: scale(0.2);
+    }
+  }
+  @-webkit-keyframes mymove {
+    0% {
+      transform: scale(1);
+    }
+    25% {
+      transform: scale(0.8);
+    }
+    50% {
+      transform: scale(0.6);
+    }
+    75% {
+      transform: scale(0.4);
+    }
+    100% {
+      transform: scale(0.2);
+    }
+  }
+  @-o-keyframes mymove {
+    0% {
+      transform: scale(1);
+    }
+    25% {
+      transform: scale(0.8);
+    }
+    50% {
+      transform: scale(0.6);
+    }
+    75% {
+      transform: scale(0.4);
+    }
+    100% {
+      transform: scale(0.2);
+    }
+  }
+  .move_dot {
+    position: fixed;
+    z-index: 100;
+    top: 3rem;
+    height: 2rem;
+    left: 3rem;
+    width: 2rem;
+    background-color: red;
+    border-radius: 50%;
+    img {
+      animation: 0.88s mymove ease-in-out;
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+    }
   }
 }
 </style>

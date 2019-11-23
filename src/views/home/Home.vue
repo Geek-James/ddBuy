@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-13 09:55:15
+ * @LastEditTime: 2019-11-22 14:43:44
  * @Description: Home 首页模块
  * @FilePath: /ddBuy/src/views/home/Home.vue
  -->
@@ -96,7 +96,7 @@ export default {
   },
   methods: {
     // Vuex中的方法
-    ...mapMutations(['ADD_GOODS','ADD_TO_CART']),
+    ...mapMutations(['ADD_GOODS', 'ADD_TO_CART']),
     // 数据初始化
     _initData () {
       getHomeData().then(response => {
