@@ -3,26 +3,13 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-22 17:55:10
+ * @LastEditTime: 2019-11-24 15:54:35
  * @Description: 首页->产品列表
  * @FilePath: /ddBuy/src/views/home/components/tabbar/ProduceItem.vue
  -->
 <template>
   <div id="produceItem"
        ref="produceItem">
-    <transition appear
-                @after-appear='afterEnter'
-                @before-appear="beforeEnter"
-                v-for="(item,index) in showMoveDot"
-                :key="index.id">
-      <div class="move_dot"
-           ref="ball"
-           v-if="item">
-        <!-- 小球图片 -->
-        <!-- <img :src="dropImage"
-             alt=""> -->
-      </div>
-    </transition>
     <div class="item"
          v-for="(product,index) in product_lists"
          :key="product.id">
@@ -86,6 +73,7 @@
 import PubSub from 'pubsub-js'
 import { mapMutations } from 'vuex'
 import { ADD_TO_CART } from './../../../../config/pubsub_type.js'
+import { Toast } from 'vant'
 
 export default {
   props: {
@@ -107,84 +95,7 @@ export default {
 
   },
   methods: {
-    ...mapMutations(['ADD_TO_CART']),
-    addCart (product, num) {
-      // 遍历数据取出商品的图片
-      this.product_lists.forEach((item, index) => {
-        if (num == index) {
-          this.dropImage = item.small_image;
-        }
-      });
-      this.ADD_TO_CART(product);
-      //   console.log(event.screenX);
-      //   console.log(event.screenY);
-      console.log("offsetaLeft", this.$refs.buyCar.offsetLeft);
-
-
-      this.elLeft = event.target.getBoundingClientRect().left;
-      this.elTop = event.target.getBoundingClientRect().top;
-
-      //   console.log("X=" + this.elLeft);
-      //   console.log("Y=" + this.elTop);
-
-      this.showMoveDot = [...this.showMoveDot, true];
-
-      //   console.log(this.showMoveDot);
-
-    },
-    beforeEnter (el) {
-      console.log("来了");
-      // 设置transform值
-      //   console.log("购物车的顶部" + this.elTop);
-      //   console.log("购物车的左边" + this.elLeft);
-      //   console.log("屏幕高度" + itemHeight);
-      //   console.log("屏幕宽度" + itemLeft);
-      let x = window.pageXOffset;
-      let y = window.pageYOffset;
-
-      console.log("滚动的x", x);
-      console.log("滚动的y", y - this.elTop);
-
-      console.log();
-
-
-      el.style.transform = `translate3d(${this.elLeft}px,${this.elTop}px , 0)`;
-      //   el.style.transform = translate3d(0, 0, 0);
-
-      // 设置透明度
-      el.style.opacity = 0;
-    },
-    afterEnter (el) {
-      // 获取底部购物车徽标的位置
-      const badgePosition = document
-        .getElementById("buycar")
-        .getBoundingClientRect();
-      // 设置位移
-      el.style.transform = `translate3d(${badgePosition.left + 30}px, ${badgePosition.top - 30}px, 0)`
-      // 增加贝塞尔曲线  
-      el.style.transition = 'transform .88s cubic-bezier(0.3, -0.25, 0.7, -0.15)';
-      el.style.transition = 'transform .88s linear';
-      this.showMoveDot = this.showMoveDot.map(item => false);
-      // 设置透明度
-      el.style.opacity = 1;
-      // 监听小球动画结束方法
-      //   el.addEventListener('transitionend', () => {
-      //     el.style.display = 'none';
-      //     this.listenInCart();
-      //   })
-      //   el.addEventListener('webkitAnimationEnd', () => {
-      //     el.style.display = 'none';
-      //     this.listenInCart();
-      //   })
-    },
-    listenInCart () {
-      // 拿到购物车的DOM添加class
-      document.getElementById("buycar").classList.add('moveToCart');
-      setTimeout(() => {
-        // 500毫秒后移除class
-        document.getElementById("buycar").classList.remove('moveToCart');
-      }, 500);
-    }
+    ...mapMutations({ addCart: 'ADD_TO_CART' }),
   }
 }
 </script>
