@@ -327,6 +327,10 @@ export default {
                     smallImage: goods.small_image,
                     goodsPrice: goods.price
                 })
+                Toast({
+                    message: '成功加入购物车',
+                    duration: 800
+                })
             }, 900);
         } else {
             // 1.4 如何没有登录跳转到登录界面

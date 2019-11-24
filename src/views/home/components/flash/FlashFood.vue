@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-22 21:55:49
+ * @LastEditTime: 2019-11-24 16:03:59
  * @Description: 首页->限时抢购
  * @FilePath: /ddBuy/src/views/home/components/flash/FlashFood.vue
  -->
@@ -87,7 +87,7 @@
 import BScroll from 'better-scroll'
 import { Toast } from 'vant'
 // 引入中央事件总线
-import { mapMutations } from 'vuex'
+import { mapMutations, mapState } from 'vuex'
 import { ADD_TO_CART } from './../../../../config/pubsub_type.js'
 export default {
   props: {
@@ -102,6 +102,7 @@ export default {
     }
   },
   computed: {
+    ...mapState(['userInfo'])
   },
   created () {
     this.dropBalls = []
@@ -137,13 +138,15 @@ export default {
     // 添加到购物车
     ...mapMutations(['ADD_TO_CART']),
     addToCart (product, num) {
-      // 取出商品的图片
-      this.dropImage = product.small_image;
-      // 增加到购物车
       this.ADD_TO_CART(product);
-      this.elLeft = event.target.getBoundingClientRect().left;
-      this.elTop = event.target.getBoundingClientRect().top;
-      this.showMoveDot = [...this.showMoveDot, true];
+      if (this.userInfo.token) {
+        // 取出商品的图片
+        this.dropImage = product.small_image;
+        // 增加到购物车
+        this.elLeft = event.target.getBoundingClientRect().left;
+        this.elTop = event.target.getBoundingClientRect().top;
+        this.showMoveDot = [...this.showMoveDot, true];
+      }
     },
     beforeEnter (el) {
       // 设置transform值
