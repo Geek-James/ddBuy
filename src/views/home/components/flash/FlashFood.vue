@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-13 10:43:09
+ * @LastEditTime: 2019-11-24 16:03:59
  * @Description: 首页->限时抢购
  * @FilePath: /ddBuy/src/views/home/components/flash/FlashFood.vue
  -->
@@ -23,7 +23,7 @@
             <p class="nowPrice">{{product.price | moneyFormat}}</p>
             <p class="originPrice">{{product.origin_price | moneyFormat}}</p>
             <div class="buyCar"
-                 @click="addToCart(product)">
+                 @click="addToCart(product,index)">
               <svg viewBox="0 0 52 52"
                    class="icon icon-60">
                 <defs>
@@ -65,17 +65,29 @@
           </div>
         </li>
       </ul>
+      <transition appear
+                  @after-appear='afterEnter'
+                  @before-appear="beforeEnter"
+                  v-for="(item,index) in showMoveDot"
+                  :key="index.id">
+        <div class="move_dot"
+             ref="ball"
+             v-if="item">
+          <!-- 小球图片 -->
+          <img :src="dropImage"
+               alt="">
+        </div>
+      </transition>
     </div>
   </div>
 </template>
 
 <script type="text/javascript">
-
 // 引入第三方组件
 import BScroll from 'better-scroll'
 import { Toast } from 'vant'
 // 引入中央事件总线
-import { mapMutations } from 'vuex'
+import { mapMutations, mapState } from 'vuex'
 import { ADD_TO_CART } from './../../../../config/pubsub_type.js'
 export default {
   props: {
@@ -83,7 +95,17 @@ export default {
   },
   data () {
     return {
+      showMoveDot: [], //控制下落的小圆点显示隐藏
+      elLeft: 0, //当前点击购物车按钮在网页中的绝对top值
+      elTop: 0, //当前点击购物车按钮在网页中的绝对left值
+      dropImage: ''
     }
+  },
+  computed: {
+    ...mapState(['userInfo'])
+  },
+  created () {
+    this.dropBalls = []
   },
   mounted () {
     this.$nextTick(() => {
@@ -114,9 +136,55 @@ export default {
   },
   methods: {
     // 添加到购物车
-    ...mapMutations({
-      addToCart: 'ADD_TO_CART'
-    })
+    ...mapMutations(['ADD_TO_CART']),
+    addToCart (product, num) {
+      this.ADD_TO_CART(product);
+      if (this.userInfo.token) {
+        // 取出商品的图片
+        this.dropImage = product.small_image;
+        // 增加到购物车
+        this.elLeft = event.target.getBoundingClientRect().left;
+        this.elTop = event.target.getBoundingClientRect().top;
+        this.showMoveDot = [...this.showMoveDot, true];
+      }
+    },
+    beforeEnter (el) {
+      // 设置transform值
+      el.style.transform = `translate3d(${this.elLeft - 30}px,${this.elTop - 100}px , 0)`;
+      // 设置透明度
+      el.style.opacity = 0;
+    },
+    afterEnter (el) {
+      // 获取底部购物车徽标的位置
+      const badgePosition = document
+        .getElementById("buycar")
+        .getBoundingClientRect();
+      // 设置位移
+      el.style.transform = `translate3d(${badgePosition.left + 30}px,${badgePosition.top - 30}px,0)`
+      // 增加贝塞尔曲线  
+      el.style.transition = 'transform .88s cubic-bezier(0.3, -0.25, 0.7, -0.15)';
+      el.style.transition = 'transform .88s linear';
+      this.showMoveDot = this.showMoveDot.map(item => false);
+      // 设置透明度
+      el.style.opacity = 1;
+      // 监听小球动画结束方法
+      el.addEventListener('transitionend', () => {
+        el.style.display = 'none';
+        this.listenInCart();
+      })
+      el.addEventListener('webkitAnimationEnd', () => {
+        el.style.display = 'none';
+        this.listenInCart();
+      })
+    },
+    listenInCart () {
+      // 拿到购物车的DOM添加class
+      document.getElementById("buycar").classList.add('moveToCart');
+      setTimeout(() => {
+        // 500毫秒后移除class
+        document.getElementById("buycar").classList.remove('moveToCart');
+      }, 500);
+    }
   }
 }
 </script>
@@ -125,10 +193,26 @@ export default {
   .flashItemwrapper {
     width: 100%;
     overflow: hidden;
+    position: relative;
+    .move_dot {
+      position: fixed;
+      z-index: 100;
+      top: 1rem;
+      height: 2rem;
+      width: 2rem;
+      border-radius: 50%;
+      img {
+        animation: 0.88s mymove ease-in-out;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+      }
+    }
     .itemWrapper {
       display: flex;
       justify-content: flex-start;
     }
+
     .itemInCovers {
       // 设置子li的宽度
       flex: 0 0 6rem;
@@ -136,6 +220,7 @@ export default {
       padding-right: 0.5rem;
       .itemImage {
         width: 100%;
+        border-radius: 50%;
         // 等比缩小图片来适应元素的尺寸
         background-size: contain;
         background-image: url("../../../../images/placeholderImg/product-img-load.png");
@@ -174,6 +259,74 @@ export default {
           height: 1.5rem;
         }
       }
+    }
+  }
+  @keyframes mymove {
+    0% {
+      transform: scale(1);
+    }
+    25% {
+      transform: scale(0.8);
+    }
+    50% {
+      transform: scale(0.6);
+    }
+    75% {
+      transform: scale(0.4);
+    }
+    100% {
+      transform: scale(0.2);
+    }
+  }
+  @-moz-keyframes mymove {
+    0% {
+      transform: scale(1);
+    }
+    25% {
+      transform: scale(0.8);
+    }
+    50% {
+      transform: scale(0.6);
+    }
+    75% {
+      transform: scale(0.4);
+    }
+    100% {
+      transform: scale(0.2);
+    }
+  }
+  @-webkit-keyframes mymove {
+    0% {
+      transform: scale(1);
+    }
+    25% {
+      transform: scale(0.8);
+    }
+    50% {
+      transform: scale(0.6);
+    }
+    75% {
+      transform: scale(0.4);
+    }
+    100% {
+      transform: scale(0.2);
+    }
+  }
+  @-o-keyframes mymove {
+    0% {
+      transform: scale(1);
+    }
+    25% {
+      transform: scale(0.8);
+    }
+    50% {
+      transform: scale(0.6);
+    }
+    75% {
+      transform: scale(0.4);
+    }
+    100% {
+      transform: scale(0.2);
     }
   }
 }

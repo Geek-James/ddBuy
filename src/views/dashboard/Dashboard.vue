@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-19 11:21:24
+ * @LastEditTime: 2019-11-24 16:08:50
  * @Description: 项目根入口
  * @FilePath: /ddBuy/src/views/dashboard/Dashboard.vue
  -->
@@ -12,8 +12,10 @@
     <van-tabbar v-model="active"
                 class="active_tab"
                 active-color="#75a342">
+      <!-- 给购物车的Tabbar加个ID 方便做加入购物车的小球动画 -->
       <van-tabbar-item v-for="(item,index) in tabbars"
                        :key="index"
+                       :id="index==3?'buycar':''"
                        @click="tab(index,item.name)"
                        :info="item.name=='cart'?goodsNum:''">
         <span :class="currIndex == index ? active:''">{{item.title}}</span>
@@ -38,6 +40,7 @@ import { mapState, mapMutations, mapActions } from 'vuex'
 export default {
   name: "DashBoard",
   mounted () {
+
   },
   created () {
     //通过路由跳转绑定Tabbar的选中
@@ -158,5 +161,76 @@ export default {
 .router-slider-leave-active {
   transform: translate3d(2rem, 0, 0);
   opacity: 0;
+}
+@keyframes mymove {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(0.8);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  75% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@-moz-keyframes mymove {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(0.8);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  75% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@-webkit-keyframes mymove {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(0.8);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  75% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@-o-keyframes mymove {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(0.8);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  75% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.moveToCart {
+  animation: mymove 0.5s ease-in-out;
 }
 </style>
