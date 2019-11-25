@@ -45,6 +45,10 @@
 你需要在本地安装 [node](http://nodejs.org/) 和 [git](https://git-scm.com/)。本项目技术栈基于 [ES2015+](http://es6.ruanyifeng.com/)、[vue](https://cn.vuejs.org/index.html)、[vuex](https://vuex.vuejs.org/zh-cn/)、[vue-router](https://router.vuejs.org/zh-cn/) 、[vue-cli](https://github.com/vuejs/vue-cli) 、[axios](https://github.com/axios/axios) 和 [vant-ui](https://youzan.github.io/vant/#/zh-CN/intro)，所有的请求数据都使用[Mock.js](https://github.com/nuysoft/Mock)进行模拟，提前了解和学习这些知识会对使用本项目有很大的帮助。
 
 同时配套了Vue基础系列教程文章，适合小白入门Vue,后期会把整个ddBuy项目拆分些技术文章出来。
+
+- **核心技术拆解**:
+  - [商品飞入购物车动画](https://juejin.im/post/5dd55fd2f265da47dd1af944?utm_source=gold_browser_extension)
+
 - **Vue甜小白系列专栏**:
     - [Vue从甜小白到皮大佬系列(一) Vue是个啥?](https://juejin.im/post/5d64f31ae51d4561db5e3a74)
     - [Vue从甜小白到皮大佬系列(二) v-指令](https://juejin.im/post/5d652fb351882505a87a976b)
