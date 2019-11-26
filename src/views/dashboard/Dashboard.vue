@@ -3,13 +3,14 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-24 16:08:50
+ * @LastEditTime: 2019-11-26 10:13:06
  * @Description: 项目根入口
  * @FilePath: /ddBuy/src/views/dashboard/Dashboard.vue
  -->
 <template>
   <div id="dashboard">
     <van-tabbar v-model="active"
+                :safe-area-inset-bottom=true
                 class="active_tab"
                 active-color="#75a342">
       <!-- 给购物车的Tabbar加个ID 方便做加入购物车的小球动画 -->
