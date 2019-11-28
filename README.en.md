@@ -28,6 +28,8 @@
 
 **If you find any problems，please commit [issue](https://github.com/Geek-James/ddBuy/issues).**
 
+## [Release Note](https://github.com/Geek-James/ddBuy/releases)
+
 Author: **[Geek-James](https://juejin.im/user/5c4ebc72e51d4511dc7306ce)**
 
 I will often share some technical knowledge and hope to learn and improve together,you can add my [Wechat:szfter](http://518taole.7-orange.cn/myWechat) or add my [WeChat Public Number:前端甜甜圈](http://518taole.7-orange.cn/wechat.jpg)
