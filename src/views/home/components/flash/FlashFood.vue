@@ -86,7 +86,6 @@
 // 引入第三方组件
 import BScroll from 'better-scroll'
 import { Toast } from 'vant'
-// 引入中央事件总线
 import { mapMutations, mapState } from 'vuex'
 import { ADD_TO_CART } from './../../../../config/pubsub_type.js'
 export default {
