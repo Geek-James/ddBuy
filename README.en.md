@@ -43,6 +43,10 @@ You need to install [node](http://nodejs.org/) and  [git](https://git-scm.com/) 
 At the same time,a series of basic tutorial articles of Vue are provided. 
 
 Later,the whole project will be divided into several technical points and shared.
+
+- **Dismantling of core technologies:**
+   - [Animation of items flying into shopping cart](https://juejin.im/post/5dd55fd2f265da47dd1af944?utm_source=gold_browser_extension)
+
 - **The series of basic Vue blog**:
     - [The series of basic Vue(一) What the vue?](https://juejin.im/post/5d64f31ae51d4561db5e3a74)
     - [The series of basic Vue(二) Vue instructions](https://juejin.im/post/5d652fb351882505a87a976b)
