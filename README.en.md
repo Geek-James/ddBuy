@@ -46,6 +46,7 @@ Later,the whole project will be divided into several technical points and shared
 
 - **Dismantling of core technologies:**
    - [Animation of items flying into shopping cart](https://juejin.im/post/5dd55fd2f265da47dd1af944?utm_source=gold_browser_extension)
+   - [Log in to register](https://juejin.im/post/5dafc91a6fb9a04e4047a713)
 
 - **The series of basic Vue blog**:
     - [The series of basic Vue(一) What the vue?](https://juejin.im/post/5d64f31ae51d4561db5e3a74)
