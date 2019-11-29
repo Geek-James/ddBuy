@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-16 12:25:34
+ * @LastEditTime: 2019-11-29 16:59:47
  * @Description: 首页->顶部搜索栏
  * @FilePath: /ddBuy/src/views/home/components/header/Header.vue
  -->
@@ -50,12 +50,13 @@
 import { Toast } from 'vant'
 import PubSub from 'pubsub-js'
 import { LOCATION_ADDRESS } from '../../../../config/pubsub_type'
+import { getLocalStore } from '../../../../config/global'
 
 export default {
   data () {
     return {
       showBgColor: false,
-      location: '请选择位置..'
+      location: getLocalStore('userLocation') || '请选择位置..'
     }
   },
   mounted () {
