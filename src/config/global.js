@@ -224,4 +224,4 @@ export const removeLocalStore = (name) => {
 }
 
 // 版本信息
-export const _VERSION_ = "1.1.1";
+export const _VERSION_ = "1.1.2";
