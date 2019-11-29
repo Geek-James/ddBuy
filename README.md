@@ -50,6 +50,7 @@
 
 - **核心技术拆解**:
   - [商品飞入购物车动画](https://juejin.im/post/5dd55fd2f265da47dd1af944?utm_source=gold_browser_extension)
+  - [登录注册](https://juejin.im/post/5dafc91a6fb9a04e4047a713)
 
 - **Vue甜小白系列专栏**:
     - [Vue从甜小白到皮大佬系列(一) Vue是个啥?](https://juejin.im/post/5d64f31ae51d4561db5e3a74)
