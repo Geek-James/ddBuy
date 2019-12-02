@@ -30,12 +30,14 @@
 
 作者 **[极客James](https://juejin.im/user/5c4ebc72e51d4511dc7306ce)**
 
+### 交个朋友吧
+
 **微信群:扫码回复 加群 带你和大厂大佬们一起交流学习**
 <div>
 <img src="http://518taole.7-orange.cn/weixing.png" width = "120" height = "140" />
 </div>
 
-**公众号:扫码回复 学习 免费领前端最新学习资料**
+**公众号:前端甜甜圈~ 听小姐姐给你讲前端**
 <div>
 <img src="http://518taole.7-orange.cn/wxqrcode.jpg" width = "120" height = "140" />
 </div>
