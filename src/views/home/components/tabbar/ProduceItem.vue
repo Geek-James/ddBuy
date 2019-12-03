@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-12-03 15:05:59
+ * @LastEditTime: 2019-12-03 18:10:26
  * @Description: 首页->产品列表
  * @FilePath: /ddBuy/src/views/home/components/tabbar/ProduceItem.vue
  -->
@@ -24,7 +24,7 @@
       </span>
       <span class="originPrice">{{product.origin_price | moneyFormat}}</span>
       <div class="buyCar"
-           @click="addCart(product)">
+           @click.stop="addCart(product)">
         <svg viewBox="0 0 52 52"
              class="icon icon-60">
           <defs>
