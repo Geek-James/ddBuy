@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-24 16:03:59
+ * @LastEditTime: 2019-12-02 16:52:23
  * @Description: 首页->限时抢购
  * @FilePath: /ddBuy/src/views/home/components/flash/FlashFood.vue
  -->
@@ -15,7 +15,8 @@
         <li class="itemInCovers"
             v-for="(product,index) in flash_sale_product_list"
             :key="product.id"
-            ref="productItem">
+            ref="productItem"
+            @click="goToGoodsDetail(product)">
           <img v-lazy="product.small_image"
                class="itemImage">
           <span class="title">{{product.name}}</span>
@@ -23,7 +24,7 @@
             <p class="nowPrice">{{product.price | moneyFormat}}</p>
             <p class="originPrice">{{product.origin_price | moneyFormat}}</p>
             <div class="buyCar"
-                 @click="addToCart(product,index)">
+                 @click.stop="addToCart(product,index)">
               <svg viewBox="0 0 52 52"
                    class="icon icon-60">
                 <defs>
@@ -183,6 +184,10 @@ export default {
         // 500毫秒后移除class
         document.getElementById("buycar").classList.remove('moveToCart');
       }, 500);
+    },
+    // 商品详情页面
+    goToGoodsDetail (goods) {
+      this.$router.push({ name: "goodsDetail", params: { goodsInfo: goods, isFlash: true } });
     }
   }
 }

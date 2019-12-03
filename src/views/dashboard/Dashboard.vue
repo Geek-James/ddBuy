@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-26 10:13:06
+ * @LastEditTime: 2019-12-02 17:49:34
  * @Description: 项目根入口
  * @FilePath: /ddBuy/src/views/dashboard/Dashboard.vue
  -->
@@ -35,13 +35,11 @@
 </template>
 
 <script type="text/javascript">
-import { setStore } from '../../config/global.js'
 import { setLocalStore, getLocalStore } from '../../config/global.js'
 import { mapState, mapMutations, mapActions } from 'vuex'
 export default {
   name: "DashBoard",
   mounted () {
-
   },
   created () {
     //通过路由跳转绑定Tabbar的选中
