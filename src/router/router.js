@@ -88,12 +88,7 @@ export default new Router({
                 // 是否数据缓存
                 meta: {
                     keepAlive: true
-                },
-                children: [{
-                    path: 'map',
-                    name: 'map',
-                    component: Map,
-                }]
+                }
             }, {
                 // 分类
                 path: 'category',
@@ -165,6 +160,10 @@ export default new Router({
                 path: '/goodsDetail',
                 name: 'goodsDetail',
                 component: GoodsDetail
+            }, {
+                path: 'map',
+                name: 'map',
+                component: Map,
             }]
         },
         {
