@@ -1,3 +1,14 @@
+<!--
+ * @Author: 极客James
+ * @Motto: 求知若渴,虚心若愚
+ * @Github: https://github.com/Geek-James/ddBuy
+ * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
+ * @LastEditTime: 2019-12-03 15:04:51
+ * @Description: 商品详情页 由于是Mock数据->通过上级页面通过路由的query传值 
+ * @supplement   企业开发,只需要拿到商品的id然后请求获取数据
+ * @FilePath: /ddBuy-dev/src/components/goodsDetail/GoodsDetail.vue
+ -->
+
 <template>
   <div id="goodsDetail">
     <van-nav-bar title="商品详情"
@@ -27,12 +38,12 @@
     <div class="goodsDetailWrapper">
       <!-- 商品图 -->
       <div class="goodsImage">
-        <img :src="goodsInfo.small_image  "
+        <img :src="goodsInfo.small_image"
              alt="">
       </div>
       <!-- 限时抢购  -->
       <div class="flash"
-           v-show="isFlash">
+           v-show="goodsInfo.isFlash">
         <div class="flashLeft">
           <span>限时抢购</span>
           <i>抢购中</i>
@@ -52,11 +63,10 @@
             </template>
           </van-count-down>
         </div>
-
       </div>
       <!-- 商品名称 -->
       <div class="productInfo">
-        <div class="title">{{goodsInfo.product_name}}</div>
+        <div class="title">{{goodsInfo.name}}</div>
         <div class="subTitle">{{goodsInfo.spec}}</div>
         <span class="originPrice">{{goodsInfo.origin_price | moneyFormat}}</span>
         <span class="price">{{goodsInfo.price}}</span>
@@ -84,14 +94,15 @@
         <van-divider dashed />
       </div>
       <div class="showGoods">
-        <img :src="goodsInfo.small_image  "
+        <img :src="goodsInfo.small_image"
              alt="">
         <img :src="goodsImage"
              alt="">
       </div>
 
       <!-- 底部商品导航    -->
-      <van-goods-action :safe-area-inset-bottom=true>
+      <van-goods-action :safe-area-inset-bottom=true
+                        style="z-index:100">
         <van-goods-action-icon icon="cart-o"
                                :info="goodsNum"
                                @click="onClickCar" />
@@ -100,45 +111,37 @@
                                  @click="onClickAddToCar" />
       </van-goods-action>
     </div>
+
     <!-- 回到顶部按钮 -->
     <v-top />
   </div>
 </template>
 
 <script type="text/javascript">
-import { setLocalStore, getLocalStore, removeLocalStore } from './../../config/global'
 import { mapState, mapMutations } from 'vuex'
-// 回到顶部组件
+
 export default {
   created () {
   },
   mounted () {
-    let goodsInfo = this.$route.params.goodsInfo;
-    if (goodsInfo == undefined) {
-      this.goodsInfo = JSON.parse(getLocalStore('userInfo'));
-    }
-    // 是否是限时抢购的商品详情
-    let isFlash = this.$route.params.isFlash;
-    if (isFlash) {
-      this.isFlash = isFlash;
-    }
+    console.log();
+
   },
   computed: {
-
   },
   data () {
     return {
-      // 商品详情 数据有上级界面通过路由传递过来
-      goodsInfo: this.$route.params.goodsInfo,
       // 倒计时时间设置
       time: 30 * 60 * 1000 * 100,
       // 是否是限时抢购
       isFlash: false,
+      goodsInfo: this.$route.query,
       goodsImage: 'https:\/\/img.ddimg.mobi\/3f280ff77ab3d1571213379189.jpg?width=750&height=1869'
     }
   },
   computed: {
     ...mapState(['shopCart']),
+    // 购物车商品数量
     goodsNum () {
       let num = 0;
       Object.values(this.shopCart).forEach((goods, index) => {
@@ -154,6 +157,7 @@ export default {
   },
   methods: {
     ...mapMutations(['ADD_TO_CART']),
+    // 返回
     onClickLeft () {
       this.$router.go(-1);
     },
@@ -165,12 +169,6 @@ export default {
     onClickCar () {
       this.$router.push({ name: 'cart' });
     }
-  },
-  beforeDestroy () {
-
-  },
-  destroyed () {
-
   }
 }
 </script>

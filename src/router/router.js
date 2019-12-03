@@ -73,7 +73,6 @@ export default new Router({
             path: '/dashboard',
             name: 'dashboard',
             component: Dashboard,
-
             children: [{
                 path: '/dashboard',
                 redirect: '/dashboard/home',
@@ -117,7 +116,10 @@ export default new Router({
                 // 购物车
                 path: 'cart',
                 name: 'cart',
-                component: Cart
+                component: Cart,
+                meta: {
+                    keepAlive: true
+                }
             }, {
                 // 我的
                 path: 'mine',
@@ -158,6 +160,11 @@ export default new Router({
                     name: 'vipPay',
                     component: VipPay
                 }]
+            }, {
+                // 商品详情
+                path: '/goodsDetail',
+                name: 'goodsDetail',
+                component: GoodsDetail
             }]
         },
         {
@@ -192,16 +199,6 @@ export default new Router({
             path: '/Login',
             name: 'login',
             component: Login
-        },
-        {
-            // 商品详情
-            path: '/goodsDetail',
-            name: 'goodsDetail',
-            component: GoodsDetail,
-            // 是否数据缓存
-            meta: {
-                keepAlive: true
-            },
         }
     ]
 })

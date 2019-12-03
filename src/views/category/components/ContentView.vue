@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-13 10:41:58
+ * @LastEditTime: 2019-12-03 15:07:34
  * @Description: 分类模块->可滑动标题组件
  * @FilePath: /ddBuy/src/views/category/components/ContentView.vue
  -->
@@ -78,9 +78,10 @@
           <ul>
             <li v-for="(item,index) in it.products"
                 :key="index"
-                class="list ">
+                class="list "
+                @click.stop="goToGoodsDetail(item)">
               <div class="list_item flex">
-                <p @click="getDetails(item)">
+                <p>
                   <img v-lazy="item.small_image"
                        alt="">
                 </p>
@@ -90,7 +91,7 @@
                   <p class="price">{{item.price | moneyFormat}}</p>
                   <p class="originPrice">{{item.origin_price | moneyFormat}}</p>
                   <div class="iconCartWrapper"
-                       @click="addToCart(item)">
+                       @click.stop="addToCart(item)">
                     <svg viewBox="0 0 52 52"
                          class="icon iconCart">
                       <defs>
@@ -263,11 +264,20 @@ export default {
       let ulContentWidth = this.$refs.ulContent.clientWidth;
       this.isShowDropMenu = ulContentWidth > subTitleWrapperWidth ? true : false;
     },
-    // 8.商品详情
-    getDetails (item) {
-      Toast({
-        message: '商品详情暂未实现哦~',
-        duration: 800
+    // 商品详情页面
+    goToGoodsDetail (goods) {
+      this.$router.push({
+        name: "goodsDetail",
+        // 给商品详情页面传递数据
+        query: {
+          id: goods.id,
+          name: goods.name,
+          small_image: goods.small_image,
+          price: goods.price,
+          spec: goods.spec,
+          total_sales: goods.total_sales,
+          origin_price: goods.origin_price,
+        }
       });
     }
   }

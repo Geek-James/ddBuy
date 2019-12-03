@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-12-02 16:52:23
+ * @LastEditTime: 2019-12-03 15:03:23
  * @Description: 首页->限时抢购
  * @FilePath: /ddBuy/src/views/home/components/flash/FlashFood.vue
  -->
@@ -187,7 +187,20 @@ export default {
     },
     // 商品详情页面
     goToGoodsDetail (goods) {
-      this.$router.push({ name: "goodsDetail", params: { goodsInfo: goods, isFlash: true } });
+      // 跳转到商品详情页面并且传值
+      this.$router.push({
+        name: "goodsDetail",
+        query: {
+          id: goods.id,
+          name: goods.name,
+          small_image: goods.small_image,
+          price: goods.price,
+          spec: goods.spec,
+          total_sales: goods.total_sales,
+          origin_price: goods.origin_price,
+          isFlash: true
+        }
+      });
     }
   }
 }

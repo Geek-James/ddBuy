@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-07 22:34:48
+ * @LastEditTime: 2019-12-03 15:05:59
  * @Description: 首页->产品列表
  * @FilePath: /ddBuy/src/views/home/components/tabbar/ProduceItem.vue
  -->
@@ -11,7 +11,8 @@
   <div id="produceItem">
     <div class="item"
          v-for="(product,index) in product_lists"
-         :key="product.id">
+         :key="product.id"
+         @click.stop="goToGoodsDetail(product)">
       <img v-lazy="product.small_image"
            alt="">
       <p class="itemTitle">{{product.name}}</p>
@@ -67,10 +68,8 @@
 </template>
 
 <script type="text/javascript">
-// 引入消息发布订阅
-import PubSub from 'pubsub-js'
+
 import { mapMutations } from 'vuex'
-import { ADD_TO_CART } from './../../../../config/pubsub_type.js'
 
 export default {
   props: {
@@ -89,8 +88,24 @@ export default {
   },
   methods: {
     ...mapMutations({
-            addCart: 'ADD_TO_CART'
-    })
+      addCart: 'ADD_TO_CART'
+    }),
+    // 商品详情页面
+    goToGoodsDetail (goods) {
+      // 跳转到商品详情页面并且传值
+      this.$router.push({
+        name: "goodsDetail",
+        query: {
+          id: goods.id,
+          name: goods.name,
+          small_image: goods.small_image,
+          price: goods.price,
+          spec: goods.spec,
+          total_sales: goods.total_sales,
+          origin_price: goods.origin_price,
+        }
+      });
+    }
   }
 }
 </script>
