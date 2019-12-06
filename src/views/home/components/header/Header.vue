@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-12-03 15:13:43
+ * @LastEditTime: 2019-12-06 17:38:29
  * @Description: 首页->顶部搜索栏
  * @FilePath: /ddBuy/src/views/home/components/header/Header.vue
  -->
@@ -22,12 +22,7 @@
       <router-link to="/dashboard/map"
                    tag="span"
                    class="address">{{location}}</router-link>
-      <svg viewBox="0 0 30 30"
-           class="icon iconArrow">
-        <path fill="#FFFFFF"
-              fill-rule="evenodd"
-              d="M14.724 19.17c.783.784 2.05.788 2.837 0l5.047-5.047c1.173-1.172.776-2.123-.869-2.123H10.545c-1.652 0-2.04.952-.869 2.123l5.048 5.048z"></path>
-      </svg>
+      <svg-icon iconClass="up_real" />
     </div>
     <div class="searchWrapper"
          ref="search"

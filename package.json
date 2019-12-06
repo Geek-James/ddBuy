@@ -32,6 +32,7 @@
         "babel-plugin-import": "^1.12.1",
         "less": "^3.0.4",
         "less-loader": "^4.1.0",
+        "svg-sprite-loader": "^4.1.6",
         "vue-template-compiler": "^2.6.10"
     }
 }
