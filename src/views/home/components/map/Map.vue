@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-16 12:26:07
+ * @LastEditTime: 2019-11-29 16:56:25
  * @Description: 地图
  * @FilePath: /ddBuy/src/views/home/components/map/Map.vue
  -->
@@ -244,6 +244,8 @@ export default {
     clickAddredd (item) {
       // 发通知给Header组件修改名称      
       PubSub.publish(LOCATION_ADDRESS, item.name);
+      // 存储到本地
+      setLocalStore('userLocation', item.name);
       this.$router.back();
     }
   },

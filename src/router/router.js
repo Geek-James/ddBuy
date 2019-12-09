@@ -10,6 +10,7 @@ const Category = () => import('../views/category/Category.vue');
 const Eat = () => import('../views/eat/Eat.vue');
 const Cart = () => import('../views/cart/Cart.vue');
 const Mine = () => import('../views/mine/Mine.vue');
+
 // 地图
 const Map = () => import('../views/home/components/map/Map.vue');
 
@@ -33,6 +34,9 @@ const VipPay = () => import('../views/mine/Children/MyVipChildren/VipPay.vue')
 const MyOrder = () => import('../views/mine/Children/MyOrder');
 // 订单商品详情页
 const OrderGoodsList = () => import('../views/order/children/OrderGoodsList')
+// 商品详情页
+const GoodsDetail = () => import('../components/goodsDetail/GoodsDetail.vue');
+
 
 // 加载订单相关的组件
 const Order = () => import('../views/order/Order.vue');
@@ -59,7 +63,11 @@ export default new Router({
     // !!注意: 二级路由不需要加 '/'
     routes: [{
             path: '/',
-            redirect: '/dashboard'
+            redirect: '/dashboard',
+            // 是否数据缓存
+            meta: {
+                keepAlive: true
+            },
         }, {
             // 根页面 
             path: '/dashboard',
@@ -67,7 +75,11 @@ export default new Router({
             component: Dashboard,
             children: [{
                 path: '/dashboard',
-                redirect: '/dashboard/home'
+                redirect: '/dashboard/home',
+                // 是否数据缓存
+                meta: {
+                    keepAlive: true
+                },
             }, {
                 // 主页
                 path: 'home',
@@ -76,17 +88,16 @@ export default new Router({
                 // 是否数据缓存
                 meta: {
                     keepAlive: true
-                },
-                children: [{
-                    path: 'map',
-                    name: 'map',
-                    component: Map,
-                }]
+                }
             }, {
                 // 分类
                 path: 'category',
                 name: 'category',
                 component: Category,
+                // 是否数据缓存
+                meta: {
+                    keepAlive: true
+                },
             }, {
                 // 吃什么
                 path: 'eat',
@@ -100,7 +111,10 @@ export default new Router({
                 // 购物车
                 path: 'cart',
                 name: 'cart',
-                component: Cart
+                component: Cart,
+                meta: {
+                    keepAlive: true
+                }
             }, {
                 // 我的
                 path: 'mine',
@@ -141,6 +155,15 @@ export default new Router({
                     name: 'vipPay',
                     component: VipPay
                 }]
+            }, {
+                // 商品详情
+                path: '/goodsDetail',
+                name: 'goodsDetail',
+                component: GoodsDetail
+            }, {
+                path: 'map',
+                name: 'map',
+                component: Map,
             }]
         },
         {

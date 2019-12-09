@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-16 12:25:34
+ * @LastEditTime: 2019-12-06 17:38:29
  * @Description: 首页->顶部搜索栏
  * @FilePath: /ddBuy/src/views/home/components/header/Header.vue
  -->
@@ -19,15 +19,10 @@
               d="M14.521 30.445c.817.738 2.142.75 2.958 0 0 0 11.521-9.82 11.521-17.158C29 5.95 23.18 0 16 0S3 5.949 3 13.287c0 7.339 11.521 17.158 11.521 17.158zM16 18a5 5 0 1 0 0-10 5 5 0 0 0 0 10z"></path>
       </svg>
       <!-- 跳转到地图界面 -->
-      <router-link to="/dashboard/home/map"
+      <router-link to="/dashboard/map"
                    tag="span"
                    class="address">{{location}}</router-link>
-      <svg viewBox="0 0 30 30"
-           class="icon iconArrow">
-        <path fill="#FFFFFF"
-              fill-rule="evenodd"
-              d="M14.724 19.17c.783.784 2.05.788 2.837 0l5.047-5.047c1.173-1.172.776-2.123-.869-2.123H10.545c-1.652 0-2.04.952-.869 2.123l5.048 5.048z"></path>
-      </svg>
+      <svg-icon iconClass="up_real" />
     </div>
     <div class="searchWrapper"
          ref="search"
@@ -50,12 +45,13 @@
 import { Toast } from 'vant'
 import PubSub from 'pubsub-js'
 import { LOCATION_ADDRESS } from '../../../../config/pubsub_type'
+import { getLocalStore } from '../../../../config/global'
 
 export default {
   data () {
     return {
       showBgColor: false,
-      location: '请选择位置..'
+      location: getLocalStore('userLocation') || '请选择位置..'
     }
   },
   mounted () {

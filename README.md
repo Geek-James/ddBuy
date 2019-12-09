@@ -26,14 +26,18 @@
 
 **ddBuy**是一个移动端开源电商项目，它基于 [vue 2.x](https://github.com/vuejs/vue) 和 [vant 2.x](https://youzan.github.io/vant/#/zh-CN/intro)实现。使用了最新的Vue全家桶技术栈，以及一些优秀的开源库如[better-scroll](http://ustbhuangyi.github.io/better-scroll/doc/api.html)、 [moment.js](https://github.com/moment/moment/)、[twix.js](https://github.com/icambron/twix.js)、[pubsub-js](https://github.com/mroderick/PubSubJS),后台数据通过[Easy-Mock](https://github.com/easy-mock/easy-mock)搭建。相信不管你是处于哪个段位的攻城狮，本项目都能帮助到你。
 
+## [Release Note](https://github.com/Geek-James/ddBuy/releases)
+
 作者 **[极客James](https://juejin.im/user/5c4ebc72e51d4511dc7306ce)**
+
+### 交个朋友吧
 
 **微信群:扫码回复 加群 带你和大厂大佬们一起交流学习**
 <div>
 <img src="http://518taole.7-orange.cn/weixing.png" width = "120" height = "140" />
 </div>
 
-**公众号:扫码回复 学习 免费领前端最新学习资料**
+**公众号:前端甜甜圈~ 听小姐姐给你讲前端**
 <div>
 <img src="http://518taole.7-orange.cn/wxqrcode.jpg" width = "120" height = "140" />
 </div>
@@ -48,6 +52,7 @@
 
 - **核心技术拆解**:
   - [商品飞入购物车动画](https://juejin.im/post/5dd55fd2f265da47dd1af944?utm_source=gold_browser_extension)
+  - [登录注册](https://juejin.im/post/5dafc91a6fb9a04e4047a713)
 
 - **Vue甜小白系列专栏**:
     - [Vue从甜小白到皮大佬系列(一) Vue是个啥?](https://juejin.im/post/5d64f31ae51d4561db5e3a74)

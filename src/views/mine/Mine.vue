@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-10 15:01:46
+ * @LastEditTime: 2019-12-02 11:16:02
  * @Description: 我的
  * @FilePath: /ddBuy/src/views/mine/Mine.vue
  -->
@@ -190,7 +190,8 @@ export default {
     goToMyAddredd () {
       // 判断是否登录
       if (this.userInfo.token) {
-        this.$router.push({ name: 'myAddress' });      } else {
+        this.$router.push({ name: 'myAddress' });
+      } else {
         this.login();
       }
     },

@@ -3,13 +3,14 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-24 16:08:50
+ * @LastEditTime: 2019-12-03 14:29:13
  * @Description: 项目根入口
  * @FilePath: /ddBuy/src/views/dashboard/Dashboard.vue
  -->
 <template>
   <div id="dashboard">
     <van-tabbar v-model="active"
+                :safe-area-inset-bottom=true
                 class="active_tab"
                 active-color="#75a342">
       <!-- 给购物车的Tabbar加个ID 方便做加入购物车的小球动画 -->
@@ -25,22 +26,22 @@
         </template>
       </van-tabbar-item>
     </van-tabbar>
-    <!-- 是否缓存界面选择加载 -->
+
+    <!-- 缓存界面选择加载 -->
     <keep-alive>
       <router-view v-if="$route.meta.keepAlive" />
     </keep-alive>
     <router-view v-if="!$route.meta.keepAlive" />
+
   </div>
 </template>
 
 <script type="text/javascript">
-import { setStore } from '../../config/global.js'
 import { setLocalStore, getLocalStore } from '../../config/global.js'
 import { mapState, mapMutations, mapActions } from 'vuex'
 export default {
   name: "DashBoard",
   mounted () {
-
   },
   created () {
     //通过路由跳转绑定Tabbar的选中
@@ -114,13 +115,10 @@ export default {
   methods: {
     // 0. 延展mutations方法
     ...mapMutations(['INIT_SHOP_CART', 'INIT_USER_INFO']),
-    // ...mapActions(['autoLogin']),
     // 1.点击tabbar触发的方法
     tab (index, val) {
       this.currIndex = index;
       this.$router.push(val);
-      // 将索引保存到本地
-      //   setLocalStore('tatbarActive', index);
     },
     // 2.初始化购物车数据
     _initData () {
