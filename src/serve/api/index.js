@@ -1,7 +1,7 @@
 import ajax from './ajax'
 
 // 1. 定义基础路径
-const BASE_URL = 'https://mock.cangdu.org/mock/5d940466d360e8289c6a8eb7/api/'
+const BASE_URL = 'http://ddbuy.7-orange.cn:7300/mock/5def6a2d448e330a1116366e/api/'
 
 /*****Home 模块*******/
 export const getHomeData = () => ajax(BASE_URL + 'homeApi');
