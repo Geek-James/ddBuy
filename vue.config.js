@@ -16,7 +16,7 @@ module.exports = {
         proxy: {
             // 配置跨域处理 可以设置多个
             '/api': {
-                target: 'http://ddbuy.7-orange.cn:7300/mock/5def6a2d448e330a1116366e/api/',
+                target: 'http://api.7-orange.cn:7300/mock/5def6a2d448e330a1116366e/api/',
                 ws: true,
                 changeOrigin: true
             }

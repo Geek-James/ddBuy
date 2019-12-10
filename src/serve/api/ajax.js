@@ -20,14 +20,14 @@ export default function ajax(url = '', params = {}, type = 'GET') {
             if (paramsStr) {
                 paramsStr = paramsStr.substr(0, paramsStr.lastIndexOf('&'));
                 // 2.5 拼接完整路径
-                if (url.indexOf('47.98.157.152') === -1) {
-                    url += '?' + paramsStr + '&geek166=' + randomCode(20);
+                if (url.indexOf('127.0.0.1') === -1) {
+                    url += '?' + paramsStr + '&Geek-James=' + randomCode(20);
                 } else {
                     url += '?' + paramsStr;
                 }
             } else {
-                if (url.indexOf('47.98.157.152') === -1) {
-                    url += '?geek166=' + randomCode(20)
+                if (url.indexOf('127.0.0.1') === -1) {
+                    url += '?Geek-James=' + randomCode(20)
                 }
             }
             // 2.6 发起get请求
