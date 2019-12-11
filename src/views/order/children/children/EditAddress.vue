@@ -54,6 +54,7 @@ export default {
     // 2. 保存
     onSave (content) {
       let id = content.id;
+      content['address'] = content.province + content.city + content.county + content.addressDetail;
       this.CHANGE_USER_SHOPPING_ADDRESS({
         id, content
       });
