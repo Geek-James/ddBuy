@@ -65,7 +65,7 @@ export default {
         setLocalStore('shopCart', state.shopCart);
     },
     // 2.页面初始化,获取本地购物车的数据
-    [INIT_SHOP_CART](state) {
+  [INIT_SHOP_CART](state) {
         // 2.1 先存本地取购物车数据
         let initShopCart = getLocalStore('shopCart');
         if (initShopCart) {
@@ -254,26 +254,18 @@ export default {
         removeLocalStore('shippingAddress');
     },
     //  16.初始化获取用户收货地址
-    [INIT_USER_SHOPPING_ADDRESS](state) {
-        let initUsershoppingAddress = getLocalStore('shippingAddress');
-        if (initUsershoppingAddress) {
-            state.shippingAddress = JSON.parse(initUsershoppingAddress);
-        } else {
-            state.shippingAddress = [];
-        }
+  [INIT_USER_SHOPPING_ADDRESS](state) {
+      let initUsershoppingAddress = getLocalStore('shippingAddress');
+      state.shippingAddress = JSON.parse(initUsershoppingAddress) || []
     },
 
     // 17.增加用户地址
     [ADD_USER_SHOPPING_ADDRESS](state, {
         content
     }) {
-        // 17.1 取出state中的shippingAddress
-        let shippingAddress = state.shippingAddress;
-        // 17.2 给shippingAddress赋值
-        shippingAddress.push(content);
-        // 17.3 产生新对象
-        state.shippingAddress = [...shippingAddress];
-        // 17.4 将数据存储到本地
+        // 17.1 添加用户地址
+        state.shippingAddress = [...state.shippingAddress, content];
+        // 17.2 将数据存储到本地
         setLocalStore('shippingAddress', state.shippingAddress);
     },
 
@@ -281,37 +273,19 @@ export default {
     [DELETE_USER_SHOPPING_ADDRESS](state, {
         id
     }) {
-        // 18.1 取出state中的shippingAddress
-        let shippingAddress = state.shippingAddress;
-        // 18.2 删除
-        for (let i = 0; i < shippingAddress.length; i++) {
-            if (shippingAddress[i].id == id) {
-                shippingAddress.splice(i, 1);
-                break;
-            }
-        }
-        // 18.3更新store数据
-        state.shippingAddress = [...shippingAddress];
-        // 18.4更新本地数据
+        // 18.1 过滤要删除的地址
+        state.shippingAddress = state.shippingAddress.filter(item => item.id !== id)
+        // 18.2 更新本地数据
         setLocalStore('shippingAddress', state.shippingAddress);
     },
     // 19.修改用户地址信息
     [CHANGE_USER_SHOPPING_ADDRESS](state, {
         content
     }) {
-        // 19.1 取出state中的shippingAddress
-        let shippingAddress = state.shippingAddress;
-        // 19.2查找id的那个对象
-        for (let index = 0; index < shippingAddress.length; index++) {
-            if (shippingAddress[index].id == content.id) {
-                console.log(shippingAddress[index]);
-                shippingAddress[index] = content;
-                break;
-            }
-        }
-        // 19.3更新store数据
-        state.shippingAddress = [...shippingAddress];
-        // 19.4更新本地数据
+        // 19.1 找到要被修改地址的索引
+        const index = state.shippingAddress.findIndex(item => item.id === content.id)
+        state.shippingAddress.splice(index, 1, content)
+        // 19.2 更新本地数据
         setLocalStore('shippingAddress', state.shippingAddress);
     },
     // 添加商品进购物车
