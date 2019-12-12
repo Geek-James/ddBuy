@@ -3,6 +3,7 @@ import Router from 'vue-router'
 
 // 引入一级组件
 import Dashboard from '../views/dashboard/Dashboard.vue'
+import state from '../store/state';
 
 // 懒加载二级组件 Tarbar
 const Home = () => import('../views/home/Home.vue');
@@ -48,7 +49,7 @@ const EditAddress = () => import('../views/order/children/children/EditAddress.v
 const Login = () => import('../views/login/Login.vue');
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
     // 解决路由跳转页面没有置顶
     scrollBehavior(to, from, savedPosition) {
         if (savedPosition) {
@@ -135,12 +136,18 @@ export default new Router({
                     // 优惠券
                     path: 'couponList',
                     name: 'couponList',
-                    component: CouponList
+                    component: CouponList,
+                    meta: {
+                         requireAuth: true
+                     }
                 }, {
                     // 我的订单
                     path: 'myOrder',
                     name: 'myOrder',
                     component: MyOrder,
+                    meta: {
+                      requireAuth: true
+                    }
                 }, {
                     // 绿卡会员
                     path: 'myVip',
@@ -148,7 +155,8 @@ export default new Router({
                     component: MyVip,
                     // 是否数据缓存
                     meta: {
-                        keepAlive: true
+                      keepAlive: true,
+                      requireAuth: true,
                     }
                 }, {
                     path: '/vipPay',
@@ -176,6 +184,9 @@ export default new Router({
                 path: 'myAddress',
                 name: 'myAddress',
                 component: MyAddress,
+                meta: {
+                  requireAuth: true
+                },
                 children: [{
                     // 添加地址
                     path: 'addAddress',
@@ -201,3 +212,20 @@ export default new Router({
         }
     ]
 })
+
+//路由守卫
+router.beforeEach((to, from, next) => {
+    if (to.meta.requireAuth) {
+        if (state.userInfo.token) {
+          next()
+        } else {
+          next({
+            path: '/login'
+          })
+        }
+    } else {
+        next()
+    }
+})
+
+export default router

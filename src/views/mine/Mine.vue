@@ -22,7 +22,7 @@
           <!-- 已登录状态 -->
           <div class="personMsg"
                v-if="userInfo.token"
-               @click="goToUserCenter">
+               @click="goToPage('userCenter')">
             <img class="iconImage"
                  :src="user_image.login_icon"
                  alt="">
@@ -45,7 +45,7 @@
                  alt="">
             <div class="personInfo"
                  v-if="!userInfo.token">
-              <div @click="login">立即登录</div>
+              <div @click="goToPage('login')">立即登录</div>
             </div>
           </div>
         </template>
@@ -71,18 +71,18 @@
       <van-cell title="我的优惠券"
                 icon="gold-coin"
                 :value="userInfo.token?'2张':''"
-                @click="goToMyCouponList"
+                @click="goToPage('couponList')"
                 is-link />
       <van-cell title="我的收货地址"
                 icon="todo-list"
                 is-link
-                @click="goToMyAddredd" />
+                @click="goToPage('myAddress')" />
     </van-cell-group>
 
     <van-cell-group style="margin-top:0.4rem">
       <van-cell is-link
                 icon="vip-card"
-                @click="goToMyVip">
+                @click="goToPage('myVip')">
         <template slot="title">
           <span class="custom-title">我的绿卡</span>
           <van-tag type="danger"
@@ -112,7 +112,7 @@
 <script type="text/javascript">
 // 引入vuex
 import { mapState } from 'vuex'
-import { Dialog } from 'vant'
+import { Dialog, Toast } from 'vant'
 import { _VERSION_ } from './../../config/global'
 
 export default {
@@ -142,70 +142,25 @@ export default {
       var mobile = String(this.userInfo.phone)
       var reg = /^(\d{3})\d{4}(\d{4})$/
       return mobile.replace(reg, '$1****$2')
-    },
-    userInfoSex () {
-      if (this.userInfo.sex == '1') {
-        return this.user_image.female;
-      } else if (this.userInfoSex.sex == '2') {
-        return this.user_image.male;
-      } else {
-        return '';
-      }
     }
   },
-  components: {
-
-  },
   methods: {
-    // 跳转到登录界面
-    login () {
-      this.$router.push('/login');
-    },
-    // 跳转到用户中心
-    goToUserCenter () {
-      this.$router.push({ name: "userCenter" });
-    },
     // 跳转到我的订单
     goTomyOrder (index) {
-      if (this.userInfo.token) {
-        if (index == 3) {
-          // 跳转到售后退款界面
-        } else {
-          this.$router.push({ name: "myOrder", params: { active: index + 1 } });
+        if (index !== 3) {
+          return this.$router.push({ name: "myOrder", params: { active: index + 1 } });
         }
-      } else {
-        this.login();
-      }
+        // 跳转到售后退款界面
+        Toast({
+          message: '退款页面尚未开通啦!',
+          duration: 1500
+      })
     },
-    // 跳转到我的优惠券
-    goToMyCouponList () {
-      // 判断是否登录
-      if (this.userInfo.token) {
-        this.$router.push({ name: "couponList" });
-      } else {
-        this.login();
-      }
-    },
-    // 跳转到我的收货地址
-    goToMyAddredd () {
-      // 判断是否登录
-      if (this.userInfo.token) {
-        this.$router.push({ name: 'myAddress' });
-      } else {
-        this.login();
-      }
-    },
-    // 跳转到绿卡会员
-    goToMyVip () {
-      if (this.userInfo.token) {
-        this.$router.push('/dashboard/Mine/myVip');
-      } else {
-        this.login();
-      }
+    goToPage (name) {
+        this.$router.push({ name });
     },
     // 意见反馈
     onFeedBack () {
-
       Dialog.alert({
         confirmButtonText: '记得点个小星❤️哦~',
         title: '💘感谢您的关注💘',

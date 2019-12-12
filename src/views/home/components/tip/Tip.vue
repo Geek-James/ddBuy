@@ -53,11 +53,7 @@ export default {
   },
   methods: {
     goToVip () {
-      if (this.userInfo.token) {
-        this.$router.push({ name: 'myVip' });
-      } else {
-        this.$router.push('/login');
-      }
+      this.$router.push({ name: 'myVip' });
     }
   }
 }

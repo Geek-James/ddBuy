@@ -126,25 +126,14 @@ export default {
       this.INIT_USER_INFO();
     },
     tabbarSelected (item) {
-      switch (item) {
-        case 'home':
-          this.active = 0;
-          break;
-        case 'category':
-          this.active = 1;
-          break;
-        case 'eat':
-          this.active = 2;
-          break;
-        case 'cart':
-          this.active = 3;
-          break;
-        case 'mine':
-          this.active = 4;
-          break;
-        default:
-          break;
+      const mapType = {
+        home: 0,
+        category: 1,
+        eate: 2,
+        cart: 3,
+        mine: 4
       }
+      this.active = mapType[item]
     }
   }
 }
