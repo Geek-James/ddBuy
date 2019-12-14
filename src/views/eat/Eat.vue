@@ -7,6 +7,7 @@
  * @Description: 吃什么模块
  * @FilePath: /ddBuy/src/views/eat/Eat.vue
  -->
+ <!--test by dezhu-->
 <template>
   <div class="eatWrapper">
     <!-- 搜索栏 -->
@@ -37,5 +38,8 @@ export default {
 <style lang="less" scoped>
 #eatWrapper {
   background-color: "#f5f5f5";
+}
+.test{
+  color:red;
 }
 </style>
