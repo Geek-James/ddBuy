@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-12-03 14:38:29
+ * @LastEditTime: 2019-12-17 21:35:00
  * @Description: Home 首页模块
  * @FilePath: /ddBuy/src/views/home/Home.vue
  -->
@@ -96,23 +96,24 @@ export default {
     // Vuex中的方法
     ...mapMutations(['ADD_GOODS', 'ADD_TO_CART']),
     // 数据初始化
-    _initData () {
-      getHomeData().then(response => {
-        if (response.success) {
-          // 给轮播组件 sowing_list赋值
-          this.sowing_list = response.data.list[0].icon_list;
-          this.nav_list = response.data.list[2].icon_list;
-          this.flash_sale_product_list = response.data.list[3].product_list;
-          this.tabbar_all_product_list = response.data.list[12].product_list;
-          this.isShowLoading = false
-          // 给特色专区赋值
-          this.specialZone = response.data.special_zone;
-          // 获取首页广告图
-          this.home_ad = response.data.home_ad.image_url;
-        }
-      }).catch(error => {
-        console.log(error);
-      });
+    async  _initData () {
+      const response = await getHomeData();
+      if (response.success) {
+        const data = response.data
+        // 给轮播组件 sowing_list赋值
+        this.sowing_list = data.list[0].icon_list;
+        // navList 赋值
+        this.nav_list = data.list[2].icon_list;
+        // 给限时抢购赋值
+        this.flash_sale_product_list = data.list[3].product_list;
+        // 给Tabbar 商品列表赋值
+        this.tabbar_all_product_list = data.list[12].product_list;
+        this.isShowLoading = false
+        // 给特色专区赋值
+        this.specialZone = data.special_zone;
+        // 获取首页广告图
+        this.home_ad = data.home_ad.image_url;
+      }
     },
   },
 }
