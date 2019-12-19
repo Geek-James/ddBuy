@@ -222,6 +222,14 @@ export const removeLocalStore = (name) => {
     if (!name) return;
     return window.localStorage.removeItem(name);
 }
-
+/**
+ * 
+ * @desc   判断是否为手机号
+ * @param  {String|Number} str 
+ * @return {Boolean} 
+ */
+export const isPhoneNum = (str) => {
+    return /^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/.test(str)
+}
 // 版本信息
 export const _VERSION_ = "1.0.0";
