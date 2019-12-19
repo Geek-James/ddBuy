@@ -238,7 +238,7 @@ export const isPhoneNum = (str) => {
  * @param  {String} name 
  * @return {String}
  */
-let getCookie = (name) => {
+export const getCookie = (name) => {
     var arr = document.cookie.replace(/\s/g, "").split(';');
     for (var i = 0; i < arr.length; i++) {
         var tempArr = arr[i].split('=');
@@ -256,7 +256,7 @@ let getCookie = (name) => {
  * @param {String} value 
  * @param {Number} days 
  */
-let setCookie = (name, value, days) => {
+export const setCookie = (name, value, days) => {
     var date = new Date();
     date.setDate(date.getDate() + days);
     document.cookie = name + '=' + value + ';expires=' + date;
@@ -267,7 +267,7 @@ let setCookie = (name, value, days) => {
  * @desc 根据name删除cookie
  * @param  {String} name 
  */
-let removeCookie = (name) => {
+export const removeCookie = (name) => {
     // 设置已过期，系统会立刻删除cookie
     setCookie(name, '1', -1);
 }
