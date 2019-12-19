@@ -298,5 +298,32 @@ export const getExplore = () => {
     return 'Unkonwn'
 }
 
+/**
+ * 
+ * @desc   对象序列化
+ * @param  {Object} obj 
+ * @return {String}
+ */
+export const stringfyQueryString = (obj) => {
+    if (!obj) return '';
+    var pairs = [];
+
+    for (var key in obj) {
+        var value = obj[key];
+
+        if (value instanceof Array) {
+            for (var i = 0; i < value.length; ++i) {
+                pairs.push(encodeURIComponent(key + '[' + i + ']') + '=' + encodeURIComponent(value[i]));
+            }
+            continue;
+        }
+
+        pairs.push(encodeURIComponent(key) + '=' + encodeURIComponent(obj[key]));
+    }
+
+    return pairs.join('&');
+}
+
+
 // 版本信息
 export const _VERSION_ = "1.0.0";
