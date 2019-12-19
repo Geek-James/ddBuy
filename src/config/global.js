@@ -231,5 +231,47 @@ export const removeLocalStore = (name) => {
 export const isPhoneNum = (str) => {
     return /^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/.test(str)
 }
+
+/**
+ * 
+ * @desc 根据name读取cookie
+ * @param  {String} name 
+ * @return {String}
+ */
+let getCookie = (name) => {
+    var arr = document.cookie.replace(/\s/g, "").split(';');
+    for (var i = 0; i < arr.length; i++) {
+        var tempArr = arr[i].split('=');
+        if (tempArr[0] == name) {
+            return decodeURIComponent(tempArr[1]);
+        }
+    }
+    return '';
+}
+
+/**
+ * 
+ * @desc  设置Cookie
+ * @param {String} name 
+ * @param {String} value 
+ * @param {Number} days 
+ */
+let setCookie = (name, value, days) => {
+    var date = new Date();
+    date.setDate(date.getDate() + days);
+    document.cookie = name + '=' + value + ';expires=' + date;
+}
+
+/**
+ * 
+ * @desc 根据name删除cookie
+ * @param  {String} name 
+ */
+let removeCookie = (name) => {
+    // 设置已过期，系统会立刻删除cookie
+    setCookie(name, '1', -1);
+}
+
+
 // 版本信息
 export const _VERSION_ = "1.0.0";
