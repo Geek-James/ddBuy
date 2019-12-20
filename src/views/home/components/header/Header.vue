@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-12-06 17:38:29
+ * @LastEditTime : 2019-12-20 17:17:14
  * @Description: 首页->顶部搜索栏
  * @FilePath: /ddBuy/src/views/home/components/header/Header.vue
  -->
@@ -50,7 +50,7 @@ export default {
   data () {
     return {
       showBgColor: false,
-      location: getLocalStore('userLocation') || '请选择位置..'
+      location: getLocalStore('userLocation') || this.$t("home.chooseLocation")
     }
   },
   mounted () {
@@ -79,8 +79,8 @@ export default {
       }
     },
     // 到搜索界面
-    goSearch () {  
-     // 引入 Toast 组件后，会自动在 Vue 的 prototype 上挂载 $toast 方法，便于在组件内调用。
+    goSearch () {
+      // 引入 Toast 组件后，会自动在 Vue 的 prototype 上挂载 $toast 方法，便于在组件内调用。
       this.$toast({
         message: '暂未实现哦~',
         duration: 800
