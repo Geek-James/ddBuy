@@ -2,6 +2,10 @@ export const ch = {
     message:{
         hello: '你好'
     }, 
+    eat:{
+        pleaseHolder: '搜索菜谱、食材',//搜索菜谱、食材
+        menu: '今日菜单'
+    },
     pleaseHolder: '搜索菜谱、食材_______',//搜索菜谱、食材
     music: '网易云音乐',//网易云音乐
     findMusic: '发现音乐',//发现音乐
