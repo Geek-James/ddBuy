@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-10 14:59:22
+ * @LastEditTime : 2019-12-20 17:10:51
  * @Description: 首页->限时抢购
  * @FilePath: /ddBuy/src/views/home/components/flash/FlashBuy.vue
  -->
@@ -22,7 +22,7 @@
       </van-count-down>
       <!-- 更多按钮 -->
       <div class="more"
-           @click="moreClick">更多</div>
+           @click="moreClick">{{ $t("home.more") }}</div>
     </div>
     <!-- 限时抢购商品 遍历父组件传来的数据并传递给子组件-->
     <FlashFood :flash_sale_product_list="flash_sale_product_list" />
