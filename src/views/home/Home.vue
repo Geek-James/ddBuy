@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-10 14:50:16
+ * @LastEditTime: 2019-12-17 21:35:00
  * @Description: Home 首页模块
  * @FilePath: /ddBuy/src/views/home/Home.vue
  -->
@@ -46,11 +46,6 @@ import { showBackIcon, animate } from './../../config/global.js'
 
 // 引入Vuex
 import { mapMutations, mapState } from 'vuex'
-// 引入vant组件
-import { Toast } from 'vant'
-
-// 引入中央数据总线
-import Bus from '../../config/bus'
 
 import { ADD_TO_CART } from './../../config/pubsub_type.js'
 
@@ -74,17 +69,13 @@ export default {
   mounted () {
     // 0.数据初始化
     this._initData();
-    // 通过中心事件总线触发加入购物车事件
-    Bus.$on('addToCart', (goods) => {
-      this.addToCart(goods);
-    })
   },
   data () {
     return {
       sowing_list: [],              // 首页轮播图数据
-      isShowLoading: true,          // 是否加载动画    
+      isShowLoading: true,          // 是否加载动画
       nav_list: [],
-      flash_sale_product_list: [],  // 限时抢购  
+      flash_sale_product_list: [],  // 限时抢购
       tabbar_all_product_list: [],
       specialZone: {},               // 特色专区数据
       home_ad: ''                    // 首页广告
@@ -103,52 +94,28 @@ export default {
   },
   methods: {
     // Vuex中的方法
-    ...mapMutations(['ADD_GOODS']),
+    ...mapMutations(['ADD_GOODS', 'ADD_TO_CART']),
     // 数据初始化
-    _initData () {
-      getHomeData().then(response => {
-        if (response.success) {
-
-          // 给轮播组件 sowing_list赋值 
-          this.sowing_list = response.data.list[0].icon_list;
-          this.nav_list = response.data.list[2].icon_list;
-          this.flash_sale_product_list = response.data.list[3].product_list;
-          this.tabbar_all_product_list = response.data.list[12].product_list;
-          this.isShowLoading = false
-          // 给特色专区赋值
-          this.specialZone = response.data.special_zone;
-          // 获取首页广告图
-          this.home_ad = response.data.home_ad.image_url;
-        }
-      }).catch(error => {
-        console.log(error);
-      });
-    },
-    // 添加到购物车
-    addToCart (goods) {
-      // 1.1 判断是否有用户登录
-      if (this.userInfo.token) {
-        Toast({
-          message: '已加入购物车',
-          duration: 800
-        });
-        // 1.2 添加数据
-        this.ADD_GOODS({
-          goodsID: goods.id,
-          goodsName: goods.name,
-          smallImage: goods.small_image,
-          goodsPrice: goods.price
-        });
-      } else {
-        // 1.3 如何没有登录跳转到登录界面
-        this.$router.push('/login');
+    async  _initData () {
+      const response = await getHomeData();
+      if (response.success) {
+        const data = response.data
+        // 给轮播组件 sowing_list赋值
+        this.sowing_list = data.list[0].icon_list;
+        // navList 赋值
+        this.nav_list = data.list[2].icon_list;
+        // 给限时抢购赋值
+        this.flash_sale_product_list = data.list[3].product_list;
+        // 给Tabbar 商品列表赋值
+        this.tabbar_all_product_list = data.list[12].product_list;
+        this.isShowLoading = false
+        // 给特色专区赋值
+        this.specialZone = data.special_zone;
+        // 获取首页广告图
+        this.home_ad = data.home_ad.image_url;
       }
-    }
+    },
   },
-  beforeDestroy () {
-    // 手动销毁 $on 事件，防止多次触发
-    Bus.$off('addToCart', this.someBusMessage);
-  }
 }
 </script>
 

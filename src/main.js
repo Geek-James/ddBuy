@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-07 17:32:25
+ * @LastEditTime: 2019-12-06 17:05:06
  * @Description: 项目主入口
  * @FilePath: /ddBuy/src/main.js
  */
@@ -37,6 +37,7 @@ import '@/config/rem'
 import 'reset-css'
 //  全局引入 过滤器
 import '@/config/filter'
+
 
 new Vue({
     router,

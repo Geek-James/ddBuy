@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-12 16:55:31
+ * @LastEditTime: 2019-12-06 17:38:29
  * @Description: 首页->顶部搜索栏
  * @FilePath: /ddBuy/src/views/home/components/header/Header.vue
  -->
@@ -18,14 +18,11 @@
               fill-rule="evenodd"
               d="M14.521 30.445c.817.738 2.142.75 2.958 0 0 0 11.521-9.82 11.521-17.158C29 5.95 23.18 0 16 0S3 5.949 3 13.287c0 7.339 11.521 17.158 11.521 17.158zM16 18a5 5 0 1 0 0-10 5 5 0 0 0 0 10z"></path>
       </svg>
-      <span class="address">{{"圆融时代广场(久光百货)负一楼"}}</span>
-      <svg viewBox="0 0 30 30"
-           class="icon iconArrow">
-        <path fill="#FFFFFF"
-              fill-rule="evenodd"
-              d="M14.724 19.17c.783.784 2.05.788 2.837 0l5.047-5.047c1.173-1.172.776-2.123-.869-2.123H10.545c-1.652 0-2.04.952-.869 2.123l5.048 5.048z"></path>
-      </svg>
-
+      <!-- 跳转到地图界面 -->
+      <router-link to="/dashboard/map"
+                   tag="span"
+                   class="address">{{location}}</router-link>
+      <svg-icon iconClass="up_real" />
     </div>
     <div class="searchWrapper"
          ref="search"
@@ -45,11 +42,15 @@
   </div>
 </template>
 <script type="text/javascript">
-import { Toast } from 'vant'
+import PubSub from 'pubsub-js'
+import { LOCATION_ADDRESS } from '../../../../config/pubsub_type'
+import { getLocalStore } from '../../../../config/global'
+
 export default {
   data () {
     return {
-      showBgColor: false
+      showBgColor: false,
+      location: getLocalStore('userLocation') || '请选择位置..'
     }
   },
   mounted () {
@@ -58,6 +59,11 @@ export default {
       //监听滚动事件
       window.addEventListener('scroll', that.handleScroll)
     });
+    PubSub.subscribe(LOCATION_ADDRESS, (msg, data) => {
+      if (msg == LOCATION_ADDRESS) {
+        this.location = data;
+      }
+    })
   },
   methods: {
     handleScroll () {
@@ -73,8 +79,9 @@ export default {
       }
     },
     // 到搜索界面
-    goSearch () {
-      Toast({
+    goSearch () {  
+     // 引入 Toast 组件后，会自动在 Vue 的 prototype 上挂载 $toast 方法，便于在组件内调用。
+      this.$toast({
         message: '暂未实现哦~',
         duration: 800
       });
@@ -82,7 +89,9 @@ export default {
   },
   beforeDestroy () {
     // 移除监听事件
-    window.removeEventListener('scroll', this.handleScroll)
+    window.removeEventListener('scroll', this.handleScroll);
+    // 移除通知时间
+    PubSub.subscribe(LOCATION_ADDRESS);
   }
 }
 </script>
