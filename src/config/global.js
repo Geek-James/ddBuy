@@ -341,7 +341,7 @@ export const isIdCard = (str) => {
  * @param  {String}  str
  * @return {Boolean} 
  */
-let isEmail = (str)  => {
+export const isEmail = (str)  => {
     return /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/.test(str);
 }
 // 版本信息

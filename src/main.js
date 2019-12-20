@@ -13,6 +13,15 @@ import router from './router/router'
 import store from './store/store'
 import FastClick from 'fastclick'
 import VTop from './components/backToTop/ToTop.vue'
+import VueI18n from 'vue-i18n'
+Vue.use(VueI18n)
+const i18n = new VueI18n({ 
+      locale: 'zh-CN', 
+      messages: {
+        'zh-CN': require('./i18n/ch.js')['ch'],   // 中文语言包
+        'en-US': require('./i18n/en.js')['en']    // 英文语言包
+      }
+    });
 
 // 解决移动端点击延迟200ms的问题
 if ('addEventListener' in document) {
@@ -20,6 +29,7 @@ if ('addEventListener' in document) {
         FastClick.attach(document.body);
     }, false);
 }
+
 // 注册为全局组件
 Vue.component('v-top', VTop);
 
@@ -41,5 +51,6 @@ import '@/config/filter'
 new Vue({
     router,
     store,
+    i18n,
     render: h => h(App)
 }).$mount('#app')
