@@ -2,6 +2,10 @@ export const en = {
     message:{
         hello: 'hello'
     },
+    eat:{
+        pleaseHolder: '搜索菜谱、食材',//搜索菜谱、食材
+        menu: '今日菜单'
+    },
     pleaseHolder: 'search for food',
     music: 'Music',//网易云音乐
     findMusic: 'FIND MUSIC',//发现音乐
