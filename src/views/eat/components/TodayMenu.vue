@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-10 13:57:55
+ * @LastEditTime: 2019-12-06 17:35:04
  * @Description: 吃什么->今日菜单
  * @FilePath: /ddBuy/src/views/eat/components/TodayMenu.vue
  -->
@@ -26,33 +26,13 @@
              @click="clickAll">{{msg}}
           <span class="downMenu"
                 v-if="menuDown">
-            <svg t="1569722977319"
-                 class="icon"
-                 viewBox="0 0 1024 1024"
-                 version="1.1"
-                 xmlns="http://www.w3.org/2000/svg"
-                 p-id="759"
-                 width="16"
-                 height="16">
-              <path d="M511.31 989.39999995a61.19 61.19 0 0 1-43.25-17.79l-237.12-237.2a35 35 0 0 1 49.55-49.55l230.89 230.9 230.9-230.89a35 35 0 1 1 49.55 49.55L554.7 971.53999995a61.41 61.41 0 0 1-43.39 17.86z"
-                    fill="#8a8a8a"
-                    p-id="760"></path>
-            </svg>
+            <svg-icon iconClass="down"
+                      style="width:1rem;height:1rem" />
           </span>
           <span class="upMenu"
                 v-else>
-            <svg t="1569723063527"
-                 class="icon"
-                 viewBox="0 0 1024 1024"
-                 version="1.1"
-                 xmlns="http://www.w3.org/2000/svg"
-                 p-id="759"
-                 width="16"
-                 height="16">
-              <path d="M512.69 653.26666662a61.19 61.19 0 0 1 43.25 17.79l237.12 237.2a35 35 0 0 1-49.55 49.55l-230.89-230.9-230.9 230.89a35 35 0 1 1-49.55-49.55000001L469.3 671.12666662a61.41 61.41 0 0 1 43.39-17.86z"
-                    fill="#8a8a8a"
-                    p-id="760"></path>
-            </svg>
+            <svg-icon iconClass="up"
+                      style="width:1rem;height:1rem" />
           </span>
         </div>
       </div>

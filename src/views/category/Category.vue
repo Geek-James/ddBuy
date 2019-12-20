@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-10 14:51:11
+ * @LastEditTime: 2019-12-02 17:46:59
  * @Description: 分类
  * @FilePath: /ddBuy/src/views/category/Category.vue
  -->
@@ -69,18 +69,20 @@ export default {
   mounted () {
     // 初始化数据
     this._initData();
-    // 处理首页点击显示对应的列表数据
-    setTimeout(() => {
-      if (this.$route.params.currentIndex > -1) {
-        this.clickLeftLi(this.$route.params.currentIndex + 1);
-      }
-    }, 800);
   },
   components: {
     Header,
     ContentView,
     Loading,
     LoadingGif
+  },
+  activated () {
+    // 页面缓存了数据,所以会走这个方法
+    this.$nextTick(() => {
+      if (this.$route.params.currentIndex > -1) {
+        this.clickLeftLi(this.$route.params.currentIndex + 1);
+      }
+    })
   },
   methods: {
     // 1. 初始化操作(数据和界面)

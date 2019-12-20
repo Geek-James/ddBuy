@@ -3,6 +3,7 @@ import Router from 'vue-router'
 
 // 引入一级组件
 import Dashboard from '../views/dashboard/Dashboard.vue'
+import state from '../store/state';
 
 // 懒加载二级组件 Tarbar
 const Home = () => import('../views/home/Home.vue');
@@ -10,6 +11,9 @@ const Category = () => import('../views/category/Category.vue');
 const Eat = () => import('../views/eat/Eat.vue');
 const Cart = () => import('../views/cart/Cart.vue');
 const Mine = () => import('../views/mine/Mine.vue');
+
+// 地图
+const Map = () => import('../views/home/components/map/Map.vue');
 
 // 解决多次点击重复路由报错
 const originalPush = Router.prototype.push
@@ -31,6 +35,9 @@ const VipPay = () => import('../views/mine/Children/MyVipChildren/VipPay.vue')
 const MyOrder = () => import('../views/mine/Children/MyOrder');
 // 订单商品详情页
 const OrderGoodsList = () => import('../views/order/children/OrderGoodsList')
+// 商品详情页
+const GoodsDetail = () => import('../components/goodsDetail/GoodsDetail.vue');
+
 
 // 加载订单相关的组件
 const Order = () => import('../views/order/Order.vue');
@@ -42,7 +49,7 @@ const EditAddress = () => import('../views/order/children/children/EditAddress.v
 const Login = () => import('../views/login/Login.vue');
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
     // 解决路由跳转页面没有置顶
     scrollBehavior(to, from, savedPosition) {
         if (savedPosition) {
@@ -57,7 +64,11 @@ export default new Router({
     // !!注意: 二级路由不需要加 '/'
     routes: [{
             path: '/',
-            redirect: '/dashboard'
+            redirect: '/dashboard',
+            // 是否数据缓存
+            meta: {
+                keepAlive: true
+            },
         }, {
             // 根页面 
             path: '/dashboard',
@@ -65,7 +76,11 @@ export default new Router({
             component: Dashboard,
             children: [{
                 path: '/dashboard',
-                redirect: '/dashboard/home'
+                redirect: '/dashboard/home',
+                // 是否数据缓存
+                meta: {
+                    keepAlive: true
+                },
             }, {
                 // 主页
                 path: 'home',
@@ -80,6 +95,10 @@ export default new Router({
                 path: 'category',
                 name: 'category',
                 component: Category,
+                // 是否数据缓存
+                meta: {
+                    keepAlive: true
+                },
             }, {
                 // 吃什么
                 path: 'eat',
@@ -93,7 +112,10 @@ export default new Router({
                 // 购物车
                 path: 'cart',
                 name: 'cart',
-                component: Cart
+                component: Cart,
+                meta: {
+                    keepAlive: true
+                }
             }, {
                 // 我的
                 path: 'mine',
@@ -114,12 +136,18 @@ export default new Router({
                     // 优惠券
                     path: 'couponList',
                     name: 'couponList',
-                    component: CouponList
+                    component: CouponList,
+                    meta: {
+                         requireAuth: true
+                     }
                 }, {
                     // 我的订单
                     path: 'myOrder',
                     name: 'myOrder',
                     component: MyOrder,
+                    meta: {
+                      requireAuth: true
+                    }
                 }, {
                     // 绿卡会员
                     path: 'myVip',
@@ -127,13 +155,23 @@ export default new Router({
                     component: MyVip,
                     // 是否数据缓存
                     meta: {
-                        keepAlive: true
+                      keepAlive: true,
+                      requireAuth: true,
                     }
                 }, {
                     path: '/vipPay',
                     name: 'vipPay',
                     component: VipPay
                 }]
+            }, {
+                // 商品详情
+                path: '/goodsDetail',
+                name: 'goodsDetail',
+                component: GoodsDetail
+            }, {
+                path: 'map',
+                name: 'map',
+                component: Map,
             }]
         },
         {
@@ -146,6 +184,9 @@ export default new Router({
                 path: 'myAddress',
                 name: 'myAddress',
                 component: MyAddress,
+                meta: {
+                  requireAuth: true
+                },
                 children: [{
                     // 添加地址
                     path: 'addAddress',
@@ -171,3 +212,20 @@ export default new Router({
         }
     ]
 })
+
+//路由守卫
+router.beforeEach((to, from, next) => {
+    if (to.meta.requireAuth) {
+        if (state.userInfo.token) {
+          next()
+        } else {
+          next({
+            path: '/login'
+          })
+        }
+    } else {
+        next()
+    }
+})
+
+export default router
