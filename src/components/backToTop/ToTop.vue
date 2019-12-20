@@ -12,8 +12,7 @@
        v-show="showTop"
        @click="toTop">
     <svg-icon iconClass="backtotop"
-              style="width:2.5rem;height:2.5rem"></svg-icon>
-
+              style="width:2.5rem;height:2.5rem"/>
   </div>
 </template>
 <script>

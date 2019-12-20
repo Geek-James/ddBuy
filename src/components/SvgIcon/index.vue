@@ -5,7 +5,6 @@
     <use :xlink:href="iconName" />
   </svg>
 </template>
-
 <script>
 export default {
   name: 'SvgIcon',
@@ -33,7 +32,6 @@ export default {
   }
 }
 </script>
-
 <style scoped>
 .svg-icon {
   width: 1em;

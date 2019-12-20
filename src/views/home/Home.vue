@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-12-17 21:35:00
+ * @LastEditTime : 2019-12-20 21:59:06
  * @Description: Home 首页模块
  * @FilePath: /ddBuy/src/views/home/Home.vue
  -->
@@ -42,7 +42,6 @@
 <script type="text/javascript">
 
 import { getHomeData } from './../../serve/api/index.js'
-import { showBackIcon, animate } from './../../config/global.js'
 
 // 引入Vuex
 import { mapMutations, mapState } from 'vuex'
