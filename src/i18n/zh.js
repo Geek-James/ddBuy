@@ -10,7 +10,12 @@ export default {
     },
     // 吃什么
     eat: {
-
+      pleaseHolder: '搜索菜谱、食材',
+      menu:'今日菜单',
+      menuDevide: '菜单分类',
+      recent: '最近找过',
+      tip_bottom: "到底了,别拉了!",
+      tip:"收藏暂未实现哦~"
     },
     // 我的
     mine: {

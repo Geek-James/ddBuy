@@ -63,7 +63,7 @@ export default {
       let param;
       if (index > 31) {
         Toast({
-          message: "到底了,别拉了!",
+          message: $t('eat.tip_bottom'),
           duration: 800
         });
         return;
