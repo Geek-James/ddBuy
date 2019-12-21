@@ -22,29 +22,29 @@
                   @click="close" />
         <van-tabs v-model="active"
                   animated>
-          <van-tab title="登录">
+          <van-tab :title="$t('login.title')">
             <!-- 账号密码登录 -->
             <van-cell-group v-show="!isShowSMSLogin">
               <van-field v-model="login_userName"
                          required
                          clearable
-                         label="手机号"
+                         :label="$t('login.phoneNumber')"
                          maxlength="11"
                          @click.stop="
                          changeImage(0)"
-                         :error-message="phoneNumberRight?'':'手机号格式不正确'"
-                         placeholder="请输入手机号" />
+                         :error-message="phoneNumberRight?'':$t('login.phoneNumberNotCorrect')"
+                         :placeholder="$t('login.phoneInput')" />
               <van-field v-model="login_password"
                          type="password"
-                         label="密码"
-                         placeholder="请输入密码"
+                         :label="$t('login.pass')"
+                         :placeholder="$t('login.passTip')"
                          required
                          @click.stop="changeImage(1)" />
               <van-field v-model="imgCaptcha"
                          center
                          clearable
                          maxlength="4"
-                         placeholder="请输入验证码">
+                         :placeholder="$t('login.varify')">
                 <img class="verificationImage"
                      src="http://demo.itlike.com/web/xlmc/api/captcha"
                      alt="captcha"

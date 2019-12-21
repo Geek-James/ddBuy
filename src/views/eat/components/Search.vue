@@ -15,7 +15,7 @@
         <svg-icon iconClass="search"
                   class="icon" />
       </div>
-      <span class="searchPrompt">搜索菜谱、食材</span>
+      <span class="searchPrompt">{{$t('eat.pleaseHolder')}}</span>
       <div class="collection">
         <svg t="1569828707785"
              class=""
@@ -35,7 +35,7 @@
         </svg>
       </div>
     </div>
-    <div class="todayMenu">今日菜单</div>
+    <div class="todayMenu">{{$t('eat.menu')}}</div>
   </div>
 </template>
 
@@ -53,13 +53,13 @@ export default {
   methods: {
     clickCollerction () {
       Toast({
-        message: "收藏暂未实现哦~",
+        message: $t('eat.tip'),
         duration: 800
       })
     },
     clickSearch () {
       Toast({
-        message: "搜索暂未实现哦~",
+        message: $t('eat.tip'),
         duration: 800
       })
     }

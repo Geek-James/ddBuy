@@ -14,13 +14,13 @@
          v-show="isShowMenuList">
       <div class="menuWrapper">
         <span class="menuCategoryTitle"
-              v-if="recentlyChooseLists.length>0">最近找过</span>
+              v-if="recentlyChooseLists.length>0">{{$t('eat.recent')}}</span>
         <ul class="contentTip">
           <li v-for="(item,index) in recentlyChooseLists"
               :key="item.id"
               class="item">{{item.name}}</li>
         </ul>
-        <span class="menuCategoryTitle">菜单分类</span>
+        <span class="menuCategoryTitle">{{$t('eat.menuDevide')}}</span>
         <ul class="contentTip">
           <li class="item"
               v-for="(item,index) in todayMenuCategoryLists"
