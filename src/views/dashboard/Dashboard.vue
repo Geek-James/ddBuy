@@ -63,32 +63,32 @@ export default {
       tabbars: [
         {
           name: "home",
-          title: "首页",
+          title: this.$t('home.home'),
           normal: require("@/images/tabbar/home_default.png"),
           active: require("@/images/tabbar/home_selected.png")
         },
         {
           name: "category",
-          title: "分类",
+          title: this.$t('home.category'),
           normal: require("@/images/tabbar/category_default.png"),
           active: require("@/images/tabbar/category_selected.png")
         },
         {
           name: "eat",
-          title: "吃什么",
+          title: this.$t('home.eat'),
           normal: require("@/images/tabbar/eat_default.png"),
           active: require("@/images/tabbar/eat_selected.png"),
         },
         {
           name: "cart",
-          title: "购物车",
+          title: this.$t('home.car'),
           normal: require("@/images/tabbar/shoppingcart_default.png"),
           active: require("@/images/tabbar/shoppingcart_selected.png"),
           num: 5
         },
         {
           name: "mine",
-          title: "我的",
+          title: this.$t('home.mine'),
           normal: require("@/images/tabbar/mine_default.png"),
           active: require("@/images/tabbar/mine_selected.png")
         }

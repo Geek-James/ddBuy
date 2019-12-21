@@ -11,7 +11,12 @@ export default {
     // 首页
     home: {
         chooseLocation: '请选择位置..',
-        more: '更多'
+        more: '更多',
+        home: '首页',
+        category: '分类',
+        eat: '吃什么',
+        cart:'购物车',
+        mine: '我的'
     },
     // 分类
     category: {
