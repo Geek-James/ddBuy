@@ -81,7 +81,7 @@ export default {
         },
         {
           name: "cart",
-          title: this.$t('home.car'),
+          title: this.$t('home.cart'),
           normal: require("@/images/tabbar/shoppingcart_default.png"),
           active: require("@/images/tabbar/shoppingcart_selected.png"),
           num: 5
