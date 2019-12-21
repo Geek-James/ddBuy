@@ -43,6 +43,12 @@ export default {
     },
     // 登录
     login: {
-
+      title: '登录',
+      phoneNumber: '手机号',
+      phoneNumberNotCorrect: '手机号格式不正确',
+      phoneInput: '请输入手机号',
+      pass:'密码',
+      passTip:'请输入密码',
+      varify: '请输入验证码'
     }
 }

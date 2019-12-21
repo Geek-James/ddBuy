@@ -80,6 +80,7 @@ export default {
           active: require("@/images/tabbar/eat_selected.png"),
         },
         {
+          
           name: "cart",
           title: this.$t('home.cart'),
           normal: require("@/images/tabbar/shoppingcart_default.png"),
