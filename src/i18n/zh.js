@@ -15,6 +15,8 @@ export default {
     },
     // 分类
     category: {
+      tip: '输入商品名称',
+      bottom_tip: '到底了,看看别的分类吧'
 
     },
     // 吃什么

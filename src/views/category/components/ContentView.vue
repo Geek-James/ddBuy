@@ -80,7 +80,7 @@
             </li>
           </ul>
         </div>
-        <div class="bottomTip">到底了,看看别的分类吧</div>
+        <div class="bottomTip">{{$t('category.bottom_tip')}}</div>
       </div>
     </section>
   </div>

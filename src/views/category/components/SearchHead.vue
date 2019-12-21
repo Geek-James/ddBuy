@@ -14,7 +14,7 @@
       <div class="iconSearchWrapper">
         <svg-icon iconClass="search"></svg-icon>
       </div>
-      <span class="searchPrompt">输入商品名称</span>
+      <span class="searchPrompt">{{$t('category.tip')}}</span>
     </div>
   </div>
 </template>
