@@ -1,4 +1,13 @@
 export default {
+    //购物车
+    car: {
+      title: '购物车',
+      delete: '删除',
+      tip: '购物车空空滴~',
+      walk:'去逛逛',
+      all: '全选',
+      guess:'猜你喜欢'
+    },
     // 首页
     home: {
         chooseLocation: '请选择位置..',

@@ -13,11 +13,11 @@
     <!--头部区域-->
     <header class="
        titleWrapper">
-      <h4><strong>购物车</strong></h4>
+      <h4><strong>{{$t('car.title')}}</strong></h4>
       <div class="clearCart"
            :style="selectedGoodsCount==0?'color:grey':'color:#45c763'"
            @click="clearCart"
-           v-show="isShowEmptyCart">删除</div>
+           v-show="isShowEmptyCart">{{$t('car.delete')}}</div>
     </header>
     <!-- 购物车没有商品 -->
     <div class="cartWrapper">
@@ -26,9 +26,9 @@
            v-show="!isShowEmptyCart">
         <img src="./../../images/cart/empty.png"
              alt="">
-        <div class="title">购物车空空滴~</div>
+        <div class="title">{{$t('car.tip')}}</div>
         <router-link to="/dashboard/home"
-                     class="goHome">去逛逛</router-link>
+                     class="goHome">{{$t('car.walk')}}</router-link>
       </div>
       <!-- 购物车有数据 -->
       <div class="contentWrapper"
@@ -71,12 +71,12 @@
                         :disabled="!(selectedGoodNum>0)"
                         v-show="isShowEmptyCart">
           <van-checkbox v-model="isCheckedAll"
-                        checked-color='#45c763'>全选</van-checkbox>
+                        checked-color='#45c763'>{{$t('car.all')}}</van-checkbox>
         </van-submit-bar>
       </div>
       <!-- 猜你喜欢 -->
       <van-divider :style="{ color: 'black', borderColor: 'grey', padding: '0 16px' }">
-        猜你喜欢
+        {{$t('car.guess')}}
       </van-divider>
       <!-- 商品详情组件 需要注意下底部是否被遮盖 动态设置padding-bottom -->
       <produceItem :product_lists="youLike_product_lists"
