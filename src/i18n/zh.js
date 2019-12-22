@@ -49,6 +49,20 @@ export default {
       phoneInput: '请输入手机号',
       pass:'密码',
       passTip:'请输入密码',
-      varify: '请输入验证码'
+      varify: '请输入验证码',
+      otherMethods:'其他登录方式',
+      wechat:'微信登录',
+      qqchant:'QQ登录',
+      tipTile:'温馨提示：',
+      tipContent:'未注册的手机号，登录时将自动注册，且代表同意',
+      tip:'用户协议',
+      tipProcy:'隐私策略',
+      login:'登录',
+      resgin:'注册',
+      passTip2:'请输入密码(不少于6位)',
+      sendVerify:'发送验证码',
+      hasSend:'已发送',
+      phoneVerify:'账号密码登录',
+      message:'短信验证码登录'
     }
 }
