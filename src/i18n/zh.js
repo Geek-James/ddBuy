@@ -107,7 +107,33 @@ export default {
       month:'月',
       day:'日',
       man:"帅哥",
-      woman:'美女'
+      woman:'美女',
+
+      greenCard:'绿卡',
+      greenCardPower:'绿卡特权',
+      fiftypecert:'5折开通绿卡',
+      cardRecoamnd:'绿卡专享券 天天领取优惠',
+      cardTip1:"今日专享券",
+      cardTip2:"每天0点更新",
+      cardTip3:'满',
+      cardTip4:'元使用',
+      cardTip5:'立即领取',
+      cardTip6:'本周专享券',
+      cardTip7:'立即领取',
+      cardTip8:'绿卡专享券 天天领取优惠',
+      cardTip9:'您当前购物',
+      cardTip10:'开通绿卡购物',
+      cardTip11:'返积分为',
+      cardTip12:'立即开启积分加速',
+      cardTip13:'绿卡专享特价',
+      cardTip14:'180元',
+      cardTip15:'88元',
+      cardTip16:'年卡',
+      cardTip17:'开通绿卡',
+      cardTip18:'1倍',
+      cardTip19:'2倍',
+      
+
     },
     // 订单
     order: {
