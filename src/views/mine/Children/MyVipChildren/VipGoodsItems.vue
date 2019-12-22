@@ -29,7 +29,7 @@
                 <p class="price">{{item.price | moneyFormat}}
                   <van-tag plain
                            mark
-                           color="#5fa85f">绿卡价格</van-tag>
+                           color="#5fa85f">{{$t('mine.openCard')}}</van-tag>
                 </p>
                 <div class="iconCartWrapper">
                   <svg-icon iconClass="car_disable"
@@ -39,7 +39,7 @@
             </div>
           </li>
         </ul>
-        <div class="bottomTip">更多特权敬请期待...</div>
+        <div class="bottomTip">{{$t('mine.more')}}</div>
       </div>
     </section>
   </div>
