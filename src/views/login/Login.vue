@@ -159,7 +159,7 @@ export default {
       imgCaptcha: '',               // 图片验证码
       smsCaptcha: '',               // 短信验证码
       isShowSMSLogin: true,         // 是否短信登录
-      switchLoginMsg: '账号密码登录',
+      switchLoginMsg: this.$t('login.switchLoginMsg'),
       imageURL: require('./../../images/login/normal.png'),
       smsCaptchaResult: null,
       userInfo: null
@@ -225,8 +225,8 @@ export default {
         this.smsCaptchaResult = result.data.code;
         // 4.3  获取验证码成功
         Dialog.alert({
-          title: '温馨提示',
-          message: '验证码获取成功,请在输入框输入:' + result.data.code
+          title: this.$t('login.tipTile'),
+          message: this.$t('login.message') + result.data.code
         }).then(() => {
         });
       }
@@ -238,14 +238,14 @@ export default {
         // 5.1.1 验证手机号
         if (!this.phoneNumberRight || this.login_phone.length < 10) {
           Toast({
-            message: '请输入正确的手机号',
+            message: this.$t('login.pleaseInputCorrectPhoneNumber'),
             duration: 800
           });
           return;
         } else if (this.smsCaptcha < 7 || this.smsCaptcha != Number(this.smsCaptchaResult)) {
           // 5.1.2 验证验证码
           Toast({
-            message: '请输入正确的验证码',
+            message: this.$t('login.pleaseInputCorrectVerifyNumber'),
             duration: 800
           });
           return;
@@ -260,25 +260,25 @@ export default {
         // 5.2.1 验证输入框
         if (this.login_userName.length < 1) {
           Toast({
-            message: '请输入手机号',
+            message: this.$t('login.phoneNumber'),
             duration: 800
           });
           return;
         } else if (!this.phoneRegex(this.login_userName)) {
           Toast({
-            message: '手机号格式不正确',
+            message: this.$t('login.phoneNumberNotCorrect'),
             duration: 800
           });
           return;
         } else if (this.login_password.length < 1) {
           Toast({
-            message: '密码不能为空',
+            message: this.$t('login.passNumberNotCorrect'),
             duration: 800
           });
           return;
         } else if (this.imgCaptcha.length < 1) {
           Toast({
-            message: '请输入验证码',
+            message: this.$t('login.pleaseInputCorrectVerifyNumber'),
             duration: 800
           });
           return;
@@ -293,22 +293,22 @@ export default {
     async register () {
       if (this.register_userName.length < 1) {
         Toast({
-          message: '手机号不能为空',
+          message: $t('login.phoneNumberNotEmpty'),
           duration: 800
         })
       } else if (!this.phoneRegex(this.register_userName)) {
         Toast({
-          message: '手机号格式不正确',
+          message: $t('login.phoneNumberNotCorrect'),
           duration: 800
         })
       } else if (this.register_pwd.length < 0) {
         Toast({
-          message: '请输入密码',
+          message: $t('login.passTip'),
           duration: 800
         })
       } else if (this.register_pwd.length < 6) {
         Toast({
-          message: '密码至少为6位哦!',
+          message: $t('login.passTip2'),
           duration: 800
         })
       } else {
@@ -323,12 +323,12 @@ export default {
     agreement (index) {
       if (index == 0) {
         Toast({
-          message: '用户协议',
+          message: this.$t('login.tip'),
           duration: 800
         })
       } else {
         Toast({
-          message: '隐私策略',
+          message: this.$t('login.tipProcy'),
           duration: 800
         })
       }
@@ -342,12 +342,12 @@ export default {
 
       if (value == 0) {
         Toast({
-          message: '微信登录-暂未完成',
+          message: this.$t('login.otherWechat'),
           duration: 800
         });
       } else {
         Toast({
-          message: 'QQ登录-暂未完成',
+          message: this.$t('login.otherQq'),
           duration: 800
         });
       }

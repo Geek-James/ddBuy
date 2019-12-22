@@ -46,6 +46,8 @@ export default {
       title: '登录',
       phoneNumber: '手机号',
       phoneNumberNotCorrect: '手机号格式不正确',
+      phoneNumberNotEmpty: '手机号不能为空',
+      passNumberNotEmpty: '密码不能为空',
       phoneInput: '请输入手机号',
       pass:'密码',
       passTip:'请输入密码',
@@ -63,6 +65,12 @@ export default {
       sendVerify:'发送验证码',
       hasSend:'已发送',
       phoneVerify:'账号密码登录',
-      message:'短信验证码登录'
+      message:'短信验证码登录',
+      switchLoginMsg:'账号密码登录',
+      message:'验证码获取成功,请在输入框输入:',
+      pleaseInputCorrectPhoneNumber:'请输入正确的手机号',
+      pleaseInputCorrectVerifyumber:'请输入正确的验证码',
+      otherWechat:'微信登录-暂未完成',
+      otherQq:"QQ登录-暂未完成"
     }
 }
