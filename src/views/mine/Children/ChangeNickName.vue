@@ -9,16 +9,16 @@
  -->
 <template>
   <div id="changeNickName">
-    <van-nav-bar title="修改昵称"
+    <van-nav-bar :title="$t('mine.changeNickName')"
                  :fixed=true
                  :border=false
                  @click-left="onClickLeft"
                  left-arrow
                  @click-right="onClickSave"
-                 right-text="保存"
+                 :right-text="$t('mine.confirm')"
                  style="height:2.5rem" />
     <div style="margin-top:3rem">
-      <van-cell-group title="请输入新昵称">
+      <van-cell-group :title="$t('mine.nickName')">
         <van-field v-model="nickName"
                    clearable
                    ref="field"
@@ -61,12 +61,12 @@ export default {
         this.CHANGE_USER_NICK_NAME({ nickName });
         this.$router.back();
         Toast({
-          message: '个人资料修改成功!',
+          message: this.$t('mine.personal'),
           duration: 800
         })
       } else {
         Toast({
-          message: '请输入昵称',
+          message: this.$t('mine.message'),
           duration: 800
         })
       }

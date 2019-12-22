@@ -9,7 +9,7 @@
  -->
 <template>
   <div id="myOrder">
-    <van-nav-bar title="我的订单"
+    <van-nav-bar :title=" $t('mine.myOrders')"
                  :border=false
                  :fixed="true"
                  @click-left="onClickLeft"
@@ -65,7 +65,7 @@ export default {
       typeArray: [],
       // 路由传递过来的数据 active
       active: this.$route.params.active,
-      itemsTitle: ['全部', '待支付', '待收货', '待评价'],
+      itemsTitle: $t('mine.itemsTitle'),
     }
   },
   components: {
