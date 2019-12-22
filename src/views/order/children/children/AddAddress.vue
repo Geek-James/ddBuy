@@ -9,7 +9,7 @@
  -->
 <template>
   <div id="addAddress">
-    <van-nav-bar title="添加地址"
+    <van-nav-bar :title="$t('order.order28')"
                  left-arrow
                  :fixed=true
                  :border=true
@@ -19,7 +19,7 @@
                       show-set-default
                       show-search-result
                       :search-result="searchResult"
-                      save-button-text="保存并使用"
+                      :save-button-text="$t('order.order29')"
                       @save="onSave"
                       style="margin-top:3rem" />
   </div>
