@@ -9,37 +9,37 @@
  -->
 <template>
   <div id="userCenter">
-    <van-nav-bar title="个人资料"
+    <van-nav-bar :title="$t('mine.personalInfo')"
                  :fixed=true
                  :border=false
                  @click-left="onClickLeft"
                  left-arrow
                  style="height:2.5rem" />
     <div class="icon">
-      <span class="title">头像</span>
+      <span class="title">{{this.$t('mine.head')}}</span>
       <img src="./../../../images/mine/defaultImg.jpeg"
            alt="">
     </div>
     <van-cell-group>
-      <van-cell title="昵称"
+      <van-cell :title="$t('mine.user_name')"
                 is-link
                 :value="userInfo.user_name"
                 @click="goToChangeNickName" />
-      <van-cell title="性别"
+      <van-cell :title="$t('mine.userSex')"
                 is-link
                 :value="userSex"
                 @click="onChangeSex" />
-      <van-cell title="生日"
+      <van-cell :title="$t('mine.Brithday')"
                 is-link
                 @click="selectBrithday"
-                :value="userInfo.brithday?userInfo.brithday:'未填写'" />
-      <van-cell title="手机号"
+                :value="userInfo.brithday?userInfo.brithday:$t('mine.noInput')" />
+      <van-cell :title="$t('mine.phoneNumber')"
                 :value="phoneNumber" />
     </van-cell-group>
 
     <van-button size=large
                 style="margin-top:1rem"
-                @click="logOut">退出登录</van-button>
+                @click="logOut">{{$t('mine.logout')}}</van-button>
     <!-- 时间选择器 -->
     <van-popup v-model="showDateTimePopView"
                round
@@ -59,14 +59,14 @@
       <van-radio-group v-model="userInfo.sex">
         <van-cell-group style="margin-top:2rem"
                         @click="clickCell(radio)">
-          <van-cell title="美女"
+          <van-cell :title="$t('mine.woman')"
                     clickable
                     @click="radio = '1'">
             <van-radio slot="right-icon"
                        name="1"
                        checked-color="#07c160" />
           </van-cell>
-          <van-cell title="帅哥"
+          <van-cell :title="$t('mine.man')"
                     clickable
                     @click="radio = '2'">
             <van-radio slot="right-icon"
@@ -144,7 +144,7 @@ export default {
       setTimeout(() => {
         this.showChooseSex = false;
         Toast({
-          message: '个人资料修改成功',
+          message: this.$t('mine.infoTip'),
           duration: 800
         })
       }, 300);
@@ -171,7 +171,7 @@ export default {
       this.USER_INFO_BRITHDAY({ brithday });
       this.showDateTimePopView = false;
       Toast({
-        message: '个人资料修改成功!',
+        message: this.$t('mine.infoTip'),
         duration: 800
       })
     },
@@ -182,12 +182,12 @@ export default {
     // 退出登录
     logOut () {
       Dialog.confirm({
-        message: '确定退出登录吗?'
+        message: this.$t('mine.logInfo')
       }).then(() => {
         // on confirm
         this.LOGIN_OUT();
         Toast({
-          message: '退出成功',
+          message: this.$t('mine.infoSuccess'),
           duration: 800
         });
         this.$router.back();

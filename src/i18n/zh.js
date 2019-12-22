@@ -105,7 +105,9 @@ export default {
       infoSuccess:'退出成功',
       year:'年',
       month:'月',
-      day:'日'
+      day:'日',
+      man:"帅哥",
+      woman:'美女'
     },
     // 订单
     order: {
