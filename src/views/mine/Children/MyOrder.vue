@@ -65,7 +65,7 @@ export default {
       typeArray: [],
       // 路由传递过来的数据 active
       active: this.$route.params.active,
-      itemsTitle: $t('mine.itemsTitle'),
+      itemsTitle: this.$t('mine.itemsTitle'),
     }
   },
   components: {

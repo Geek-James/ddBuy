@@ -16,7 +16,7 @@
                  left-arrow
                  style="height:2.5rem" />
     <div class="icon">
-      <span class="title">{{this.$t('mine.head')}}</span>
+      <span class="title">{{$t('mine.head')}}</span>
       <img src="./../../../images/mine/defaultImg.jpeg"
            alt="">
     </div>
