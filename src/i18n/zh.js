@@ -90,7 +90,22 @@ export default {
       condition:'无使用门槛\n最多优惠1.5元',
       rmb:'元',
       myOrders:'我的订单',
-      itemsTitle:['全部', '待支付', '待收货', '待评价']
+      itemsTitle:['全部', '待支付', '待收货', '待评价'],
+
+      personalInfo:'个人资料',
+      head:"头像",
+      user_name:"昵称",
+      userSex:"性别",
+      Brithday:"生日",
+      phoneNumber:"手机号",
+      noInput:'未填写',
+      logout:'退出登录',
+      infoTip:'个人资料修改成功',
+      logInfo:'确定退出登录吗?',
+      infoSuccess:'退出成功',
+      year:'年',
+      month:'月',
+      day:'日'
     },
     // 订单
     order: {
