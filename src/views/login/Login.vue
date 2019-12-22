@@ -293,22 +293,22 @@ export default {
     async register () {
       if (this.register_userName.length < 1) {
         Toast({
-          message: $t('login.phoneNumberNotEmpty'),
+          message: this.$t('login.phoneNumberNotEmpty'),
           duration: 800
         })
       } else if (!this.phoneRegex(this.register_userName)) {
         Toast({
-          message: $t('login.phoneNumberNotCorrect'),
+          message: this.$t('login.phoneNumberNotCorrect'),
           duration: 800
         })
       } else if (this.register_pwd.length < 0) {
         Toast({
-          message: $t('login.passTip'),
+          message: this.$t('login.passTip'),
           duration: 800
         })
       } else if (this.register_pwd.length < 6) {
         Toast({
-          message: $t('login.passTip2'),
+          message: this.$t('login.passTip2'),
           duration: 800
         })
       } else {
