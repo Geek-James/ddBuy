@@ -65,7 +65,7 @@
               <van-field center
                          clearable
                          required
-                         :label="$('login.varify')"
+                         :label="$t('login.varify')"
                          maxlength="6"
                          v-model="smsCaptcha"
                          placeholder="验证码">
