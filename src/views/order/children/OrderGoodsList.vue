@@ -14,8 +14,8 @@
                  :fixed=true
                  @click-left="onClickLeft" />
     <div class="listitle">
-      <span>{{$t('order.order22')}}</span>
-      <span class="total">{{$t('order.order23')}}{{selectedCount}}{{$t('order.order24')}}</span>
+      <span>{{$t('order.goods')}}</span>
+      <span class="total">{{$t('order.all')}}{{selectedCount}}{{$t('order.things')}}</span>
     </div>
     <ul>
       <li class="goodsList"
@@ -28,8 +28,8 @@
         </div>
         <div class="textDetail">
           <p class="name">{{item.name}}</p>
-          <span class="subParam">{{$t('order.order25')}}{{item.price | moneyFormat}}</span>
-          <span class="subParam">{{$t('order.order26')}}{{item.num}}</span>
+          <span class="subParam">{{$t('order.sigalPrice')}}{{item.price | moneyFormat}}</span>
+          <span class="subParam">{{$t('order.numbers')}}{{item.num}}</span>
         </div>
         <div class="goodPrice">{{item.price*item.num | moneyFormat}}</div>
       </li>

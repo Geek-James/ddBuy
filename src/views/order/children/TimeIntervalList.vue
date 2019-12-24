@@ -19,7 +19,7 @@
                position="bottom">
       <!-- 头部 -->
       <div class="itemHeader">
-        <span class="timeTitle">{{$t('order.order20')}}:</span>
+        <span class="timeTitle">{{$t('order.selectArrivalTime')}}:</span>
       </div>
       <div class="listWrapper">
         <div class="leftContent">
@@ -57,7 +57,7 @@
       </div>
       <div class="sureButton"
            @click="sureCheckTime">
-        {{$t('order.order21')}}:
+        {{$t('order.confirm')}}:
       </div>
     </van-popup>
   </div>

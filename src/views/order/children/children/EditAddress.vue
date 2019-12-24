@@ -9,7 +9,7 @@
  -->
 <template>
   <div id="editAddress">
-    <van-nav-bar :title="$t('order.order30')"
+    <van-nav-bar :title="$t('order.editLocation')"
                  left-arrow
                  :fixed=true
                  :border=true

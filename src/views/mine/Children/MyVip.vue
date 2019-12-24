@@ -40,58 +40,58 @@
       <div class="coupons">
         <!--今日专享券 -->
         <span class="number">1</span><span class="desc">{{$t('mine.cardRecoamnd')}}</span>
-        <p class="todayCouns">{{$t('mine.cardTip1')}}<i>{{$t('mine.cardTip2')}}</i></p>
+        <p class="todayCouns">{{$t('mine.TodayExclusivecoupon')}}<i>{{$t('mine.everyUpadate')}}</i></p>
         <div class="quanBox">
           <div class="quan"
                v-for="(item,index) in todayTicket"
                :key="item.id"
                @click="getCoupons">
             <div class="money"><i>¥</i>{{item.money}}</div>
-            <div class="couponsConditions">{{$t('mine.cardTip3')}}{{item.pay_min}}{{$t('mine.cardTip4')}}</div>
+            <div class="couponsConditions">{{$t('mine.to')}}{{item.pay_min}}{{$t('mine.toUse')}}</div>
             <div class="couponsScope">{{item.description}}</div>
             <div class="getCopons">
-             {{$t('mine.cardTip7')}}
+             {{$t('mine.immeatallyGet')}}
             </div>
           </div>
         </div>
         <!--本周专享券-->
-        <p class="todayCouns">{{$t('mine.cardTip6')}}</p>
+        <p class="todayCouns">{{$t('mine.weekBill')}}</p>
         <div class="quanBox">
           <div class="quan"
                v-for="(item,index) in weekTicket"
                :key="item.id"
                @click="getCoupons">
             <div class="money"><i>¥</i>{{item.money}}</div>
-            <div class="couponsConditions">{{$t('mine.cardTip3')}}{{item.pay_min}}{{$t('mine.cardTip4')}}</div>
+            <div class="couponsConditions">{{$t('mine.to')}}{{item.pay_min}}{{$t('mine.toUse')}}</div>
             <div class="couponsScope">{{item.description}}</div>
             <div class="getCopons">
-             {{$t('mine.cardTip5')}}
+             {{$t('mine.immeatallyGet')}}
             </div>
           </div>
         </div>
       </div>
       <!-- 第2部分 -->
       <div class="coupons">
-        <span class="number">2</span><span class="desc">{{$t('mine.cardTip8')}}</span>
+        <span class="number">2</span><span class="desc">{{$t('mine.billTip')}}</span>
         <div class="integralBox">
           <div class="leftBox">
-            <div class="leftBoxTitle">{{$t('mine.cardTip9')}}</div>
-            <div class="leftBoxSubTitle">{{$t('mine.cardTip11')}}<i>{{$t('mine.cardTip18')}}</i></div>
+            <div class="leftBoxTitle">{{$t('mine.currentGoods')}}</div>
+            <div class="leftBoxSubTitle">{{$t('mine.cardBack')}}<i>{{$t('mine.onece')}}</i></div>
           </div>
           <div class="rightBox">
-            <div class="rightBoxTitle">{{$t('mine.cardTip10')}}</div>
-            <div class="rightBoxSubTitle">{{$t('mine.cardTip11')}}<i>{{$t('mine.cardTip19')}}</i></div>
+            <div class="rightBoxTitle">{{$t('mine.cardShop')}}</div>
+            <div class="rightBoxSubTitle">{{$t('mine.cardBack')}}<i>{{$t('mine.twice')}}</i></div>
             <div class="line"></div>
             <img src="./../../../images/mine/rockets.png"
                  alt="">
           </div>
         </div>
         <div class="integralToFast"
-             @click="goToPayPage">{{$t('mine.cardTip12')}}</div>
+             @click="goToPayPage">{{$t('mine.cardSpecialTip')}}</div>
       </div>
       <!-- 第3部分 -->
       <div class="coupons">
-        <span class="number">3</span><span class="desc">{{$t('mine.cardTip13')}}</span>
+        <span class="number">3</span><span class="desc">{{$t('mine.cardSpecial')}}</span>
         <!-- 可横向滑动的菜单 -->
         <van-sticky :offset-top="40">
           <VipMenuTitleScroll :menuTitlesArray="cate"
@@ -107,11 +107,11 @@
            v-show="isShowBottomBtn"
            transiton="fade">
         <div class="bottomDesc">
-          <span class="yearCart">{{$t('mine.cardTip16')}}</span><i>{{$t('mine.cardTip15')}}</i><span class="originPrice">{{$t('mine.cardTip14')}}</span>
+          <span class="yearCart">{{$t('mine.yearCard')}}</span><i>{{$t('mine.cardPrisea')}}</i><span class="originPrice">{{$t('mine.cardPriseb')}}</span>
         </div>
         <div class="joinVip"
              @click="goToPayPage">
-          {{$t('mine.cardTip17')}}
+          {{$t('mine.openCards')}}
         </div>
       </div>
     </transition>

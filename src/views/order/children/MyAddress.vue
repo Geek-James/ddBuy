@@ -10,7 +10,7 @@
 <template>
   <div id="myAddress">
     <!--导航栏-->
-    <van-nav-bar :title="$t('order.order28')"
+    <van-nav-bar :title="$t('order.addLocation')"
                  left-arrow
                  :fixed=true
                  :border=true
@@ -20,7 +20,7 @@
          v-show="shippingAddress.length<1">
       <img src="./../../../images/order/noAddress.png"
            alt="">
-      <span class="desc">{{$t('order.order27')}}</span>
+      <span class="desc">{{$t('order.addTip')}}</span>
     </div>
     <!-- 联系人 -->
     <van-address-list v-model="chosenAddressId"
@@ -29,7 +29,7 @@
                       @edit="onEdit"
                       @select="onBackAddress"
                       style="margin-top: 3rem"
-                      :add-button-text="$t('order.order28')">
+                      :add-button-text="$t('order.addLocation')">
     </van-address-list>
     <!-- 路由出口 -->
     <transition name="router-slider"

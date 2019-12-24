@@ -9,24 +9,24 @@
  -->
 <template>
   <div id="order">
-    <van-nav-bar :title="$t('order.order2')"
+    <van-nav-bar :title="$t('order.inputForm')"
                  left-arrow
                  :fixed=true
                  @click-left="onClickLeft" />
     <!-- 选择收货地址 -->
     <van-contact-card :type="address_type"
-                      :add-text="$t('order.order3')"
+                      :add-text="$t('order.location')"
                       :name="address_name"
                       :tel="address_phone"
                       @click="chooseAddress"
                       style="margin-top:3rem" />
     <van-cell-group>
-      <van-cell :title="$t('order.order4')"
+      <van-cell :title="$t('order.arrivalTime')"
                 :value="deliveryTime"
                 is-link
                 @click="showTimePickView">
         <template slot="label">
-          <span class="custom-title">{{$t('order.order1')}}</span>
+          <span class="custom-title">{{$t('order.outTimeGetMoney')}}</span>
           <van-icon name="question-o" />
         </template>
       </van-cell>
@@ -51,7 +51,7 @@
           </ul>
         </div>
         <ul class="productCount">
-          <span>{{$t('order.order6')}}{{selectedCount}}{{$t('order.order7')}}
+          <span>{{$t('order.total')}}{{selectedCount}}{{$t('order.thing')}}
           </span>
           <van-icon name="arrow" />
         </ul>
@@ -68,7 +68,7 @@
                  width="25px"
                  height="25px"
                  style=" vertical-align: middle;padding-right:5px">
-            <span>{{$t('order.order8')}}</span>
+            <span>{{$t('order.wechatPay')}}</span>
           </template>
           <van-radio slot="right-icon"
                      name="1"
@@ -82,7 +82,7 @@
                  width="25px"
                  height="25px"
                  style=" vertical-align: middle;padding-right:5px">
-            <span>{{$t('order.order9')}}</span>
+            <span>{{$t('order.aliPay')}}</span>
           </template>
           <van-radio slot="right-icon"
                      name="2"
@@ -96,7 +96,7 @@
                  width="25px"
                  height="25px"
                  style=" vertical-align: middle;padding-right:5px">
-            <span>{{$t('order.order10')}}</span>
+            <span>{{$t('order.huabeiPay')}}</span>
           </template>
           <van-radio slot="right-icon"
                      name="3"
@@ -120,7 +120,7 @@
                            @change="onChange"
                            @exchange="onExchange" />
         </van-popup>
-        <span slot="title">{{$t('order.order11')}}{{integral}}{{$t('order.order8')}}<b>{{integralToprice | moneyFormat}}</b></span>
+        <span slot="title">{{$t('order.use')}}{{integral}}{{$t('order.aliPay')}}<b>{{integralToprice | moneyFormat}}</b></span>
         <van-switch v-model="checked"
                     slot="right-icon"
                     @input="onInput"
@@ -129,9 +129,9 @@
     </van-cell-group>
     <!-- 备注 -->
     <van-cell-group style="margin-top: 0.6rem">
-      <van-field :label="$t('order.order13')"
+      <van-field :label="$t('order.mark')"
                  type="textarea"
-                 :placeholder="$t('order.order14')"
+                 :placeholder="$t('order.tip')"
                  rows="1"
                  autosize
                  is-link />
@@ -139,13 +139,13 @@
 
     <!-- 商品金额 -->
     <van-cell-group style="margin-top: 0.6rem">
-      <van-cell :title="$t('order.order15')">
+      <van-cell :title="$t('order.totalMoney')">
         <div class="money">{{(selectedTotalPrice/100) |moneyFormat }}</div>
       </van-cell>
-      <van-cell :title="$t('order.order17')">
+      <van-cell :title="$t('order.sendMoney')">
         <div class="money">0.00</div>
       </van-cell>
-      <van-cell :title="$t('order.order18')"
+      <van-cell :title="$t('order.point')"
                 v-show="isShowPreferential">
         <div class="integralToMoney">-{{integralToprice | moneyFormat}}</div>
       </van-cell>
@@ -153,8 +153,8 @@
 
     <!-- 提交订单 -->
     <van-submit-bar :price="actualPrice"
-                    :label="$t('order.order191')"
-                    :button-text="$t('order.order192')"
+                    :label="$t('order.pay')"
+                    :button-text="$t('order.sendForm')"
                     @submit="onSubmit" />
     <!-- 路由出口 -->
     <transition name="router-slider"
