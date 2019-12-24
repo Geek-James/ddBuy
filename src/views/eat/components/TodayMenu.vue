@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-12-06 17:35:04
+ * @LastEditTime : 2019-12-24 13:00:16
  * @Description: 吃什么->今日菜单
  * @FilePath: /ddBuy/src/views/eat/components/TodayMenu.vue
  -->
@@ -66,7 +66,7 @@ export default {
       menuDown: true,
       isShowMenuList: false,
       todayMenuCategoryLists: [],
-      msg: '全部',
+      msg: this.$t('eat.all'),
       currentSubTitle: 0,
       isShowLoading: true
     }
@@ -86,7 +86,9 @@ export default {
   },
   watch: {
     menuDown () {
-      this.msg = this.menuDown == true ? '全部' : '收起';
+      let all = this.$t('eat.all');
+      let close = this.$t('eat.close');
+      this.msg = this.menuDown == true ? all : close;
     }
   },
   methods: {

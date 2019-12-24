@@ -12,8 +12,8 @@
        @click="goToMyVip">
     <svg-icon iconClass="vip"
               class="icon" />
-    <span class="title">加入会员·每年预计节省806元</span>
-    <span class="subTitle">5折开卡></span>
+    <span class="title">{{$t('home.vipDesc')}}</span>
+    <span class="subTitle">{{$t('home.vipSubDesc')}}</span>
   </div>
 </template>
 

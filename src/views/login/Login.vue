@@ -347,7 +347,7 @@ export default {
         });
       } else {
         Toast({
-          message: this.$t('login.otherQq'),
+          message: this.$t('login.otherQQ'),
           duration: 800
         });
       }

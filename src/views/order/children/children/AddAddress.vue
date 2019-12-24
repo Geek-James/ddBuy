@@ -19,7 +19,7 @@
                       show-set-default
                       show-search-result
                       :search-result="searchResult"
-                      :save-button-text="$t('order.ocomfirmAndUse')"
+                      :save-button-text="$t('order.comfirmAndUse')"
                       @save="onSave"
                       style="margin-top:3rem" />
   </div>

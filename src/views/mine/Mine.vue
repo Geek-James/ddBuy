@@ -3,13 +3,13 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-12-02 11:16:02
+ * @LastEditTime : 2019-12-24 13:53:22
  * @Description: 我的
  * @FilePath: /ddBuy/src/views/mine/Mine.vue
  -->
 <template>
   <div id="mine">
-    <van-nav-bar title="我的"
+    <van-nav-bar :title="$t('mine.title')"
                  :fixed=true
                  :border=false
                  style="height:2.5rem" />
@@ -34,7 +34,7 @@
             <div class="personInfo"
                  v-if="userInfo.token">
               <span>{{userInfo.user_name}}</span>
-              <span>手机号：{{phoneNumber}}</span>
+              <span>{{$t('mine.phone')}}：{{phoneNumber}}</span>
             </div>
           </div>
           <!-- 未登录状态 -->
@@ -147,17 +147,17 @@ export default {
   methods: {
     // 跳转到我的订单
     goTomyOrder (index) {
-        if (index !== 3) {
-          return this.$router.push({ name: "myOrder", params: { active: index + 1 } });
-        }
-        // 跳转到售后退款界面
-        Toast({
-          message: '退款页面尚未开通啦!',
-          duration: 1500
+      if (index !== 3) {
+        return this.$router.push({ name: "myOrder", params: { active: index + 1 } });
+      }
+      // 跳转到售后退款界面
+      Toast({
+        message: '退款页面尚未开通啦!',
+        duration: 1500
       })
     },
     goToPage (name) {
-        this.$router.push({ name });
+      this.$router.push({ name });
     },
     // 意见反馈
     onFeedBack () {

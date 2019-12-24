@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-12-06 17:22:38
+ * @LastEditTime : 2019-12-24 13:14:04
  * @Description: 首页->产品列表
  * @FilePath: /ddBuy/src/views/home/components/tabbar/ProduceItem.vue
  -->
@@ -18,7 +18,7 @@
       <p class="itemTitle">{{product.name}}</p>
       <p class="itemSubTitle">{{product.spec}}</p>
       <span class="tagEat"
-            v-if="isShowEatTag">吃货节</span>
+            v-if="isShowEatTag">{{$t('home.foodie')}}</span>
       <span class="price">
         {{product.price | moneyFormat}}
       </span>

@@ -3,14 +3,14 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-07 09:17:07
+ * @LastEditTime : 2019-12-24 13:12:35
  * @Description: 首页->特色专区
  * @FilePath: /ddBuy/src/views/home/components/special/SpecialZone.vue
  -->
 <template>
   <div id="specialZone">
     <div class="titleWrapper">
-      <div class="title">特色专区</div>
+      <div class="title">{{$t('home.specialZone')}}</div>
     </div>
     <!-- 新品尝鲜 -->
     <div class="wrapperItem">

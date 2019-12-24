@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime : 2019-12-20 17:17:14
+ * @LastEditTime : 2019-12-24 13:05:43
  * @Description: 首页->顶部搜索栏
  * @FilePath: /ddBuy/src/views/home/components/header/Header.vue
  -->
@@ -36,7 +36,7 @@
                   d="M23.624 21.503c3.47-4.51 3.14-11.003-.992-15.135-4.491-4.49-11.773-4.49-16.264 0-4.49 4.491-4.49 11.773 0 16.264 4.132 4.131 10.625 4.462 15.135.992l4.66 4.66a1.5 1.5 0 1 0 2.121-2.121l-4.66-4.66zm-3.114-.993A8.5 8.5 0 1 0 8.49 8.49a8.5 8.5 0 0 0 12.02 12.02z"></path>
           </svg>
         </div>
-        <span class="searchPrompt">输入商品名称</span>
+        <span class="searchPrompt">{{$t('home.inputGoodsName')}}</span>
       </div>
     </div>
   </div>
@@ -82,7 +82,7 @@ export default {
     goSearch () {
       // 引入 Toast 组件后，会自动在 Vue 的 prototype 上挂载 $toast 方法，便于在组件内调用。
       this.$toast({
-        message: '暂未实现哦~',
+        message: this.$t('unrealized'),
         duration: 800
       });
     }

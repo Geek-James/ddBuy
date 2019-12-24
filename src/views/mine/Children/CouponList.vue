@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-07 09:21:31
+ * @LastEditTime : 2019-12-24 14:01:13
  * @Description: 我的->我的优惠券
  * @FilePath: /ddBuy/src/views/mine/Children/CouponList.vue
  -->
@@ -31,24 +31,24 @@ export default {
     return {
       coupons: [{                  // 优惠券信息     
         available: 1,
-        condition:  this.$t('login.condition'),
+        condition: this.$t('mine.condition'),
         reason: '',
         value: 150,
-        name: this.$t('login.bill'),
+        name: this.$t('mine.bill'),
         startAt: 1549104000,
         endAt: 1614592000,
         valueDesc: '1.5',
-        unitDesc:this.$t('login.rmb')
+        unitDesc: this.$t('mine.rmb')
       }, {                  // 优惠券信息     
         available: 1,
-        condition: this.$t('login.condition'),
+        condition: this.$t('mine.condition'),
         reason: '',
         value: 200,
-        name: this.$t('login.bill'),
+        name: this.$t('mine.bill'),
         startAt: 1549104000,
         endAt: 1614592000,
-        valueDesc: '2',
-        unitDesc:this.$t('login.rmb')
+        valueDesc: '1.5',
+        unitDesc: this.$t('mine.rmb')
       }]
     }
   },

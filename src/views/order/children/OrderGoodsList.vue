@@ -3,13 +3,13 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-07 09:24:59
+ * @LastEditTime : 2019-12-24 14:07:51
  * @Description: 订单->订单商品详情
  * @FilePath: /ddBuy/src/views/order/children/OrderGoodsList.vue
  -->
  <template>
   <div id="orderGoodsList">
-    <van-nav-bar title="商品清单"
+    <van-nav-bar :title="$t('order.goodsList')"
                  left-arrow
                  :fixed=true
                  @click-left="onClickLeft" />
