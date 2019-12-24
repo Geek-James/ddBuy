@@ -9,7 +9,7 @@
  -->
 <template>
   <div id="vipPay">
-    <van-nav-bar title="开通绿卡"
+    <van-nav-bar :title="$t('mine.openCard')"
                  :border=false
                  :fixed="true"
                  @click-left="onClickLeft"
@@ -25,17 +25,17 @@
       </div>
     </div>
     <div class="vipDesc">
-      <p>开通绿卡享三大权益,预计每单省6.66元</p>
+      <p>{{$t('mine.recomend')}}</p>
       <van-grid :column-num="3"
                 :border=false>
         <van-grid-item icon="vip-card-o"
-                       text="专享券"
+                       :text="$t('mine.cardTip1')"
                        style="color:#60b86a" />
         <van-grid-item icon="discount"
-                       text="专享特价"
+                       :text="$t('mine.cardTip2')"
                        style="color:#60b86a" />
         <van-grid-item icon="gem-o"
-                       text="2倍积分"
+                       :text="$t('mine.cardTip3')"
                        style="color:#60b86a" />
       </van-grid>
     </div>
@@ -44,32 +44,32 @@
       <div class="chooseType"
            :class="{selected:checked,normal:!checked}"
            @click="chooseClick(1)">
-        <i>5折</i>
-        <span class="title">年卡·365天</span>
+        <i>{{$t('mine.vipType')}}</i>
+        <span class="title">{{$t('mine.vipTime')}}</span>
         <a href="javaScript:;"
            class="cartCheckBox"
            :checked="checked"></a>
-        <p>相当于约0.24元/天</p>
-        <div class="price">¥88</div>
-        <span class="originPrice">¥188</span>
+        <p>{{$t('mine.vipRecommend')}}</p>
+        <div class="price">{{$t('mine.prise1')}}</div>
+        <span class="originPrice">{{$t('mine.prise2')}}</span>
       </div>
       <div class="chooseType"
            :class="{selected:secondChecked,normal:!secondChecked}"
            @click="chooseClick(2)">
-        <i>7折</i>
-        <span class="title">季卡·90天</span>
+        <i>{{$t('mine.vipType1')}}</i>
+        <span class="title">{{$t('mine.vipTime1')}}</span>
         <a href="javaScript:;"
            class="cartCheckBox"
            :checked="secondChecked"></a>
-        <p>相当于约0.33元/天</p>
-        <div class="price">¥30</div>
-        <span class="originPrice">¥45</span>
+        <p>{{$t('mine.vipRecommend1')}}</p>
+        <div class="price">{{$t('mine.prise11')}}</div>
+        <span class="originPrice">{{$t('mine.prise12')}}</span>
       </div>
     </div>
     <!-- 支付方式 -->
     <!-- 支付方式选择 -->
     <van-radio-group v-model="radio">
-      <van-cell-group title="支付方式">
+      <van-cell-group :title="$t('mine.payMethod')">
         <van-cell clickable
                   @click="radio = '1'">
           <template slot="title">
@@ -78,7 +78,7 @@
                  width="25px"
                  height="25px"
                  style=" vertical-align: middle;padding-right:5px">
-            <span>微信支付</span>
+            <span>{{$t('mine.wechatPay')}}</span>
           </template>
           <van-radio slot="right-icon"
                      name="1"
@@ -92,7 +92,7 @@
                  width="25px"
                  height="25px"
                  style=" vertical-align: middle;padding-right:5px">
-            <span>支付宝支付</span>
+            <span>{{$t('mine.aliPay')}}</span>
           </template>
           <van-radio slot="right-icon"
                      name="2"
@@ -106,7 +106,7 @@
                  width="25px"
                  height="25px"
                  style=" vertical-align: middle;padding-right:5px">
-            <span>花呗支付</span>
+            <span>{{$t('mine.huabeiPay')}}</span>
           </template>
           <van-radio slot="right-icon"
                      name="3"
@@ -116,7 +116,7 @@
     </van-radio-group>
 
     <div class="payButton"
-         @click="clickPay">立即支付</div>
+         @click="clickPay">{{$t('mine.payImmeatally')}}</div>
   </div>
 </template>
 
@@ -132,7 +132,7 @@ export default {
       user_image: {
         login_icon: require('./../../../../images/mine/defaultImg.jpeg'),
       },
-      vipTipMsg: '绿卡未开通',
+      vipTipMsg: this.$t('mine.cardUeless'),
       checked: true,
       secondChecked: false,
       radio: '1',
@@ -170,7 +170,7 @@ export default {
     // 点击了支付
     clickPay () {
       Toast({
-        message: '只能到这步啦!后面的臣妾做不到啊~~',
+        message: this.$t('mine.tip'),
         duration: 900
       })
     }

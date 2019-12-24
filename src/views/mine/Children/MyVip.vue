@@ -11,7 +11,7 @@
   <div id="myVip"
        ref="myVip">
     <div v-if="!isShowLoading">
-      <van-nav-bar title="绿卡"
+      <van-nav-bar :title="$t('mine.greenCard')"
                    :border=false
                    :fixed="true"
                    @click-left="onClickLeft"
@@ -22,7 +22,7 @@
              alt="">
       </div>
       <div class="vipPrivilege">
-        <p class="title">绿卡特权</p>
+        <p class="title">{{$t('mine.greenCardPower')}}</p>
         <van-grid :border=false>
           <van-grid-item icon="vip-card-o"
                          text="专享券" />
@@ -34,64 +34,64 @@
                          text="更多特权" />
         </van-grid>
         <div class="becomVipBtn"
-             @click="goToPayPage">5折开通绿卡</div>
+             @click="goToPayPage">{{$t('mine.fiftypecert')}}</div>
       </div>
       <!-- 第1部分 -->
       <div class="coupons">
         <!--今日专享券 -->
-        <span class="number">1</span><span class="desc">绿卡专享券 天天领取优惠</span>
-        <p class="todayCouns">今日专享券<i>每天0点更新</i></p>
+        <span class="number">1</span><span class="desc">{{$t('mine.cardRecoamnd')}}</span>
+        <p class="todayCouns">{{$t('mine.TodayExclusivecoupon')}}<i>{{$t('mine.everyUpadate')}}</i></p>
         <div class="quanBox">
           <div class="quan"
                v-for="(item,index) in todayTicket"
                :key="item.id"
                @click="getCoupons">
             <div class="money"><i>¥</i>{{item.money}}</div>
-            <div class="couponsConditions">满{{item.pay_min}}元使用</div>
+            <div class="couponsConditions">{{$t('mine.to')}}{{item.pay_min}}{{$t('mine.toUse')}}</div>
             <div class="couponsScope">{{item.description}}</div>
             <div class="getCopons">
-              立即领取
+             {{$t('mine.immeatallyGet')}}
             </div>
           </div>
         </div>
         <!--本周专享券-->
-        <p class="todayCouns">本周专享券</p>
+        <p class="todayCouns">{{$t('mine.weekBill')}}</p>
         <div class="quanBox">
           <div class="quan"
                v-for="(item,index) in weekTicket"
                :key="item.id"
                @click="getCoupons">
             <div class="money"><i>¥</i>{{item.money}}</div>
-            <div class="couponsConditions">满{{item.pay_min}}元可用</div>
+            <div class="couponsConditions">{{$t('mine.to')}}{{item.pay_min}}{{$t('mine.toUse')}}</div>
             <div class="couponsScope">{{item.description}}</div>
             <div class="getCopons">
-              立即领取
+             {{$t('mine.immeatallyGet')}}
             </div>
           </div>
         </div>
       </div>
       <!-- 第2部分 -->
       <div class="coupons">
-        <span class="number">2</span><span class="desc">绿卡专享券 天天领取优惠</span>
+        <span class="number">2</span><span class="desc">{{$t('mine.billTip')}}</span>
         <div class="integralBox">
           <div class="leftBox">
-            <div class="leftBoxTitle">您当前购物</div>
-            <div class="leftBoxSubTitle">返积分为<i>1倍</i></div>
+            <div class="leftBoxTitle">{{$t('mine.currentGoods')}}</div>
+            <div class="leftBoxSubTitle">{{$t('mine.cardBack')}}<i>{{$t('mine.onece')}}</i></div>
           </div>
           <div class="rightBox">
-            <div class="rightBoxTitle">开通绿卡购物</div>
-            <div class="rightBoxSubTitle">返积分为<i>2倍</i></div>
+            <div class="rightBoxTitle">{{$t('mine.cardShop')}}</div>
+            <div class="rightBoxSubTitle">{{$t('mine.cardBack')}}<i>{{$t('mine.twice')}}</i></div>
             <div class="line"></div>
             <img src="./../../../images/mine/rockets.png"
                  alt="">
           </div>
         </div>
         <div class="integralToFast"
-             @click="goToPayPage">立即开启积分加速</div>
+             @click="goToPayPage">{{$t('mine.cardSpecialTip')}}</div>
       </div>
       <!-- 第3部分 -->
       <div class="coupons">
-        <span class="number">3</span><span class="desc">绿卡专享特价</span>
+        <span class="number">3</span><span class="desc">{{$t('mine.cardSpecial')}}</span>
         <!-- 可横向滑动的菜单 -->
         <van-sticky :offset-top="40">
           <VipMenuTitleScroll :menuTitlesArray="cate"
@@ -107,11 +107,11 @@
            v-show="isShowBottomBtn"
            transiton="fade">
         <div class="bottomDesc">
-          <span class="yearCart">年卡</span><i>88元</i><span class="originPrice">180元</span>
+          <span class="yearCart">{{$t('mine.yearCard')}}</span><i>{{$t('mine.cardPrisea')}}</i><span class="originPrice">{{$t('mine.cardPriseb')}}</span>
         </div>
         <div class="joinVip"
              @click="goToPayPage">
-          开通绿卡
+          {{$t('mine.openCards')}}
         </div>
       </div>
     </transition>

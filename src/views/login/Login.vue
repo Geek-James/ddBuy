@@ -59,13 +59,13 @@
                          required
                          clearable
                          maxlength="11"
-                         label="手机号码"
-                         placeholder="请输入手机号"
-                         :error-message="phoneNumberRight?'':'手机号格式不正确'" />
+                         :label="$t('login.phoneNumber')"
+                         :placeholder="$t('login.phoneInput')"
+                         :error-message="phoneNumberRight?'':$('login.phoneNumberNotCorrect')" />
               <van-field center
                          clearable
                          required
-                         label="短信验证码"
+                         :label="$t('login.varify')"
                          maxlength="6"
                          v-model="smsCaptcha"
                          placeholder="验证码">
@@ -74,63 +74,63 @@
                             type="primary"
                             v-if="!countDown"
                             :disabled="captchaDisable"
-                            @click="sendVerifyCode">发送验证码</van-button>
+                            @click="sendVerifyCode">{{$t('login.sendVerify')}}</van-button>
                 <van-button slot="button"
                             size="small"
                             type="primary"
                             disabled=""
                             v-model="smsCaptcha"
-                            v-else>已发送{{countDown}}s</van-button>
+                            v-else>{{$t('login.hasSend')}}{{countDown}}s</van-button>
               </van-field>
             </van-cell-group>
             <van-button type="info"
                         size="large"
                         style="margin-top:1rem"
-                        @click='login'>登录</van-button>
+                        @click='login'>{{$t('login.login')}}</van-button>
             <div class="switchLogin"
-                 @click="switchLogin">{{this.isShowSMSLogin?"账号密码登录":"短信验证码登录"}}</div>
+                 @click="switchLogin">{{this.isShowSMSLogin?$t('login.phoneVerify'):$t('login.message')}}</div>
           </van-tab>
           <!-- 注册 -->
-          <van-tab title="注册">
+          <van-tab :title="$t('login.resgin')">
             <van-cell-group>
               <van-field v-model="register_userName"
                          clearable
                          maxlength="11"
-                         label="手机号码"
-                         placeholder="请输入手机号"
+                         :label="$t('login.phoneNumber')"
+                         :placeholder="$t('login.phoneInput')"
                          required />
               <van-field v-model="register_pwd"
                          type="password"
-                         label="密码"
-                         placeholder="请输入密码(不少于6位)"
+                         :label="$t('login.pass')"
+                         :placeholder="$t('login.passTip2')"
                          required />
             </van-cell-group>
             <van-button type="info"
                         size="large"
                         style="margin-top:1rem"
-                        @click='register'>注册</van-button>
+                        @click='register'>{{$t('login.resgin')}}</van-button>
           </van-tab>
         </van-tabs>
 
         <!-- 第三方登录 -->
         <van-divider :style="{ color: '#1989fa', borderColor: '#1989fa', padding: '0 5px' }">
-          其他登录方式
+          {{$t('login.otherMethods')}}
         </van-divider>
         <van-grid :column-num="2"
                   :border=false>
           <van-grid-item @click="thirdLogin(0)">
             <svg-icon iconClass="wechat" />
-            <div class="title">微信登录</div>
+            <div class="title">{{$t('login.wechat')}}</div>
           </van-grid-item>
           <van-grid-item @click="thirdLogin(1)">
             <svg-icon iconClass="QQ" />
-            <div class="title">QQ登录</div>
+            <div class="title">{{$t('login.qqchant')}}</div>
           </van-grid-item>
         </van-grid>
         <!-- 底部声明 -->
-        <p class="agreement"> 温馨提示：<br>未注册的手机号，登录时将自动注册，且代表同意<a @click.stop="agreement(0)"
-             class="agreement-box">用户协议</a>、<a @click.stop=agreement(1)
-             class="agreement-box">隐私策略</a></p>
+        <p class="agreement"> {{$t('login.tipTile')}}<br>{{$t('login.tipContent')}}<a @click.stop="agreement(0)"
+             class="agreement-box">{{$t('login.tip')}}</a>、<a @click.stop=agreement(1)
+             class="agreement-box">{{$t('login.tipProcy')}}</a></p>
       </div>
     </div>
   </div>
@@ -159,7 +159,7 @@ export default {
       imgCaptcha: '',               // 图片验证码
       smsCaptcha: '',               // 短信验证码
       isShowSMSLogin: true,         // 是否短信登录
-      switchLoginMsg: '账号密码登录',
+      switchLoginMsg: this.$t('login.switchLoginMsg'),
       imageURL: require('./../../images/login/normal.png'),
       smsCaptchaResult: null,
       userInfo: null
@@ -225,8 +225,8 @@ export default {
         this.smsCaptchaResult = result.data.code;
         // 4.3  获取验证码成功
         Dialog.alert({
-          title: '温馨提示',
-          message: '验证码获取成功,请在输入框输入:' + result.data.code
+          title: this.$t('login.tipTile'),
+          message: this.$t('login.message') + result.data.code
         }).then(() => {
         });
       }
@@ -238,14 +238,14 @@ export default {
         // 5.1.1 验证手机号
         if (!this.phoneNumberRight || this.login_phone.length < 10) {
           Toast({
-            message: '请输入正确的手机号',
+            message: this.$t('login.pleaseInputCorrectPhoneNumber'),
             duration: 800
           });
           return;
         } else if (this.smsCaptcha < 7 || this.smsCaptcha != Number(this.smsCaptchaResult)) {
           // 5.1.2 验证验证码
           Toast({
-            message: '请输入正确的验证码',
+            message: this.$t('login.pleaseInputCorrectVerifyNumber'),
             duration: 800
           });
           return;
@@ -260,25 +260,25 @@ export default {
         // 5.2.1 验证输入框
         if (this.login_userName.length < 1) {
           Toast({
-            message: '请输入手机号',
+            message: this.$t('login.phoneNumber'),
             duration: 800
           });
           return;
         } else if (!this.phoneRegex(this.login_userName)) {
           Toast({
-            message: '手机号格式不正确',
+            message: this.$t('login.phoneNumberNotCorrect'),
             duration: 800
           });
           return;
         } else if (this.login_password.length < 1) {
           Toast({
-            message: '密码不能为空',
+            message: this.$t('login.passNumberNotCorrect'),
             duration: 800
           });
           return;
         } else if (this.imgCaptcha.length < 1) {
           Toast({
-            message: '请输入验证码',
+            message: this.$t('login.pleaseInputCorrectVerifyNumber'),
             duration: 800
           });
           return;
@@ -293,22 +293,22 @@ export default {
     async register () {
       if (this.register_userName.length < 1) {
         Toast({
-          message: '手机号不能为空',
+          message: this.$t('login.phoneNumberNotEmpty'),
           duration: 800
         })
       } else if (!this.phoneRegex(this.register_userName)) {
         Toast({
-          message: '手机号格式不正确',
+          message: this.$t('login.phoneNumberNotCorrect'),
           duration: 800
         })
       } else if (this.register_pwd.length < 0) {
         Toast({
-          message: '请输入密码',
+          message: this.$t('login.passTip'),
           duration: 800
         })
       } else if (this.register_pwd.length < 6) {
         Toast({
-          message: '密码至少为6位哦!',
+          message: this.$t('login.passTip2'),
           duration: 800
         })
       } else {
@@ -323,12 +323,12 @@ export default {
     agreement (index) {
       if (index == 0) {
         Toast({
-          message: '用户协议',
+          message: this.$t('login.tip'),
           duration: 800
         })
       } else {
         Toast({
-          message: '隐私策略',
+          message: this.$t('login.tipProcy'),
           duration: 800
         })
       }
@@ -342,12 +342,12 @@ export default {
 
       if (value == 0) {
         Toast({
-          message: '微信登录-暂未完成',
+          message: this.$t('login.otherWechat'),
           duration: 800
         });
       } else {
         Toast({
-          message: 'QQ登录-暂未完成',
+          message: this.$t('login.otherQq'),
           duration: 800
         });
       }

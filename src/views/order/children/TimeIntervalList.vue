@@ -19,7 +19,7 @@
                position="bottom">
       <!-- 头部 -->
       <div class="itemHeader">
-        <span class="timeTitle">选择送达时间</span>
+        <span class="timeTitle">{{$t('order.selectArrivalTime')}}:</span>
       </div>
       <div class="listWrapper">
         <div class="leftContent">
@@ -57,7 +57,7 @@
       </div>
       <div class="sureButton"
            @click="sureCheckTime">
-        确定
+        {{$t('order.confirm')}}:
       </div>
     </van-popup>
   </div>

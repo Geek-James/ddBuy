@@ -9,7 +9,7 @@
  -->
 <template>
   <div id="couponList">
-    <van-nav-bar title="我的优惠券"
+    <van-nav-bar :title="$t('mine.myBills')"
                  :fixed=true
                  :border=false
                  @click-left="onClickLeft"
@@ -18,7 +18,7 @@
     <!--优惠券列表-->
     <van-coupon-list :coupons="coupons"
                      style="margin-top:3rem"
-                     input-placeholder="请输入520it兑换"
+                     :input-placeholder="$t('mine.persent')"
                      @exchange="onExchange" />
 
   </div>
@@ -31,24 +31,24 @@ export default {
     return {
       coupons: [{                  // 优惠券信息     
         available: 1,
-        condition: '无使用门槛\n最多优惠1.5元',
+        condition:  this.$t('login.condition'),
         reason: '',
         value: 150,
-        name: '优惠券 ',
+        name: this.$t('login.bill'),
         startAt: 1549104000,
         endAt: 1614592000,
         valueDesc: '1.5',
-        unitDesc: '元'
+        unitDesc:this.$t('login.rmb')
       }, {                  // 优惠券信息     
         available: 1,
-        condition: '无使用门槛\n最多优惠2元',
+        condition: this.$t('login.condition'),
         reason: '',
         value: 200,
-        name: '优惠券 ',
+        name: this.$t('login.bill'),
         startAt: 1549104000,
         endAt: 1614592000,
         valueDesc: '2',
-        unitDesc: '元'
+        unitDesc:this.$t('login.rmb')
       }]
     }
   },

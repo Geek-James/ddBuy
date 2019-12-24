@@ -15,7 +15,7 @@
          class="noDataPlaceHold">
       <img src="./../../../../images/mine/noData.jpeg"
            alt="">
-      <span class="desc">暂时还没有相关订单</span>
+      <span class="desc">{{$t('mine.feedbackTip')}}</span>
     </div>
   </div>
 </template>

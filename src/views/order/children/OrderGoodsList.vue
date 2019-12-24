@@ -14,8 +14,8 @@
                  :fixed=true
                  @click-left="onClickLeft" />
     <div class="listitle">
-      <span>商品</span>
-      <span class="total">共{{selectedCount}}件</span>
+      <span>{{$t('order.goods')}}</span>
+      <span class="total">{{$t('order.all')}}{{selectedCount}}{{$t('order.things')}}</span>
     </div>
     <ul>
       <li class="goodsList"
@@ -28,8 +28,8 @@
         </div>
         <div class="textDetail">
           <p class="name">{{item.name}}</p>
-          <span class="subParam">单价:{{item.price | moneyFormat}}</span>
-          <span class="subParam">数量:{{item.num}}</span>
+          <span class="subParam">{{$t('order.sigalPrice')}}{{item.price | moneyFormat}}</span>
+          <span class="subParam">{{$t('order.numbers')}}{{item.num}}</span>
         </div>
         <div class="goodPrice">{{item.price*item.num | moneyFormat}}</div>
       </li>
