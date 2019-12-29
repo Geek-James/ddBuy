@@ -3,14 +3,14 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime : 2019-12-20 17:10:51
+ * @LastEditTime : 2019-12-30 00:04:36
  * @Description: 首页->限时抢购
  * @FilePath: /ddBuy/src/views/home/components/flash/FlashBuy.vue
  -->
 <template>
   <div id="wrapper">
     <div class="titleWrapper">
-      <div class="title">限时抢购</div>
+      <div class="title">{{$t('home.limitBuy')}}</div>
       <van-count-down :time="time"
                       class="countStyle"
                       format="HH mm ss">
@@ -22,7 +22,7 @@
       </van-count-down>
       <!-- 更多按钮 -->
       <div class="more"
-           @click="moreClick">{{ $t("home.more") }}</div>
+           @click="moreClick">{{ $t('home.more') }}</div>
     </div>
     <!-- 限时抢购商品 遍历父组件传来的数据并传递给子组件-->
     <FlashFood :flash_sale_product_list="flash_sale_product_list" />
@@ -50,7 +50,7 @@ export default {
   methods: {
     moreClick () {
       Toast({
-        message: '更多',
+        message: this.$t('home.more'),
         duration: 800
       });
     },
