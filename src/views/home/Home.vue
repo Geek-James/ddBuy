@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime : 2019-12-20 21:59:06
+ * @LastEditTime : 2019-12-29 23:57:46
  * @Description: Home 首页模块
  * @FilePath: /ddBuy/src/views/home/Home.vue
  -->
@@ -30,7 +30,7 @@
       <TabbarGoodsItem :tabbar_all_product_list="tabbar_all_product_list"
                        :flash_sale_product_list="flash_sale_product_list" />
       <!-- 最底部 -->
-      <van-divider>我是有底线的</van-divider>
+      <van-divider>{{$t('home.bottom_tip')}}</van-divider>
     </div>
     <!-- 数据加载提示gif -->
     <Loading :show="isShowLoading" />
@@ -64,10 +64,11 @@ export default {
     ...mapState(['userInfo']),
   },
   created () {
-  },
-  mounted () {
     // 0.数据初始化
     this._initData();
+  },
+  mounted () {
+
   },
   data () {
     return {

@@ -2,7 +2,7 @@ export default {
     // 公共的key
     common: {
         unrealized: '暂未实现',
-        all: '全部',
+        all: '全部'
     },
     //购物车
     car: {
@@ -29,7 +29,9 @@ export default {
         foodie: '吃货节',
         dinner: '晚餐',
         popularity: '人气',
-        goodChoose: '心选'
+        goodChoose: '心选',
+        limitBuy: '限时抢购',
+        bottom_tip: '我是有底线的'
     },
     // 分类
     category: {
@@ -70,7 +72,7 @@ export default {
         tip4: "GitHub上搜索 \nGeek-James/ddBuy \n🦉欢迎提出优化建议🙉",
         feedbackTip: '暂时还没有相关订单',
         cardPrise: '绿卡价格',
-        more: '更多特权敬请期待...',
+        moreMessage: '更多特权敬请期待...',
         openCard: '开通绿卡',
         recomend: '开通绿卡享三大权益,预计每单省6.66元',
         cardTip1: '专享券',
@@ -85,7 +87,7 @@ export default {
         vipTime1: '季卡·90天',
         vipRecommend1: '相当于约0.33元/天',
         prise11: '¥30',
-        prise21: "¥45",
+        prise12: "¥45",
         payMethod: '支付方式',
         wechatPay: '微信支付',
         aliPay: '支付宝支付',
@@ -173,7 +175,6 @@ export default {
         pay: '实付',
         sendForm: '提交订单',
 
-
         selectArrivalTime: '选择送达时间',
         comfirm: '确定',
         goods: '商品',
@@ -186,8 +187,7 @@ export default {
         addLocation: '添加地址',
         comfirmAndUse: '保存并使用',
         editLocation: '编辑地址',
-        order30: '我的地址',
-
+        myAddress: '我的地址'
 
     },
     // 登录

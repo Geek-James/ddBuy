@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-12-06 17:46:45
+ * @LastEditTime : 2019-12-29 23:34:20
  * @Description: 我的->我的绿卡->绿卡产品列表
  * @FilePath: /ddBuy/src/views/mine/Children/MyVipChildren/VipGoodsItems.vue
  -->
@@ -39,7 +39,7 @@
             </div>
           </li>
         </ul>
-        <div class="bottomTip">{{$t('mine.more')}}</div>
+        <div class="bottomTip">{{$t('mine.moreMessage')}}</div>
       </div>
     </section>
   </div>
