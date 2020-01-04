@@ -30,7 +30,7 @@
       <TabbarGoodsItem :tabbar_all_product_list="tabbar_all_product_list"
                        :flash_sale_product_list="flash_sale_product_list" />
       <!-- 最底部 -->
-      <van-divider>{{$t('home.bottom_tip')}}</van-divider>
+      <van-divider>{{$t('home.bottomTip')}}</van-divider>
     </div>
     <!-- 数据加载提示gif -->
     <Loading :show="isShowLoading" />

@@ -2,7 +2,25 @@ export default {
     // 公共的key
     common: {
         unrealized: '暂未实现',
-        all: '全部'
+        all: '全部',
+        distributionTip: '0元起送 0配送费',
+        easeBack: '安心退',
+        addCarSuccess: '成功加入购物车'
+    },
+    //商品详情
+    goodsDetail: {
+        goodsDetail: '商品详情',
+        shopping: '抢购中',
+        end: '距结束',
+        sold: '已售',
+        goodsTips: '此商品按500g/份计价,如实收少于500g将退还差价',
+        quickTime: '最快29分钟内送达',
+        specifications: '规格',
+        preservationConditions: '保存条件',
+        coldStorage: '冷藏',
+        shelfLife: '保质期',
+        day: '15天',
+        addToCar: '加入购物车'
     },
     //购物车
     car: {
@@ -31,12 +49,16 @@ export default {
         popularity: '人气',
         goodChoose: '心选',
         limitBuy: '限时抢购',
-        bottom_tip: '我是有底线的'
+        bottomTip: '我是有底线的',
+        chooseAddress: '请选择地址',
+        currentLocation: '您当前的位置',
+        nearbyAddress: '附近的地址'
+
     },
     // 分类
     category: {
         tip: '输入商品名称',
-        bottom_tip: '到底了,看看别的分类吧'
+        bottomTip: '到底了,看看别的分类吧'
     },
     // 吃什么
     eat: {

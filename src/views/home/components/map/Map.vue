@@ -3,16 +3,15 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-29 16:56:25
+ * @LastEditTime : 2020-01-04 15:36:15
  * @Description: 地图
  * @FilePath: /ddBuy/src/views/home/components/map/Map.vue
  -->
 <template>
   <div id="map">
-    <van-nav-bar title="请选择收货地址"
+    <van-nav-bar :title="$t('home.chooseAddress')"
                  :border=false
-                 :fixed="
-                 true"
+                 :fixed="true"
                  @click-left="onClickLeft"
                  left-arrow
                  style="height:2.5rem" />
@@ -40,7 +39,7 @@
       <!-- 地址列表 -->
       <div class="adrs">
         <ul v-if="list.length > 0">
-          <van-cell-group title="您当前的位置">
+          <van-cell-group :title="$t('home.currentLocation')">
             <van-cell>
               <!-- 使用 title 插槽来自定义标题 -->
               <template slot="title">
@@ -52,7 +51,7 @@
             </van-cell>
           </van-cell-group>
           <!-- 附近位置 -->
-          <van-cell-group title="附近的地址">
+          <van-cell-group :title="$t('home.nearbyAddress')">
             <ul>
               <li class="nearLists"
                   v-for="(item,index) in list"
