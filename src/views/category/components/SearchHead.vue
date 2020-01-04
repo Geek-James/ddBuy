@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-12-06 17:30:26
+ * @LastEditTime : 2020-01-04 15:34:36
  * @Description: 分类模块->搜索框
  * @FilePath: /ddBuy/src/views/category/components/SearchHead.vue
  -->
@@ -35,7 +35,7 @@ export default {
     // 到搜索界面
     goSearch () {
       Toast({
-        message: '暂未实现哦~',
+        message: this.$t('common.unrealized'),
         duration: 800
       });
     }

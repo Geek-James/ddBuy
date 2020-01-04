@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-12-06 17:30:16
+ * @LastEditTime : 2020-01-04 15:34:17
  * @Description: 分类模块->可滑动标题组件
  * @FilePath: /ddBuy/src/views/category/components/ContentView.vue
  -->
@@ -80,7 +80,7 @@
             </li>
           </ul>
         </div>
-        <div class="bottomTip">{{$t('category.bottom_tip')}}</div>
+        <div class="bottomTip">{{$t('category.bottomTip')}}</div>
       </div>
     </section>
   </div>

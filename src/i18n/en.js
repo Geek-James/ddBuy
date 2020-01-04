@@ -31,12 +31,12 @@ export default {
         popularity: '人气',
         goodChoose: '心选',
         limitBuy: '限时抢购',
-        bottom_tip: '我是有底线的'
+        bottomTip: '我是有底线的'
     },
     // 分类
     category: {
         tip: '输入商品名称',
-        bottom_tip: '到底了,看看别的分类吧'
+        bottomTip: '到底了,看看别的分类吧'
     },
     // 吃什么
     eat: {
