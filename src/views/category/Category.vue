@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-12-02 17:46:59
+ * @LastEditTime : 2020-01-04 15:49:38
  * @Description: 分类
  * @FilePath: /ddBuy/src/views/category/Category.vue
  -->
@@ -127,7 +127,7 @@ export default {
         let el = menuLists[index];
         // 2.3 滚动到对应元素上
         this.leftScroll.scrollToElement(el, 300);
-      }, 800);
+      }, 900);
 
       // 2.4 获取右边的数据
       let param;

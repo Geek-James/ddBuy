@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-12-06 17:40:22
+ * @LastEditTime : 2020-01-04 15:59:33
  * @Description: 登录模块
  * @FilePath: /ddBuy/src/views/login/Login.vue
  -->
@@ -39,7 +39,8 @@
                          :label="$t('login.pass')"
                          :placeholder="$t('login.passTip')"
                          required
-                         @click.stop="changeImage(1)" />
+                         @click.stop="changeImage(1)"
+                         autocomplete />
               <van-field v-model="imgCaptcha"
                          center
                          clearable

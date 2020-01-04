@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime : 2019-12-24 13:05:43
+ * @LastEditTime : 2020-01-04 15:47:41
  * @Description: 首页->顶部搜索栏
  * @FilePath: /ddBuy/src/views/home/components/header/Header.vue
  -->
@@ -82,7 +82,7 @@ export default {
     goSearch () {
       // 引入 Toast 组件后，会自动在 Vue 的 prototype 上挂载 $toast 方法，便于在组件内调用。
       this.$toast({
-        message: this.$t('unrealized'),
+        message: this.$t('common.unrealized'),
         duration: 800
       });
     }

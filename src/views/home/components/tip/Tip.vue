@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-10 14:08:25
+ * @LastEditTime : 2020-01-04 15:47:19
  * @Description: 首页->Tip组件
  * @FilePath: /ddBuy/src/views/home/components/tip/Tip.vue
  -->
@@ -13,25 +13,22 @@
     <div class="tipBox">
       <img src="../../../../images/icon/transport.png"
            alt="">
-      <span class="tipText">最快29分钟送达</span>
+      <span class="tipText">{{$t('goodsDetail.quickTime')}}</span>
     </div>
     <div class="tipBox">
       <img src="../../../../images/icon/money.png"
            alt="">
-      <span class="tipText">0元起送 0配送费</span>
+      <span class="tipText">{{$t('common.distributionTip')}}</span>
     </div>
 
     <div class="tipBox">
       <img src="../../../../images/icon/seal.png"
            alt="">
-      <span class="tipText">安心退</span>
+      <span class="tipText">{{$t('common.easeBack')}}</span>
     </div>
     <div @click="goToVip">
       <img class="adImg"
            :src="home_ad">
-      <!-- <div class="adTitle">加入<br>
-        会员
-      </div> -->
     </div>
   </div>
 </template>
