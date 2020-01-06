@@ -37,7 +37,7 @@
 <img src="http://518taole.7-orange.cn/weixing.png" width = "120" height = "140" />
 </div>
 
-**公众号:前端甜甜圈~ 听小姐姐给你讲前端**
+**公众号:前端甜甜圈~ 和我一起愉快的玩转前端**
 <div>
 <img src="http://518taole.7-orange.cn/wxqrcode.jpg" width = "120" height = "140" />
 </div>
@@ -51,11 +51,12 @@
 同时配套了Vue基础系列教程文章，适合小白入门Vue,后期会把整个ddBuy项目拆分些技术文章出来。
 
 - **核心技术拆解**:
+  - [服务器搭建Easy-Mock](https://juejin.im/post/5dfdcda1f265da33a55fa5a0)
+  - [数据抓包](https://juejin.im/post/5d7f097fe51d453b8b5fa680)
   - [商品飞入购物车动画](https://juejin.im/post/5dd55fd2f265da47dd1af944?utm_source=gold_browser_extension)
   - [登录注册](https://juejin.im/post/5dafc91a6fb9a04e4047a713)
   - [封装SVG组件](https://juejin.im/post/5dea5745f265da33bd496f50)
-  - [数据抓包](https://juejin.im/post/5d7f097fe51d453b8b5fa680)
-  - [搭建Easy-Mock](https://juejin.im/post/5d75f79df265da038f4834b2)
+  - [个人中心](https://juejin.im/post/5dbf9613f265da4d32001eb0)
 
 - **Vue甜小白系列专栏**:
     - [Vue从甜小白到皮大佬系列(一) Vue是个啥?](https://juejin.im/post/5d64f31ae51d4561db5e3a74)

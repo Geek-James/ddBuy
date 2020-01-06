@@ -39,7 +39,8 @@
                          :label="$t('login.pass')"
                          :placeholder="$t('login.passTip')"
                          required
-                         @click.stop="changeImage(1)" />
+                         @click.stop="changeImage(1)"
+                         autocomplete />
               <van-field v-model="imgCaptcha"
                          center
                          clearable

@@ -246,7 +246,7 @@ export default {
         phoneVerify: '账号密码登录',
         message: '短信验证码登录',
         switchLoginMsg: '账号密码登录',
-        message: '验证码获取成功,请在输入框输入:',
+        messageSuccess: '验证码获取成功,请在输入框输入',
         pleaseInputCorrectPhoneNumber: '请输入正确的手机号',
         pleaseInputCorrectVerifyumber: '请输入正确的验证码',
         otherWechat: '微信登录-暂未完成',
