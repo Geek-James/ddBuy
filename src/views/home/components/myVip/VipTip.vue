@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-12-06 17:50:51
+ * @LastEditTime : 2020-01-06 15:34:59
  * @Description: 首页->加入会员Tip
  * @FilePath: /ddBuy/src/views/home/components/myVip/VipTip.vue
  -->
@@ -66,7 +66,7 @@ export default {
   }
   .subTitle {
     margin-left: auto;
-    margin-right: 1.5rem;
+    margin-right: 0.5rem;
     font-size: 0.6rem;
     color: white;
   }

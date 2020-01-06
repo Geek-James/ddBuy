@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime : 2020-01-04 15:59:33
+ * @LastEditTime : 2020-01-06 11:39:10
  * @Description: 登录模块
  * @FilePath: /ddBuy/src/views/login/Login.vue
  -->
@@ -69,7 +69,7 @@
                          :label="$t('login.varify')"
                          maxlength="6"
                          v-model="smsCaptcha"
-                         placeholder="验证码">
+                         :placeholder="$t('login.varify')">
                 <van-button slot="button"
                             size="small"
                             type="primary"
@@ -89,7 +89,7 @@
                         style="margin-top:1rem"
                         @click='login'>{{$t('login.login')}}</van-button>
             <div class="switchLogin"
-                 @click="switchLogin">{{this.isShowSMSLogin?$t('login.phoneVerify'):$t('login.message')}}</div>
+                 @click="switchLogin">{{this.isShowSMSLogin?$t('login.phoneVerify'):$t('login.smsMessage')}}</div>
           </van-tab>
           <!-- 注册 -->
           <van-tab :title="$t('login.resgin')">

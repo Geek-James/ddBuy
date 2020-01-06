@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime : 2019-12-24 13:53:22
+ * @LastEditTime : 2020-01-06 15:39:12
  * @Description: 我的
  * @FilePath: /ddBuy/src/views/mine/Mine.vue
  -->
@@ -45,7 +45,7 @@
                  alt="">
             <div class="personInfo"
                  v-if="!userInfo.token">
-              <div @click="goToPage('login')">立即登录</div>
+              <div @click="goToPage('login')">{{$t('mine.login')}}</div>
             </div>
           </div>
         </template>
@@ -53,9 +53,9 @@
     </van-cell-group>
     <!-- 订单相关-->
     <van-cell-group>
-      <van-cell title="我的订单"
+      <van-cell :title="$t('mine.myOrder')"
                 icon="label"
-                value="查看全部订单"
+                :value="$t('mine.allOrder')"
                 is-link
                 @click="goTomyOrder(-1)">
       </van-cell>
@@ -63,17 +63,17 @@
         <van-grid-item v-for="(order,index) in orderData"
                        :key="index"
                        :icon="order.icon"
-                       :text="order.title"
+                       :text="$t(order.title)"
                        @click="goTomyOrder(index)" />
       </van-grid>
     </van-cell-group>
     <van-cell-group style="margin-top:0.4rem">
-      <van-cell title="我的优惠券"
+      <van-cell :title="$t('mine.myBill')"
                 icon="gold-coin"
-                :value="userInfo.token?'2张':''"
+                :value="userInfo.token?'2':''"
                 @click="goToPage('couponList')"
                 is-link />
-      <van-cell title="我的收货地址"
+      <van-cell :title="$t('mine.myLocation')"
                 icon="todo-list"
                 is-link
                 @click="goToPage('myAddress')" />
@@ -84,23 +84,31 @@
                 icon="vip-card"
                 @click="goToPage('myVip')">
         <template slot="title">
-          <span class="custom-title">我的绿卡</span>
+          <span class="custom-title">{{$t('mine.myCar')}}</span>
           <van-tag type="danger"
                    :round=true>NEW</van-tag>
         </template>
       </van-cell>
     </van-cell-group>
     <van-cell-group style="margin-top:0.4rem">
-      <van-cell title="联系客服"
+      <!-- 联系客服 -->
+      <van-cell :title="$t('mine.servier')"
                 icon="phone"
-                value="客服时间 07:00-22:00"
+                :value="$t('mine.servierTime')"
                 is-link />
-      <van-cell title="意见反馈"
+      <!-- 意见反馈 -->
+      <van-cell :title="$t('mine.feedback')"
                 icon="comment-circle"
                 is-link
                 @click="onFeedBack" />
+      <!-- 语言切换 -->
+      <van-cell :title="$t('mine.switchLanguage')"
+                icon="clock"
+                @click="onSwitchLanguage"
+                is-link />
     </van-cell-group>
-    <div class="version">当前版本{{version}}</div>
+
+    <div class="version">{{$t('mine.version')}}{{version}}</div>
     <!--路由的出口-->
     <transition name="router-slider"
                 mode="out-in">
@@ -127,12 +135,13 @@ export default {
       },
       // 订单状态
       orderData: [
-        { icon: 'cart-circle-o', title: '待支付' },
-        { icon: 'gift-o', title: '待收货' },
-        { icon: 'smile-comment-o', title: '待评价' },
-        { icon: 'cash-back-record', title: '售后/退款' }
+        { icon: 'cart-circle-o', title: 'mine.itemsTitle[1]' },
+        { icon: 'gift-o', title: 'mine.itemsTitle[2]' },
+        { icon: 'smile-comment-o', title: 'mine.itemsTitle[3]' },
+        { icon: 'cash-back-record', title: 'mine.waitingFeedback' }
       ],
-      version: _VERSION_,           // 版本信息
+      // 版本信息
+      version: _VERSION_,
     }
   },
   computed: {
@@ -152,7 +161,7 @@ export default {
       }
       // 跳转到售后退款界面
       Toast({
-        message: '退款页面尚未开通啦!',
+        message: this.$t('mine.unrealized'),
         duration: 1500
       })
     },
@@ -162,12 +171,16 @@ export default {
     // 意见反馈
     onFeedBack () {
       Dialog.alert({
-        confirmButtonText: '记得点个小星❤️哦~',
-        title: '💘感谢您的关注💘',
-        message: 'GitHub上搜索 \nGeek-James/ddBuy \n🦉欢迎提出优化建议🙉'
+        confirmButtonText: this.$t('mine.tip2'),
+        title: this.$t('mine.tip3'),
+        message: this.$t('mine.tip4')
       }).then(() => {
         // on close
       });
+    },
+    // 切换语言
+    onSwitchLanguage () {
+      this.$router.push({ name: 'switchLanguage' });
     }
   }
 }

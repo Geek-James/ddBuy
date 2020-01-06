@@ -193,3 +193,9 @@ import {
     GoodsActionButton
 } from 'vant';
 Vue.use(GoodsAction).use(GoodsActionIcon).use(GoodsActionButton);
+
+// 遮罩
+import {
+    Overlay
+} from 'vant';
+Vue.use(Overlay);

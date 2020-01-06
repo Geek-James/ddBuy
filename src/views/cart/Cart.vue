@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-28 22:47:17
+ * @LastEditTime : 2020-01-06 15:49:57
  * @Description: 购物车模块
  * @FilePath: /ddBuy/src/views/cart/Cart.vue
  -->
@@ -118,7 +118,7 @@ export default {
     // 0.结算数量
     submitBarText () {
       const count = this.selectedGoodNum;
-      return '结算' + (count ? `(${count})` : '');
+      return this.$t('order.settlement') + (count ? `(${count})` : '');
     },
     // 1.是否显示空购物车样式
     isShowEmptyCart () {
@@ -177,8 +177,8 @@ export default {
     clearCart () {
       if (this.selectedGoodsCount > 0) {
         Dialog.confirm({
-          title: '温馨提示',
-          message: '确定删除选中商品吗?'
+          title: this.$t('login.tipTile'),
+          message: this.$t('common.deleteConfirm')
         }).then(() => {
           // on confirm 确认删除
           this.DELETE_SELECT_GOODS();

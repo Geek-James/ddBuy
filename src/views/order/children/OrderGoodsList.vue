@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime : 2019-12-24 14:07:51
+ * @LastEditTime : 2020-01-06 15:57:40
  * @Description: 订单->订单商品详情
  * @FilePath: /ddBuy/src/views/order/children/OrderGoodsList.vue
  -->
@@ -15,7 +15,7 @@
                  @click-left="onClickLeft" />
     <div class="listitle">
       <span>{{$t('order.goods')}}</span>
-      <span class="total">{{$t('order.all')}}{{selectedCount}}{{$t('order.things')}}</span>
+      <span class="total">{{selectedCount}}</span>
     </div>
     <ul>
       <li class="goodsList"

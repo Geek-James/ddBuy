@@ -5,7 +5,8 @@ export default {
         all: '全部',
         distributionTip: '0元起送 0配送费',
         easeBack: '安心退',
-        addCarSuccess: '成功加入购物车'
+        addCarSuccess: '成功加入购物车',
+        deleteConfirm: '确定要删除选中商品吗?'
     },
     //商品详情
     goodsDetail: {
@@ -52,7 +53,8 @@ export default {
         bottomTip: '我是有底线的',
         chooseAddress: '请选择地址',
         currentLocation: '您当前的位置',
-        nearbyAddress: '附近的地址'
+        nearbyAddress: '附近的地址',
+
 
     },
     // 分类
@@ -82,13 +84,17 @@ export default {
         myLocation: '我的收货地址',
         myCar: '我的绿卡',
         servier: '联系客服',
+        servierTime: '客服时间 07:00-22:00',
         feedback: '意见反馈',
+        switchLanguage: '语言切换',
+        chinese: '中文',
+        english: '英文',
         version: '当前版本',
         waitingPay: '待支付',
         waitingReceive: "待收货",
         waitingComment: '待评价',
         waitingFeedback: "售后/退款",
-        tip: '退款页面尚未开通啦!',
+        unrealized: '退款页面尚未开通啦!',
         tip2: '记得点个小星❤️哦~',
         tip3: '💘感谢您的关注💘',
         tip4: "GitHub上搜索 \nGeek-James/ddBuy \n🦉欢迎提出优化建议🙉",
@@ -100,6 +106,7 @@ export default {
         cardTip1: '专享券',
         cardTip2: '专享特价',
         cardTip3: '2倍积分',
+        cardTip4: '更多特权',
         vipType: '5折',
         vipTime: '年卡·365天',
         vipRecommend: '相当于约0.24元/天',
@@ -209,7 +216,8 @@ export default {
         addLocation: '添加地址',
         comfirmAndUse: '保存并使用',
         editLocation: '编辑地址',
-        myAddress: '我的地址'
+        myAddress: '我的地址',
+        settlement: '结算'
 
     },
     // 登录

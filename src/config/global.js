@@ -141,4 +141,4 @@ let isEmail = (str) => {
     return /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/.test(str);
 }
 // 版本信息
-export const _VERSION_ = "1.2.2";
+export const _VERSION_ = "1.3.0";

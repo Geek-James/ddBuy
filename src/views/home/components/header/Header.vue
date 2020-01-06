@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime : 2020-01-04 15:47:41
+ * @LastEditTime : 2020-01-06 15:37:30
  * @Description: 首页->顶部搜索栏
  * @FilePath: /ddBuy/src/views/home/components/header/Header.vue
  -->
@@ -21,7 +21,7 @@
       <!-- 跳转到地图界面 -->
       <router-link to="/dashboard/map"
                    tag="span"
-                   class="address">{{location}}</router-link>
+                   class="address">{{$t(location)}}</router-link>
       <svg-icon iconClass="up_real" />
     </div>
     <div class="searchWrapper"
@@ -50,7 +50,7 @@ export default {
   data () {
     return {
       showBgColor: false,
-      location: getLocalStore('userLocation') || this.$t("home.chooseLocation")
+      location: getLocalStore('userLocation') || "home.chooseLocation"
     }
   },
   mounted () {

@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime : 2019-12-24 12:43:37
+ * @LastEditTime : 2020-01-06 12:00:55
  * @Description: 我的->个人资料
  * @FilePath: /ddBuy/src/views/mine/Children/UserCenter.vue
  -->
@@ -156,17 +156,17 @@ export default {
     // 格式化DateTime pickView
     formatter (type, value) {
       if (type === 'year') {
-        return `${value}年`;
+        return `${value}`;
       } else if (type === 'month') {
-        return `${value}月`
+        return `${value}`
       } else if (type === 'day') {
-        return `${value}日`
+        return `${value}`
       }
       return value;
     },
     // DateTime pcikView 确定
     confirm (value) {
-      let brithday = Moment(value).format("YYYY年MM月DD日");
+      let brithday = Moment(value).format("YYYY-MM-DD");
       this.brithdayText = brithday;
       this.USER_INFO_BRITHDAY({ brithday });
       this.showDateTimePopView = false;
