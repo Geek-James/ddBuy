@@ -26,5 +26,10 @@ export default {
                 userInfo
             });
         }
+    },
+    setLanguage({
+        commit
+    }, language) {
+        commit("SET_LANGUAGE", language);
     }
 }

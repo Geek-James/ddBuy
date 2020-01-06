@@ -18,6 +18,8 @@ import {
     CHANGE_USER_SHOPPING_ADDRESS
 } from './mutation-type'
 import Vue from 'vue'
+import Cookies from "js-cookie";
+
 import {
     Toast
 } from 'vant'
@@ -65,7 +67,7 @@ export default {
         setLocalStore('shopCart', state.shopCart);
     },
     // 2.页面初始化,获取本地购物车的数据
-  [INIT_SHOP_CART](state) {
+    [INIT_SHOP_CART](state) {
         // 2.1 先存本地取购物车数据
         let initShopCart = getLocalStore('shopCart');
         if (initShopCart) {
@@ -254,9 +256,9 @@ export default {
         removeLocalStore('shippingAddress');
     },
     //  16.初始化获取用户收货地址
-  [INIT_USER_SHOPPING_ADDRESS](state) {
-      let initUsershoppingAddress = getLocalStore('shippingAddress');
-      state.shippingAddress = JSON.parse(initUsershoppingAddress) || []
+    [INIT_USER_SHOPPING_ADDRESS](state) {
+        let initUsershoppingAddress = getLocalStore('shippingAddress');
+        state.shippingAddress = JSON.parse(initUsershoppingAddress) || []
     },
 
     // 17.增加用户地址
@@ -310,5 +312,10 @@ export default {
             // 1.4 如何没有登录跳转到登录界面
             router.push('/login');
         }
+    },
+    // 切换语言
+    SET_LANGUAGE: (state, language) => {
+        state.language = language;
+        Cookies.set("language", language);
     }
 }

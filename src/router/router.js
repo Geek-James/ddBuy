@@ -37,7 +37,8 @@ const MyOrder = () => import('../views/mine/Children/MyOrder');
 const OrderGoodsList = () => import('../views/order/children/OrderGoodsList')
 // 商品详情页
 const GoodsDetail = () => import('../components/goodsDetail/GoodsDetail.vue');
-
+// 语言切换
+const SwitchLanguage = () => import('../views/mine/Children/SwitchLanguage.vue');
 
 // 加载订单相关的组件
 const Order = () => import('../views/order/Order.vue');
@@ -138,15 +139,15 @@ const router = new Router({
                     name: 'couponList',
                     component: CouponList,
                     meta: {
-                         requireAuth: true
-                     }
+                        requireAuth: true
+                    }
                 }, {
                     // 我的订单
                     path: 'myOrder',
                     name: 'myOrder',
                     component: MyOrder,
                     meta: {
-                      requireAuth: true
+                        requireAuth: true
                     }
                 }, {
                     // 绿卡会员
@@ -155,13 +156,17 @@ const router = new Router({
                     component: MyVip,
                     // 是否数据缓存
                     meta: {
-                      keepAlive: true,
-                      requireAuth: true,
+                        keepAlive: true,
+                        requireAuth: true,
                     }
                 }, {
                     path: '/vipPay',
                     name: 'vipPay',
                     component: VipPay
+                }, {
+                    path: 'switchLanguage',
+                    name: 'switchLanguage',
+                    component: SwitchLanguage
                 }]
             }, {
                 // 商品详情
@@ -185,7 +190,7 @@ const router = new Router({
                 name: 'myAddress',
                 component: MyAddress,
                 meta: {
-                  requireAuth: true
+                    requireAuth: true
                 },
                 children: [{
                     // 添加地址
@@ -217,11 +222,11 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
     if (to.meta.requireAuth) {
         if (state.userInfo.token) {
-          next()
+            next()
         } else {
-          next({
-            path: '/login'
-          })
+            next({
+                path: '/login'
+            })
         }
     } else {
         next()

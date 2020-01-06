@@ -14,11 +14,15 @@ const messages = {
         ...zhLocale
     }
 };
+
 export function getLanguage() {
     // 从cookis 里面取语言
     const chooseLanguage = Cookies.get("language");
+    if (!chooseLanguage) {
+        // 设置默认语言为中文
+        Cookies.set("language", "zh");
+    }
     if (chooseLanguage) return chooseLanguage;
-
     const language = (
         navigator.language || navigator.browserLanguage
     ).toLowerCase();

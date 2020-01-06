@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-12-03 14:29:13
+ * @LastEditTime : 2020-01-06 09:49:59
  * @Description: 项目根入口
  * @FilePath: /ddBuy/src/views/dashboard/Dashboard.vue
  -->
@@ -19,7 +19,7 @@
                        :id="index==3?'buycar':''"
                        @click="tab(index,item.name)"
                        :info="item.name=='cart'?goodsNum:''">
-        <span :class="currIndex == index ? active:''">{{item.title}}</span>
+        <span :class="currIndex == index ? active:''">{{$t(item.title)}}</span>
         <template slot="icon"
                   slot-scope="props">
           <img :src="props.active ? item.active : item.normal">
@@ -63,33 +63,33 @@ export default {
       tabbars: [
         {
           name: "home",
-          title: this.$t('home.home'),
+          title: 'home.home',
           normal: require("@/images/tabbar/home_default.png"),
           active: require("@/images/tabbar/home_selected.png")
         },
         {
           name: "category",
-          title: this.$t('home.category'),
+          title: 'home.category',
           normal: require("@/images/tabbar/category_default.png"),
           active: require("@/images/tabbar/category_selected.png")
         },
         {
           name: "eat",
-          title: this.$t('home.eat'),
+          title: 'home.eat',
           normal: require("@/images/tabbar/eat_default.png"),
           active: require("@/images/tabbar/eat_selected.png"),
         },
         {
-          
+
           name: "cart",
-          title: this.$t('home.cart'),
+          title: 'home.cart',
           normal: require("@/images/tabbar/shoppingcart_default.png"),
           active: require("@/images/tabbar/shoppingcart_selected.png"),
           num: 5
         },
         {
           name: "mine",
-          title: this.$t('home.mine'),
+          title: 'home.mine',
           normal: require("@/images/tabbar/mine_default.png"),
           active: require("@/images/tabbar/mine_selected.png")
         }

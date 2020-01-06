@@ -25,13 +25,13 @@
         <p class="title">{{$t('mine.greenCardPower')}}</p>
         <van-grid :border=false>
           <van-grid-item icon="vip-card-o"
-                         text="专享券" />
+                         :text="$t('mine.cardTip1')" />
           <van-grid-item icon="discount"
-                         text="专享特价" />
+                         :text="$t('mine.cardTip2')" />
           <van-grid-item icon="gem-o"
-                         text="2倍积分" />
+                         :text="$t('mine.cardTip3')" />
           <van-grid-item icon="more-o"
-                         text="更多特权" />
+                         :text="$t('mine.cardTip4')" />
         </van-grid>
         <div class="becomVipBtn"
              @click="goToPayPage">{{$t('mine.fiftypecert')}}</div>
@@ -50,7 +50,7 @@
             <div class="couponsConditions">{{$t('mine.to')}}{{item.pay_min}}{{$t('mine.toUse')}}</div>
             <div class="couponsScope">{{item.description}}</div>
             <div class="getCopons">
-             {{$t('mine.immeatallyGet')}}
+              {{$t('mine.immeatallyGet')}}
             </div>
           </div>
         </div>
@@ -65,7 +65,7 @@
             <div class="couponsConditions">{{$t('mine.to')}}{{item.pay_min}}{{$t('mine.toUse')}}</div>
             <div class="couponsScope">{{item.description}}</div>
             <div class="getCopons">
-             {{$t('mine.immeatallyGet')}}
+              {{$t('mine.immeatallyGet')}}
             </div>
           </div>
         </div>

@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-08 17:34:59
+ * @LastEditTime : 2020-01-06 15:55:41
  * @Description: 订单模块
  * @FilePath: /ddBuy/src/views/order/Order.vue
  -->
@@ -51,7 +51,7 @@
           </ul>
         </div>
         <ul class="productCount">
-          <span>{{$t('order.total')}}{{selectedCount}}{{$t('order.thing')}}
+          <span>{{selectedCount}}
           </span>
           <van-icon name="arrow" />
         </ul>
@@ -59,7 +59,7 @@
     </van-cell-group>
     <!-- 支付方式选择 -->
     <van-radio-group v-model="radio">
-      <van-cell-group title="支付方式">
+      <van-cell-group :title="$t('mine.payMethod')">
         <van-cell clickable
                   @click="radio = '1'">
           <template slot="title">
