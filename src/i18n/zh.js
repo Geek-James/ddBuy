@@ -54,8 +54,6 @@ export default {
         chooseAddress: '请选择地址',
         currentLocation: '您当前的位置',
         nearbyAddress: '附近的地址',
-
-
     },
     // 分类
     category: {
@@ -217,8 +215,11 @@ export default {
         comfirmAndUse: '保存并使用',
         editLocation: '编辑地址',
         myAddress: '我的地址',
-        settlement: '结算'
-
+        settlement: '结算',
+        chooseGoods: '请选择需要结算的商品',
+        deliveryTime: '请选择送达时间',
+        today: '今天',
+        tomorrow: '明天'
     },
     // 登录
     login: {

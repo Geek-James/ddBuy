@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime : 2020-01-06 15:55:41
+ * @LastEditTime : 2020-01-06 17:54:46
  * @Description: 订单模块
  * @FilePath: /ddBuy/src/views/order/Order.vue
  -->
@@ -190,24 +190,24 @@ export default {
       integral: 800,                // 积分,
       showList: false,              // 展示优惠列表
 
-      deliveryTime: '请选择送达时间',
+      deliveryTime: this.$t('order.deliveryTime'),
       showDateTimePopView: false,
       coupons: [{                  // 优惠券信息  
         available: 1,
-        condition: '无使用门槛\n最多优惠1.5元',
+        condition: this.$t('mine.condition'),
         reason: '',
         value: 150,
-        name: '优惠券 ',
+        name: this.$t('mine.bill'),
         startAt: 1549104000,
         endAt: 1614592000,
         valueDesc: '1.5',
         unitDesc: '元'
       }, {                  // 优惠券信息     
         available: 1,
-        condition: '无使用门槛\n最多优惠2元',
+        condition: this.$t('mine.condition'),
         reason: '',
         value: 200,
-        name: '优惠券 ',
+        name: this.$t('mine.bill'),
         startAt: 1549104000,
         endAt: 1614592000,
         valueDesc: '2',
@@ -298,14 +298,14 @@ export default {
           message: '请选择收货地址',
           duration: 800
         });
-      } else if (this.deliveryTime == '请选择送达时间') {
+      } else if (this.$t('deliveryTime') == this.$t('deliveryTime')) {
         Toast({
           message: this.deliveryTime,
           duration: 800
         });
       } else {
         Toast({
-          message: '提交订单',
+          message: this.$t('order.sendForm'),
           duration: 800
         });
       }

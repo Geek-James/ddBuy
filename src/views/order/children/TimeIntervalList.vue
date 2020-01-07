@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime : 2019-12-24 14:15:27
+ * @LastEditTime : 2020-01-06 17:46:28
  * @Description: 订单模块->配送时间列表
  * @FilePath: /ddBuy/src/views/order/children/TimeIntervalList.vue
  -->
@@ -89,8 +89,8 @@ export default {
     // 今天时间和明天时间
     leftDateData () {
       let date = new Date();
-      let today = '今天' + Moment(date).format('MMMDo');
-      let tomory = '明天' + Moment(date).add(1, 'days').format('MMMDo');
+      let today = this.$t('order.today');
+      let tomory = this.$t('order.tomorrow');
       let dateArray = [{ "time": today }, { "time": tomory }];
       return dateArray;
     },
@@ -144,7 +144,7 @@ export default {
     },
     // 确认选择时间
     sureCheckTime () {
-      let date = this.currentIndex == 0 ? "今天" : "明天";
+      let date = this.currentIndex == 0 ? this.$t('order.today') : this.$t('order.tomorrow');
       if (this.chooseDeliveryTime.length < 1) {
         // 设置默认值
         let fristTodayData = this.timeList.today[0];
@@ -157,7 +157,7 @@ export default {
       this.currentIndex = index;
     },
     closePopView () {
-      let date = this.currentIndex == 0 ? "今天" : "明天";
+      let date = this.currentIndex == 0 ? this.$t('order.today') : this.$t('order.tomorrow');
       this.$emit('changeData', false, date + this.chooseDeliveryTime);
     }
   }

@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime : 2020-01-06 15:49:57
+ * @LastEditTime : 2020-01-06 17:34:57
  * @Description: 购物车模块
  * @FilePath: /ddBuy/src/views/cart/Cart.vue
  -->
@@ -235,7 +235,7 @@ export default {
         this.$router.push('/order');
       } else {
         Toast({
-          message: '请选择需要结算的商品',
+          message: this.$t('order.chooseGoods'),
           duration: 1000
         });
       }

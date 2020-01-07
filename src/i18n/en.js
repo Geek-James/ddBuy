@@ -54,7 +54,6 @@ export default {
         chooseAddress: 'Please select the address',
         currentLocation: 'Your current location',
         nearbyAddress: 'Nearby address'
-
     },
     // 分类
     category: {
@@ -217,6 +216,10 @@ export default {
         editLocation: 'Edit the address',
         myAddress: 'My address',
         settlement: 'Settlement',
+        chooseGoods: 'Please select the goods to be settled.',
+        deliveryTime: 'Please select the time of delivery',
+        today: 'today',
+        tomorrow: 'tomorrow'
     },
     // 登录
     login: {
