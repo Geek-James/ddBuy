@@ -75,7 +75,7 @@ export default {
     mine: {
         title: 'Mine',
         phone: 'Tel',
-        login: 'Login immediately',
+        login: 'Login',
         myOrder: 'My order',
         allOrder: "View all orders",
         myBill: 'My coupon',

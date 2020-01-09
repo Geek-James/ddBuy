@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime : 2019-12-24 13:14:04
+ * @LastEditTime : 2020-01-09 23:28:50
  * @Description: 首页->产品列表
  * @FilePath: /ddBuy/src/views/home/components/tabbar/ProduceItem.vue
  -->
@@ -11,7 +11,7 @@
   <div id="produceItem">
     <div class="item"
          v-for="(product,index) in product_lists"
-         :key="product.id"
+         :key="index"
          @click.stop="goToGoodsDetail(product)">
       <img v-lazy="product.small_image"
            alt="">

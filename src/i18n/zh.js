@@ -84,7 +84,7 @@ export default {
         servier: '联系客服',
         servierTime: '客服时间 07:00-22:00',
         feedback: '意见反馈',
-        switchLanguage: '语言切换',
+        switchLanguage: '语言',
         chinese: '中文',
         english: '英文',
         version: '当前版本',
