@@ -28,7 +28,7 @@
 
 ## [Release Note](https://github.com/Geek-James/ddBuy/releases)
 
-**V1.3.0及以上版本支持国语言国际化**
+**V1.3.0及以上版本支持语言国际化**
 
 作者 **[极客James](https://juejin.im/user/5c4ebc72e51d4511dc7306ce)**
 
