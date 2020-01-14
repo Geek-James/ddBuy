@@ -24,9 +24,11 @@
 
 ## 简介
 
-**ddBuy**是一个移动端开源电商项目，它基于 [vue 2.x](https://github.com/vuejs/vue) 和 [vant 2.x](https://youzan.github.io/vant/#/zh-CN/intro)实现。使用了最新的Vue全家桶技术栈，以及一些优秀的开源库如[better-scroll](http://ustbhuangyi.github.io/better-scroll/doc/api.html)、 [moment.js](https://github.com/moment/moment/)、[twix.js](https://github.com/icambron/twix.js)、[pubsub-js](https://github.com/mroderick/PubSubJS),后台数据通过[Easy-Mock](https://github.com/easy-mock/easy-mock)搭建。相信不管你是处于哪个段位的攻城狮，本项目都能帮助到你。
+**ddBuy**是一个移动端开源电商项目，它基于 [vue 2.x](https://github.com/vuejs/vue) 和 [vant 2.x](https://youzan.github.io/vant/#/zh-CN/intro)实现。使用了最新的Vue全家桶技术栈，以及一些优秀的开源库如[better-scroll](http://ustbhuangyi.github.io/better-scroll/doc/api.html)、 [moment.js](https://github.com/moment/moment/)、[twix.js](https://github.com/icambron/twix.js)、[pubsub-js](https://github.com/mroderick/PubSubJS),后台数据通过[Easy-Mock](https://github.com/easy-mock/easy-mock)搭建。支持多语言国际化,相信不管你是处于哪个段位的攻城狮，本项目都能帮助到你。
 
 ## [Release Note](https://github.com/Geek-James/ddBuy/releases)
+
+**V1.3.0及以上版本支持国语言国际化**
 
 作者 **[极客James](https://juejin.im/user/5c4ebc72e51d4511dc7306ce)**
 
@@ -119,8 +121,8 @@ npm run build
 ## 浏览器支持
 
 | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](https://godban.github.io/browsers-support-badges/)</br>IE / Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](https://godban.github.io/browsers-support-badges/)</br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](https://godban.github.io/browsers-support-badges/)</br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](https://godban.github.io/browsers-support-badges/)</br>Safari |
-| --------- | --------- | --------- | --------- |
-| IE10, IE11, Edge| last 2 versions| last 2 versions| last 2 versions
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| IE10, IE11, Edge                                                                                                                                                                                                 | last 2 versions                                                                                                                                                                                                    | last 2 versions                                                                                                                                                                                                | last 2 versions                                                                                                                                                                                                |
 
 ## 免责声明
 本项目为高仿项目,仅做技术交流和学习使用,非官方App,不建议用于商业目的,产生的一切侵权著作法律后果,与本作者无关。
