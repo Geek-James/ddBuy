@@ -131,4 +131,4 @@ npm run build
 
 [MIT](https://github.com/Geek-James/ddBuy/blob/master/LICENSE)
 
-Copyright (c) 2019 极客-James
+Copyright (c) 2020 极客-James
