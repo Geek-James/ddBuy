@@ -3,9 +3,9 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime : 2020-01-04 15:34:17
+ * @LastEditTime: 2020-02-26 10:14:22
  * @Description: 分类模块->可滑动标题组件
- * @FilePath: /ddBuy/src/views/category/components/ContentView.vue
+ * @FilePath: /ddBuy-dev/src/views/category/components/ContentView.vue
  -->
 <template>
   <div class="wrapper">
@@ -229,7 +229,7 @@ export default {
 }
 </script>
 
-<style <style lang="less" scoped>
+<style lang="less" scoped>
 /**scrollTitle  CSS***/
 .wrapper {
   width: 100%;
@@ -264,7 +264,7 @@ export default {
     background-color: white;
     .menuIcon {
       width: 100%;
-      height: 2.8re;
+      height: 2.8rem;
     }
   }
 }
