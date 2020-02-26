@@ -39,7 +39,7 @@
 <img src="http://518taole.7-orange.cn/weixing.png" width = "120" height = "140" />
 </div>
 
-**公众号:前端甜甜圈~ 和我一起愉快的玩转前端**
+**公众号:前端甜甜圈~ 和我一起愉快的玩转大前端**
 <div>
 <img src="http://518taole.7-orange.cn/wxqrcode.jpg" width = "120" height = "140" />
 </div>
