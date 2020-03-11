@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2020-03-11 21:26:32
+ * @LastEditTime: 2020-03-11 22:14:31
  * @Description: 分类
  * @FilePath: /ddBuy-dev/src/views/category/Category.vue
  -->
@@ -34,7 +34,7 @@
     <!-- 加载动画 -->
     <!-- <Loading :show="isShowLoading" /> -->
     <!-- 骨架屏 -->
-    <Skeleton :show="isShowLoading" />
+    <Skeleton v-if="isShowLoading" />
     <!-- 点击左边按钮加载数据时候显示动画 -->
     <LoadingGif v-show="isShowLoadingGif" />
   </div>
