@@ -3,14 +3,14 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2020-03-10 23:45:31
+ * @LastEditTime: 2020-03-11 12:35:34
  * @Description: Home 首页模块
  * @FilePath: /ddBuy-dev/src/views/home/Home.vue
  -->
 <template>
   <div id="home">
     <Skeleton v-show="isShowLoading" />
-    <div v-show="!isShowLoading">
+    <div v-if="!isShowLoading">
       <!-- 头部地理位置和搜索框 -->
       <div class="head">
         <Header></Header>
