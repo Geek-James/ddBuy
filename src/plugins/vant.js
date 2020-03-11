@@ -129,7 +129,3 @@ Vue.use(GoodsAction)
 // 遮罩
 import { Overlay } from 'vant'
 Vue.use(Overlay)
-
-// 骨架屏
-import { Skeleton } from 'vant'
-Vue.use(Skeleton)

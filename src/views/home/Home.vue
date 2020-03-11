@@ -3,12 +3,13 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2020-03-11 12:35:34
+ * @LastEditTime: 2020-03-11 21:23:13
  * @Description: Home 首页模块
  * @FilePath: /ddBuy-dev/src/views/home/Home.vue
  -->
 <template>
   <div id="home">
+    <!-- 骨架屏幕  数据未加载时显示占位-->
     <Skeleton v-show="isShowLoading" />
     <div v-if="!isShowLoading">
       <!-- 头部地理位置和搜索框 -->
@@ -60,7 +61,7 @@ import FlashBuy from './components/flash/FlashBuy'
 import SpecialZone from './components/special/SpecialZone'
 import TabbarGoodsItem from './components/tabbar/TabbarGoodsItem'
 import Loading from '../../components/loading/LoadingGif'
-import Skeleton from '../home/components/skeleton/Skeleton'
+import Skeleton from '../home/components/Skeleton'
 export default {
   computed: {
     ...mapState(['userInfo'])
