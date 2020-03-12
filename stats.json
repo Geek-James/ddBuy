@@ -1,0 +1,30 @@
+{
+  "errors": [
+    "Entry module not found: Error: Can't resolve './src' in '/Users/James/Desktop/Git_Dev/ddBuy-dev'\nresolve './src' in '/Users/James/Desktop/Git_Dev/ddBuy-dev'\n  using description file: /Users/James/Desktop/Git_Dev/ddBuy-dev/package.json (relative path: .)\n    Field 'browser' doesn't contain a valid alias configuration\n    using description file: /Users/James/Desktop/Git_Dev/ddBuy-dev/package.json (relative path: ./src)\n      no extension\n        Field 'browser' doesn't contain a valid alias configuration\n        /Users/James/Desktop/Git_Dev/ddBuy-dev/src is not a file\n      .wasm\n        Field 'browser' doesn't contain a valid alias configuration\n        /Users/James/Desktop/Git_Dev/ddBuy-dev/src.wasm doesn't exist\n      .mjs\n        Field 'browser' doesn't contain a valid alias configuration\n        /Users/James/Desktop/Git_Dev/ddBuy-dev/src.mjs doesn't exist\n      .js\n        Field 'browser' doesn't contain a valid alias configuration\n        /Users/James/Desktop/Git_Dev/ddBuy-dev/src.js doesn't exist\n      .json\n        Field 'browser' doesn't contain a valid alias configuration\n        /Users/James/Desktop/Git_Dev/ddBuy-dev/src.json doesn't exist\n      as directory\n        existing directory\n          using path: /Users/James/Desktop/Git_Dev/ddBuy-dev/src/index\n            using description file: /Users/James/Desktop/Git_Dev/ddBuy-dev/package.json (relative path: ./src/index)\n              no extension\n                Field 'browser' doesn't contain a valid alias configuration\n                /Users/James/Desktop/Git_Dev/ddBuy-dev/src/index doesn't exist\n              .wasm\n                Field 'browser' doesn't contain a valid alias configuration\n                /Users/James/Desktop/Git_Dev/ddBuy-dev/src/index.wasm doesn't exist\n              .mjs\n                Field 'browser' doesn't contain a valid alias configuration\n                /Users/James/Desktop/Git_Dev/ddBuy-dev/src/index.mjs doesn't exist\n              .js\n                Field 'browser' doesn't contain a valid alias configuration\n                /Users/James/Desktop/Git_Dev/ddBuy-dev/src/index.js doesn't exist\n              .json\n                Field 'browser' doesn't contain a valid alias configuration\n                /Users/James/Desktop/Git_Dev/ddBuy-dev/src/index.json doesn't exist"
+  ],
+  "warnings": [
+    "configuration\nThe 'mode' option has not been set, webpack will fallback to 'production' for this value. Set 'mode' option to 'development' or 'production' to enable defaults for each environment.\nYou can also set it to 'none' to disable any default behavior. Learn more: https://webpack.js.org/configuration/mode/"
+  ],
+  "version": "4.39.3",
+  "hash": "d171ac3444943f0c66d3",
+  "time": 60,
+  "builtAt": 1583938599263,
+  "publicPath": "",
+  "outputPath": "/Users/James/Desktop/Git_Dev/ddBuy-dev/dist",
+  "assetsByChunkName": {},
+  "assets": [],
+  "filteredAssets": 0,
+  "entrypoints": {},
+  "namedChunkGroups": {},
+  "chunks": [],
+  "modules": [],
+  "filteredModules": 0,
+  "logging": {
+    "webpack.buildChunkGraph.visitModules": {
+      "entries": [],
+      "filteredEntries": 1,
+      "debug": false
+    }
+  },
+  "children": []
+}
