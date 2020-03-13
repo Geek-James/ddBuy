@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2020-03-11 21:23:13
+ * @LastEditTime: 2020-03-13 16:43:36
  * @Description: Home 首页模块
  * @FilePath: /ddBuy-dev/src/views/home/Home.vue
  -->
@@ -61,7 +61,7 @@ import FlashBuy from './components/flash/FlashBuy'
 import SpecialZone from './components/special/SpecialZone'
 import TabbarGoodsItem from './components/tabbar/TabbarGoodsItem'
 import Loading from '../../components/loading/LoadingGif'
-import Skeleton from '../home/components/Skeleton'
+import Skeleton from '../home/components/skeleton'
 export default {
   computed: {
     ...mapState(['userInfo'])

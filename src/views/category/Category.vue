@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2020-03-11 22:14:31
+ * @LastEditTime: 2020-03-13 16:44:37
  * @Description: 分类
  * @FilePath: /ddBuy-dev/src/views/category/Category.vue
  -->
@@ -56,7 +56,7 @@ import Loading from '../../components/loading/LoadingGif'
 // 5.引入加载动画
 import LoadingGif from '../../components/loading/Loading'
 // 6.引入骨架屏
-import Skeleton from './Skeleton'
+import Skeleton from './skeleton'
 export default {
   name: 'Category',
   data() {
