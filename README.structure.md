@@ -1,107 +1,208 @@
 ## 项目核心架构结构
 ```
-├── Easy-Mock-API.zip                     // 后端Mock数据
+.
+├── Easy-Mock-API.zip
+├── LICENSE
+├── README.en.md
+├── README.md
+├── README.structure.md
+├── babel.config.js
+├── dist.zip
+├── package-lock.json
 ├── package.json
+├── postcss.config.js
+├── public
+│   ├── favicon.ico
+│   └── index.html
 ├── src
 │   ├── App.vue
 │   ├── assets
 │   │   └── logo.png
-│   ├── components                      // 公共组件
-│   │   ├── backToTop                   // 回到顶部组件
+│   ├── components
+│   │   ├── SvgIcon
+│   │   │   └── index.vue
+│   │   ├── backToTop
 │   │   │   └── ToTop.vue
-│   │   ├── horizontalScroll            // 水平滑动组件
+│   │   ├── goodsDetail
+│   │   │   └── GoodsDetail.vue
+│   │   ├── horizontalScroll
 │   │   │   └── HorizontalScroll.vue
-│   │   └── loading                     // 加载动画
+│   │   └── loading
 │   │       ├── Loading.vue
 │   │       └── LoadingGif.vue
-│   ├── config                          // 配置文件
-│   │   ├── area.js                     
-│   │   ├── bus.js                      
-│   │   ├── filter.js                   
-│   │   ├── global.js                   
-│   │   ├── pubsub_type.js              
+│   ├── config
+│   │   ├── area.js
+│   │   ├── filter.js
+│   │   ├── global.js
+│   │   ├── pubsub_type.js
 │   │   └── rem.js
-│   ├── main.js                         // 项目主入口
-│   ├── plugins                         // 第三方插件
-│   │   └── vant.js                     // vant ui
-│   ├── router                          // 路由
+│   ├── i18n
+│   │   ├── en.js
+│   │   ├── index.js
+│   │   └── zh.js
+│   ├── icons
+│   │   ├── index.js
+│   │   └── svg
+│   │       ├── QQ.svg
+│   │       ├── backtotop.svg
+│   │       ├── car.svg
+│   │       ├── car_disable.svg
+│   │       ├── collection.svg
+│   │       ├── down.svg
+│   │       ├── loading.svg
+│   │       ├── search.svg
+│   │       ├── share.svg
+│   │       ├── up.svg
+│   │       ├── up_real.svg
+│   │       ├── vip.svg
+│   │       └── wechat.svg
+│   ├── images
+│   │   ├── cart
+│   │   │   ├── empty.png
+│   │   │   └── shop-icon.png
+│   │   ├── home
+│   │   │   └── backImage.png
+│   │   ├── icon
+│   │   │   ├── money.png
+│   │   │   ├── seal.png
+│   │   │   └── transport.png
+│   │   ├── loading
+│   │   │   ├── icon_loading.png
+│   │   │   ├── loadGif.gif
+│   │   │   ├── loadGif2.gif
+│   │   │   └── loadGif3.gif
+│   │   ├── login
+│   │   │   ├── back.jpg
+│   │   │   ├── back2.jpg
+│   │   │   ├── blindfold.png
+│   │   │   ├── greeting.png
+│   │   │   ├── grey.jpg
+│   │   │   ├── normal.png
+│   │   │   ├── qq.png
+│   │   │   ├── qq.svg
+│   │   │   └── wx.png
+│   │   ├── mine
+│   │   │   ├── defaultImg.jpeg
+│   │   │   ├── female.png
+│   │   │   ├── male.png
+│   │   │   ├── noData.jpeg
+│   │   │   ├── rockets.png
+│   │   │   └── vip.png
+│   │   ├── order
+│   │   │   ├── hb.png
+│   │   │   ├── noAddress.png
+│   │   │   ├── wx.png
+│   │   │   └── zfb.png
+│   │   ├── placeholderImg
+│   │   │   └── product-img-load.png
+│   │   ├── special
+│   │   │   ├── hotItem1.webp
+│   │   │   ├── hotItem2.webp
+│   │   │   ├── newItem1.webp
+│   │   │   ├── newItem2.webp
+│   │   │   ├── peanut.jpeg
+│   │   │   ├── vipItem1.webp
+│   │   │   └── vipItem2.webp
+│   │   └── tabbar
+│   │       ├── category_default.png
+│   │       ├── category_selected.png
+│   │       ├── eat_default.png
+│   │       ├── eat_selected.png
+│   │       ├── eats_default.png
+│   │       ├── home_default.png
+│   │       ├── home_selected.png
+│   │       ├── mine_default.png
+│   │       ├── mine_selected.png
+│   │       ├── shoppingcart_default.png
+│   │       └── shoppingcart_selected.png
+│   ├── main.js
+│   ├── plugins
+│   │   └── vant.js
+│   ├── router
 │   │   └── router.js
-│   ├── serve                           // 服务端数据封装
+│   ├── serve
 │   │   └── api
 │   │       ├── ajax.js
 │   │       └── index.js
-│   ├── store                           // vuex
+│   ├── store
 │   │   ├── actions.js
 │   │   ├── getters.js
 │   │   ├── mutation-type.js
 │   │   ├── mutations.js
 │   │   ├── state.js
 │   │   └── store.js
-│   └── views                           
-│       ├── cart                        // 购物车
+│   └── views
+│       ├── cart
 │       │   └── Cart.vue
-│       ├── category                    // 分类
+│       ├── category
 │       │   ├── Category.vue
 │       │   └── components
-│       │       ├── ContentView.vue         // 内容
-│       │       ├── DropMenu.vue            // 下拉菜单
-│       │       └── SearchHead.vue          // 搜索
-│       ├── dashboard                   // 项目UI主入口
-│       │   ├── Dashboard.vue
-│       │   └── components
-│       ├── eat                         // 吃什么
+│       │       ├── ContentView.vue
+│       │       ├── DropMenu.vue
+│       │       └── SearchHead.vue
+│       ├── dashboard
+│       │   └── Dashboard.vue
+│       ├── eat
 │       │   ├── Eat.vue
-│       │   └── components      
-│       │       ├── MenuCategoryLists.vue       //吃什么标题
-│       │       ├── MenuWaterFall.vue           // 页面瀑布流
-│       │       ├── Search.vue                  // 搜索
-│       │       └── TodayMenu.vue               // 今日菜单
-│       ├── home                        // 首页
+│       │   └── components
+│       │       ├── MenuCategoryLists.vue
+│       │       ├── MenuWaterFall.vue
+│       │       ├── Search.vue
+│       │       └── TodayMenu.vue
+│       ├── home
 │       │   ├── Home.vue
 │       │   └── components
 │       │       ├── flash
-│       │       │   ├── FlashBuy.vue        // 限时抢购
-│       │       │   └── FlashFood.vue       // 限时抢购商品
+│       │       │   ├── FlashBuy.vue
+│       │       │   └── FlashFood.vue
 │       │       ├── header
-│       │       │   └── Header.vue              
+│       │       │   └── Header.vue
+│       │       ├── map
+│       │       │   └── Map.vue
 │       │       ├── myVip
-│       │       │   └── VipTip.vue              // vip
+│       │       │   └── VipTip.vue
 │       │       ├── nav
-│       │       │   └── Nav.vue                 // nav
+│       │       │   └── Nav.vue
 │       │       ├── sowing
-│       │       │   └── Sowing.vue              // 轮播图
+│       │       │   └── Sowing.vue
 │       │       ├── special
-│       │       │   └── SpecialZone.vue         // 特色专区
+│       │       │   └── SpecialZone.vue
 │       │       ├── tabbar
-│       │       │   ├── ProduceItem.vue         // 商品列表
-│       │       │   └── TabbarGoodsItem.vue     
+│       │       │   ├── ProduceItem.vue
+│       │       │   └── TabbarGoodsItem.vue
 │       │       └── tip
 │       │           └── Tip.vue
-│       ├── login                       // 登录
+│       ├── login
 │       │   └── Login.vue
-│       ├── mine                        // 我的
+│       ├── mine
 │       │   ├── Children
-│       │   │   ├── ChangeNickName.vue  // 修改昵称
-│       │   │   ├── CouponList.vue      // 我的优惠券
-│       │   │   ├── MyOrder.vue         // 我的订单
-│       │   │   ├── MyOrderChildren     
-│       │   │   │   ├── AfterSale.vue   // 售后
-│       │   │   │   └── OrderType.vue   // 订单类型
+│       │   │   ├── ChangeNickName.vue
+│       │   │   ├── CouponList.vue
+│       │   │   ├── MyOrder.vue
+│       │   │   ├── MyOrderChildren
+│       │   │   │   ├── AfterSale.vue
+│       │   │   │   └── OrderType.vue
 │       │   │   ├── MyVip.vue
 │       │   │   ├── MyVipChildren
-│       │   │   │   ├── VipGoodsItems.vue   // vip商品列表
-│       │   │   │   ├── VipMenuTitleScroll.vue // vip商品分类标题
-│       │   │   │   └── VipPay.vue              // 支付
-│       │   │   └── UserCenter.vue          // 用户中心
-│       │   └── Mine.vue                    // 我的
+│       │   │   │   ├── VipGoodsItems.vue
+│       │   │   │   ├── VipMenuTitleScroll.vue
+│       │   │   │   └── VipPay.vue
+│       │   │   ├── SwitchLanguage.vue
+│       │   │   └── UserCenter.vue
+│       │   └── Mine.vue
 │       └── order
-│           ├── Order.vue                   // 订单
+│           ├── Order.vue
 │           └── children
-│               ├── MyAddress.vue           // 我的地址
-│               ├── OrderGoodsList.vue      // 订单商品列表
-│               ├── TimeIntervalList.vue    // 送达时间列表
+│               ├── MyAddress.vue
+│               ├── OrderGoodsList.vue
+│               ├── TimeIntervalList.vue
 │               └── children
-│                   ├── AddAddress.vue      // 添加地址
-│                   └── EditAddress.vue     // 编辑地址
+│                   ├── AddAddress.vue
+│                   └── EditAddress.vue
+├── tree.md
+├── tree.txt
 └── vue.config.js
+
+55 directories, 146 files
+
 ```
