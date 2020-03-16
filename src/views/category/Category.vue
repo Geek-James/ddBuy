@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2020-03-13 16:44:37
+ * @LastEditTime: 2020-03-16 16:54:41
  * @Description: 分类
  * @FilePath: /ddBuy-dev/src/views/category/Category.vue
  -->
@@ -12,18 +12,17 @@
     <!--头部-->
     <Header></Header>
     <!--内容-->
-    <div class="listWrapper" v-if="!isShowLoading">
+    <div class="listWrapper"
+         v-if="!isShowLoading">
       <!--左边-->
       <div class="leftWrapper">
         <ul class="wrapper">
-          <li
-            class="categoryItem"
-            v-for="(cate, index) in categoriesData"
-            :class="{ selected: currentIndex === index }"
-            @click="clickLeftLi(index)"
-            :key="cate.id"
-            ref="menuList"
-          >
+          <li class="categoryItem"
+              v-for="(cate, index) in categoriesData"
+              :class="{ selected: currentIndex === index }"
+              @click="clickLeftLi(index)"
+              :key="cate.id"
+              ref="menuList">
             <span class="textWrapper">{{ cate.name }}</span>
           </li>
         </ul>
@@ -56,10 +55,10 @@ import Loading from '../../components/loading/LoadingGif'
 // 5.引入加载动画
 import LoadingGif from '../../components/loading/Loading'
 // 6.引入骨架屏
-import Skeleton from './skeleton'
+import Skeleton from './Skeleton'
 export default {
   name: 'Category',
-  data() {
+  data () {
     return {
       // 是否显示加载图标
       isShowLoading: true,
@@ -72,8 +71,8 @@ export default {
       isShowLoadingGif: false
     }
   },
-  created() {},
-  mounted() {
+  created () { },
+  mounted () {
     // 初始化数据
     this._initData()
   },
@@ -84,7 +83,7 @@ export default {
     LoadingGif,
     Skeleton
   },
-  activated() {
+  activated () {
     // 页面缓存了数据,所以会走这个方法
     this.$nextTick(() => {
       if (this.$route.params.currentIndex > -1) {
@@ -94,7 +93,7 @@ export default {
   },
   methods: {
     // 1. 初始化操作(数据和界面)
-    async _initData() {
+    async _initData () {
       // 1.1 获取左边的数据
       let leftRes = await getCategoryData()
       if (leftRes.success) {
@@ -124,7 +123,7 @@ export default {
       })
     },
     // 2. 处理左边的点击
-    async clickLeftLi(index) {
+    async clickLeftLi (index) {
       this.isShowLoadingGif = true
       // 2.1 改变索引
       this.currentIndex = index
