@@ -24,7 +24,7 @@
 
 📣📣**详细教程正在撰写中,为了第一时间获取详细教程文档,加作者微信:szfter**
 <div>
-<img src="http://518taole.7-orange.cn/weixing.png" width = "50" height = "50" />
+<img src="http://518taole.7-orange.cn/weixing.png" width = "120" height = "140" />
 </div>
 
 ## 简介
