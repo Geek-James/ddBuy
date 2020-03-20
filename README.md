@@ -22,7 +22,10 @@
 
 简体中文 | [English](https://github.com/Geek-James/ddBuy/blob/master/README.en.md)
 
-📣📣**详细搭建教程正在撰写中,为了第一时间获取详细教程文档,请加作者微信**
+📣📣**详细教程正在撰写中,为了第一时间获取详细教程文档,加作者微信:szfter**
+<div>
+<img src="http://518taole.7-orange.cn/weixing.png" width = "50" height = "50" />
+</div>
 
 ## 简介
 
