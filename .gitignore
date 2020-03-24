@@ -58,5 +58,6 @@ typings/
 # dotenv environment variables file
 .env
 
+.idea
 # next.js build output
 .next
