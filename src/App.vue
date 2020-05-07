@@ -2,8 +2,8 @@
  * @Github: https://github.com/Geek-James
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
  * @Date: 2020-05-07 10:13:15
- * @LastEditors: James
- * @LastEditTime: 2020-05-07 10:22:10
+ * @LastEditors: your name
+ * @LastEditTime: 2020-05-07 11:05:21
  -->
 <template>
   <div id="app">
@@ -29,7 +29,5 @@ window.onload = function () {
 #app {
   width: 100%;
   height: 100%;
-  //解决 Unable to preventDefault inside passive event listener due to target being treated as passive.
-  touch-action: none;
 }
 </style>
