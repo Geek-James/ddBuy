@@ -2,7 +2,7 @@
 <img src="http://518taole.7-orange.cn/geek3.png" width = "100" height = "100" div align=center />
 </div>
 <p align="center">
-   <img src="https://badgen.net/github/stars/Geek-James/ddBuy" alt="star">
+   <img src="https://badgen.net/github/stars/Geek-James/ddBuy" alt="Star">
   <a href="https://github.com/vuejs/vue">
     <img src="https://img.shields.io/badge/Vue-2.6.10-brightgreen.svg" alt="Vue">
   </a>
