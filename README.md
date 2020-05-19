@@ -141,3 +141,4 @@ npm run build
 [MIT](https://github.com/Geek-James/ddBuy/blob/master/LICENSE)
 
 Copyright (c) 2020 极客-James
+![](https://raw.githubusercontent.com/FairyEver/d2-admin/master/docs/image/give-a-star@2x.png)
