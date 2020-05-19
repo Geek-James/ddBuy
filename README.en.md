@@ -105,6 +105,8 @@ npm run build
 
 ## Mobile scanning Preview
 ![](http://518taole.7-orange.cn/qrcode.gif)
+## Star History
+[![Stargazers over time](https://starchart.cc/Geek-James/ddBuy.svg)](https://starchart.cc/Geek-James/ddBuy)
 
 ## Browsers support
 
