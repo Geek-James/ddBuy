@@ -22,6 +22,8 @@
 
 [简体中文](https://github.com/Geek-James/ddBuy/blob/master/README.md) | English
 
+📣 📣 Detailed tutorial is writing, for the first time obtain detailed tutorial document, add the author WeChat: szfter
+
 ## Summary
 
 **DDBuy** is an open source mobile e-commerce project,it's  build on [vue 2.x](https://github.com/vuejs/vue) and [vant 2.x](https://youzan.github.io/vant/#/zh-CN/intro).Use the latest Vue series technology and some excellent open source libraries,suce as [better-scroll](http://ustbhuangyi.github.io/better-scroll/doc/api.html)、 [moment.js](https://github.com/moment/moment/)、[twix.js](https://github.com/icambron/twix.js)、[pubsub-js](https://github.com/mroderick/PubSubJS),background data is built through [Easy-Mock](https://github.com/easy-mock/easy-mock). I believe that this project can help you no matter what stage.
