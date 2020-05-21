@@ -24,9 +24,6 @@
 简体中文 | [English](https://github.com/Geek-James/ddBuy/blob/master/README.en.md)
 
 📣📣**详细教程正在撰写中,为了第一时间获取详细教程文档,加作者微信:szfter**
-<div>
-<img src="http://518taole.7-orange.cn/weixing.png" width = "120" height = "140" />
-</div>
 
 ## 简介
 
@@ -38,18 +35,6 @@
 ### 支持 英语 中文
 
 作者 **[极客James](https://juejin.im/user/5c4ebc72e51d4511dc7306ce)**
-
-### 交个朋友吧
-
-**微信群:扫码回复 加群 带你和大厂大佬们一起交流学习**
-<div>
-<img src="http://518taole.7-orange.cn/weixing.png" width = "120" height = "140" />
-</div>
-
-**公众号:前端甜甜圈~ 和我一起愉快的玩转大前端**
-<div>
-<img src="http://518taole.7-orange.cn/wxqrcode.jpg" width = "120" height = "140" />
-</div>
 
 ## 前序准备
 
@@ -124,6 +109,18 @@ npm run build
 
 ## 手机端扫码预览
 ![](http://518taole.7-orange.cn/qrcode.gif)
+
+### 交个朋友吧
+
+**微信群:扫码回复 加群 带你和大厂大佬们一起交流学习**
+<div>
+<img src="http://518taole.7-orange.cn/weixing.png" width = "120" height = "140" />
+</div>
+
+**公众号:前端甜甜圈~ 和我一起愉快的玩转大前端**
+<div>
+<img src="http://518taole.7-orange.cn/wxqrcode.jpg" width = "120" height = "140" />
+</div>
 
 ## Star历史
 [![Stargazers over time](https://starchart.cc/Geek-James/ddBuy.svg)](https://starchart.cc/Geek-James/ddBuy)
