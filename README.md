@@ -126,7 +126,7 @@ npm run build
 | IE10, IE11, Edge                                                                                                                                                                                                 | last 2 versions                                                                                                                                                                                                    | last 2 versions                                                                                                                                                                                                | last 2 versions                                                                                                                                                                                                |
 
 ## 免责声明
-本项目为高仿项目,仅做技术交流和学习使用,非官方App,不建议用于商业目的,产生的一切侵权著作法律后果,与本作者无关。
+本项目仅做技术交流和学习，不建议用于商业目的！
 
 ## License
 
