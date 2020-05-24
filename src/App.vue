@@ -1,10 +1,13 @@
 <!--
- * @Github: https://github.com/Geek-James
+ * @Author: 极客James
+ * @Motto: 求知若渴,虚心若愚
+ * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @Date: 2020-05-07 10:13:15
- * @LastEditors: your name
- * @LastEditTime: 2020-05-07 11:05:21
- -->
+ * @LastEditTime: 2020-05-24 22:07:56
+ * @Description: 入口
+ * @FilePath: /ddBuy-dev/src/App.vue
+--> 
+
 <template>
   <div id="app">
     <router-view></router-view>
@@ -29,5 +32,11 @@ window.onload = function () {
 #app {
   width: 100%;
   height: 100%;
+}
+/** 解决 [Intervention] Unable to preventDefault 
+inside passive event listener due to target being treated as
+**/
+* {
+  touch-action: pan-y;
 }
 </style>
