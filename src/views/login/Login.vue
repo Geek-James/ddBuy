@@ -3,9 +3,9 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime : 2020-01-06 11:39:10
+ * @LastEditTime: 2020-05-24 20:51:42
  * @Description: 登录模块
- * @FilePath: /ddBuy/src/views/login/Login.vue
+ * @FilePath: /ddBuy-dev/src/views/login/Login.vue
  -->
 <template>
   <div id="login">
@@ -246,7 +246,7 @@ export default {
         } else if (this.smsCaptcha < 7 || this.smsCaptcha != Number(this.smsCaptchaResult)) {
           // 5.1.2 验证验证码
           Toast({
-            message: this.$t('login.pleaseInputCorrectVerifyNumber'),
+            message: this.$t('login.pleaseInputCorrectVerifyumber'),
             duration: 800
           });
           return;
