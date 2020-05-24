@@ -114,7 +114,7 @@ npm run build
 
 | 学习群                                                                                                | 公众号
 | ----------------------------------------------------------------------------------------------------- | --|
-| <img width="360px" src="http://518taole.7-orange.cn/hitron/weChat.png"/> |<img width="360px" src="http://518taole.7-orange.cn/hitron/gz.png">
+| <img width="360px" src="http://518taole.7-orange.cn/hitron/me.gif"/> |<img width="360px" src="http://518taole.7-orange.cn/hitron/gz.png">
 
 ## Star历史
 [![Stargazers over time](https://starchart.cc/Geek-James/ddBuy.svg)](https://starchart.cc/Geek-James/ddBuy)
