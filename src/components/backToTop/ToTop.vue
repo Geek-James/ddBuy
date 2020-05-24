@@ -3,17 +3,20 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2020-05-24 20:37:15
+ * @LastEditTime: 2020-05-24 20:44:46
  * @Description: 回到顶部组件
  * @FilePath: /ddBuy-dev/src/components/backToTop/ToTop.vue
  -->
 <template>
-  <div class="scrollTop"
-       v-show="showTop"
-       @click="toTop">
-    <svg-icon iconClass="backtotop"
-              class="backtotop" />
-  </div>
+  <transition name="moveR">
+    <div class="scrollTop"
+         v-show="showTop"
+         @click="toTop">
+
+      <svg-icon iconClass="backtotop"
+                class="backtotop" />
+    </div>
+  </transition>
 </template>
 <script>
 import SvgIcon from "../SvgIcon/index";
@@ -90,5 +93,17 @@ export default {
   bottom: 5rem;
   cursor: pointer;
   z-index: 100;
+}
+.moveR-enter-active,
+.moveR-leave-active {
+  transition: all 0.2s linear;
+  transform: translateX(0);
+}
+.moveR-enter,
+.moveR-leave {
+  transform: translateX(100%);
+}
+.moveR-leave-to {
+  transform: translateX(100%);
 }
 </style>
