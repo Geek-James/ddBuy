@@ -3,9 +3,9 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime : 2020-01-04 15:32:21
+ * @LastEditTime: 2020-05-24 20:37:15
  * @Description: 回到顶部组件
- * @FilePath: /ddBuy/src/components/backToTop/ToTop.vue
+ * @FilePath: /ddBuy-dev/src/components/backToTop/ToTop.vue
  -->
 <template>
   <div class="scrollTop"
@@ -35,7 +35,8 @@ export default {
     },
   },
   mounted () {
-    window.addEventListener('scroll', this.getScrollTop);
+    //监听scroll事件
+    window.addEventListener('scroll', this.throttler(this.getScrollTop, 300));
   },
   methods: {
     toTop (e) {
@@ -60,9 +61,22 @@ export default {
     },
     getScrollTop () {
       this.scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+      console.log('页面滚动了' + this.scrollTop);
+    },
+    // 创建一个节流函数用来减少getScrollTop方法的执行 
+    // 固定时间为300ms
+    throttler (fn, time) {
+      console.log("来了老弟,和我一起愉快的玩耍吧~");
+      let timeOut = null;
+      // 创建闭包
+      return function () {
+        clearTimeout(timeOut);
+        timeOut = setTimeout(() => {
+          fn.apply(this, arguments);
+        }, time);
+      }
     }
   },
-
 }
 </script>
 <style scoped>
