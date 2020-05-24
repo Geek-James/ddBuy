@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2020-05-24 20:44:46
+ * @LastEditTime: 2020-05-24 21:06:10
  * @Description: 回到顶部组件
  * @FilePath: /ddBuy-dev/src/components/backToTop/ToTop.vue
  -->
@@ -42,25 +42,17 @@ export default {
     window.addEventListener('scroll', this.throttler(this.getScrollTop, 300));
   },
   methods: {
-    toTop (e) {
-      if (!!this.scrollState) {
-        return;
-      }
-      this.scrollState = 1;
-      e.preventDefault();
-      let distance = document.documentElement.scrollTop || document.body.scrollTop;
-      let _this = this;
-      this.time = setInterval(function () { _this.gotoTop(_this.scrollTop - _this.dParams) }, 10);
-    },
-    gotoTop (distance) {
-      this.dParams += 20;
-      distance = distance > 0 ? distance : 0;
-      document.documentElement.scrollTop = document.body.scrollTop = window.pageYOffset = distance;
-      if (this.scrollTop < 10) {
-        clearInterval(this.time);
-        this.dParams = 20;
-        this.scrollState = 0;
-      }
+    //回到顶部
+    toTop () {
+      var timer = setInterval(function () {
+        let osTop = document.documentElement.scrollTop || document.body.scrollTop;
+        let ispeed = Math.floor(-osTop / 5);
+        document.documentElement.scrollTop = document.body.scrollTop = osTop + ispeed;
+        this.isTop = true;
+        if (osTop === 0) {
+          clearInterval(timer);
+        }
+      }, 30)
     },
     getScrollTop () {
       this.scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
