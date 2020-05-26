@@ -128,13 +128,13 @@ npm run build
 ## 免责声明
 本项目仅做技术交流和学习，不建议用于商业目的！
 
-## License
+### 访问量
+<img src="https://visitor-badge.glitch.me/badge?page_id=Geek-James/ddBuy"/>
+
+## MIT许可协议
 
 [MIT](https://github.com/Geek-James/ddBuy/blob/master/LICENSE)
 
 Copyright (c) 2020 极客-James  
-
-### 访问量
-<img src="https://visitor-badge.glitch.me/badge?page_id=Geek-James/ddBuy"/>
 
 ![](https://raw.githubusercontent.com/FairyEver/d2-admin/master/docs/image/give-a-star@2x.png)
