@@ -110,9 +110,6 @@ npm run build
 ## 手机端扫码预览
 ![](http://518taole.7-orange.cn/qrcode.gif)
 
-### 访问量
-<img src="https://visitor-badge.glitch.me/badge?page_id=Geek-James/ddBuy"/>
-
 ### 交个朋友吧
 
 | 学习群                                                                                                | 公众号
@@ -135,5 +132,9 @@ npm run build
 
 [MIT](https://github.com/Geek-James/ddBuy/blob/master/LICENSE)
 
-Copyright (c) 2020 极客-James
+Copyright (c) 2020 极客-James  
+
+### 访问量
+<img src="https://visitor-badge.glitch.me/badge?page_id=Geek-James/ddBuy"/>
+
 ![](https://raw.githubusercontent.com/FairyEver/d2-admin/master/docs/image/give-a-star@2x.png)
