@@ -120,6 +120,9 @@ Modern browsers and Internet Explorer 10+.
 
 ## Disclaimer
 This project is a high immitation project,only for technical exchange and learning,not official App,commercial use not recommended,the legal liability for infringement of all works arising is irrelevant to the author.
+
+### Visitor
+<img src="https://visitor-badge.glitch.me/badge?page_id=Geek-James/ddBuy"/>
 ## License
 
 [MIT](https://github.com/Geek-James/ddBuy/blob/master/LICENSE)
