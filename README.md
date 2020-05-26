@@ -110,6 +110,9 @@ npm run build
 ## 手机端扫码预览
 ![](http://518taole.7-orange.cn/qrcode.gif)
 
+### 访问量
+<img src="https://visitor-badge.glitch.me/badge?page_id=Geek-James/ddBuy"/>
+
 ### 交个朋友吧
 
 | 学习群                                                                                                | 公众号
