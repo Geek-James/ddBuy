@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2020-03-13 16:43:36
+ * @LastEditTime: 2020-06-03 17:12:39
  * @Description: Home 首页模块
  * @FilePath: /ddBuy-dev/src/views/home/Home.vue
  -->
@@ -29,10 +29,8 @@
       <!-- 特色专区 -->
       <SpecialZone :specialZone="specialZone" />
       <!--TabbarItem 商品 -->
-      <TabbarGoodsItem
-        :tabbar_all_product_list="tabbar_all_product_list"
-        :flash_sale_product_list="flash_sale_product_list"
-      />
+      <TabbarGoodsItem :tabbar_all_product_list="tabbar_all_product_list"
+                       :flash_sale_product_list="flash_sale_product_list" />
       <!-- 最底部 -->
       <van-divider>{{ $t('home.bottomTip') }}</van-divider>
     </div>
@@ -66,12 +64,14 @@ export default {
   computed: {
     ...mapState(['userInfo'])
   },
-  created() {
-    // 0.数据初始化
+  created () {
+
+  },
+  mounted () {
+    // 数据初始化,加载数据
     this._initData()
   },
-  mounted() {},
-  data() {
+  data () {
     return {
       sowing_list: [], // 首页轮播图数据
       isShowLoading: true, // 是否加载动画
@@ -98,7 +98,7 @@ export default {
     // Vuex中的方法
     ...mapMutations(['ADD_GOODS', 'ADD_TO_CART']),
     // 数据初始化
-    async _initData() {
+    async _initData () {
       const response = await getHomeData()
       if (response.success) {
         const data = response.data
@@ -123,12 +123,12 @@ export default {
 
 <style lang="less" scoped>
 #home {
-  background-color: '#f5f5f5';
+  background-color: "#f5f5f5";
   padding-bottom: 3rem;
   .head {
     margin-top: -3rem;
     width: 100%;
-    background-image: url('http://518taole.7-orange.cn/backImage.png');
+    background-image: url("http://518taole.7-orange.cn/backImage.png");
   }
 }
 .van-divider {
