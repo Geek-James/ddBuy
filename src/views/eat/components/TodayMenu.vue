@@ -3,47 +3,48 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2020-03-11 21:58:23
+ * @LastEditTime: 2020-06-11 09:05:23
  * @Description: 吃什么->今日菜单
  * @FilePath: /ddBuy-dev/src/views/eat/components/TodayMenu.vue
  -->
 <template>
   <div>
-    <div id="todayMenu" v-if="!isShowLoading">
+    <div id="todayMenu"
+         v-if="!isShowLoading">
       <div class="todayMenuWrapper">
         <div class="menuList">
           <ul ref="menuUlContent">
-            <li
-              class="menuItem"
-              v-for="(item, index) in todayMenuCategoryLists"
-              :key="item.id"
-              ref="menuTitle"
-              :class="{ selected: currentSubTitle === index }"
-              @click="menuItemClick(index)"
-            >
+            <li class="menuItem"
+                v-for="(item, index) in todayMenuCategoryLists"
+                :key="item.id"
+                ref="menuTitle"
+                :class="{ selected: currentSubTitle === index }"
+                @click="menuItemClick(index)">
               {{ item.name }}
             </li>
           </ul>
         </div>
-        <div class="menuAll" @click="clickAll">
+        <div class="menuAll"
+             @click="clickAll">
           {{ msg }}
-          <span class="downMenu" v-if="menuDown">
-            <svg-icon iconClass="down" style="width:1rem;height:1rem" />
+          <span class="downMenu"
+                v-if="menuDown">
+            <svg-icon iconClass="down"
+                      style="width:1rem;height:1rem" />
           </span>
-          <span class="upMenu" v-else>
-            <svg-icon iconClass="up" style="width:1rem;height:1rem" />
+          <span class="upMenu"
+                v-else>
+            <svg-icon iconClass="up"
+                      style="width:1rem;height:1rem" />
           </span>
         </div>
       </div>
 
-      <MenuCategoryLists
-        :todayMenuCategoryLists="todayMenuCategoryLists"
-        :isShowMenuList="isShowMenuList"
-        v-on:hiddenMenu="clickAll"
-      >
+      <MenuCategoryLists :todayMenuCategoryLists="todayMenuCategoryLists"
+                         :isShowMenuList="isShowMenuList"
+                         v-on:hiddenMenu="clickAll">
       </MenuCategoryLists>
     </div>
-    <!-- <Loading :show="isShowLoading"> </Loading> -->
     <!-- 骨架屏 -->
     <Skeleton v-if="isShowLoading"></Skeleton>
   </div>
@@ -64,7 +65,7 @@ import Skeleton from '../Skeleton'
 
 import { getTodayMenuCategoryList } from './../../../serve/api/index.js'
 export default {
-  data() {
+  data () {
     return {
       menuDown: true,
       isShowMenuList: false,
@@ -74,11 +75,11 @@ export default {
       isShowLoading: true
     }
   },
-  mounted() {
+  mounted () {
     let that = this
     this._initData()
     // 订阅通知
-    PubSub.subscribe(EAT_MENUTITLE_CLICK, function(msg, index) {
+    PubSub.subscribe(EAT_MENUTITLE_CLICK, function (msg, index) {
       // 点击顶部滑动菜单
       that.menuItemClick(index)
     })
@@ -89,7 +90,7 @@ export default {
     Skeleton
   },
   watch: {
-    menuDown() {
+    menuDown () {
       let all = this.$t('eat.all')
       let close = this.$t('eat.close')
       this.msg = this.menuDown == true ? all : close
@@ -97,7 +98,7 @@ export default {
   },
   methods: {
     // 1.获取网络数据
-    async _initData() {
+    async _initData () {
       let todayMenuCategory = await getTodayMenuCategoryList()
       if (todayMenuCategory.success) {
         this.todayMenuCategoryLists = todayMenuCategory.data.list
@@ -109,14 +110,14 @@ export default {
       this.isShowLoading = false
     },
     // 2.处理点击全部按钮切换菜单栏
-    clickAll() {
+    clickAll () {
       // 2.1上下菜单图标切换
       this.menuDown = !this.menuDown
       // 2.2是否显示商品分类列表切换
       this.isShowMenuList = !this.isShowMenuList
     },
     // 3.点击滑动菜单栏
-    menuItemClick(index) {
+    menuItemClick (index) {
       // 3.1 让横向滑动到合适位置
       this.currentSubTitle = index
       let el = this.$refs.menuTitle[index]
@@ -128,7 +129,7 @@ export default {
       }
     },
     // 4.初始化菜单栏滑动
-    _initMenuTitleScroll() {
+    _initMenuTitleScroll () {
       // 让ul完全渲染完成后
       this.$nextTick(() => {
         if (!this.menuTitleScroll) {
@@ -151,7 +152,7 @@ export default {
       })
     }
   },
-  beforeDestroy() {
+  beforeDestroy () {
     PubSub.unsubscribe(EAT_MENUTITLE_CLICK)
   }
 }

@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2020-06-03 17:12:39
+ * @LastEditTime: 2020-06-11 09:04:26
  * @Description: Home 首页模块
  * @FilePath: /ddBuy-dev/src/views/home/Home.vue
  -->
@@ -34,8 +34,6 @@
       <!-- 最底部 -->
       <van-divider>{{ $t('home.bottomTip') }}</van-divider>
     </div>
-    <!-- 数据加载提示gif 骨架屏代替-->
-    <!-- <Loading :show="isShowLoading" /> -->
     <!-- 回到顶部按钮 -->
     <v-top />
   </div>
@@ -60,6 +58,7 @@ import SpecialZone from './components/special/SpecialZone'
 import TabbarGoodsItem from './components/tabbar/TabbarGoodsItem'
 import Loading from '../../components/loading/LoadingGif'
 import Skeleton from '../home/components/skeleton'
+
 export default {
   computed: {
     ...mapState(['userInfo'])

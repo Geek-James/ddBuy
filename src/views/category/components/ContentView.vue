@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2020-02-26 10:14:22
+ * @LastEditTime: 2020-06-11 09:08:02
  * @Description: 分类模块->可滑动标题组件
  * @FilePath: /ddBuy-dev/src/views/category/components/ContentView.vue
  -->
@@ -302,6 +302,10 @@ export default {
       width: 4.0625rem;
       height: 4.0625rem;
       border-radius: 0.04rem;
+      display: block;
+      // 等比缩小图片来适应元素的尺寸
+      background-size: contain;
+      background-image: url("../../../images/placeholderImg/product-img-load.png");
     }
     .list_item {
       justify-content: flex-start;

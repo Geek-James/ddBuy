@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2020-05-24 21:06:10
+ * @LastEditTime: 2020-06-11 08:56:04
  * @Description: 回到顶部组件
  * @FilePath: /ddBuy-dev/src/components/backToTop/ToTop.vue
  -->
@@ -61,7 +61,6 @@ export default {
     // 创建一个节流函数用来减少getScrollTop方法的执行 
     // 固定时间为300ms
     throttler (fn, time) {
-      console.log("来了老弟,和我一起愉快的玩耍吧~");
       let timeOut = null;
       // 创建闭包
       return function () {
@@ -70,7 +69,11 @@ export default {
           fn.apply(this, arguments);
         }, time);
       }
-    }
+    },
+    destroyed () {
+      //移除scroll事件监听
+      window.removeEventListener('scroll', this.getScrollTop)
+    },
   },
 }
 </script>
