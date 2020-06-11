@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2020-06-11 08:56:04
+ * @LastEditTime: 2020-06-11 09:14:46
  * @Description: 回到顶部组件
  * @FilePath: /ddBuy-dev/src/components/backToTop/ToTop.vue
  -->
@@ -56,7 +56,6 @@ export default {
     },
     getScrollTop () {
       this.scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
-      console.log('页面滚动了' + this.scrollTop);
     },
     // 创建一个节流函数用来减少getScrollTop方法的执行 
     // 固定时间为300ms

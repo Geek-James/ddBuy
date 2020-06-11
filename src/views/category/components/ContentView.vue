@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2020-06-11 09:08:02
+ * @LastEditTime: 2020-06-11 09:28:06
  * @Description: 分类模块->可滑动标题组件
  * @FilePath: /ddBuy-dev/src/views/category/components/ContentView.vue
  -->
@@ -118,6 +118,7 @@ export default {
       this._initProductScroll();
       this._isShowDropMenu();
     });
+    console.log("🎉https://github.com/Geek-James/ddBuy 点个Star就是对我最大的鼓励 ✨✨");
   },
   computed: {
     ...mapState(['userInfo'])

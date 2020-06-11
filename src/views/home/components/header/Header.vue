@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2020-03-10 22:22:47
+ * @LastEditTime: 2020-06-11 09:24:48
  * @Description: 首页->顶部搜索栏
  * @FilePath: /ddBuy-dev/src/views/home/components/header/Header.vue
  -->
@@ -64,6 +64,7 @@ export default {
         this.location = data;
       }
     })
+    console.log("🎉 https://github.com/Geek-James/ddBuy 来了老弟~~ ✨✨");
   },
   methods: {
     handleScroll () {

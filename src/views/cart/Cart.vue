@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime : 2020-01-06 17:34:57
+ * @LastEditTime: 2020-06-11 09:26:06
  * @Description: 购物车模块
  * @FilePath: /ddBuy/src/views/cart/Cart.vue
  -->
@@ -102,6 +102,7 @@ export default {
   mounted () {
     // 初始化数据
     this._initData();
+    console.log("🎉 https://github.com/Geek-James/ddBuy 遇到Bug别灰心,摸摸狗头就是干~ ✨✨");
   },
   data () {
     return {

@@ -3,7 +3,7 @@
  * @Motto: 求知若渴,虚心若愚
  * @Github: https://github.com/Geek-James/ddBuy
  * @掘金: https://juejin.im/user/5c4ebc72e51d4511dc7306ce
- * @LastEditTime: 2019-11-07 09:25:50
+ * @LastEditTime: 2020-06-11 09:24:04
  * @Description: 瀑布流及上拉加载
  * @FilePath: /ddBuy/src/views/eat/components/MenuWaterFall.vue
  -->
@@ -47,6 +47,7 @@ export default {
   },
   mounted () {
     this._initData();
+    console.log("🎉 https://github.com/Geek-James/ddBuy 工作再忙也要按时吃饭 ✨✨");
   },
   methods: {
     // 1.数据请求
