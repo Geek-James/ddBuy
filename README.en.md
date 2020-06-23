@@ -128,7 +128,8 @@ This project is a high immitation project,only for technical exchange and learni
 
 ### Visitor
 <img src="https://visitor-badge.glitch.me/badge?page_id=Geek-James/ddBuy"/>
-## License
+
+### License
 
 [MIT](https://github.com/Geek-James/ddBuy/blob/master/LICENSE)
 
