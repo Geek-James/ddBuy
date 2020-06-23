@@ -23,7 +23,15 @@
 
 简体中文 | [English](https://github.com/Geek-James/ddBuy/blob/master/README.en.md)
 
-📣📣**详细项目教程正在撰写中...**
+
+📣📣 **下一个开源项目正在创作中,扫面下方二维码，第一时间获取最新开源动态**
+
+### 交个朋友吧
+
+| 学习群                                                                                                | 公众号
+| ----------------------------------------------------------------------------------------------------- | --|
+| <img width="360px" src="http://518taole.7-orange.cn/hitron/me.gif"/> |<img width="360px" src="http://518taole.7-orange.cn/hitron/gz.png">
+
 
 ## 简介
 
@@ -109,12 +117,6 @@ npm run build
 
 ## 手机端扫码预览
 ![](http://518taole.7-orange.cn/qrcode.gif)
-
-### 交个朋友吧
-
-| 学习群                                                                                                | 公众号
-| ----------------------------------------------------------------------------------------------------- | --|
-| <img width="360px" src="http://518taole.7-orange.cn/hitron/me.gif"/> |<img width="360px" src="http://518taole.7-orange.cn/hitron/gz.png">
 
 ## Star历史
 [![Stargazers over time](https://starchart.cc/Geek-James/ddBuy.svg)](https://starchart.cc/Geek-James/ddBuy)
