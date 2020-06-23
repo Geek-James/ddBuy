@@ -24,7 +24,11 @@
 
 📣 📣 The next open source project is in creation, scan the qr code below, the first time for the latest open source dynamically.
 
+### Make friends with me
 
+| Study together                                                                                                | Wechat
+| ----------------------------------------------------------------------------------------------------- | --|
+| <img width="360px" src="http://518taole.7-orange.cn/hitron/me.gif"/> |<img width="360px" src="http://518taole.7-orange.cn/hitron/gz.png">
 ## Summary
 
 **DDBuy** is an open source mobile e-commerce project,it's  build on [vue 2.x](https://github.com/vuejs/vue) and [vant 2.x](https://youzan.github.io/vant/#/zh-CN/intro).Use the latest Vue series technology and some excellent open source libraries,suce as [better-scroll](http://ustbhuangyi.github.io/better-scroll/doc/api.html)、 [moment.js](https://github.com/moment/moment/)、[twix.js](https://github.com/icambron/twix.js)、[pubsub-js](https://github.com/mroderick/PubSubJS),background data is built through [Easy-Mock](https://github.com/easy-mock/easy-mock). I believe that this project can help you no matter what stage.
