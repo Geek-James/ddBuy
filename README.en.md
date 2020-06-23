@@ -22,7 +22,8 @@
 
 [简体中文](https://github.com/Geek-James/ddBuy/blob/master/README.md) | English
 
-📣 📣 Detailed tutorial is writing, for the first time obtain detailed tutorial document, add the author WeChat: szfter
+📣 📣 The next open source project is in creation, scan the qr code below, the first time for the latest open source dynamically.
+
 
 ## Summary
 
