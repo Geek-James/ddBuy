@@ -118,7 +118,7 @@ npm run build
 ## 手机端扫码预览
 ![](http://518taole.7-orange.cn/qrcode.gif)
 
-## Star历史
+## 影响力
 [![Stargazers over time](https://starchart.cc/Geek-James/ddBuy.svg)](https://starchart.cc/Geek-James/ddBuy)
 
 ## 浏览器支持
