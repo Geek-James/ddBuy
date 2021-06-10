@@ -137,6 +137,6 @@ npm run build
 ## 声明
 本项目仅做技术交流和学习，不建议用于商业目的！
 
-Copyright (c) 2020 极客-James  
+Copyright (c) 2021 极客-James  
 
 ![](https://raw.githubusercontent.com/FairyEver/d2-admin/master/docs/image/give-a-star@2x.png)
