@@ -27,7 +27,7 @@
       <!-- 限时抢购 -->
       <FlashBuy :flash_sale_product_list="flash_sale_product_list" />
       <!-- 特色专区 -->
-      <SpecialZone :specialZone="specialZone" />
+      <!-- <SpecialZone :specialZone="specialZone" /> -->
       <!--TabbarItem 商品 -->
       <TabbarGoodsItem :tabbar_all_product_list="tabbar_all_product_list"
                        :flash_sale_product_list="flash_sale_product_list" />
