@@ -24,8 +24,6 @@
 简体中文 | [English](https://github.com/Geek-James/ddBuy/blob/master/README.en.md)
 
 
-📣📣 **下一个开源项目正在创作中,扫面下方二维码，第一时间获取最新开源动态**
-
 ### 和作者交朋友
 
 | 学习群                                                                                                | 公众号
