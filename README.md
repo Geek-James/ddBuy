@@ -24,13 +24,6 @@
 简体中文 | [English](https://github.com/Geek-James/ddBuy/blob/master/README.en.md)
 
 
-### 和作者交朋友
-
-| 学习群                                                                                                | 公众号
-| ----------------------------------------------------------------------------------------------------- | --|
-| <img width="360px" src="http://518taole.7-orange.cn/hitron/me.gif"/> |<img width="360px" src="http://518taole.7-orange.cn/hitron/gz.png">
-
-
 ## 简介
 
 **ddBuy**是一个移动端开源电商项目，它基于 [vue 2.x](https://github.com/vuejs/vue) 和 [vant 2.x](https://youzan.github.io/vant/#/zh-CN/intro)实现。使用了最新的Vue全家桶技术栈，以及一些优秀的开源库如[better-scroll](http://ustbhuangyi.github.io/better-scroll/doc/api.html)、 [moment.js](https://github.com/moment/moment/)、[twix.js](https://github.com/icambron/twix.js)、[pubsub-js](https://github.com/mroderick/PubSubJS),后台数据通过[Easy-Mock](https://github.com/easy-mock/easy-mock)搭建。支持多语言国际化,相信不管你是处于哪个段位的攻城狮，本项目都能帮助到你。
