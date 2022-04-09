@@ -15,7 +15,7 @@
     "fastclick": "^1.0.6",
     "js-cookie": "^2.2.1",
     "less-loader": "^5.0.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "pubsub-js": "^1.7.0",
     "reset-css": "^4.0.1",
     "twix": "^1.3.0",
